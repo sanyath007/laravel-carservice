@@ -10,7 +10,7 @@ use App\Reservation;
 use App\ReservePassenger;
 use App\Maintenance;
 use App\Vehicle;
-use App\Driver;
+use App\Models\Driver;
 use App\Location;
 use App\Department;
 use App\Ward;

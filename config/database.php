@@ -71,11 +71,11 @@ return [
 
         'hosxp' => array(
             'driver'    => 'mysql',
-            'host' => '192.168.20.7',
+            'host' => 'localhost',
             'port' => env('DB_PORT', '3306'),
-            'database'  => 'hos2',
-            'username' => 'sa',
-            'password' => 'sa',
+            'database'  => 'hosxp',
+            'username' => 'root',
+            'password' => '4621008811',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -85,11 +85,11 @@ return [
 
         'person' => array(
             'driver'    => 'mysql',
-            'host' => '192.168.20.4',
+            'host' => 'localhost',
             'port' => env('DB_PORT', '3306'),
             'database'  => 'db_ksh',
             'username' => 'root',
-            'password' => '1',
+            'password' => '4621008811',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

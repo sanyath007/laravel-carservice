@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function driver()
     {
-        return $this->hasOne('App\Driver', 'person_id', 'person_id');
+        return $this->hasOne('App\Models\Driver', 'person_id', 'person_id');
     }
 
     public function maintained()

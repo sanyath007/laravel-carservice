@@ -17,7 +17,7 @@ class Reservation extends Model
 
   public function driver()
   {
-      return $this->belongsTo('App\Driver', 'driver_id', 'driver_id');
+      return $this->belongsTo('App\Models\Driver', 'driver_id', 'driver_id');
   }
 
   public function user()

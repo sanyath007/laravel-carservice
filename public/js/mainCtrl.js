@@ -143,6 +143,7 @@ app.controller('mainCtrl', function($scope, $http, toaster, ModalService, CONFIG
         //Clear events
         $('#calendar').fullCalendar( 'removeEventSource', this.events );
         //Load new events
+        console.log(baseUrl + '/reserve/ajaxcalendar/' + this.fdMonth + '/' + this.ldMonth);
         $http.get(baseUrl + '/reserve/ajaxcalendar/' + this.fdMonth + '/' + this.ldMonth)
         .then((data) => {
             this.events = data.data;
@@ -201,8 +202,10 @@ app.controller('mainCtrl', function($scope, $http, toaster, ModalService, CONFIG
             $scope.passengers = data.data[1];
             console.log($scope.passengers);
 
+            //1
             $('#dlgPassengers').modal('show')
             
+            //2
             //     ModalService.showModal({
             //         templateUrl: "modal.html",
             //         controller: "ModalController"

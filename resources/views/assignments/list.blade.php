@@ -73,7 +73,7 @@
                         <?php $vehicle = App\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
                         ?>
 
-                        <?php $driver = App\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
+                        <?php $driver = App\Models\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
                         ?>
                     <tr>
                         <td style="text-align: center;">

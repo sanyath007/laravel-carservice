@@ -10,7 +10,7 @@ use App\Reservation;
 use App\ReservePassenger;
 use App\Maintenance;
 use App\Vehicle;
-use App\Driver;
+use App\Models\Driver;
 use App\Location;
 use App\Department;
 use App\Ward;
@@ -361,7 +361,8 @@ class ReservationController extends Controller
          * 0=ยังไม่เปิดดู,1=รับเรื่องแล้ว,2=อนุมัติแล้ว,3=เหลืออีกเที่ยว,4=จบงาน,5=ยกเลิก
          */
         $events = [];
-        $reservations = Reservation::whereIn('status', ['0','1','2','3'])
+        $reservations = Reservation::whereBetween('from_date', [$sdate, $edate])
+                                ->whereIn('status', ['0','1','2','3'])
                                 ->with('vehicle')
                                 ->with('driver')
                                 ->with('user')

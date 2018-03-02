@@ -121,7 +121,7 @@
                                 'ยกเลิก'
                             ];
                             $vehicle = App\Vehicle::where(['vehicle_id' => $reservation->vehicle_id])->with('changwat')->first();
-                            $driver = App\Driver::where(['driver_id' => $reservation->driver_id])->with('person')->first();
+                            $driver = App\Models\Driver::where(['driver_id' => $reservation->driver_id])->with('person')->first();
                         ?>
 
                         <?php

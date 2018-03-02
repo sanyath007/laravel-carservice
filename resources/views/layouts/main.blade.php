@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="{{ asset('/bower/angular-xeditable/dist/css/xeditable.css') }}">
 	<!-- <link href="{{ asset('/css/bootstrap-tagsinput.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet"> -->
-	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/main.css') }}">
 
 	<!-- Fonts -->
 	<!-- <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400,300' type='text/css'> -->
@@ -46,7 +46,7 @@
 	<!-- <script src="{{ asset('/js/bootstrap-tagsinput.min.js') }}"></script>
 	<script src="{{ asset('/js/bootstrap-tagsinput-angular.min.js') }}"></script> -->
 	
-	<script src="{{ asset('/js/app.js') }}"></script>
+	<script src="{{ asset('/js/main.js') }}"></script>
 	<script src="{{ asset('/js/mainCtrl.js') }}"></script>
 	<script src="{{ asset('/js/reserveCtrl.js') }}"></script>
 	<script src="{{ asset('/js/assignCtrl.js') }}"></script>

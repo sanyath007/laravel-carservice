@@ -1,0 +1,1 @@
+EloquentUserProvider.php => \vendor\laravel\framework\src\Illuminate\Auth\EloquentUserProvider.php

@@ -160,8 +160,8 @@ class ReservationController extends Controller
         $reserve->attachfile = $filename;
         $reserve->vehicle_type = $request['vehicle_type'];
         $reserve->remark = $request['remark'];
-        $reserve->approved = '0';        
-        $reserve->status = '0';
+        $reserve->approved = '0';
+        $reserve->status = '0'; //0=ยังไม่เปิดดู,1=รับเรื่องแล้ว,2=อนุมัติแล้ว,3=เหลืออีกเที่ยว,4=จบงาน,5=ยกเลิก
         // var_dump($reserve);
 
         if ($reserve->save()) {
@@ -243,7 +243,7 @@ class ReservationController extends Controller
         // $reservation->attachfile = $filename;
         $reservation->remark = $req['remark'];
         $reservation->approved = '0';        
-        $reservation->status = '0';
+        $reservation->status = '0'; //0=ยังไม่เปิดดู,1=รับเรื่องแล้ว,2=อนุมัติแล้ว,3=เหลืออีกเที่ยว,4=จบงาน,5=ยกเลิก
         print_r($reservation);
 
         if ($reservation->save()) {

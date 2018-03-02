@@ -253,14 +253,14 @@
             <ul class="pagination">
                 @if($reservations->currentPage() !== 1)
                     <li>
-                        <a href="{{ $reservations->url($reservations->url(1)) }}" aria-label="First">
+                        <a href="{{ $reservations->url($reservations->url(1)).'&searchdate='.$searchdate }}" aria-label="First">
                             <span aria-hidden="true">First</span>
                         </a>
                     </li>
                 @endif
 
                 <li class="{{ ($reservations->currentPage() === 1) ? 'disabled' : '' }}">
-                    <a href="{{ $reservations->url($reservations->currentPage() - 1) }}" aria-label="Prev">
+                    <a href="{{ $reservations->url($reservations->currentPage() - 1).'&searchdate='.$searchdate }}" aria-label="Prev">
                         <span aria-hidden="true">Prev</span>
                     </a>
                 </li>
@@ -268,14 +268,14 @@
                 @for($i=$reservations->currentPage(); $i < $reservations->currentPage() + 10; $i++)
                     @if ($reservations->currentPage() <= $reservations->lastPage() && ($reservations->lastPage() - $reservations->currentPage()) > 10)
                         <li class="{{ ($reservations->currentPage() === $i) ? 'active' : '' }}">
-                            <a href="{{ $reservations->url($i) }}">
+                            <a href="{{ $reservations->url($i).'&searchdate='.$searchdate }}">
                                 {{ $i }}
                             </a>
                         </li> 
                     @else
                         @if ($i <= $reservations->lastPage())
                             <li class="{{ ($reservations->currentPage() === $i) ? 'active' : '' }}">
-                                <a href="{{ $reservations->url($i) }}">
+                                <a href="{{ $reservations->url($i).'&searchdate='.$searchdate }}">
                                     {{ $i }}
                                 </a>
                             </li>
@@ -285,21 +285,21 @@
                 
                 @if ($reservations->currentPage() < $reservations->lastPage() && ($reservations->lastPage() - $reservations->currentPage()) > 10)
                     <li>
-                        <a href="{{ $reservations->url($reservations->currentPage() + 10) }}">
+                        <a href="{{ $reservations->url($reservations->currentPage() + 10).'&searchdate='.$searchdate }}">
                             ...
                         </a>
                     </li>
                 @endif
                 
                 <li class="{{ ($reservations->currentPage() === $reservations->lastPage()) ? 'disabled' : '' }}">
-                    <a href="{{ $reservations->url($reservations->currentPage() + 1) }}" aria-label="Next">
+                    <a href="{{ $reservations->url($reservations->currentPage() + 1).'&searchdate='.$searchdate }}" aria-label="Next">
                         <span aria-hidden="true">Next</span>
                     </a>
                 </li>
 
                 @if($reservations->currentPage() !== $reservations->lastPage())
                     <li>
-                        <a href="{{ $reservations->url($reservations->lastPage()) }}" aria-label="Last">
+                        <a href="{{ $reservations->url($reservations->lastPage()).'&searchdate='.$searchdate }}" aria-label="Last">
                             <span aria-hidden="true">Last</span>
                         </a>
                     </li>

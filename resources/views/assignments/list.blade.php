@@ -208,14 +208,14 @@
             <ul class="pagination">
                 @if($assignments->currentPage() !== 1)
                     <li>
-                        <a href="{{ $assignments->url($assignments->url(1)) }}" aria-label="Previous">
+                        <a href="{{ $assignments->url($assignments->url(1)).'&fromdate='.$fromdate }}" aria-label="Previous">
                             <span aria-hidden="true">First</span>
                         </a>
                     </li>
                 @endif
 
                 <li class="{{ ($assignments->currentPage() === 1) ? 'disabled' : '' }}">
-                    <a href="{{ $assignments->url($assignments->currentPage() - 1) }}" aria-label="Prev">
+                    <a href="{{ $assignments->url($assignments->currentPage() - 1).'&fromdate='.$fromdate }}" aria-label="Prev">
                         <span aria-hidden="true">Prev</span>
                     </a>
                 </li>
@@ -223,14 +223,14 @@
                 @for($i=$assignments->currentPage(); $i < $assignments->currentPage() + 10; $i++)
                     @if ($assignments->currentPage() <= $assignments->lastPage() && ($assignments->lastPage() - $assignments->currentPage()) > 10)
                         <li class="{{ ($assignments->currentPage() === $i) ? 'active' : '' }}">
-                            <a href="{{ $assignments->url($i) }}">
+                            <a href="{{ $assignments->url($i).'&fromdate='.$fromdate }}">
                                 {{ $i }}
                             </a>
                         </li> 
                     @else
                         @if ($i <= $assignments->lastPage())
                             <li class="{{ ($assignments->currentPage() === $i) ? 'active' : '' }}">
-                                <a href="{{ $assignments->url($i) }}">
+                                <a href="{{ $assignments->url($i).'&fromdate='.$fromdate }}">
                                     {{ $i }}
                                 </a>
                             </li>
@@ -239,14 +239,14 @@
                 @endfor
 
                 <li class="{{ ($assignments->currentPage() === $assignments->lastPage()) ? 'disabled' : '' }}">
-                    <a href="{{ $assignments->url($assignments->currentPage() + 1) }}" aria-label="Next">
+                    <a href="{{ $assignments->url($assignments->currentPage() + 1).'&fromdate='.$fromdate }}" aria-label="Next">
                         <span aria-hidden="true">Next</span>
                     </a>
                 </li>
 
                 @if($assignments->currentPage() !== $assignments->lastPage())
                     <li>
-                        <a href="{{ $assignments->url($assignments->lastPage()) }}" aria-label="Previous">
+                        <a href="{{ $assignments->url($assignments->lastPage()).'&fromdate='.$fromdate }}" aria-label="Previous">
                             <span aria-hidden="true">Last</span>
                         </a>
                     </li>

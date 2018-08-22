@@ -26,6 +26,7 @@
                         <th style="width: 10%; text-align: center;">วันที่ซ่อมล่าสุด</th>
                         <th style="width: 10%; text-align: center;">เลขระยะทางเมื่อเข้าซ่อม</th>
                         <th style="width: 20%; text-align: center;">รายละเอียด</th>               
+                        <th style="width: 8%; text-align: center;">เลขที่ใบส่งของ</th>               
                         <th style="width: 6%; text-align: center;">ค่าซ่อม</th>
                         <th style="width: 10%; text-align: center;">สถานที่ซ่อม</th>
                         <th style="width: 10%; text-align: center;">หมายเหตุ</th>
@@ -56,6 +57,9 @@
                         </td>
                         <td>
                             {{ $maintained['detail'] }}
+                        </td>
+                        <td style="text-align: center;">
+                            {{ $maintained['delivery_bill'] }}
                         </td>
                         <td style="text-align: center;">
                             {{ $maintained['total'] }}

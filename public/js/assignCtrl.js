@@ -172,10 +172,14 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 		}
 	}
 
-	$scope.addReservationForm = function(event, assignid) {
+	$scope.addReservationForm = function(event, assignid, departdate) {
 		console.log(event)
+
 		$('#aid').val(assignid)
 		console.log($('#aid').val())
+
+		$('#reserve_date').val(departdate)
+		console.log($('#reserve_date').val())
 
 		$('#dlgReservation').modal('show')
 		console.log('times :' + $('#times').val())

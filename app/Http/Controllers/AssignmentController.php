@@ -81,7 +81,6 @@ class AssignmentController extends Controller
 
     public function store (Request $req)
     {
-    	// print_r($req->shifts);
     	$d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 
@@ -93,7 +92,8 @@ class AssignmentController extends Controller
     	$assign->driver_id = $req['driver'];
     	$assign->shift = $req['shifts'];
     	$assign->allday = $req['allday'];
-    	$assign->status = $req['status'];
+        $assign->status = $req['status'];
+    	$assign->created_user = \Auth::user()->person_id; //ผู้บันทึกจัดรถ
     	
     	if ($assign->save()) {
     		$assignLastId = $assign->id;
@@ -120,7 +120,6 @@ class AssignmentController extends Controller
     	} else {
     		return redirect('/assign/new')->with('status', 'พบข้อผิดพลาด');
     	}
-
     }
 
     public function edit ($id, $date, $shift)

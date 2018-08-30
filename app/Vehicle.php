@@ -60,6 +60,11 @@ class Vehicle extends Model
         return $this->hasMany('App\Tax', 'vehicle_id', 'vehicle_id');
     }
 
+    public function fuel_used()
+    {
+        return $this->hasMany('App\VehicleFuel', 'vehicle_id', 'vehicle_id');
+    }
+
     public function taxactived()
     {
         return $this->hasMany('App\Tax', 'vehicle_id', 'vehicle_id')

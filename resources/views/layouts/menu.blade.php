@@ -56,6 +56,7 @@
             <ul class="dropdown-menu">
               <li><a href="{{ url('/tax/list') }}">รายการต่อภาษี</a></li>
               <li><a href="{{ url('/insurance/list') }}">รายการต่อประกันภัย</a></li>
+              <li><a href="{{ url('/fuel/list') }}">รายการใช้น้ำมันเชื้อเพลิง</a></li>
             </ul>
           </li>
           <li class="dropdown">

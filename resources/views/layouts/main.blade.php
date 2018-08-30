@@ -53,6 +53,7 @@
 	<script src="{{ asset('/js/maintainedCtrl.js') }}"></script>
 	<script src="{{ asset('/js/insuranceCtrl.js') }}"></script>
 	<script src="{{ asset('/js/taxCtrl.js') }}"></script>
+	<script src="{{ asset('/js/fuelCtrl.js') }}"></script>
 
 </head>
 <body ng-app="app" ng-controller="mainCtrl">

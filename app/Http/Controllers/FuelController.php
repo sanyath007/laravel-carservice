@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 use App\Vehicle;
 use App\VehicleFuel;
@@ -39,8 +40,16 @@ class FuelController extends Controller
 
     public function index ()
     {
+        if (!empty(Input::get('_month'))) {
+            $sdate  = Input::get('_month').'-01';
+            $edate  = date("Y-m-t", strtotime($sdate));
+        } else {
+            $sdate  = date("Y-m") . '-01';
+            $edate  = date("Y-m-t", strtotime($sdate));
+        }
+
     	return view('fuel.list', [
-    		'fuels'		=> VehicleFuel::whereBetween('bill_date', ['2018-06-01','2018-07-31'])
+    		'fuels'		=> VehicleFuel::whereBetween('bill_date', [$sdate, $edate])
     								->with('vehicle')
     								->with('fuel_type')
     								->orderBy('bill_date', 'ASC')
@@ -57,6 +66,7 @@ class FuelController extends Controller
                                 	->orderBy('vehicle_no', 'ASC')
                                 	->orderBy('vehicle_cate', 'ASC')
                                 	->get(),
+            '_month'    => (!Input::get('_month')) ? date('Y-m') : Input::get('_month'),
     	]);
     }
 

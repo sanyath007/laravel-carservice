@@ -24,7 +24,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <form id="frm_search" action="{{ url('daily/received/list') }}" method="GET" class="form-inline">
+            <form id="frm_search" action="{{ url('fuel/list') }}" method="GET" class="form-inline">
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -32,7 +32,7 @@
                     <input  type="text" 
                             id="_month" 
                             name="_month" 
-                            value="" 
+                            value="{{ $_month }}" 
                             class="form-control"
                             style="text-align: center; width: 150px;">
                 </div>
@@ -50,7 +50,7 @@
                         <th style="width: 8%; text-align: center;">ราคา/ลิตร</th>
                         <th style="width: 10%; text-align: center;">รวมราคา</th>
                         <th style="text-align: center;">งานที่ปฏิบัติ</th>
-                        <th style="width: 10%; text-align: center;">Actions</th>
+                        <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($fuels as $fuel)
                         <?php $vehicle = App\Vehicle::where(['vehicle_id' => $fuel->vehicle_id])->with('changwat')->first();
@@ -70,43 +70,46 @@
                         <td style="text-align: right;">{{ $fuel->total }}</td>
                         <td style="text-align: center;">{{ $fuel->job_desc }}</td>
                         <td style="text-align: center;">
-                            <a  href="{{ url('/reserve/edit/' . $fuel->id) }}" 
-                                class="btn btn-warning btn-xs">
+                            <a  href="{{ url('/fuel/edit/' . $fuel->id) }}" 
+                                class="btn btn-warning btn-xs"
+                                title="แก้ไขข้อมูล">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
                             @if ($fuel->status != '3')
-                                <a  href="{{ url('/reserve/cancel/' . $fuel->id) }}" 
+                                <a  href="{{ url('/fuel/cancel/' . $fuel->id) }}" 
                                     ng-click="cancel($event)"
-                                    class="btn btn-primary btn-xs">
+                                    class="btn btn-primary btn-xs"
+                                    title="ยกเลิกข้อมูล">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="cancel-form" action="{{ url('/reserve/cancel/' . $fuel->id) }}" method="POST" style="display: none;">
+                                <form id="cancel-form" action="{{ url('/fuel/cancel/' . $fuel->id) }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                 </form>
                             @endif
 
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($fuel->status == '3')
-                                    <a  href="{{ url('/reserve/return/' . $fuel->id) }}" 
+                                    <a  href="{{ url('/fuel/return/' . $fuel->id) }}" 
                                         ng-click="return($event)"
                                         class="btn btn-default btn-xs">
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/reserve/return/' . $fuel->id) }}" method="POST" style="display: none;">
+                                    <form id="return-form" action="{{ url('/fuel/return/' . $fuel->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/reserve/delete/' . $fuel->id) }}" 
+                                <a  href="{{ url('/fuel/delete/' . $fuel->id) }}" 
                                     ng-click="delete($event)"
-                                    class="btn btn-danger btn-xs">
+                                    class="btn btn-danger btn-xs"
+                                    title="ลบข้อมูล">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/reserve/delete/' . $fuel->id) }}" method="POST" style="display: none;">
+                                <form id="delete-form" action="{{ url('/fuel/delete/' . $fuel->id) }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             @endif

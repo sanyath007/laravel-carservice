@@ -42,33 +42,40 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th style="width: 2%; text-align: center;">#</th>
+                        <th style="width: 8%; text-align: center;">หน่วยงาน</th>
+                        <th style="width: 8%; text-align: center;">เลขที่บิล</th>
                         <th style="width: 8%; text-align: center;">วันที่บิล</th>
                         <th style="width: 10%; text-align: center;">รถ</th>
-                        <th style="width: 10%; text-align: center;">เลขที่บิล</th>
-                        <th style="width: 10%; text-align: center;">ประเภทน้ำมัน</th>
+                        <th style="width: 6%; text-align: center;">น้ำมัน</th>
                         <th style="width: 8%; text-align: center;">จำนวนลิตร</th>
                         <th style="width: 8%; text-align: center;">ราคา/ลิตร</th>
                         <th style="width: 10%; text-align: center;">รวมราคา</th>
                         <th style="text-align: center;">งานที่ปฏิบัติ</th>
+                        <th style="text-align: center;">สถานะ</th>
                         <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
+                    <?php $statusArr = [1 => 'ผ่าน', 2 => 'รอตรวจสอบ', 3 => 'ยกเลิก']; ?>
+                    <?php $departmentArr = [1 => 'รพ.', 2 => 'ศูนย์ 3 วัดบูรพ์', 3 => 'ศูนย์ 9 ราชภัฎ']; ?>
+
                     @foreach($fuels as $fuel)
                         <?php $vehicle = App\Vehicle::where(['vehicle_id' => $fuel->vehicle_id])->with('changwat')->first();
                         ?>
-                    <tr>
+                    <tr <?=($fuel->status==3) ? 'class="cancel-data"' : ''?>>
                         <td style="text-align: center;">
                             <h4><span class="label label-<?= (($fuel->status == '1') ? 'success' : (($fuel->status == '0') ? 'default' : 'danger')) ?>">
                                 61-{{ $fuel->id }}
                             </span></h4>
                         </td>                        
+                        <td style="text-align: center;">{{ $departmentArr[$fuel->department] }}</td>
+                        <td style="text-align: center;">{{ $fuel->bill_no }}</td>
                         <td style="text-align: center;">{{ $fuel->bill_date }}</td>
                         <td style="text-align: center;">{{ $fuel->vehicle[0]->reg_no }}</td>
-                        <td style="text-align: center;">{{ $fuel->bill_no }}</td>
                         <td style="text-align: center;">{{ $fuel->fuel_type[0]->fuel_type_name }}</td>
                         <td style="text-align: right;">{{ $fuel->volume }}</td>
                         <td style="text-align: right;">{{ $fuel->unit_price }}</td>
                         <td style="text-align: right;">{{ $fuel->total }}</td>
                         <td style="text-align: center;">{{ $fuel->job_desc }}</td>
+                        <td style="text-align: center;">{{ $statusArr[$fuel->status] }}</td>
                         <td style="text-align: center;">
                             <a  href="{{ url('/fuel/edit/' . $fuel->id) }}" 
                                 class="btn btn-warning btn-xs"
@@ -77,15 +84,16 @@
                             </a>
 
                             @if ($fuel->status != '3')
-                                <a  href="{{ url('/fuel/cancel/' . $fuel->id) }}" 
-                                    ng-click="cancel($event)"
+                                <a  href="{{ url('/fuel/cancel') }}" 
+                                    ng-click="cancel($event, '{{ $fuel->id }}')"
                                     class="btn btn-primary btn-xs"
                                     title="ยกเลิกข้อมูล">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="cancel-form" action="{{ url('/fuel/cancel/' . $fuel->id) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
+                                <form id="{{ $fuel->id }}-cancel-form" action="{{ url('/fuel/cancel') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" id="_id" name="_id" value="{{ $fuel->id }}">
                                 </form>
                             @endif
 
@@ -97,20 +105,21 @@
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/fuel/return/' . $fuel->id) }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                    <form id="{{ $fuel->id }}-return-form" action="{{ url('/fuel/return/' . $fuel->id) }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/fuel/delete/' . $fuel->id) }}" 
-                                    ng-click="delete($event)"
+                                <a  href="{{ url('/fuel/delete') }}" 
+                                    ng-click="delete($event, '{{ $fuel->id }}')"
                                     class="btn btn-danger btn-xs"
                                     title="ลบข้อมูล">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/fuel/delete/' . $fuel->id) }}" method="POST" style="display: none;">
+                                <form id="{{ $fuel->id }}-delete-form" action="{{ url('/fuel/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
+                                    <input type="hidden" id="_id" name="_id" value="{{ $fuel->id }}">
                                 </form>
                             @endif
                         </td>
@@ -122,7 +131,7 @@
             <ul class="pagination">
                 @if($fuels->currentPage() !== 1)
                     <li>
-                        <a href="{{ $fuels->url($fuels->url(1)) }}" aria-label="Previous">
+                        <a href="{{ $fuels->url($fuels->url(1)). '&_month='.$_month }}" aria-label="Previous">
                             <span aria-hidden="true">First</span>
                         </a>
                     </li>
@@ -130,7 +139,7 @@
                 
                 @for($i=1; $i<=$fuels->lastPage(); $i++)
                     <li class="{{ ($fuels->currentPage() === $i) ? 'active' : '' }}">
-                        <a href="{{ $fuels->url($i) }}">
+                        <a href="{{ $fuels->url($i). '&_month='.$_month }}">
                             {{ $i }}
                         </a>
                     </li>
@@ -138,12 +147,30 @@
 
                 @if($fuels->currentPage() !== $fuels->lastPage())
                     <li>
-                        <a href="{{ $fuels->url($fuels->lastPage()) }}" aria-label="Previous">
+                        <a href="{{ $fuels->url($fuels->lastPage()). '&_month='.$_month }}" aria-label="Previous">
                             <span aria-hidden="true">Last</span>
                         </a>
                     </li>
                 @endif
             </ul>
+
+            <div class="row" style="text-align: center;">
+                <a href="{{ url('/print/fuel_sum1-15.php'). '?_month=' .$_month }}" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปราย 1-15
+                </a>
+
+                <a href="{{ url('/print/fuel_sum16-31.php'). '?_month=' .$_month  }}" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปราย 16-30
+                </a>
+
+                <!-- <a href="{{ url('/print/fuel_sum.php'). '?_month=' .$_month  }}" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปรายเดือน
+                </a> -->
+            </div>
+            
 
         </div>
         <!-- right column -->

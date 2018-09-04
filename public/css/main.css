@@ -476,3 +476,8 @@
     from {opacity: 0;}
     to {opacity:1 ;}
 }
+
+tr.cancel-data td:not(:nth-last-child(-n+2)) {
+    text-decoration: line-through; 
+    text-decoration-color: red;
+}

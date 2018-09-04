@@ -215,7 +215,9 @@ Route::group(['middleware' => ['web','auth']], function () {
 
     Route::post('/fuel/update', 'FuelController@update');
 
-    Route::post('/fuel/delete/{id}', 'FuelController@delete');
+    Route::post('/fuel/delete', 'FuelController@delete');
+
+    Route::post('/fuel/cancel', 'FuelController@cancel');
     
     Route::post('/fuel/validate', 'FuelController@formValidate');
 

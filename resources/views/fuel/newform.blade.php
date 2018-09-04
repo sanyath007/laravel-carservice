@@ -13,12 +13,6 @@
             <span>
                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
                 บันทึกการใช้น้ำมันเชื้อเพลิง
-                @{{ frmVehicleDetail }}
-
-                <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    เปลี่ยนรถ
-                </a>
             </span>
         </div>
 
@@ -249,7 +243,6 @@
             </div>
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="vehicle_id" name="vehicle_id">
             {{ csrf_field() }}
         </form>
 

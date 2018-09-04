@@ -141,7 +141,7 @@
                             }
                             $locationList .= '</ul>';                         
                         ?>
-                    <tr>
+                    <tr <?=($reservation->status==5) ? 'class="cancel-data"' : ''?>>
                         <td style="text-align: center;">
                             <h4><span class="label label-<?= (($reservation->approved == '1') ? 'success' : (($reservation->approved == '0') ? 'default' : 'danger')) ?>">
                                 {{ $reservation->id }}

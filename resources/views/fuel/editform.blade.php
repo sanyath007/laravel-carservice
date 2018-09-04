@@ -1,50 +1,91 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="insuranceCtrl" ng-init="popUpAllVehicle()">
+    <div class="container-fluid" ng-controller="fuelCtrl" ng-init="loadEditData()">
       
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active">บันทึกการต่อประกันภัย</li>
+            <li class="breadcrumb-item"><a href="{{ url('/fuel/list') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item active">แก้ไขข้อมูลการใช้น้ำมันเชื้อเพลิง</li>
         </ol>
 
         <!-- page title -->
         <div class="page__title">
             <span>
                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                บันทึกการต่อประกันภัย
-                @{{ frmVehicleDetail }}
-
-                <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    เปลี่ยนรถ
-                </a>
+                แก้ไขข้อมูลการใช้น้ำมันเชื้อเพลิง ID : 
+                <span class="label label-warning" style="padding: 5px;">
+                    &nbsp;&nbsp;{{ $fuel->id }}&nbsp;&nbsp;
+                </span>                
             </span>
         </div>
 
         <hr />
         <!-- page title -->
         
-        <form id="frmNewInsurance" action="{{ url('/insurance/add') }}" method="post" enctype="multipart/form-data">
+        <form id="frmEditFuel" action="{{ url('/fuel/update') }}" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('department')}">
+                        <label for="bill_date">
+                            หน่วยงานที่เบิก <span style="color: red;">*</span>
+                        </label><br>
+                        <input  type="radio" 
+                                id="department" 
+                                name="department"
+                                value="1"
+                                {{ ($fuel->department=='1') ? 'checked' : '' }}
+                                ng-model="newFuel.department"> โรงพยาบาลเทพรัตน์นครราชสีมา
+                        <input  type="radio" 
+                                id="department" 
+                                name="department"
+                                value="2"
+                                {{ ($fuel->department=='2') ? 'checked' : '' }}
+                                ng-model="newFuel.department"> ศูนย์แพทย์ชุมชนเมือง 3 วัดบูรพ์
+                        <input  type="radio" 
+                                id="department" 
+                                name="department"
+                                value="3"
+                                {{ ($fuel->department=='3') ? 'checked' : '' }}
+                                ng-model="newFuel.department"> ศูนย์แพทย์ชุมชนเมือง 9 ราชภัฏ
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('department')"></span>
+                        <span class="help-block" ng-show="checkValidate('department')">กรุณาเลือกวันที่บิลน้ำมัน</span>
+                    </div>
+                </div>
+                <!-- left column -->
+            </div><!-- end row -->
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docNo')}">
-                        <label for="doc_no">เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
-                        <input type="text" id="doc_no" name="doc_no" ng-model="newInsurance.docNo" class="form-control">
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('docNo')">กรุณาระบุเลขที่หนังสือขออนุมัติ</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('billDate')}">
+                        <label for="bill_date">
+                            วันที่บิลน้ำมัน <span style="color: red;">*</span>
+                        </label>
+                        <input  type="text" 
+                                id="bill_date" 
+                                name="bill_date"
+                                value="{{ $fuel->bill_date }}"
+                                ng-model="newFuel.billDate"
+                                class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('billDate')"></span>
+                        <span class="help-block" ng-show="checkValidate('billDate')">กรุณาเลือกวันที่บิลน้ำมัน</span>
                     </div>
                 </div>
                 <!-- left column -->
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docDate')}">
-                        <label for="insurance_date">วันที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
-                        <input type="text" id="doc_date" name="doc_date" ng-model="newInsurance.docDate" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('docDate')">กรุณาเลือกวันที่หนังสือขออนุมัติ</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('billNo')}">
+                        <label for="bill_no">เลขที่บิลน้ำมัน <span style="color: red;">*</span></label>
+                        <input  type="text" 
+                                id="bill_no" 
+                                name="bill_no"
+                                value="{{ $fuel->bill_no }}"
+                                ng-model="newFuel.billNo" 
+                                class="form-control">
+                        <span   class="glyphicon glyphicon-remove form-control-feedback" 
+                                ng-show="checkValidate('billNo')"></span>
+                        <span class="help-block" ng-show="checkValidate('billNo')">กรุณาระบุเลขที่บิลน้ำมัน</span>
                     </div>
                 </div>
                 <!-- right column -->
@@ -53,103 +94,110 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNo')}">
-                        <label for="insurance_no">เลขที่กรมธรรม์ <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_no" name="insurance_no" ng-model="newInsurance.insuranceNo" class="form-control">
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceNo')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceNo')">กรุณาระบุเลขที่กรมธรรม์</span>
-                    </div>
-                </div>
-                <!-- left column -->
-        
-                <!-- right column -->
-                <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('company')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle')}">
                         <label class="control-label" for="company">
-                            บริษัท <span style="color: red;">*</span>
+                            รถ <span style="color: red;">*</span> {{ $fuel->vehicle_id }}
                         </label>
-                        <select id="company" name="company" ng-model="newInsurance.company" class="form-control">
-                            <option value="">-- กรุณาเลือกบริษัท --</option>
-                            @foreach ($companies as $company)
-                                <option value="{{ $company->insurance_company_id }}">
-                                    {{ $company->insurance_company_name }}
+                        <select id="vehicle" 
+                                name="vehicle" 
+                                ng-model="newFuel.vehicle"
+                                ng-change="setJobDescWithVehicle()" 
+                                class="form-control">
+                            <option value="">-- กรุณาเลือกรถ --</option>
+                            @foreach ($vehicles as $vehicle)
+                                <option value="{{ $vehicle->vehicle_id }}"
+                                        {{ ($fuel->vehicle_id==$vehicle->vehicle_id) ? 'selected' : '' }}>
+                                    {{ $vehicle->cate->vehicle_cate_name.' ('.$vehicle->reg_no.')' }}
                                 </option>
                             @endforeach
                         </select>
-                        
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('company')"></span> -->
+
                         <span class="help-block" ng-show="checkValidate('company')">กรุณาเลือกบริษัท</span>                        
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
-
-            <div class="row">
                 <!-- left column -->
-                <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceType')}">
-                        <label class="control-label" for="insurance_type">
-                            ประเภทประกันภัย <span style="color: red;">*</span>
+
+                <!-- right column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('fuelType')}">
+                        <label class="control-label" for="fuel_type">
+                            ประเภทน้ำมัน <span style="color: red;">*</span>
                         </label>
-                        <select id="insurance_type" name="insurance_type" ng-model="newInsurance.insuranceType" class="form-control">
-                            <option value="">-- กรุณาเลือกประเภทกิจกรรม --</option>
-                            @foreach ($types as $type)
-                                <option value="{{ $type->insurance_type_id }}">
-                                    {{ $type->insurance_type_name }}
+                        <select id="fuel_type" 
+                                name="fuel_type" 
+                                ng-model="newFuel.fuelType" 
+                                class="form-control">
+                            <option value="">-- กรุณาเลือกประเภทน้ำมัน --</option>
+                            @foreach ($fuel_types as $type)
+                                <option value="{{ $type->fuel_type_id }}"
+                                        {{ ($fuel->fuel_type_id==$type->fuel_type_id) ? 'selected' : '' }}>
+                                    {{ $type->fuel_type_name }}
                                 </option>
                             @endforeach
                         </select>
                         
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceType')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceType')">กรุณาเลือกประเภทประกันภัย</span>                        
+                        <!-- <span  class="glyphicon glyphicon-remove form-control-feedback" 
+                                    ng-show="checkValidate('insuranceType')"></span> -->
+                        <span class="help-block" ng-show="checkValidate('fuelType')">กรุณาเลือกประเภทประกันภัย</span>                        
                     </div>
                 </div>
-                <!-- left column -->
-            </div><!-- end row -->
-
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceDetail')}">
-                        <label class="control-label" for="insurance_detail">รายละเอียด <span style="color: red;">*</span></label>
-                        <textarea id="insurance_detail" name="insurance_detail" ng-model="newInsurance.insuranceDetail" cols="30" rows="5" class="form-control"></textarea>
-                        <!-- <input  type="text" 
-                                id="insurance_detail" 
-                                name="insurance_detail" 
-                                ng-model="newInsurance.insuranceDetail"
-                                class="form-control"> -->
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceDetail')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceDetail')">กรุณาระบุรายละเอียด</span>
-                    </div>
-                </div>
-                <!-- left column -->
-            </div><!-- end row -->
-            
-            <div class="page__title">
-                <span>
-                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i> ระยะเวลาประกัน
-                </span>
-            </div>
-
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartDate')}">
-                        <label class="control-label" for="from_date">เริ่มต้นวันที่ <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_start_date" name="insurance_start_date" class="form-control" ng-model="newInsurance.insuranceStartDate">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceStartDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStartDate')">กรุณาเลือกวันที่</span>
-                    </div>
-                </div>
-                <!-- left column -->
-            
                 <!-- right column -->
-                <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalDate')}">
-                        <label class="control-label" for="to_date">ถึงวันที่ <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_renewal_date" name="insurance_renewal_date" class="form-control" ng-model="newInsurance.insuranceRenewalDate">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceRenewalDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceRenewalDate')">กรุณาเลือกวันที่</span>
+            </div><!-- end row -->
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-4">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('volume')}">
+                        <label class="control-label" for="from_date">
+                            จำนวนลิตร <span style="color: red;">*</span>
+                        </label>
+                        <input  type="text" 
+                                id="volume" 
+                                name="volume" 
+                                value="{{ $fuel->volume }}"
+                                class="form-control" 
+                                ng-model="newFuel.volume">
+                        <span   class="glyphicon glyphicon-remove form-control-feedback" 
+                                ng-show="checkValidate('volume')"></span>
+                        <span class="help-block" ng-show="checkValidate('volume')">กรุณาระบุจำนวนลิตร</span>
+                    </div>
+                </div>
+                <!-- left column -->
+                
+                <!-- right column -->
+                <div class="col-md-4">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('unitPrice')}">
+                        <label class="control-label" for="to_date">
+                            ราคา/ลิตร <span style="color: red;">*</span>
+                        </label>
+                        <input  type="text" 
+                                id="unit_price" 
+                                name="unit_price" 
+                                value="{{ $fuel->unit_price }}"
+                                class="form-control" 
+                                ng-model="newFuel.unitPrice"
+                                ng-blur="calculateTotal()">
+                        <span   class="glyphicon glyphicon-remove form-control-feedback" 
+                                ng-show="checkValidate('unitPrice')"></span>
+                        <span class="help-block" ng-show="checkValidate('unitPrice')">กรุณาระบุราคา/ลิตร</span>
+                    </div>
+                </div><!-- right column -->
+
+                <!-- right column -->
+                <div class="col-md-4">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('total')}">
+                        <label class="control-label" for="to_date">
+                            รวมราคา <span style="color: red;">*</span>
+                        </label>
+                        <input  type="text" 
+                                id="total" 
+                                name="total" 
+                                value="{{ $fuel->total }}"
+                                class="form-control" 
+                                ng-model="newFuel.total">
+                        <span   class="glyphicon glyphicon-remove form-control-feedback" 
+                                ng-show="checkValidate('total')"></span>
+                        <span class="help-block" ng-show="checkValidate('total')">กรุณาระบุรวมราคา</span>
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->
@@ -157,9 +205,34 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                   <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('jobDesc')}">
+                        <label class="control-label" for="job_desc">
+                            งานที่ปฏิบัติ <span style="color: red;">*</span>
+                        </label>
+                        <textarea   id="job_desc" 
+                                    name="job_desc" 
+                                    ng-model="newFuel.jobDesc" 
+                                    cols="30" 
+                                    rows="5" 
+                                    class="form-control">{{ $fuel->job_desc }}</textarea>
+                        <span   class="glyphicon glyphicon-remove form-control-feedback" 
+                                ng-show="checkValidate('jobDesc')"></span>
+                        <span class="help-block" ng-show="checkValidate('jobDesc')">กรุณาระบุรายละเอียดงานที่ปฏิบัติ</span>
+                    </div>
+                </div>
+                <!-- left column -->
+            </div><!-- end row -->
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                   <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('remark')}">
                         <label class="control-label" for="remark">หมายเหตุ</label>
-                        <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea   id="remark" 
+                                    name="remark" 
+                                    cols="30" 
+                                    rows="5" 
+                                    class="form-control">{{ $fuel->remark }}</textarea>
                     </div>
                 </div>
                 <!-- left column -->
@@ -180,14 +253,14 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
+                    <br><button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>
             </div>
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="vehicle_id" name="vehicle_id">
+            <input type="hidden" id="id" name="id" value="{{ $fuel->id }}">
             {{ csrf_field() }}
         </form>
 
@@ -281,24 +354,7 @@
             $(document).ready(function($) {
                 var dateNow = new Date();
 
-                $('#insurance_start_date').datetimepicker({
-                    useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                })
-                .on("dp.change", function(e) {
-                    let new_date = moment(e.date, "DD-MM-YYYY").add(1, 'years');
-                    console.log(new_date);
-                    $('#insurance_renewal_date').data('DateTimePicker').date(new_date);
-                }); 
-
-                $('#insurance_renewal_date').datetimepicker({
-                    useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                });
-
-                $('#doc_date').datetimepicker({
+                $('#bill_date').datetimepicker({
                     useCurrent: true,
                     format: 'YYYY-MM-DD',
                     defaultDate: moment(dateNow)

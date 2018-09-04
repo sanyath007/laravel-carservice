@@ -22,7 +22,7 @@ class FuelController extends Controller
             'volume' => 'required',
             'unit_price' => 'required',
             'total' => 'required',
-            // 'job_desc' => 'required',
+            'job_desc' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -54,7 +54,7 @@ class FuelController extends Controller
     								->with('fuel_type')
     								->orderBy('bill_date', 'ASC')
     								->paginate(15),
-    		'vehicles'	=> Vehicle::where(['status' => '1'])
+    		'vehicles'	=> Vehicle::whereIn('status', ['1','9'])
                                 	->with('cate')
                                 	->with('type')
                                 	->with('method')
@@ -74,7 +74,7 @@ class FuelController extends Controller
     {
     	return view('fuel.newform', [
     		'fuel_types'	=> FuelType::all(),
-    		'vehicles'		=> Vehicle::where(['status' => '1'])
+    		'vehicles'		=> Vehicle::whereIn('status', ['1','9'])
                                 	->with('cate')
                                 	->with('type')
                                 	->with('method')
@@ -100,12 +100,75 @@ class FuelController extends Controller
 		$vf->volume 		= $req['volume'];
 		$vf->unit_price 	= $req['unit_price'];
 		$vf->total 			= $req['total'];
-        $vf->job_desc 		= $req['job_desc'];
+        $vf->job_desc       = $req['job_desc'];
+        $vf->remark         = $req['remark'];
+        $vf->status 		= '1';
 
         if($vf->save()) {
     		return redirect('/fuel/new')->with('status', 'บันทึกข้อมูลเรียบร้อย');
     	} else {
     		return redirect('/fuel/new')->with('status', 'พบข้อผิดพลาด');
     	}
+    }
+
+    public function edit ($id) 
+    {
+        $fuel = VehicleFuel::find($id);
+
+        return view('fuel.editform', [
+            'fuel'         => $fuel,
+            'fuel_types'    => FuelType::all(),
+            'vehicles'      => Vehicle::whereIn('status', ['1','9'])
+                                    ->with('cate')
+                                    ->with('type')
+                                    ->with('method')
+                                    ->with('manufacturer')
+                                    ->with('changwat')
+                                    ->with('vender')
+                                    ->with('fuel')
+                                    ->with('taxactived')                          
+                                    ->orderBy('vehicle_no', 'ASC')
+                                    ->orderBy('vehicle_cate', 'ASC')
+                                    ->get(),
+        ]);
+    }
+
+    public function update(Request $req) 
+    {
+        $vf = VehicleFuel::find($req['id']);
+        $vf->department     = $req['department'];
+        $vf->vehicle_id     = $req['vehicle'];
+        $vf->fuel_type_id   = $req['fuel_type'];
+        $vf->bill_no        = $req['bill_no'];
+        $vf->bill_date      = $req['bill_date'];
+        $vf->volume         = $req['volume'];
+        $vf->unit_price     = $req['unit_price'];
+        $vf->total          = $req['total'];
+        $vf->job_desc       = $req['job_desc'];
+        $vf->remark         = $req['remark'];
+
+        if($vf->save()) {
+            return redirect('/fuel/list')->with('status', 'บันทึกข้อมูลเรียบร้อย');
+        } else {
+            return redirect('/fuel/remark')->with('status', 'พบข้อผิดพลาด');
+        }
+    }
+
+    public function delete (Request $req) 
+    {
+        $fuel = VehicleFuel::find($req['_id'])->delete();
+        return redirect('fuel/list');
+    }
+
+    public function cancel (Request $req) {
+        $fuel = VehicleFuel::find($req['_id']);
+        $fuel->status = '3';
+        var_dump($fuel);
+
+        if ($fuel->save()) {
+            return redirect('fuel/list');
+        // } else {
+        //     return redirect()->back()->with('success', ['your message,here']);
+        }
     }
 }

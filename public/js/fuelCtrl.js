@@ -24,7 +24,22 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
         gardener    : 'ภาคสนาม',
         general     : 'รับ-ส่งเอกสารและเจ้าหน้าที่',
         director    : 'รับ-ส่งผู้อำนวยการ',
-        lab         : 'ไปส่ง LAB, เบิกเบือด และราชการอื่นๆ ที่ รพ.มหาราช'
+        lab         : 'ไปส่ง LAB, เบิกเบือด และราชการอื่นๆ ที่ รพ.มหาราช',
+        supply      : 'รับ-ส่งเซตหัตถการ งานจ่ายกลาง',
+        laundry     : 'รับ-ส่งผ้าผู้ป่วย งานซักฟอก',
+        electric    : 'เติมเครื่องปั่นไฟฟ้าสำรอง งานช่างซ่อมบำรุง'
+    }
+
+    $scope.loadEditData = function () {
+        $scope.newFuel.department = $("#department:checked").val()
+        $scope.newFuel.vehicle = $("#vehicle").val()
+        $scope.newFuel.fuelType = $("#fuel_type").val()
+        $scope.newFuel.billNo = $("#bill_no").val()
+        $scope.newFuel.billDate = $("#bill_date").val()
+        $scope.newFuel.volume = $("#volume").val()
+        $scope.newFuel.unitPrice = $("#unit_price").val()
+        $scope.newFuel.total = $("#total").val()
+        $scope.newFuel.jobDesc = $("#job_desc").val()
     }
 
     $scope.formValidate = function (event) {
@@ -41,7 +56,7 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
             volume: $scope.newFuel.volume,
             unit_price: $scope.newFuel.unitPrice,
             total: $scope.newFuel.total,
-            // job_desc: $scope.newFuel.jobDesc,
+            job_desc: $scope.newFuel.jobDesc,
         };
         console.log(req_data);
 
@@ -52,7 +67,8 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
             console.log($scope.formError);
 
             if ($scope.formError.success === 1) {
-                $('#frmNewFuel').submit();
+                let formId = $(event.target).closest("form").attr("id")
+                $("#"+formId).submit();
             } else {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             }
@@ -88,12 +104,25 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
 
         if ($scope.newFuel.vehicle == '1' || $scope.newFuel.vehicle == '6' || $scope.newFuel.vehicle == '13') {
             $("#job_desc").val($scope.jobDescText.ambulance)
+            $scope.newFuel.jobDesc = $scope.jobDescText.ambulance
         } else if ($scope.newFuel.vehicle == '2') {
             $("#job_desc").val($scope.jobDescText.director)
-        } else if ($scope.newFuel.vehicle == '9') {
+            $scope.newFuel.jobDesc = $scope.jobDescText.director
+        } else if ($scope.newFuel.vehicle == '9' || $scope.newFuel.vehicle == '90') {
             $("#job_desc").val($scope.jobDescText.gardener)
+            $scope.newFuel.jobDesc = $scope.jobDescText.gardener
+        } else if ($scope.newFuel.vehicle == '12') {
+            $("#job_desc").val($scope.jobDescText.supply)
+            $scope.newFuel.jobDesc = $scope.jobDescText.supply
+        } else if ($scope.newFuel.vehicle == '15') {
+            $("#job_desc").val($scope.jobDescText.laundry)
+            $scope.newFuel.jobDesc = $scope.jobDescText.laundry
+        } else if ($scope.newFuel.vehicle == '91') {
+            $("#job_desc").val($scope.jobDescText.electric)
+            $scope.newFuel.jobDesc = $scope.jobDescText.electric
         } else {
             $("#job_desc").val($scope.jobDescText.general)
+            $scope.newFuel.jobDesc = $scope.jobDescText.general
         }
     }
 
@@ -128,6 +157,34 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
                 $scope.frmAllVehicles = res.data.vehicles;
                 // console.log($scope.frmAllVehicles);
             });
+        }
+    }
+/** ################################################################################## */
+    /** CRUD ACTION */
+    $scope.delete = function (event, id) {
+        console.log(event);     
+        event.preventDefault();
+
+        if (confirm('คุณต้องการลบข้อมูล ID ' + id +' ใช่หรือไม่?')) {
+            document.getElementById(id + '-delete-form').submit();
+        }
+    }
+
+    $scope.cancel = function (event, id) {
+        console.log(event);     
+        event.preventDefault();
+
+        if (confirm('คุณต้องการยกเลิกข้อมูล ID ' + id +' ใช่หรือไม่?')) {
+            document.getElementById(id + '-cancel-form').submit();
+        }
+    }
+
+    $scope.recover = function (event, id) {
+        console.log(event);     
+        event.preventDefault();
+
+        if (confirm('คุณต้องการนำข้อมูล ID ' + id +' กลับมาใหม่ใช่หรือไม่?')) {
+            document.getElementById(id + '-recover-form').submit();
         }
     }
 /** ################################################################################## */

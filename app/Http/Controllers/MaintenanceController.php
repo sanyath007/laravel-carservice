@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Vehicle;
 use App\Maintenance;
-use App\VehicleDailyCheck;
+use App\Models\VehicleDailyCheck;
 
 class MaintenanceController extends Controller
 {

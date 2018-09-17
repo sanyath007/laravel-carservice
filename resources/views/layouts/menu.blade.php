@@ -31,7 +31,7 @@
                         </ul>
                     </li>
 
-                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355' || Auth::user()->person_id == '1103701049812' || Auth::user()->person_id == '3300101621053')
+                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -49,17 +49,27 @@
                               <li><a href="{{ url('/pos') }}">รายการรออนุมัติ</a></li> -->
                             </ul>
                         </li>
+
+                     @endif
+
+                    @if (Auth::user()->person_id == '1103701049812' || Auth::user()->person_id == '3300101621053')
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                              ทะเบียน
-                              <span class="caret"></span>
+                                ทะเบียน
+                                <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ url('/tax/list') }}">รายการต่อภาษี</a></li>
-                              <li><a href="{{ url('/insurance/list') }}">รายการต่อประกันภัย</a></li>
-                              <li><a href="{{ url('/fuel/list') }}">รายการใช้น้ำมันเชื้อเพลิง</a></li>
+                                <li><a href="{{ url('/tax/list') }}">รายการต่อภาษี</a></li>
+                                <li><a href="{{ url('/insurance/list') }}">รายการต่อประกันภัย</a></li>
+                                <li><a href="{{ url('/fuel/list') }}">รายการใช้น้ำมันเชื้อเพลิง</a></li>
                             </ul>
                         </li>
+
+                    @endif
+
+                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                       
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                               บำรุงรักษารถ
@@ -76,6 +86,7 @@
                               <li><a href="#">One more separated link</a></li> -->
                             </ul>
                         </li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                               ข้อมูลพื้นฐาน

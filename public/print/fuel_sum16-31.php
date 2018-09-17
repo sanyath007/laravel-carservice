@@ -196,7 +196,7 @@
     <body>
         <?php
             // Set connect db
-            $db = new PDO("mysql:host=localhost; dbname=vehicle_db; charset=utf8", 'root', '4621008811');
+            $db = new PDO("mysql:host=192.168.20.4; dbname=vehicle_db; charset=utf8", 'root', '1');
             $db->exec("set names utf8");
             $db->exec("COLLATE utf8_general_ci");
             
@@ -374,7 +374,7 @@
                                     <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 105px; padding: 0px;">
+                                    <p style="margin: -3 2 2 120px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
                                     </p><br>
 
@@ -384,7 +384,7 @@
                                     <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 75px; padding: 0px;">
+                                    <p style="margin: -3 2 2 95px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
                                 </td>
@@ -529,7 +529,7 @@
                                     <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 105px; padding: 0px;">
+                                    <p style="margin: -3 2 2 120px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
                                     </p><br>
 
@@ -539,7 +539,7 @@
                                     <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 75px; padding: 0px;">
+                                    <p style="margin: -3 2 2 95px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
                                 </td>
@@ -684,7 +684,7 @@
                                     <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 105px; padding: 0px;">
+                                    <p style="margin: -3 2 2 120px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
                                     </p><br>
 
@@ -694,7 +694,7 @@
                                     <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 75px; padding: 0px;">
+                                    <p style="margin: -3 2 2 95px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
                                 </td>

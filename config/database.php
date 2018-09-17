@@ -57,11 +57,11 @@ return [
         # Our secondary database connection
         'vehicle' => array(
             'driver'    => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database'  => 'vehicle_db',
             'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'password' => env('DB_PASSWORD', 'forge'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -85,11 +85,11 @@ return [
 
         'person' => array(
             'driver'    => 'mysql',
-            'host' => 'localhost',
+            'host' => '192.168.20.4',
             'port' => env('DB_PORT', '3306'),
             'database'  => 'db_ksh',
             'username' => 'root',
-            'password' => '4621008811',
+            'password' => '1',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

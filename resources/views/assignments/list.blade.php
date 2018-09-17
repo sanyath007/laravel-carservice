@@ -260,7 +260,7 @@
         <!-- right column -->
     </div><!-- /.row -->
     
-    <!-- Modal -->
+    <!-- Modal Show Passengers -->
     <div class="modal fade" id="dlgPassengers" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -300,9 +300,9 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal Show Passengers -->
 
-    <!-- Modal -->
+    <!-- Modal Change -->
     <div class="modal fade" id="dlgChange" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -363,9 +363,9 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal Change -->
 
-    <!-- Modal -->
+    <!-- Modal Add Reservation -->
     <div class="modal fade" id="dlgReservation" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -493,7 +493,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal Add Reservation -->
 
 </div><!-- /.container -->
 

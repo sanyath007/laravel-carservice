@@ -228,6 +228,7 @@
             ];
             
             $_month = explode('-', $_GET['_month']);
+            $lastDayInMonth = date("t", strtotime($_GET['_month'].'-1'));
         ?>
         <div class="page" align="center">
             <div style="width: 740px; margin-left: 30px; margin-right: 15px; margin-top: 0px; padding: 5px;">
@@ -246,7 +247,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="2">
-                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-16 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
+                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 16-<?=$lastDayInMonth?> <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>งานยานพาหนะ  กลุ่มงานบริหารทั่วไป  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
                             </tr>                            
@@ -415,7 +416,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="2">
-                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-16 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
+                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 16-<?=$lastDayInMonth?> <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>ศูนย์สุขภาพชุมชนเมือง 3 วัดบูรพ์  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
                             </tr>                            
@@ -570,7 +571,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="2">
-                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-16 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
+                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 16-<?=$lastDayInMonth?> <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>ศูนย์สุขภาพชุมชนเมือง 9 ราชภัฎ  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
                             </tr>                            

@@ -237,6 +237,7 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" id="_id" name="_id" value="{{ $reservation->id }}">
                                 </form>
+
                             @endif
 
                             <a  class="btn btn-info btn-xs"

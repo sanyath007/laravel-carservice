@@ -1,10 +1,10 @@
 var app = angular.module('app', ['xeditable','ngTagsInput','toaster','ngAnimate','angularModalService']);
 
 app.constant('CONFIG', {
-    'APP_NAME' : 'My Awesome App',
+    'APP_NAME' : 'Car Service App',
     'APP_VERSION' : '1.0.0',
     'GOOGLE_ANALYTICS_ID' : '',
-    'BASE_URL' : 'http://localhost/public/laravel-carservice/public/',
+    'BASE_URL' : 'http://192.168.20.4/carservice/public/',
     'SYSTEM_LANGUAGE' : 'TH'
 });
 

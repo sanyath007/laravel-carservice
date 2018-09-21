@@ -155,12 +155,12 @@
             </ul>
 
             <div class="row" style="text-align: center;">
-                <a href="{{ url('/print/fuel_sum1-15.php'). '?_month=' .$_month }}" class="btn btn-success">
+                <a href="{{ url('/print/fuel_sum1-15.php'). '?_month=' .$_month }}" target="_blank" class="btn btn-success">
                     <i class="fa fa-print" aria-hidden="true"></i>
                     พิมพ์ใบสรุปราย 1-15
                 </a>
 
-                <a href="{{ url('/print/fuel_sum16-31.php'). '?_month=' .$_month  }}" class="btn btn-success">
+                <a href="{{ url('/print/fuel_sum16-31.php'). '?_month=' .$_month  }}" target="_blank" class="btn btn-success">
                     <i class="fa fa-print" aria-hidden="true"></i>
                     พิมพ์ใบสรุปราย 16-30
                 </a>

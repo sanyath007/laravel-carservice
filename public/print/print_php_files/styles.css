@@ -1,46 +1,179 @@
-BODY {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+body {
+    padding-right: 0px; 
+    padding-left: 0px; 
+    padding-bottom: 0px; 
+    margin: 0px; 
+    padding-top: 0px;
+    background-color: #ffffff;
+    height: 842px;
 }
-A:link {
-	COLOR: #0000ff; TEXT-DECORATION: none
+a:link {
+    color: #0000ff; 
+    text-decoration: none
 }
-A:visited {
-	COLOR: #005ca2; TEXT-DECORATION: none
+a:visited {
+    color: #005ca2; 
+    text-decoration: none
 }
-A:active {
-	COLOR: #0099ff; TEXT-DECORATION: underline
+a:active {
+    color: #0099ff; 
+    text-decoration: underline
 }
-A:hover {
-	COLOR: #0099ff; TEXT-DECORATION: underline
+a:hover {
+    color: #0099ff; 
+    text-decoration: underline
 }
-
-@media Print    
-{
-DIV.page {
-	MARGIN: 0px; HEIGHT: 100%
-}
+@media Print {
+    div.page {
+        margin: 0px; 
+        height: 100%;
+        page-break-before: always;
     }
+
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+}
 .UnderLine {
-	FONT-WEIGHT: normal; MARGIN: 1px; COLOR: #0000ff; BORDER-TOP-STYLE: none; BORDER-BOTTOM: black 1px dashed; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 18px; TEXT-ALIGN: center
+    font-weight: normal;
+    margin: 1px;
+    color: #0000ff;
+    border-top-style: none;
+    border-bottom: black 1px dotted;
+    font-family: "TH SarabunPSK";
+    border-right-style: none;
+    border-left-style: none;
+    height: 18px;
+    text-align: center
 }
 .UnderLineLeft {
-	FONT-WEIGHT: normal; MARGIN: 1px; COLOR: #0000ff; BORDER-TOP-STYLE: none; BORDER-BOTTOM: black 1px dashed; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 18px; TEXT-ALIGN: left
+    font-weight: normal; 
+    margin: 1px; 
+    color: #0000ff; 
+    border-top-style: none; 
+    border-bottom: black 1px dashed; 
+    font-family: "TH SarabunPSK"; 
+    border-right-style: none; 
+    border-left-style: none; 
+    height: 18px; 
+    text-align: left
 }
 .formthaitext {
-	FONT-WEIGHT: bold; FONT-SIZE: 15px; COLOR: #000000; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma
+    font-weight: bold; 
+    font-size: 15px; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
 }
 .textform {
-	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Verdana
+    font-size: 11px; 
+    color: #000000; 
+    font-family: Verdana
 }
 .thaitext {
-	FONT-SIZE: 13px; COLOR: #000000; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma
+    font-size: 13px; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
 }
 .thaitext_small {
-	FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma
+    font-size: 10px; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
 }
 .headthaitext {
-	FONT-SIZE: 15px; COLOR: #000000; FONT-FAMILY: "MS Sans Serif", "Microsoft Sans Serif", Tahoma
+    font-size: 15px; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
 }
 .CordiaUPC {
-	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: CordiaUPC
+    font-size: 12px; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
+}
+.buntuekkorkuam {
+    font-size: 29pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight:bold;  
+    margin-left: -100px;
+}
+.txt-content {
+    font-size: 16pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK";
+}
+.trh1 {
+    height: 30px;
+}
+.trh0 {
+    height: 5px;
+}
+p {
+    font-size: 16pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight: normal;
+}
+.p16 {
+    font-size: 16pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight: bold;
+}
+.p18 {
+    font-size: 18pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight: bold;
+}
+.p20 {
+    font-size: 20pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight: bold;
+}
+.formnumber {
+    font-size: 11pt; 
+    color: #000000; 
+    font-family: "TH SarabunPSK"; 
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 0 5 0 5px;
+}
+.indent {
+    margin-left: 94px;
+}
+.indent2 {
+    margin-left: 30px;
+}
+.hasborder { 
+    border:1px solid #F00;  
+}
+.table {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal,span.MsoNormal {
+    border-bottom: 1px dashed #000000;
+    margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:10.0pt;
+    margin-left:0cm;
+    line-height:115%;
+    font-size:16pt;
+    font-family:"TH SarabunPSK";
+}
+.UnderlineTagp {
+    border-bottom: 1px dashed #000000; 
+    padding: 0px; 
+    margin:0px;
+    height: 20px
+}
+
+.datatable {
+    border-collapse: collapse; 
+    border: 1px solid black;
+    font-family:"TH SarabunPSK";
+    font-size:16pt;
 }

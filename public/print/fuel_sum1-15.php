@@ -4,199 +4,18 @@
         <title>ใสรุปรายงานการใช้น้ำมันเชื้อเพลิง</title>
         <meta content="MSHTML 6.00.2900.5726" name="GENERATOR">
         <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-        <!-- <link href="print_php_files/styles.css" type="text/css" rel="stylesheet" media="screen"> -->
-
-        <style type=text/css>
-            body {
-                PADDING-RIGHT: 0px; 
-                PADDING-LEFT: 0px; 
-                PADDING-BOTTOM: 0px; 
-                MARGIN: 0px; 
-                PADDING-TOP: 0px;
-                background-color: #ffffff;
-                height: 842px;
-            }
-            a:link {
-                COLOR: #0000ff; 
-                TEXT-DECORATION: none
-            }
-            a:visited {
-                COLOR: #005ca2; 
-                TEXT-DECORATION: none
-            }
-            a:active {
-                COLOR: #0099ff; 
-                TEXT-DECORATION: underline
-            }
-            a:hover {
-                COLOR: #0099ff; 
-                TEXT-DECORATION: underline
-            }
-            @media Print {
-                div.page {
-                    margin: 0px; 
-                    height: 100%;
-                    page-break-before: always;
-                }
-
-                body {
-                    -webkit-print-color-adjust: exact;
-                }
-            }
-            .UnderLine {
-                FONT-WEIGHT: normal;
-                MARGIN: 1px;
-                COLOR: #0000ff;
-                BORDER-TOP-STYLE: none;
-                BORDER-BOTTOM: black 1px dotted;
-                FONT-FAMILY: "TH SarabunPSK";
-                BORDER-RIGHT-STYLE: none;
-                BORDER-LEFT-STYLE: none;
-                HEIGHT: 18px;
-                TEXT-ALIGN: center
-            }
-            .UnderLineLeft {
-                FONT-WEIGHT: normal; 
-                MARGIN: 1px; 
-                COLOR: #0000ff; 
-                BORDER-TOP-STYLE: none; 
-                BORDER-BOTTOM: black 1px dashed; 
-                FONT-FAMILY: "TH SarabunPSK"; 
-                BORDER-RIGHT-STYLE: none; 
-                BORDER-LEFT-STYLE: none; 
-                HEIGHT: 18px; 
-                TEXT-ALIGN: left
-            }
-            .formthaitext {
-                FONT-WEIGHT: bold; 
-                FONT-SIZE: 15px; 
-                COLOR: #000000; 
-                FONT-FAMILY: "TH SarabunPSK";
-            }
-            .textform {
-                FONT-SIZE: 11px; 
-                COLOR: #000000; 
-                FONT-FAMILY: Verdana
-            }
-            .thaitext {
-                FONT-SIZE: 13px; 
-                COLOR: #000000; 
-                FONT-FAMILY: "TH SarabunPSK";
-            }
-            .thaitext_small {
-                FONT-SIZE: 10px; 
-                COLOR: #000000; 
-                FONT-FAMILY: "TH SarabunPSK";
-            }
-            .headthaitext {
-                FONT-SIZE: 15px; 
-                COLOR: #000000; 
-                FONT-FAMILY: "TH SarabunPSK";
-            }
-            .CordiaUPC {
-                FONT-SIZE: 12px; 
-                COLOR: #000000; 
-                FONT-FAMILY: "TH SarabunPSK";
-            }
-            .buntuekkorkuam {
-                font-size: 29pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight:bold;  
-                margin-left: -100px;
-            }
-            .txt-content {
-                font-size: 16pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK";
-            }
-            .trh1 {
-                height: 30px;
-            }
-            .trh0 {
-                height: 5px;
-            }
-            p {
-                font-size: 16pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight: normal;
-            }
-            .p16 {
-                font-size: 16pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight: bold;
-            }
-            .p18 {
-                font-size: 18pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight: bold;
-            }
-            .p20 {
-                font-size: 20pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight: bold;
-            }
-            .formnumber {
-                font-size: 11pt; 
-                color: #000000; 
-                font-family: "TH SarabunPSK"; 
-                font-weight: bold;
-                text-align: center;
-                border: 1px solid #000000;
-                padding: 0 5 0 5px;
-            }
-            .indent {
-                margin-left: 94px;
-            }
-            .indent2 {
-                margin-left: 30px;
-            }
-            .hasborder { border:1px solid #F00;  }
-            .table {
-                border: 1px solid #000000;
-                border-collapse: collapse;
-            }
-
-            p.MsoNormal, li.MsoNormal, div.MsoNormal,span.MsoNormal {
-                border-bottom: 1px dashed #000000;
-                margin-top:0cm;
-                margin-right:0cm;
-                margin-bottom:10.0pt;
-                margin-left:0cm;
-                line-height:115%;
-                font-size:16pt;
-                font-family:"TH SarabunPSK";
-            }
-            .UnderlineTagp {
-                border-bottom: 1px dashed #000000; 
-                padding: 0px; 
-                margin:0px;
-                height: 20px
-            }
-
-            .datatable {
-                border-collapse: collapse; 
-                border: 1px solid black;
-                font-family:"TH SarabunPSK";
-                font-size:16pt;
-            }
-        </style>
-        
-        <script language=JavaScript src="print_php_files/script.js"></script>
+        <link type="text/css" rel="stylesheet" href="./print_php_files/styles.css" media="screen">        
+        <script language=JavaScript src="./print_php_files/script.js"></script>
         <script language=JavaScript>
             // window.print();
         </script>
-            
+
     </head>
 
     <body>
         <?php
             // Set connect db
-            $db = new PDO("mysql:host=192.168.20.4; dbname=vehicle_db; charset=utf8", 'root', '1');
+            $db = new PDO("mysql:host=127.0.0.1; dbname=vehicle_db; charset=utf8", 'sa', '4621008811');
             $db->exec("set names utf8");
             $db->exec("COLLATE utf8_general_ci");
             
@@ -249,26 +68,7 @@
                                     <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-15 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>งานยานพาหนะ  กลุ่มงานบริหารทั่วไป  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
-                            </tr>                            
-                            <!-- <tr class="trh1">
-                                <td width="80%">
-                                    <p style="margin-left: 230px;">
-                                        ประจำวันที่
-                                        <?php echo (int)$fuel['date']; ?>  <?php echo thaimonth($fuel['month']); ?>  <?php echo $fuel['year']; ?>
-                                    </p>
-                                </td>
-                                <td style="text-align: right;">
-                                    <p>เลขที่ <?php echo $fuel['invoice_no'] ?> </p>
-                                </td>
-                            </tr> -->
-                            
-                            <!-- <tr class="trh1">
-                                <td colspan="2">
-                                    <p>
-                                        <b class="p18">เรียน</b>&nbsp;&nbsp;ผู้อำนวยการโรงพยาบาลเทพรัตน์นครราชสีมา
-                                    </p>
-                                </td>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->
@@ -418,26 +218,7 @@
                                     <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-15 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>ศูนย์สุขภาพชุมชนเมือง 3 วัดบูรพ์  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
-                            </tr>                            
-                            <!-- <tr class="trh1">
-                                <td width="80%">
-                                    <p style="margin-left: 230px;">
-                                        ประจำวันที่
-                                        <?php echo (int)$fuel['date']; ?>  <?php echo thaimonth($fuel['month']); ?>  <?php echo $fuel['year']; ?>
-                                    </p>
-                                </td>
-                                <td style="text-align: right;">
-                                    <p>เลขที่ <?php echo $fuel['invoice_no'] ?> </p>
-                                </td>
-                            </tr> -->
-                            
-                            <!-- <tr class="trh1">
-                                <td colspan="2">
-                                    <p>
-                                        <b class="p18">เรียน</b>&nbsp;&nbsp;ผู้อำนวยการโรงพยาบาลเทพรัตน์นครราชสีมา
-                                    </p>
-                                </td>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->
@@ -573,26 +354,7 @@
                                     <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 1-15 <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
                                     <br>ศูนย์สุขภาพชุมชนเมือง 9 ราชภัฎ  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
                                 </td>
-                            </tr>                            
-                            <!-- <tr class="trh1">
-                                <td width="80%">
-                                    <p style="margin-left: 230px;">
-                                        ประจำวันที่
-                                        <?php echo (int)$fuel['date']; ?>  <?php echo thaimonth($fuel['month']); ?>  <?php echo $fuel['year']; ?>
-                                    </p>
-                                </td>
-                                <td style="text-align: right;">
-                                    <p>เลขที่ <?php echo $fuel['invoice_no'] ?> </p>
-                                </td>
-                            </tr> -->
-                            
-                            <!-- <tr class="trh1">
-                                <td colspan="2">
-                                    <p>
-                                        <b class="p18">เรียน</b>&nbsp;&nbsp;ผู้อำนวยการโรงพยาบาลเทพรัตน์นครราชสีมา
-                                    </p>
-                                </td>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->

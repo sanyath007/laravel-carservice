@@ -14,10 +14,8 @@
 
     <body>
         <?php
-            // Set connect db
-            $db = new PDO("mysql:host=192.168.20.4; dbname=vehicle_db; charset=utf8", 'root', '1');
-            $db->exec("set names utf8");
-            $db->exec("COLLATE utf8_general_ci");
+            // Read db config
+            require './config.php';
             
             // Set the PDO error mode to exception
             $sql = "select 

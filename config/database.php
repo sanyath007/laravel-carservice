@@ -71,11 +71,11 @@ return [
 
         'hosxp' => array(
             'driver'        => 'mysql',
-            'host'          => '192.168.20.7',
-            'port'          => env('DB_PORT', '3306'),
-            'database'      => 'hos2',
-            'username'      => 'sa',
-            'password'      => 'sa',
+            'host'          => env('DB_HIS_HOST', '127.0.0.1'),
+            'port'          => env('DB_HIS_PORT', '3306'),
+            'database'      => env('DB_HIS_DATABASE', 'forge'),
+            'username'      => env('DB_HIS_USERNAME', 'forge'),
+            'password'      => env('DB_HIS_PASSWORD', 'forge'),
             'charset'       => 'utf8',
             'collation'     => 'utf8_unicode_ci',
             'prefix'        => '',
@@ -85,11 +85,11 @@ return [
 
         'person' => array(
             'driver'        => 'mysql',
-            'host'          => '192.168.20.4',
-            'port'          => env('DB_PORT', '3306'),
-            'database'      => 'db_ksh',
-            'username'      => 'root',
-            'password'      => '1',
+            'host'          => env('DB_PS_HOST', '127.0.0.1'),
+            'port'          => env('DB_PS_PORT', '3306'),
+            'database'      => env('DB_PS_DATABASE', 'forge'),
+            'username'      => env('DB_PS_USERNAME', 'forge'),
+            'password'      => env('DB_PS_PASSWORD', 'forge'),
             'charset'       => 'utf8',
             'collation'     => 'utf8_unicode_ci',
             'prefix'        => '',

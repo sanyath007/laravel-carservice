@@ -1,10 +1,10 @@
 var app = angular.module('app', ['xeditable','ngTagsInput','toaster','ngAnimate','angularModalService']);
 
 app.constant('CONFIG', {
-    'APP_NAME' : 'Car Service App',
+    'APP_NAME' : 'Car Service',
     'APP_VERSION' : '1.0.0',
     'GOOGLE_ANALYTICS_ID' : '',
-    'BASE_URL' : 'http://192.168.20.4/carservice/public/',
+    'BASE_URL' : window.location.protocol+ '//' +window.location.host,
     'SYSTEM_LANGUAGE' : 'TH'
 });
 

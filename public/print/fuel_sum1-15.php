@@ -466,68 +466,6 @@
 
             </div> <!-- end page -->
         </div>  <!-- end page -->
-        <?php
-        function thainumDigit($num) {
-            return str_replace(
-                    array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'), 
-                    array("๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙"), 
-                    $num
-            );
-        }
-
-        function thaimonth($monthparam) {
-            switch ($monthparam) {
-                case 1:
-                    $month = 'มกราคม';
-                    return $month;
-                    break;
-                case 2:
-                    $month = 'กุมภาพันธ์';
-                    return $month;
-                    break;
-                case 3:
-                    $month = 'มีนาคม';
-                    return $month;
-                    break;
-                case 4:
-                    $month = 'เมษายน';
-                    return $month;
-                    break;
-                case 5:
-                    $month = 'พฤษภาคม';
-                    return $month;
-                    break;
-                case 6:
-                    $month = 'มิถุนายน';
-                    return $month;
-                    break;
-                case 7:
-                    $month = 'กรกฎาคม';
-                    return $month;
-                    break;
-                case 8:
-                    $month = 'สิงหาคม';
-                    return $month;
-                    break;
-                case 9:
-                    $month = 'กันยายน';
-                    return $month;
-                    break;
-                case 10:
-                    $month = 'ตุลาคม';
-                    return $month;
-                    break;
-                case 11:
-                    $month = 'พฤศจิกายน';
-                    return $month;
-                    break;
-                case 12:
-                    $month = 'ธันวาคม';
-                    return $month;
-                    break;
-            }
-        }
-        ?>
 
     </body>
 </html>

@@ -20,7 +20,7 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
     };
 
     $scope.jobDescText = {
-        ambulance   : 'รับ-ส่งผู้ป่วย',
+        ambulance   : 'รับ-ส่งผู้ป่วย/Refer ผู้ป่วย',
         gardener    : 'ภาคสนาม',
         general     : 'รับ-ส่งเอกสารและเจ้าหน้าที่',
         director    : 'รับ-ส่งผู้อำนวยการ',
@@ -102,7 +102,7 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
     $scope.setJobDescWithVehicle = function () {
         console.log($scope.newFuel.vehicle)
 
-        if ($scope.newFuel.vehicle == '1' || $scope.newFuel.vehicle == '6' || $scope.newFuel.vehicle == '13') {
+        if ($scope.newFuel.vehicle == '1' || $scope.newFuel.vehicle == '6' || $scope.newFuel.vehicle == '7' || $scope.newFuel.vehicle == '13') {
             $("#job_desc").val($scope.jobDescText.ambulance)
             $scope.newFuel.jobDesc = $scope.jobDescText.ambulance
         } else if ($scope.newFuel.vehicle == '2') {

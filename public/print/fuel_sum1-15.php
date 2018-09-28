@@ -1,10 +1,36 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
     <head>
-        <title>ใสรุปรายงานการใช้น้ำมันเชื้อเพลิง</title>
+        <title>สรุปรายงานการใช้น้ำมันเชื้อเพลิง 1-15</title>
         <meta content="MSHTML 6.00.2900.5726" name="GENERATOR">
         <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-        <link type="text/css" rel="stylesheet" href="./print_php_files/styles.css" media="screen">        
+        <link type="text/css" rel="stylesheet" href="./print_php_files/styles.css" media="screen">
+        <style type="text/css" media="print">
+            body {
+                -webkit-print-color-adjust: exact;
+            }
+            .page {
+                margin: 0px; 
+                /*height: 100%;*/
+                page-break-after: always;
+            }
+            .datatable {
+                border-collapse: collapse; 
+                border: 1px solid black;
+                font-family:"TH SarabunPSK";
+                font-size:16pt;
+            }
+            .thaitext {
+                font-size: 15pt; 
+                color: #000000; 
+                font-family: "TH SarabunPSK";
+            }
+            .thaitext-sm {
+                font-size: 12pt; 
+                color: #000000; 
+                font-family: "TH SarabunPSK";
+            }
+        </style>      
         <script language=JavaScript src="./print_php_files/script.js"></script>
         <script language=JavaScript>
             // window.print();
@@ -27,7 +53,7 @@
                     FROM vehicle_fuel vf LEFT JOIN vehicles v ON (vf.vehicle_id=v.vehicle_id)
                     WHERE (vf.bill_date BETWEEN '" .$_GET['_month']. "-01' AND '" .$_GET['_month']. "-15') 
                     AND (vf.status NOT IN ('2','3'))
-                    ORDER BY vf.bill_no";
+                    ORDER BY vf.bill_date, vf.bill_no";
 
             $stmt = $db->prepare($sql);
             // $stmt->bindValue(':id', $_GET['id']);
@@ -47,10 +73,10 @@
             $_month = explode('-', $_GET['_month']);
         ?>
         <div class="page" align="center">
-            <div style="width: 740px; margin-left: 30px; margin-right: 15px; margin-top: 0px; padding: 5px;">
+            <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
-<!--                    <table width="100%">
+                    <!--<table width="100%">
                         <tr>
                             <td width="527"></td>
                             <td>
@@ -59,7 +85,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -80,7 +106,7 @@
                                     <tr>
                                         <th style="width: 4%; text-align: center;">ลำดับ</th>
                                         <th style="width: 14%; text-align: center;">วันที่</th>
-                                        <th style="width: 11%; text-align: center;">ทะเบียนรถ</th>
+                                        <th style="width: 10%; text-align: center;">ทะเบียนรถ</th>
                                         <th style="width: 12%; text-align: center;">เลขบิล</th>
                                         <th style="width: 10%; text-align: center;">จำนวนลิตร</th>
                                         <th style="width: 10%; text-align: center;">ราคา/ลิตร</th>
@@ -98,23 +124,17 @@
                                             if ($fuel['department'] == 1) :
                                                 $tmpVolume += (float)$fuel['volume'];
                                                 $tmpUnitPrice += (float)$fuel['unit_price'];
-                                                $tmpTotal += (float)$fuel['total'];  
-                                                // Set the PDO error mode to exception
-                                                // $sql = "select * from sentout_daily_detail 
-                                                //         where (sentout_daily_id=:fuelid) 
-                                                //         and (sentout_type_id=:sentouttypeid) ";
-
-                                                // $stmt = $db->prepare($sql);
-                                                // $stmt->bindValue(':fuelid', $fuel['id']);
-                                                // $stmt->bindValue(':sentouttypeid', $sentoutType['sentout_type_id']);
-                                                // $stmt->execute();
-                                                // $detail = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                $tmpTotal += (float)$fuel['total'];
                                     ?>
                                             <tr>
                                                 <td style="text-align: center;"><?=++$cx ?></td>
-                                                <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
                                                 <td style="text-align: center;">
-                                                    <?=$fuel['reg_no'] ?>
+                                                    <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span <?=(($fuel['vehicle_id']=='90' || $fuel['vehicle_id']=='91') ? 'class="thaitext-sm"' : '');?>>
+                                                        <?=$fuel['reg_no'] ?>
+                                                    </span>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     <?=$fuel['bill_no'] ?>
@@ -140,64 +160,66 @@
                                 		 
                             </td>
                         </tr>               
-                    </table><br>
+                    </table>
 
-                    <table width="100%" border="0">
+                    <?=(($cx > 19 && $cx < 25) ? '<hr style="page-break-after: always;">' : '') ?>
+
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                    <p style="margin: 5 0 0 15px; padding: 1px; font-weight: bold;">
                                         พนักงานขับรถยนต์
                                     </p>
-                                    <p style="margin: 5 0 0 15px; padding: 2px;">
+                                    <p style="margin: 5 0 0 15px; padding: 1px;">
                                         ลงชื่อ............................  ลงชื่อ............................
                                     </p>
-                                    <p style="margin: 5 0 0 15px; padding: 2px;">
+                                    <p style="margin: 5 0 0 15px; padding: 1px;">
                                         ลงชื่อ............................  ลงชื่อ............................
                                     </p>
-                                    <p style="margin: 5 0 0 15px; padding: 2px;">
+                                    <p style="margin: 5 0 0 15px; padding: 1px;">
                                         ลงชื่อ............................  ลงชื่อ............................
                                     </p>
-                                    <p style="margin: 5 0 0 15px; padding: 2px;">
+                                    <p style="margin: 5 0 0 15px; padding: 1px;">
                                         ลงชื่อ............................  ลงชื่อ............................
                                     </p>                                               
                                 </td>
                                 <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
                                         &nbsp;
                                     </p>
                                     <p style="margin: 5 0 0 40px; padding: 0px;">
                                         ลงชื่อ.....................................................ผู้จัดทำ
                                     </p>
-                                    <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 120px; padding: 0px;">
+                                    <p style="margin: -3 2 2 100px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
-                                    </p><br>
+                                    </p>
 
-                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                    <p style="margin: 10 0 0 40px; padding: 0px;">
                                         ลงชื่อ.....................................................ผู้ตรวจสอบ
                                     </p>
-                                    <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 95px; padding: 0px;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
                                 </td>
                             </tr>
                         </tbody>
-                    </table><br>                    
+                    </table>               
                 
                 </div><!-- /DETAIL -->
 
-            </div> <!-- end page -->
+            </div> <!-- end page-layout -->
         </div>	<!-- end page -->
 
         <!-- วัดบูรพ์ -->
         <div class="page" align="center">
-            <div style="width: 740px; margin-left: 30px; margin-right: 15px; margin-top: 0px; padding: 5px;">
+            <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
 <!--                    <table width="100%">
@@ -209,7 +231,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -230,7 +252,7 @@
                                     <tr>
                                         <th style="width: 4%; text-align: center;">ลำดับ</th>
                                         <th style="width: 14%; text-align: center;">วันที่</th>
-                                        <th style="width: 11%; text-align: center;">ทะเบียนรถ</th>
+                                        <th style="width: 10%; text-align: center;">ทะเบียนรถ</th>
                                         <th style="width: 12%; text-align: center;">เลขบิล</th>
                                         <th style="width: 10%; text-align: center;">จำนวนลิตร</th>
                                         <th style="width: 10%; text-align: center;">ราคา/ลิตร</th>
@@ -251,7 +273,9 @@
                                     ?>
                                                 <tr>
                                                     <td style="text-align: center;"><?=++$cx ?></td>
-                                                    <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                    </td>
                                                     <td style="text-align: center;">
                                                         <?=$fuel['reg_no'] ?>
                                                     </td>
@@ -279,61 +303,63 @@
                                          
                             </td>
                         </tr>               
-                    </table><br>
+                    </table>
 
-                    <table width="100%" border="0">
+                    <div>
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
                                         พนักงานขับรถยนต์
                                     </p>
                                     <p style="margin: 5 0 0 40px; padding: 0px;">
-                                        ลงชื่อ.....................................................ผู้จัดทำ
+                                        ลงชื่อ.....................................................
                                     </p>
                                     <p style="margin: -3 2 2 -35px; padding: 0px; text-align: center;">
                                         (&nbsp;&nbsp;&nbsp;นายสมควร&nbsp;&nbsp;ปวงกลาง&nbsp;&nbsp;&nbsp;)
                                     </p>
                                     <p style="margin: -3 2 2 105px; padding: 0px;">
                                         พนักงานขับรถยนต์
-                                    </p><br>                                           
+                                    </p>                                           
                                 </td>
                                 <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
                                         &nbsp;
                                     </p>
                                     <p style="margin: 5 0 0 40px; padding: 0px;">
                                         ลงชื่อ.....................................................ผู้จัดทำ
                                     </p>
-                                    <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 120px; padding: 0px;">
+                                    <p style="margin: -3 2 2 100px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
-                                    </p><br>
+                                    </p>
 
                                     <p style="margin: 5 0 0 40px; padding: 0px;">
                                         ลงชื่อ.....................................................ผู้ตรวจสอบ
                                     </p>
-                                    <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 95px; padding: 0px;">
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
                                 </td>
                             </tr>
                         </tbody>
-                    </table><br>                    
-                
+                    </table>
+                    </div>                    
+                    
                 </div><!-- /DETAIL -->
 
-            </div> <!-- end page -->
+            </div> <!-- end page-layout -->
         </div>  <!-- end page -->
 
         <!-- ราชภัฎ -->
         <div class="page" align="center">
-            <div style="width: 740px; margin-left: 30px; margin-right: 15px; margin-top: 0px; padding: 5px;">
+            <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
 <!--                    <table width="100%">
@@ -345,7 +371,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -366,7 +392,7 @@
                                     <tr>
                                         <th style="width: 4%; text-align: center;">ลำดับ</th>
                                         <th style="width: 14%; text-align: center;">วันที่</th>
-                                        <th style="width: 11%; text-align: center;">ทะเบียนรถ</th>
+                                        <th style="width: 10%; text-align: center;">ทะเบียนรถ</th>
                                         <th style="width: 12%; text-align: center;">เลขบิล</th>
                                         <th style="width: 10%; text-align: center;">จำนวนลิตร</th>
                                         <th style="width: 10%; text-align: center;">ราคา/ลิตร</th>
@@ -387,7 +413,9 @@
                                     ?>
                                                 <tr>
                                                     <td style="text-align: center;"><?=++$cx ?></td>
-                                                    <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                    </td>
                                                     <td style="text-align: center;">
                                                         <?=$fuel['reg_no'] ?>
                                                     </td>
@@ -417,54 +445,56 @@
                         </tr>               
                     </table><br>
 
-                    <table width="100%" border="0">
-                        <tbody>
-                            <tr>
-                                <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
-                                        พนักงานขับรถยนต์
-                                    </p>
-                                    <p style="margin: 5 0 0 40px; padding: 0px;">
-                                        ลงชื่อ.....................................................ผู้จัดทำ
-                                    </p>
-                                    <p style="margin: -3 2 2 -35px; padding: 0px; text-align: center;">
-                                        (&nbsp;&nbsp;&nbsp;นางสิรินทร&nbsp;&nbsp;พิเศษพงษา&nbsp;&nbsp;&nbsp;)
-                                    </p>
-                                    <p style="margin: -3 2 2 50px; padding: 0px;">
-                                        เจ้าพนักงานทันตสาธารณสุขชำนาญงาน
-                                    </p><br>                                           
-                                </td>
-                                <td width="50%" style="vertical-align: top;">
-                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
-                                        &nbsp;
-                                    </p>
-                                    <p style="margin: 5 0 0 40px; padding: 0px;">
-                                        ลงชื่อ.....................................................ผู้จัดทำ
-                                    </p>
-                                    <p style="margin: -3 2 2 -5px; padding: 0px; text-align: center;">
-                                        (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
-                                    </p>
-                                    <p style="margin: -3 2 2 120px; padding: 0px;">
-                                        เจ้าพนักงานธุรการ
-                                    </p><br>
+                    <div>
+                        <table width="100%" border="0" class="thaitext">
+                            <tbody>
+                                <tr>
+                                    <td width="50%" style="vertical-align: top;">
+                                        <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                            พนักงานขับรถยนต์
+                                        </p>
+                                        <p style="margin: 5 0 0 40px; padding: 0px;">
+                                            ลงชื่อ.....................................................
+                                        </p>
+                                        <p style="margin: -3 2 2 -35px; padding: 0px; text-align: center;">
+                                            (&nbsp;&nbsp;&nbsp;นางสิรินทร&nbsp;&nbsp;พิเศษพงษา&nbsp;&nbsp;&nbsp;)
+                                        </p>
+                                        <p style="margin: -3 2 2 50px; padding: 0px;">
+                                            เจ้าพนักงานทันตสาธารณสุขชำนาญงาน
+                                        </p><br>                                           
+                                    </td>
+                                    <td width="50%" style="vertical-align: top;">
+                                        <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
+                                            &nbsp;
+                                        </p>
+                                        <p style="margin: 5 0 0 40px; padding: 0px;">
+                                            ลงชื่อ.....................................................ผู้จัดทำ
+                                        </p>
+                                        <p style="margin: -3 2 2 80px; padding: 0px;">
+                                            (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
+                                        </p>
+                                        <p style="margin: -3 2 2 100px; padding: 0px;">
+                                            เจ้าพนักงานธุรการ
+                                        </p><br>
 
-                                    <p style="margin: 5 0 0 40px; padding: 0px;">
-                                        ลงชื่อ.....................................................ผู้ตรวจสอบ
-                                    </p>
-                                    <p style="margin: -3 2 2 0px; padding: 0px; text-align: center;">
-                                        (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
-                                    </p>
-                                    <p style="margin: -3 2 2 95px; padding: 0px;">
-                                        นักจัดการงานทั่วไปปฏิบัติการ
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table><br>                    
-                
+                                        <p style="margin: 5 0 0 40px; padding: 0px;">
+                                            ลงชื่อ.....................................................ผู้ตรวจสอบ
+                                        </p>
+                                        <p style="margin: -3 2 2 80px; padding: 0px;">
+                                            (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
+                                        </p>
+                                        <p style="margin: -3 2 2 80px; padding: 0px;">
+                                            นักจัดการงานทั่วไปปฏิบัติการ
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><br>                    
+                    
                 </div><!-- /DETAIL -->
 
-            </div> <!-- end page -->
+            </div> <!-- end page-layout -->
         </div>  <!-- end page -->
 
     </body>

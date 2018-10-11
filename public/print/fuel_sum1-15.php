@@ -9,8 +9,13 @@
             body {
                 -webkit-print-color-adjust: exact;
             }
+            @page { 
+                size: 8.5in 11in; margin: 1cm 
+            }
             .page {
                 margin: 0px; 
+                margin-bottom: 20px;
+                /*border: 1px solid #000;*/
                 /*height: 100%;*/
                 page-break-after: always;
             }
@@ -160,7 +165,7 @@
                                 		 
                             </td>
                         </tr>               
-                    </table>
+                    </table><br>
 
                     <?=(($cx > 19 && $cx < 25) ? '<hr style="page-break-after: always;">' : '') ?>
 
@@ -222,7 +227,7 @@
             <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
-<!--                    <table width="100%">
+                    <!--<table width="100%">
                         <tr>
                             <td width="527"></td>
                             <td>
@@ -303,9 +308,8 @@
                                          
                             </td>
                         </tr>               
-                    </table>
+                    </table><br>
 
-                    <div>
                     <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
@@ -349,8 +353,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                    </div>                    
+                    </table>                   
                     
                 </div><!-- /DETAIL -->
 
@@ -362,7 +365,7 @@
             <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
-<!--                    <table width="100%">
+                    <!--<table width="100%">
                         <tr>
                             <td width="527"></td>
                             <td>
@@ -445,52 +448,50 @@
                         </tr>               
                     </table><br>
 
-                    <div>
-                        <table width="100%" border="0" class="thaitext">
-                            <tbody>
-                                <tr>
-                                    <td width="50%" style="vertical-align: top;">
-                                        <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
-                                            พนักงานขับรถยนต์
-                                        </p>
-                                        <p style="margin: 5 0 0 40px; padding: 0px;">
-                                            ลงชื่อ.....................................................
-                                        </p>
-                                        <p style="margin: -3 2 2 -35px; padding: 0px; text-align: center;">
-                                            (&nbsp;&nbsp;&nbsp;นางสิรินทร&nbsp;&nbsp;พิเศษพงษา&nbsp;&nbsp;&nbsp;)
-                                        </p>
-                                        <p style="margin: -3 2 2 50px; padding: 0px;">
-                                            เจ้าพนักงานทันตสาธารณสุขชำนาญงาน
-                                        </p><br>                                           
-                                    </td>
-                                    <td width="50%" style="vertical-align: top;">
-                                        <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
-                                            &nbsp;
-                                        </p>
-                                        <p style="margin: 5 0 0 40px; padding: 0px;">
-                                            ลงชื่อ.....................................................ผู้จัดทำ
-                                        </p>
-                                        <p style="margin: -3 2 2 80px; padding: 0px;">
-                                            (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
-                                        </p>
-                                        <p style="margin: -3 2 2 100px; padding: 0px;">
-                                            เจ้าพนักงานธุรการ
-                                        </p><br>
+                    <table width="100%" border="0" class="thaitext">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="vertical-align: top;">
+                                    <p style="margin: 5 0 0 15px; padding: 2px; font-weight: bold;">
+                                        พนักงานขับรถยนต์
+                                    </p>
+                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................
+                                    </p>
+                                    <p style="margin: -3 2 2 -35px; padding: 0px; text-align: center;">
+                                        (&nbsp;&nbsp;&nbsp;นางสิรินทร&nbsp;&nbsp;พิเศษพงษา&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 50px; padding: 0px;">
+                                        เจ้าพนักงานทันตสาธารณสุขชำนาญงาน
+                                    </p><br>                                           
+                                </td>
+                                <td width="50%" style="vertical-align: top;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
+                                        &nbsp;
+                                    </p>
+                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................ผู้จัดทำ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 100px; padding: 0px;">
+                                        เจ้าพนักงานธุรการ
+                                    </p><br>
 
-                                        <p style="margin: 5 0 0 40px; padding: 0px;">
-                                            ลงชื่อ.....................................................ผู้ตรวจสอบ
-                                        </p>
-                                        <p style="margin: -3 2 2 80px; padding: 0px;">
-                                            (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
-                                        </p>
-                                        <p style="margin: -3 2 2 80px; padding: 0px;">
-                                            นักจัดการงานทั่วไปปฏิบัติการ
-                                        </p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div><br>                    
+                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................ผู้ตรวจสอบ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นายสัญญา&nbsp;&nbsp;ธรรมวงษ์&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        นักจัดการงานทั่วไปปฏิบัติการ
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                   
                     
                 </div><!-- /DETAIL -->
 

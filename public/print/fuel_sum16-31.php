@@ -9,8 +9,13 @@
             body {
                 -webkit-print-color-adjust: exact;
             }
+            @page { 
+                size: 8.5in 11in; margin: 1cm 
+            }
             .page {
                 margin: 0px; 
+                margin-bottom: 20px;
+                /*border: 1px solid #000;*/
                 /*height: 100%;*/
                 page-break-after: always;
             }
@@ -77,7 +82,7 @@
             <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
-<!--                    <table width="100%">
+                    <!--<table width="100%">
                         <tr>
                             <td width="527"></td>
                             <td>
@@ -86,7 +91,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -131,7 +136,7 @@
                                                 <td style="text-align: center;"><?=++$cx ?></td>
                                                 <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
                                                 <td style="text-align: center;">
-                                                    <span <?=(($fuel['vehicle_id']=='90' || $fuel['vehicle_id']=='91') ? 'class="thaitext"' : '');?>>
+                                                    <span <?=(($fuel['vehicle_id']=='90' || $fuel['vehicle_id']=='91') ? 'class="thaitext-sm"' : '');?>>
                                                         <?=$fuel['reg_no'] ?>
                                                     </span>
                                                 </td>
@@ -159,11 +164,11 @@
                                          
                             </td>
                         </tr>               
-                    </table>
+                    </table><br>
 
                     <?=(($cx > 19 && $cx < 25) ? '<hr style="page-break-after: always;">' : '') ?>
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td width="50%" style="vertical-align: top;">
@@ -230,7 +235,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -300,9 +305,9 @@
                                          
                             </td>
                         </tr>               
-                    </table>
+                    </table><br>
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td width="50%" style="vertical-align: top;">
@@ -357,7 +362,7 @@
             <div class="page-layout">
                 <div style="padding: 0 5 0 5px;">
 
-<!--                    <table width="100%">
+                    <!--<table width="100%">
                         <tr>
                             <td width="527"></td>
                             <td>
@@ -366,7 +371,7 @@
                         </tr>
                     </table>-->
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td colspan="2">
@@ -436,9 +441,9 @@
                                          
                             </td>
                         </tr>               
-                    </table>
+                    </table><br>
 
-                    <table width="100%" border="0">
+                    <table width="100%" border="0" class="thaitext">
                         <tbody>
                             <tr>
                                 <td width="50%" style="vertical-align: top;">

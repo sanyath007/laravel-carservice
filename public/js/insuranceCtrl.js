@@ -9,12 +9,19 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     $scope.newInsurance = {
         docNo: '',
         docDate: '',
+        vehicleId: '',
         insuranceNo: '',
         company: '',
         insuranceType: '',
         insuranceDetail: '',
         insuranceStartDate: '',
+        insuranceStartTime: '',
         insuranceRenewalDate: '',
+        insuranceRenewalTime:'',
+        insuranceNet: '',
+        insuranceStamp: '',
+        insuranceVat: '',
+        insuranceTotal: ''
     };
 
     $scope.formValidate = function (event) {
@@ -27,12 +34,19 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         var req_data = {
             doc_no: $scope.newInsurance.docNo,
             doc_date: $scope.newInsurance.docDate,
+            vehicle_id: $scope.newInsurance.vehicleId,
             insurance_no: $scope.newInsurance.insuranceNo,
             insurance_company_id: $scope.newInsurance.company,
             insurance_type: $scope.newInsurance.insuranceType,
             insurance_detail: $scope.newInsurance.insuranceDetail,
             insurance_start_date: $scope.newInsurance.insuranceStartDate,
-            insurance_renewal_date: $scope.newInsurance.insuranceRenewalDate
+            insurance_start_time: $scope.newInsurance.insuranceStartTime,
+            insurance_renewal_date: $scope.newInsurance.insuranceRenewalDate,
+            insurance_renewal_time: $scope.newInsurance.insuranceRenewalTime,
+            insurance_net: $scope.newInsurance.insuranceNet,
+            insurance_stamp: $scope.newInsurance.insuranceStamp,
+            insurance_vat: $scope.newInsurance.insuranceVat,
+            insurance_total: $scope.newInsurance.insuranceTotal,
         };
         console.log(req_data);
 

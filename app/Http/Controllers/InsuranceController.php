@@ -20,7 +20,13 @@ class InsuranceController extends Controller
             'insurance_type' => 'required',
             'insurance_detail' => 'required',
             'insurance_start_date' => 'required',
+            'insurance_start_time' => 'required',
             'insurance_renewal_date' => 'required',
+            'insurance_renewal_time' => 'required',
+            'insurance_net' => 'required',
+            'insurance_stamp' => 'required',
+            'insurance_vat' => 'required',
+            'insurance_total' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -60,7 +66,7 @@ class InsuranceController extends Controller
         // Upload attach file
         // var_dump($request->file('attachfile'));
         $filename = '';
-        if ($file = $request->file('attachfile')) {
+        if ($file = $req->file('attachfile')) {
             $filename = $file->getClientOriginalName();
             $file->move('uploads', $filename);
         }
@@ -68,15 +74,23 @@ class InsuranceController extends Controller
     	$newInsurance = new Insurance();
     	$newInsurance->doc_no = $req['doc_no'];
         $newInsurance->doc_date = $req['doc_date'];
+        $newInsurance->vehicle_id = $req['vehicle_id'];
         $newInsurance->insurance_no = $req['insurance_no'];
         $newInsurance->insurance_company_id = $req['company'];
         $newInsurance->insurance_type = $req['insurance_type'];
         $newInsurance->insurance_detail = $req['insurance_detail'];
         $newInsurance->insurance_start_date = $req['insurance_start_date'];
+        $newInsurance->insurance_start_time = $req['insurance_start_time'];
         $newInsurance->insurance_renewal_date = $req['insurance_renewal_date'];
+        $newInsurance->insurance_renewal_time = $req['insurance_renewal_time'];
+        $newInsurance->insurance_net = $req['insurance_net'];
+        $newInsurance->insurance_stamp = $req['insurance_stamp'];
+        $newInsurance->insurance_vat = $req['insurance_vat'];
+        $newInsurance->insurance_total = $req['insurance_total'];
+        $newInsurance->status = '1';
 
         if ($newInsurance->save()) {
-
+            return redirect('insurances.list');
 		}
     }
 
@@ -108,7 +122,7 @@ class InsuranceController extends Controller
         $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
 
         if ($insurance->save()) {
-
+            return redirect('insurances.list');
         }
     }
 

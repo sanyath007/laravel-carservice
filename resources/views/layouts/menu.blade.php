@@ -52,7 +52,7 @@
 
                      @endif
 
-                    @if (Auth::user()->person_id == '1103701049812' || Auth::user()->person_id == '3300101621053')
+                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101621053')
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

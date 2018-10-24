@@ -28,7 +28,7 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 20%; text-align: center;">รถ</th>
+                        <th style="width: 15%; text-align: center;">รถ</th>
                         <th style="width: 12%; text-align: center;">เลขที่กรมธรรม์</th>
                         <th style="width: 12%; text-align: center;">ประเภทประกันภัย</th>
                         <th>รายละเอียด</th>

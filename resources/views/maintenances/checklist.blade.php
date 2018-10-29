@@ -65,16 +65,15 @@
                     <tr>
                         <th style="width: 4%; text-align: center;">#</th>
                         <th>รายการตรวจเช็ครถ</th>
-                         <th style="width: 5%; text-align: center;" ng-repeat="(index, d) in date">
+                         <th style="width: 3%; text-align: center;" ng-repeat="(index, d) in date">
                             @{{ d }}
                         </th>
-                        <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>
                     
                     <tr>
                         <td style="text-align: center;">1</td>
                         <td>ล้อ และลมยาง ทั้ง 5 ล้อ</td>    
-                        <td style="width: 5%; text-align: center;" ng-repeat="(index, tires) in tiresList">
+                        <td style="text-align: center;" ng-repeat="(index, tires) in tiresList">
                             <!-- <a data-toggle="popover" data-content="@{{ tires.text }}" data-trigger="hover"> -->
                             <a ng-mouseover="checkListPopup(tires)">
                                 @{{ tires.state }}
@@ -83,169 +82,154 @@
                                 <span class="popuptext" id="myPopup">A Simple Popup!</span>
                             </div>
                         </td>
-                        <td></td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">2</td>
                         <td>รอยรั่วน้ำมันใต้ท้องรถ</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, leak) in leakList">
-                                <!-- <a data-toggle="popover" data-content="@{{ leak.text }}" data-trigger="hover"> -->
-                                <a ng-mouseover="checkListPopup(leak)">
-                                    @{{ leak.state }}
-                                </a>
-                                <div class="popup">
-                                    <span class="popuptext" id="myPopup">A Simple Popup!</span>
-                                </div>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, leak) in leakList">
+                            <!-- <a data-toggle="popover" data-content="@{{ leak.text }}" data-trigger="hover"> -->
+                            <a ng-mouseover="checkListPopup(leak)">
+                                @{{ leak.state }}
+                            </a>
+                            <div class="popup">
+                                <span class="popuptext" id="myPopup">A Simple Popup!</span>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">3</td>
                         <td>หม้อน้ำ และระดับน้ำ</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, radiator) in radiatorList">
-                                <a data-toggle="popover" data-content="@{{ radiator.text }}" data-trigger="hover">
-                                    @{{ radiator.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, radiator) in radiatorList">
+                            <a data-toggle="popover" data-content="@{{ radiator.text }}" data-trigger="hover">
+                                @{{ radiator.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">4</td>
                         <td>น้ำมันหล่อลื่น</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, oil) in oilList">
-                                <a data-toggle="popover" data-content="@{{ oil.text }}" data-trigger="hover">
-                                    @{{ oil.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, oil) in oilList">
+                            <a data-toggle="popover" data-content="@{{ oil.text }}" data-trigger="hover">
+                                @{{ oil.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">5</td>
                         <td>เบรก/ครัช และน้ำมันเบรก/ครัช</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, brakeClutch) in brakeClutchList">
-                                <!-- <a data-toggle="popover" data-content="@{{ brakeClutch.text }}" data-trigger="hover"> -->
-                                <a ng-mouseover="checkListPopup(brakeClutch)">
-                                    @{{ brakeClutch.state }}
-                                </a>
-                                <div class="popup">
-                                    <span class="popuptext" id="myPopup">A Simple Popup!</span>
-                                </div>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, brakeClutch) in brakeClutchList">
+                            <!-- <a data-toggle="popover" data-content="@{{ brakeClutch.text }}" data-trigger="hover"> -->
+                            <a ng-mouseover="checkListPopup(brakeClutch)">
+                                @{{ brakeClutch.state }}
+                            </a>
+                            <div class="popup">
+                                <span class="popuptext" id="myPopup">A Simple Popup!</span>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">6</td>
                         <td>แบตเตอรี่ และน้ำกลั่น</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, battery) in batteryList">
-                                <a data-toggle="popover" data-content="@{{ battery.text }}" data-trigger="hover">
-                                    @{{ battery.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, battery) in batteryList">
+                            <a data-toggle="popover" data-content="@{{ battery.text }}" data-trigger="hover">
+                                @{{ battery.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">7</td>
                         <td>ใบปัดน้ำฝน และน้ำยาฉีดกระจก</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, windshield) in windshieldList">
-                                <a data-toggle="popover" data-content="@{{ windshield.text }}" data-trigger="hover">
-                                    @{{ windshield.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, windshield) in windshieldList">
+                            <a data-toggle="popover" data-content="@{{ windshield.text }}" data-trigger="hover">
+                                @{{ windshield.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">8</td>
                         <td>ปริมาณน้ำมันเชื้อเพลิง</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, fuel) in fuelList">
-                                <a data-toggle="popover" data-content="@{{ fuel.text }}" data-trigger="hover">
-                                    @{{ fuel.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, fuel) in fuelList">
+                            <a data-toggle="popover" data-content="@{{ fuel.text }}" data-trigger="hover">
+                                @{{ fuel.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">9</td>
                         <td>การทำงานมาตรวัดต่างๆ</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, gauges) in gaugesList">
-                                <a data-toggle="popover" data-content="@{{ gauges.text }}" data-trigger="hover">
-                                    @{{ gauges.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, gauges) in gaugesList">
+                            <a data-toggle="popover" data-content="@{{ gauges.text }}" data-trigger="hover">
+                                @{{ gauges.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">10</td>
                         <td>ไฟสัญญาณและไฟส่องสว่าง</td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, lights) in lightsList">
-                                <a data-toggle="popover" data-content="@{{ lights.text }}" data-trigger="hover">
-                                    @{{ lights.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, lights) in lightsList">
+                            <a data-toggle="popover" data-content="@{{ lights.text }}" data-trigger="hover">
+                                @{{ lights.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">11</td>
                         <td>ออกซิเจน <span style="color: red;">(เฉพาะรถพยาบาล)</span></td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, oxygen) in oxygenList">
-                                <a data-toggle="popover" data-content="@{{ oxygen.text }}" data-trigger="hover">
-                                    @{{ oxygen.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, oxygen) in oxygenList">
+                            <a data-toggle="popover" data-content="@{{ oxygen.text }}" data-trigger="hover">
+                                @{{ oxygen.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">12</td>
                         <td>ระบบสัญญาณไซเรน <span style="color: red;">(เฉพาะรถพยาบาล)</span></td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, siren) in sirenList">
-                                <a data-toggle="popover" data-content="@{{ siren.text }}" data-trigger="hover">
-                                    @{{ siren.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, siren) in sirenList">
+                            <a data-toggle="popover" data-content="@{{ siren.text }}" data-trigger="hover">
+                                @{{ siren.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">13</td>
                         <td>ระบบวิทยุสื่อสาร <span style="color: red;">(เฉพาะรถพยาบาล)</span></td>    
-                            <td style="width: 5%; text-align: center;" ng-repeat="(index, radio) in radioList">
-                                <a data-toggle="popover" data-content="@{{ radio.text }}" data-trigger="hover">
-                                    @{{ radio.state }}
-                                </a>
-                            </td>
-                        <td></td>
+                        <td style="text-align: center;" ng-repeat="(index, radio) in radioList">
+                            <a data-toggle="popover" data-content="@{{ radio.text }}" data-trigger="hover">
+                                @{{ radio.state }}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">14</td>
                         <td>ร่องรอยเสียหายบริเวณตัวรถ</td>    
-                        <td style="width: 5%; text-align: center;" ng-repeat="(index, damage) in damageList">
+                        <td style="text-align: center;" ng-repeat="(index, damage) in damageList">
                             <a data-toggle="popover" data-content="@{{ damage.text }}" data-trigger="hover">
                                 @{{ damage.state }}
                             </a>
                         </td>
-                        <td></td>
                     </tr>
 
                     <tr>
                         <td style="text-align: center;">15</td>
                         <td>ล้างรถ</td>    
-                        <td style="width: 5%; text-align: center;" ng-repeat="(index, isWashed) in isWashedList">
+                        <td style="text-align: center;" ng-repeat="(index, isWashed) in isWashedList">
                             <a data-toggle="popover" data-content="@{{ isWashed.text }}" data-trigger="hover">
                                 @{{ isWashed.state }}
                             </a>
                         </td>
-                        <td></td>
                     </tr>
                     
                 </table>

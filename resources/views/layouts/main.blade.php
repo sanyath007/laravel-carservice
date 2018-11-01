@@ -45,6 +45,8 @@
 	<!-- <script src="{{ asset('/bower/axios/dist/axios.min.js') }}"></script> -->
 	<!-- <script src="{{ asset('/js/bootstrap-tagsinput.min.js') }}"></script>
 	<script src="{{ asset('/js/bootstrap-tagsinput-angular.min.js') }}"></script> -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
 	
 	<script src="{{ asset('/js/main.js') }}"></script>
 	<script src="{{ asset('/js/mainCtrl.js') }}"></script>
@@ -54,6 +56,9 @@
 	<script src="{{ asset('/js/insuranceCtrl.js') }}"></script>
 	<script src="{{ asset('/js/taxCtrl.js') }}"></script>
 	<script src="{{ asset('/js/fuelCtrl.js') }}"></script>
+	<script src="{{ asset('/js/reportCtrl.js') }}"></script>
+	<script src="{{ asset('/js/directives/highcharts.js') }}"></script>
+	<script src="{{ asset('/js/services/report.js') }}"></script>
 
 </head>
 <body ng-app="app" ng-controller="mainCtrl">

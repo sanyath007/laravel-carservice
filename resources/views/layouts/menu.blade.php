@@ -114,10 +114,12 @@
                         <ul class="dropdown-menu">
                           <li><a href="{{ url('/report/reserve') }}">รายงานการขอใช้รถ</a></li>
                           <li><a href="{{ url('/report/drive') }}">รายงานการเดินรถ</a></li>
-                          <!-- <li class="divider"></li>
-                          <li><a href="{{ url('/reserve/calendar') }}">สถิติการขอใช้รถ แยกตามหน่วยงาน</a></li>
-                          <li><a href="{{ url('/reserve/calendar') }}">สถิติการเดินรถ แยกตามสถานที่</a></li>
-                          <li><a href="{{ url('/reserve/calendar') }}">สถิติการเดินรถ แยกตาม พขร.</a></li> -->
+                          <li class="divider"></li>
+                          <li><a href="{{ url('/report/service') }}">รายงานการให้บริการทั้งหมด</a></li>
+                          <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
+                          <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
+                          <!-- <li><a href="{{ url('/report/calendar') }}">สถิติการเดินรถ แยกตามสถานที่</a></li>
+                          <li><a href="{{ url('/report/calendar') }}">สถิติการเดินรถ แยกตาม พขร.</a></li> -->
                         </ul>
                     </li>
 

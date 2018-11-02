@@ -1,13 +1,13 @@
-app.service('ReportService', function($http) {
+app.service('ReportService', function(CONFIG, $http) {
 	this.getServiceData = function () {
-		return $http.get('http://localhost/carservice/public/report/service-chart');
+		return $http.get(CONFIG.BASE_URL + '/report/service-chart');
 	}
 
 	this.getPeriodData = function () {
-		return $http.get('http://localhost/carservice/public/report/period-chart');
+		return $http.get(CONFIG.BASE_URL + '/report/period-chart');
 	}
 
 	this.getDepartData = function () {
-		return $http.get('http://localhost/carservice/public/report/depart-chart');
+		return $http.get(CONFIG.BASE_URL + '/report/depart-chart');
 	}
 });

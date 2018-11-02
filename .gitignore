@@ -1,7 +1,8 @@
 /node_modules
+/public/bower/*
+/public/files
 /public/hot
 /public/storage
-/public/files
 /public/uploads/*
 /storage/*.key
 /vendor

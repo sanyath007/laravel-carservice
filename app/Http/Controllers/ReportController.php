@@ -108,4 +108,28 @@ class ReportController extends Controller
 
         return \DB::select($sql);
     }
+
+    public function refer ()
+    {
+        return view('reports.refer', [
+            'assignments' => Assignment::orderBy('id','DESC')->paginate(10),
+        ]);
+    }
+    
+    public function referChart ()
+    {
+        $sql = "SELECT
+                refer_date, DAY(refer_date) AS d, 
+                COUNT(DISTINCT referout_id) AS total,
+                COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '00:00:01' AND '07:59:59') THEN referout_id END) AS n,
+                COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '08:00:00' AND '15:59:59') THEN referout_id END) AS m,
+                COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '16:00:00' AND '23:59:59') THEN referout_id END) AS a
+                FROM referout 
+                WHERE (refer_date BETWEEN '2018-10-01' AND '2018-10-31')
+                AND (with_ambulance='Y')
+                GROUP BY refer_date
+                ORDER BY refer_date";
+
+        return \DB::connection('hosxp')->select($sql);
+    }
 }

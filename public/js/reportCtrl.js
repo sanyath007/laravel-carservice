@@ -142,4 +142,39 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             console.log(err);
         });
     };
+
+    $scope.getReferData = function () {
+        ReportService.getReferData()
+        .then(function(res) {
+            console.log(res);
+            var nSeries = [];
+            var mSeries = [];
+            var aSeries = [];
+            var eSeries = [];
+            var categories = [];
+
+            angular.forEach(res.data, function(value, key) {
+                categories.push(value.d)
+                nSeries.push(value.n);
+                mSeries.push(value.m);
+                aSeries.push(value.a);
+            });
+
+            $scope.initBarChart("barContainer", "รายงานการให้บริการให้บริการรับ-ส่งต่อผู้ป่วย", categories);
+            $scope.barOptions.series.push({
+                name: 'เวรดึก',
+                data: nSeries
+            }, {
+                name: 'เวรเช้า',
+                data: mSeries
+            }, {
+                name: 'เวรบ่าย',
+                data: aSeries
+            });
+
+            var chart = new Highcharts.Chart($scope.barOptions);
+        }, function(err) {
+            console.log(err);
+        });
+    };
 });

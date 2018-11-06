@@ -10,4 +10,8 @@ app.service('ReportService', function(CONFIG, $http) {
 	this.getDepartData = function () {
 		return $http.get(CONFIG.BASE_URL + '/report/depart-chart');
 	}
+
+	this.getReferData = function () {
+		return $http.get(CONFIG.BASE_URL + '/report/refer-chart');
+	}
 });

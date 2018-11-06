@@ -158,4 +158,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/period-chart', 'ReportController@periodChart');
     Route::get('/report/depart', 'ReportController@depart');
     Route::get('/report/depart-chart', 'ReportController@departChart');
+    Route::get('/report/refer', 'ReportController@refer');
+    Route::get('/report/refer-chart', 'ReportController@referChart');
 });

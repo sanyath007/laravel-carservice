@@ -50,8 +50,11 @@ class ReportController extends Controller
         ]);
     }
     
-    public function serviceChart ()
+    public function serviceChart ($month)
     {
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
         $sql = "SELECT CONCAT(YEAR(reserve_date), MONTH(reserve_date)) as 'month',
                 COUNT(DISTINCT id) as request,
                 COUNT(DISTINCT(CASE WHEN (status <> 5) THEN id END)) as service,
@@ -71,18 +74,21 @@ class ReportController extends Controller
         ]);
     }
     
-    public function periodChart ()
+    public function periodChart ($month)
     {
-        $sql = "SELECT CONCAT(YEAR(reserve_date), MONTH(reserve_date)) as 'month',
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql = "SELECT from_date AS reserv_date, DAY(from_date) AS d, 
                 COUNT(DISTINCT(CASE WHEN (from_time BETWEEN '00:00:01' AND '07:59:59') THEN id END)) as n,
                 COUNT(DISTINCT(CASE WHEN (from_time BETWEEN '08:00:00' AND '12:59:59') THEN id END)) as m,
                 COUNT(DISTINCT(CASE WHEN (from_time BETWEEN '13:00:00' AND '15:59:59') THEN id END)) as a,
                 COUNT(DISTINCT(CASE WHEN (from_time BETWEEN '16:00:00' AND '23:59:59') THEN id END)) as e
                 FROM reservations
-                WHERE (reserve_date BETWEEN '2017-10-01' AND '2018-09-30')
+                WHERE (from_date BETWEEN '$sdate' AND '$edate')
                 AND (status <> 5)
-                GROUP BY CONCAT(YEAR(reserve_date), MONTH(reserve_date))
-                ORDER BY CONCAT(YEAR(reserve_date), MONTH(reserve_date))";
+                GROUP BY from_date
+                ORDER BY from_date ";
 
         return \DB::select($sql);
     }
@@ -94,14 +100,17 @@ class ReportController extends Controller
         ]);
     }
     
-    public function departChart ()
+    public function departChart ($month)
     {
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
         $sql = "SELECT CONCAT(d.depart_name) as depart,
                 COUNT(DISTINCT r.id) as request,
                 COUNT(DISTINCT(CASE WHEN (r.status <> 5) THEN r.id END)) as service,
                 COUNT(DISTINCT(CASE WHEN (r.status = 5) THEN r.id END)) as cancel
                 FROM vehicle_db.reservations r LEFT JOIN db_ksh.depart d ON (r.department=d.depart_id)
-                WHERE (r.reserve_date BETWEEN '2017-10-01' AND '2018-09-30')
+                WHERE (r.reserve_date BETWEEN '$sdate' AND '$edate')
                 GROUP BY CONCAT(r.department,'-',d.depart_name) 
                 ORDER BY COUNT(DISTINCT r.id) DESC 
                 LIMIT 10 ";
@@ -116,16 +125,18 @@ class ReportController extends Controller
         ]);
     }
     
-    public function referChart ()
+    public function referChart ($month)
     {
-        $sql = "SELECT
-                refer_date, DAY(refer_date) AS d, 
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql = "SELECT refer_date, DAY(refer_date) AS d, 
                 COUNT(DISTINCT referout_id) AS total,
                 COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '00:00:01' AND '07:59:59') THEN referout_id END) AS n,
                 COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '08:00:00' AND '15:59:59') THEN referout_id END) AS m,
                 COUNT(DISTINCT CASE WHEN (refer_time BETWEEN '16:00:00' AND '23:59:59') THEN referout_id END) AS a
                 FROM referout 
-                WHERE (refer_date BETWEEN '2018-10-01' AND '2018-10-31')
+                WHERE (refer_date BETWEEN '$sdate' AND '$edate')
                 AND (with_ambulance='Y')
                 GROUP BY refer_date
                 ORDER BY refer_date";

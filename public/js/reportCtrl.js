@@ -4,60 +4,14 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
     let baseUrl = CONFIG.BASE_URL;
     
     $scope.pieOptions = {};
-    $scope.initPieChart = function(_container, _title) {
-        $scope.pieOptions = {
-            chart: {
-                renderTo: _container,
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: _title
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-                percentageDecimals: 1
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'สัดส่วนการให้บริการ',
-                data: []
-            }]
-        };
-    };
-
     $scope.barOptions = {};
-    $scope.initBarChart = function(_container, _title, _categories) {
-        $scope.barOptions = {
-            chart: {
-                renderTo: _container,
-                type: 'column'
-            },
-            title: {
-                text: _title
-            },
-            xAxis: {
-                categories: _categories
-            },
-            series: []
-        };
-    };
 
     $scope.getServiceData = function () {
-        ReportService.getServiceData()
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/service-chart/', month)
         .then(function(res) {
             var requestSeries = [];
             var serviceSeries = [];
@@ -70,7 +24,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             });
 
             var categories = ['ตค', 'พย', 'ธค', 'มค', 'กพ', 'มีค', 'เมย', 'พค', 'มิย', 'กค', 'สค', 'กย']
-            $scope.initBarChart("barContainer", "รายงานการให้บริการทั้งหมด", categories);
+            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการให้บริการทั้งหมด", categories);
             $scope.barOptions.series.push({
                 name: 'ร้องขอ',
                 data: requestSeries
@@ -89,23 +43,29 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
     };
 
     $scope.getPeriodData = function () {
-        ReportService.getPeriodData()
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/period-chart/', month)
         .then(function(res) {
             console.log(res);
+            
+            var categories = [];
             var nSeries = [];
             var mSeries = [];
             var aSeries = [];
             var eSeries = [];
 
             angular.forEach(res.data, function(value, key) {
+                categories.push(value.d);
                 nSeries.push(value.n);
                 mSeries.push(value.m);
                 aSeries.push(value.a);
                 eSeries.push(value.e);
             });
 
-            var categories = ['ตค', 'พย', 'ธค', 'มค', 'กพ', 'มีค', 'เมย', 'พค', 'มิย', 'กค', 'สค', 'กย']
-            $scope.initBarChart("barContainer", "รายงานการให้บริการ ตามช่วงเวลา", categories);
+            $scope.barOptions = ReportService.initStackChart("barContainer", "รายงานการให้บริการ ตามช่วงเวลา", categories, 'จำนวนการให้บริการ');
             $scope.barOptions.series.push({
                 name: '00.00-08.00น.',
                 data: nSeries
@@ -127,12 +87,16 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
     };
 
     $scope.getDepartData = function () {
-        ReportService.getDepartData()
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/depart-chart/', month)
         .then(function(res) {
             console.log(res);
             var dataSeries = [];
 
-            $scope.initPieChart("pieContainer", "รายงานการให้บริการ ตามหน่วยงาน");
+            $scope.pieOptions = ReportService.initPieChart("pieContainer", "รายงานการให้บริการ ตามหน่วยงาน");
             angular.forEach(res.data, function(value, key) {
                 $scope.pieOptions.series[0].data.push({name: value.depart, y: value.request});
             });
@@ -144,7 +108,11 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
     };
 
     $scope.getReferData = function () {
-        ReportService.getReferData()
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/refer-chart/', month)
         .then(function(res) {
             console.log(res);
             var nSeries = [];
@@ -160,7 +128,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
                 aSeries.push(value.a);
             });
 
-            $scope.initBarChart("barContainer", "รายงานการให้บริการให้บริการรับ-ส่งต่อผู้ป่วย", categories);
+            $scope.barOptions = ReportService.initStackChart("barContainer", "รายงานการให้บริการให้บริการรับ-ส่งต่อผู้ป่วย", categories, 'จำนวน Refer');
             $scope.barOptions.series.push({
                 name: 'เวรดึก',
                 data: nSeries

@@ -27,7 +27,7 @@
                     <input id="selectMonth" name="selectMonth" class="form-control"></input>
                 </div>
 
-                <button class="btn btn-primary">แสดง</button>
+                <button ng-click="getServiceData()" class="btn btn-primary">แสดง</button>
             </form>
 
             <div id="barContainer" style="width: 800px; height: 400px; margin: 0 auto; margin-top: 20px;"></div>

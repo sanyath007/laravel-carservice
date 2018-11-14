@@ -143,4 +143,25 @@ class ReportController extends Controller
 
         return \DB::connection('hosxp')->select($sql);
     }
+
+    public function fuelDay ()
+    {
+        return view('reports.fuel-day', [
+            'assignments' => Assignment::orderBy('id','DESC')->paginate(10),
+        ]);
+    }
+    
+    public function fuelDayChart ($month)
+    {
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql = "SELECT bill_date, SUM(volume) as qty, SUM(total) as net 
+                FROM vehicle_fuel f LEFT JOIN vehicles v ON (f.vehicle_id=v.vehicle_id)
+                WHERE (bill_date BETWEEN '$sdate' AND '$edate')
+                GROUP BY bill_date
+                ORDER BY bill_date";
+
+        return \DB::select($sql);
+    }
 }

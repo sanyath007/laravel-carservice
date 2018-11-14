@@ -1,5 +1,5 @@
 app.service('ReportService', function(CONFIG, $http) {
-	this.initBarChart = function(_container, _title, _categories) {
+	this.initBarChart = function(_container, _title, _categories, _ytitle) {
         return {
             chart: {
                 renderTo: _container,
@@ -10,6 +10,12 @@ app.service('ReportService', function(CONFIG, $http) {
             },
             xAxis: {
                 categories: _categories
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text: _ytitle
+                }
             },
             series: []
         };

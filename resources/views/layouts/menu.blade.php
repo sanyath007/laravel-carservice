@@ -119,7 +119,7 @@
                           <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
                           <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
                           <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>
-                          <!-- <li><a href="{{ url('/report/calendar') }}">สถิติการเดินรถ แยกตาม พขร.</a></li> -->
+                          <li><a href="{{ url('/report/fuel-day') }}">รายการการใช้น้ำมันรวม รายวัน</a></li>
                         </ul>
                     </li>
 

@@ -24,7 +24,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             });
 
             var categories = ['ตค', 'พย', 'ธค', 'มค', 'กพ', 'มีค', 'เมย', 'พค', 'มิย', 'กค', 'สค', 'กย']
-            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการให้บริการทั้งหมด", categories);
+            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการให้บริการทั้งหมด", categories, 'จำนวน');
             $scope.barOptions.series.push({
                 name: 'ร้องขอ',
                 data: requestSeries
@@ -138,6 +138,39 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             }, {
                 name: 'เวรบ่าย',
                 data: aSeries
+            });
+
+            var chart = new Highcharts.Chart($scope.barOptions);
+        }, function(err) {
+            console.log(err);
+        });
+    };
+
+    $scope.getFuelDayData = function () {
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/fuel-day-chart/', month)
+        .then(function(res) {
+            console.log(res);
+            var nSeries = [];
+            var mSeries = [];
+            var categories = [];
+
+            angular.forEach(res.data, function(value, key) {
+                categories.push(value.bill_date)
+                nSeries.push(value.qty);
+                mSeries.push(value.net);
+            });
+
+            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการใช้น้ำมันรวม รายวัน", categories, 'จำนวน');
+            $scope.barOptions.series.push({
+                name: 'ปริมาณ(ลิตร)',
+                data: nSeries
+            }, {
+                name: 'มูลค่า(บาท)',
+                data: mSeries
             });
 
             var chart = new Highcharts.Chart($scope.barOptions);

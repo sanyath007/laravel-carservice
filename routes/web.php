@@ -160,4 +160,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/depart-chart/{month}', 'ReportController@departChart');
     Route::get('/report/refer', 'ReportController@refer');
     Route::get('/report/refer-chart/{month}', 'ReportController@referChart');
+    Route::get('/report/fuel-day', 'ReportController@fuelDay');
+    Route::get('/report/fuel-day-chart/{month}', 'ReportController@fuelDayChart');
 });

@@ -33,8 +33,10 @@ class TaxController extends Controller
 
     public function index ()
     {
-        $taxes = Tax::with('vehicle')
+        $taxes = Tax::where('is_actived', '=', '1')
+                        ->with('vehicle')
                         ->orderBy('tax_start_date', 'DESC')
+                        ->orderBy('id', 'DESC')
                         ->paginate(10);
 
         return view('taxes.list', [

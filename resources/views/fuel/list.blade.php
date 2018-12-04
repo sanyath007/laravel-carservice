@@ -55,7 +55,7 @@
                         <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
                     <?php $statusArr = [1 => 'ผ่าน', 2 => 'รอตรวจสอบ', 3 => 'ยกเลิก']; ?>
-                    <?php $departmentArr = [1 => 'รพ.', 2 => 'ศูนย์ 3 วัดบูรพ์', 3 => 'ศูนย์ 9 ราชภัฎ']; ?>
+                    <?php $departmentArr = [1 => 'รพ.', 2 => 'ศูนย์ 3 วัดบูรพ์', 3 => 'ศูนย์ 9 ราชภัฎ', 4 => 'ช่างฯ']; ?>
 
                     @foreach($fuels as $fuel)
                         <?php $vehicle = App\Vehicle::where(['vehicle_id' => $fuel->vehicle_id])->with('changwat')->first();

@@ -42,6 +42,11 @@
                                 name="department"
                                 value="3"
                                 ng-model="newFuel.department"> ศูนย์แพทย์ชุมชนเมือง 9 ราชภัฏ
+                        <input  type="radio" 
+                                id="department" 
+                                name="department"
+                                value="4"
+                                ng-model="newFuel.department"> ช่างซ่อมบำรุง
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('department')"></span>
                         <span class="help-block" ng-show="checkValidate('department')">กรุณาเลือกวันที่บิลน้ำมัน</span>
                     </div>

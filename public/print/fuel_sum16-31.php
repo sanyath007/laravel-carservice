@@ -493,5 +493,154 @@
             </div> <!-- end page-layout -->
         </div>  <!-- end page -->
 
+        <!-- ช่าง -->
+        <div class="page" align="center">
+            <div class="page-layout">
+                <div style="padding: 0 5 0 5px;">
+
+                    <!--<table width="100%">
+                        <tr>
+                            <td width="527"></td>
+                            <td>
+                                <p align="right" class="formnumber">QF-ICT-45 <br> updated 20/10/2559</p>
+                            </td>
+                        </tr>
+                    </table>-->
+
+                    <table width="100%" border="0" class="thaitext">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <b class="p20"><center>สรุปรายงานการใช้น้ำมันเชื้อเพลิง   รอบวันที่ 16-<?=$lastDayInMonth?> <?=thaimonth($_month[1]). ' ' .(((int)$_month[0]) + 543); ?>
+                                    <br>เครื่องปั่นไฟสำรองโรงพยาบาลฯ และเครื่องปั่นไฟการไฟฟ้าฯ
+                                    <br>กลุ่มงานโครงสร้างพื้นฐานและวิศวกรรมทางการแพทย์  โรงพยาบาลเทพรัตน์นครราชสีมา</center></b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /HEADER -->
+                
+                <div style="padding: 0 5 5 5px;"><!-- DETAIL -->
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                
+                                <table border="1" width="100%" class="datatable">
+                                    <tr>
+                                        <th style="width: 4%; text-align: center;">ลำดับ</th>
+                                        <th style="width: 14%; text-align: center;">วันที่</th>
+                                        <th style="width: 10%; text-align: center;">รายการ</th>
+                                        <th style="width: 12%; text-align: center;">เลขบิล</th>
+                                        <th style="width: 10%; text-align: center;">จำนวนลิตร</th>
+                                        <th style="width: 10%; text-align: center;">ราคา/ลิตร</th>
+                                        <th style="width: 12%; text-align: center;">ราคารวม</th>
+                                        <th style="text-align: center;">งานที่ปฏิบัติ</th>
+                                        <!-- <th>หมายเหตุ</th> -->
+                                    </tr>
+                                    <?php 
+                                        $cx = 0;
+                                        $tmpVolume = 0;
+                                        $tmpUnitPrice = 0;
+                                        $tmpTotal = 0;
+                                        foreach ($fuels as $fuel) :
+                                            if ($fuel['department'] == 4) :
+                                                $tmpVolume += (float)$fuel['volume'];
+                                                $tmpUnitPrice += (float)$fuel['unit_price'];
+                                                $tmpTotal += (float)$fuel['total'];
+                                    ?>
+                                                <tr>
+                                                    <td style="text-align: center;"><?=++$cx ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <span <?=(($fuel['vehicle_id']=='90' || $fuel['vehicle_id']=='91') ? 'class="thaitext-sm"' : '');?>>
+                                                            <?=$fuel['reg_no'] ?>
+                                                        </span>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['bill_no'] ?>
+                                                    </td>
+                                                    <td style="text-align: center;"><?=$fuel['volume'] ?></td>
+                                                    <td style="text-align: center;"><?=$fuel['unit_price'] ?></td>
+                                                    <td style="text-align: center;"><?=number_format($fuel['total'],2) ?></td>
+                                                    <td style="padding: 2px;"><?=$fuel['job_desc'] ?></td>
+                                                </tr>
+
+                                            <?php endif ?>
+                                    <?php endforeach; ?>
+
+                                    <tr>
+                                        <td style="text-align: center;" colspan="4">รวม</td>
+                                        <td style="text-align: center;"><?=number_format($tmpVolume,2) ?></td>
+                                        <td style="text-align: center;"><?=number_format($tmpUnitPrice,2) ?></td>
+                                        <td style="text-align: center;"><?=number_format($tmpTotal,2) ?></td>
+                                        <td style="background-color: #848484 !important;" colspan="2"></td>
+                                    </tr>
+
+                                </table>
+                                         
+                            </td>
+                        </tr>               
+                    </table><br>
+
+                    <table width="100%" border="0" class="thaitext">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="vertical-align: top;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
+                                        นายช่างเทคนิค
+                                    </p>
+                                    <p style="margin: 5 0 0 15px; padding: 0px;">
+                                        ลงชื่อ............................
+                                    </p>
+                                    <p style="margin: 5 0 0 15px; padding: 0px;">
+                                        ลงชื่อ............................
+                                    </p>
+                                    <p style="margin: 5 0 0 15px; padding: 0px;">
+                                        ลงชื่อ............................
+                                    </p>
+                                    <p style="margin: 5 0 0 15px; padding: 0px;">
+                                        ลงชื่อ............................
+                                    </p>  
+                                    <p style="margin: 5 0 0 15px; padding: 0px;">
+                                        ลงชื่อ............................
+                                    </p>                                             
+                                </td>
+                                <td width="50%" style="vertical-align: top;">
+                                    <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
+                                        &nbsp;
+                                    </p>
+                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................ผู้จัดทำ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางวิภา&nbsp;&nbsp;พยอมใหม่&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 100px; padding: 0px;">
+                                        เจ้าพนักงานธุรการ
+                                    </p><br>
+
+                                    <p style="margin: 5 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................ผู้ควบคุม
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางสีนวล&nbsp;&nbsp;วงศ์พันธุ์&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        พยาบาลวิชาชีพชำนาญการ
+                                    </p>
+                                    <p style="margin: -3 2 2 70px; padding: 0px;">
+                                        รองผู้อำนยการด้านอำนวยการ
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>                          
+                    
+                </div><!-- /DETAIL -->
+
+            </div> <!-- end page-layout -->
+        </div>  <!-- end page -->
     </body>
 </html>

@@ -164,4 +164,25 @@ class ReportController extends Controller
 
         return \DB::select($sql);
     }
+
+    public function fuelVehicle ()
+    {
+        return view('reports.fuel-vehicle', [
+            'assignments' => Assignment::orderBy('id','DESC')->paginate(10),
+        ]);
+    }
+    
+    public function fuelVehicleChart ($month)
+    {
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql = "SELECT v.reg_no as vehicle, SUM(volume) as qty, SUM(total) as net 
+                FROM vehicle_fuel f LEFT JOIN vehicles v ON (f.vehicle_id=v.vehicle_id)
+                WHERE (bill_date BETWEEN '$sdate' AND '$edate')
+                GROUP BY v.reg_no
+                ORDER BY v.vehicle_type, v.vehicle_cate";
+
+        return \DB::select($sql);
+    }
 }

@@ -178,4 +178,37 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             console.log(err);
         });
     };
+
+    $scope.getFuelVehicleData = function () {
+        var selectMonth = document.getElementById('selectMonth').value;
+        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
+        console.log(month);
+
+        ReportService.getSeriesData('/report/fuel-vehicle-chart/', month)
+        .then(function(res) {
+            console.log(res);
+            var nSeries = [];
+            var mSeries = [];
+            var categories = [];
+
+            angular.forEach(res.data, function(value, key) {
+                categories.push(value.vehicle)
+                nSeries.push(value.qty);
+                mSeries.push(value.net);
+            });
+
+            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการใช้น้ำมันรวม รายรถ", categories, 'จำนวน');
+            $scope.barOptions.series.push({
+                name: 'ปริมาณ(ลิตร)',
+                data: nSeries
+            }, {
+                name: 'มูลค่า(บาท)',
+                data: mSeries
+            });
+
+            var chart = new Highcharts.Chart($scope.barOptions);
+        }, function(err) {
+            console.log(err);
+        });
+    };
 });

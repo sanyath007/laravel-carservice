@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <form class="form-inline">
                 <div class="form-group">
-                    <label>เดือน :</label>
+                    <label>ปีงบประมาณ :</label>
                     <input id="selectMonth" name="selectMonth" class="form-control"></input>
                 </div>
 
@@ -42,7 +42,7 @@
             
             $('#selectMonth').datetimepicker({
                 useCurrent: true,
-                format: 'YYYY-MM',
+                format: 'YYYY',
                 defaultDate: moment(dateNow)
             })
             // .on("dp.change", function(e) {

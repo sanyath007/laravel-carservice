@@ -50,19 +50,19 @@ class ReportController extends Controller
         ]);
     }
     
-    public function serviceChart ($month)
+    public function serviceChart ($year)
     {
-        $sdate = $month . '-01';
-        $edate = date("Y-m-t", strtotime($sdate));
+        $sdate = ($year - 1). '-10-01';
+        $edate = $year. '-09-30';
 
-        $sql = "SELECT CONCAT(YEAR(reserve_date), MONTH(reserve_date)) as 'month',
+        $sql = "SELECT CONCAT(YEAR(from_date), MONTH(from_date)) as 'month',
                 COUNT(DISTINCT id) as request,
                 COUNT(DISTINCT(CASE WHEN (status <> 5) THEN id END)) as service,
                 COUNT(DISTINCT(CASE WHEN (status = 5) THEN id END)) as cancel
                 FROM reservations
-                WHERE (reserve_date BETWEEN '2017-10-01' AND '2018-09-30')
-                GROUP BY CONCAT(YEAR(reserve_date), MONTH(reserve_date))
-                ORDER BY CONCAT(YEAR(reserve_date), MONTH(reserve_date))";
+                WHERE (from_date BETWEEN '$sdate' AND '$edate')
+                GROUP BY CONCAT(YEAR(from_date), MONTH(from_date))
+                ORDER BY CONCAT(YEAR(from_date), MONTH(from_date))";
 
         return \DB::select($sql);
     }

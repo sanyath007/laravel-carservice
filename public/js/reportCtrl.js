@@ -8,11 +8,12 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
 
     $scope.getServiceData = function () {
         var selectMonth = document.getElementById('selectMonth').value;
-        var month = (selectMonth == '') ? moment().format('YYYY-MM') : selectMonth;
-        console.log(month);
+        var year = (selectMonth == '') ? moment().format('YYYY') : selectMonth;
+        console.log(year);
 
-        ReportService.getSeriesData('/report/service-chart/', month)
+        ReportService.getSeriesData('/report/service-chart/', year)
         .then(function(res) {
+            console.log(res);
             var requestSeries = [];
             var serviceSeries = [];
             var cancelSeries = [];

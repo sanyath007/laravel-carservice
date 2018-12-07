@@ -153,7 +153,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/reserve', 'ReportController@reserve');
     Route::get('/report/drive', 'ReportController@drive');
     Route::get('/report/service', 'ReportController@service');
-    Route::get('/report/service-chart/{month}', 'ReportController@serviceChart');
+    Route::get('/report/service-chart/{year}', 'ReportController@serviceChart');
     Route::get('/report/period', 'ReportController@period');
     Route::get('/report/period-chart/{month}', 'ReportController@periodChart');
     Route::get('/report/depart', 'ReportController@depart');

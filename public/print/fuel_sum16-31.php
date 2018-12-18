@@ -134,7 +134,9 @@
                                     ?>
                                             <tr>
                                                 <td style="text-align: center;"><?=++$cx ?></td>
-                                                <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
+                                                <td style="text-align: center;">
+                                                    <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                </td>
                                                 <td style="text-align: center;">
                                                     <span <?=(($fuel['vehicle_id']=='90' || $fuel['vehicle_id']=='91') ? 'class="thaitext-sm"' : '');?>>
                                                         <?=$fuel['reg_no'] ?>
@@ -277,7 +279,9 @@
                                     ?>
                                                 <tr>
                                                     <td style="text-align: center;"><?=++$cx ?></td>
-                                                    <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                    </td>
                                                     <td style="text-align: center;">
                                                         <?=$fuel['reg_no'] ?>
                                                     </td>
@@ -413,7 +417,9 @@
                                     ?>
                                                 <tr>
                                                     <td style="text-align: center;"><?=++$cx ?></td>
-                                                    <td style="text-align: center;"><?=$fuel['bill_date'] ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?=$fuel['date'].'/'.$fuel['month'].'/'.$fuel['year'] ?>
+                                                    </td>
                                                     <td style="text-align: center;">
                                                         <?=$fuel['reg_no'] ?>
                                                     </td>

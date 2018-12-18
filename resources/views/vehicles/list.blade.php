@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="vehicleCtrl">
     <!-- page title -->
     <div class="page__title">
         <span>รายการรถ</span>
@@ -17,6 +17,21 @@
     <div class="row">
         <div class="col-md-12">
 
+            <form id="formVehicleList" name="formVehicleList" class="form-inline">
+                <div class="form-group">
+                    <label for="">แสดงรายการตามสถานะ : </label>
+                    <select class="form-control" ng-model="vehicleStatus" ng-change="showVehicleListWithStatus(vehicleStatus)">
+                        <option>-- กรุณาเลือก --</option>
+                        <option value="1">1=ใช้งาน</option>
+                        <option value="2">2=ให้ยืม</option>
+                        <option value="3">3=เสีย (อยู่ระหว่างซ่อม)</option>
+                        <option value="4">4=จำหน่าย</option>
+                        <option value="5">5=โอน</option>
+                        <option value="9">9=เครื่องมืออื่นๆ (ไม่ใช่รถ)</option>
+                    </select>
+                </div>
+            </form>
+            
             @foreach($vehicles as $vehicle)
                 <?php $tax_expired = '<font style="color: red;">หมดอายุ</font>'; ?>
 
@@ -61,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
 
         </div>

@@ -264,7 +264,7 @@ class AssignmentController extends Controller
     public function ajaxassign ($date, $shift) 
     {
         if ($shift == 1) {
-            $start = '00:00:01';
+            $start = '00:00:00';
             $end = '12:00:00';
         } else if ($shift == 2) {
             $start = '12:00:01';

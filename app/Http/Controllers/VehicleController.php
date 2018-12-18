@@ -12,6 +12,7 @@ class VehicleController extends Controller
 {
     public function index () {
         return view('vehicles.list', [
+            // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
             'vehicles' => Vehicle::where(['status' => '1'])
                                 ->with('cate')
                                 ->with('type')

@@ -57,7 +57,7 @@
 	<script src="{{ asset('/js/taxCtrl.js') }}"></script>
 	<script src="{{ asset('/js/fuelCtrl.js') }}"></script>
 	<script src="{{ asset('/js/reportCtrl.js') }}"></script>
-	<script src="{{ asset('/js/vehicleCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/vehicleCtrl.js') }}"></script>
 	<script src="{{ asset('/js/directives/highcharts.js') }}"></script>
 	<script src="{{ asset('/js/services/report.js') }}"></script>
 

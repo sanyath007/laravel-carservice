@@ -70,4 +70,16 @@ class Vehicle extends Model
         return $this->hasMany('App\Tax', 'vehicle_id', 'vehicle_id')
                     ->where('is_actived', '=', '1');
     }
+
+    public function insactived()
+    {
+        return $this->hasMany('App\Insurance', 'vehicle_id', 'vehicle_id')
+                    ->where('status', '=', '1');
+    }
+
+    public function actsactived()
+    {
+        return $this->hasMany('App\Acts', 'vehicle_id', 'vehicle_id')
+                    ->where('status', '=', '1');
+    }
 }

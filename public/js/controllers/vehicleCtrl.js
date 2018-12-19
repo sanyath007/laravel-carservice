@@ -63,13 +63,11 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
     $scope.showVehicleListWithStatus = function(status) {
         console.log(status);
         
-        $http.get('/vehicles/list?status=' +status)
-        .then(function(res) {
-            console.log(res);
-        }, function(err) {
-            console.log(err);
-        });
+        $("#formVehicleList").submit();
     }
 
+    $scope.setVehicleStatus = function(status) {
+        $scope.vehicleStatus = status;
+    }
 /** ################################################################################## */
 });

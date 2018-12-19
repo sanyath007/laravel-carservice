@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Vehicle;
 use App\Driver;
@@ -11,9 +11,10 @@ use App\Driver;
 class VehicleController extends Controller
 {
     public function index () {
-        return view('vehicles.list', [
-            // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
-            'vehicles' => Vehicle::where(['status' => '1'])
+        $status = (Input::get('vehicleStatus')=='') ? 0 : Input::get('vehicleStatus');
+
+        if($status != 0) {
+            $vehicles = Vehicle::where(['status' => $status])
                                 ->with('cate')
                                 ->with('type')
                                 ->with('method')
@@ -24,7 +25,28 @@ class VehicleController extends Controller
                                 ->with('taxactived')                          
                                 ->orderBy('vehicle_no', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
-                                ->paginate(15)
+                                ->paginate(15);
+        } else {
+            $vehicles = Vehicle::where(['status' => 1])
+                                ->with('cate')
+                                ->with('type')
+                                ->with('method')
+                                ->with('manufacturer')
+                                ->with('changwat')
+                                ->with('vender')
+                                ->with('fuel')
+                                ->with('taxactived')                          
+                                ->with('insactived')                          
+                                ->with('actsactived')                          
+                                ->orderBy('vehicle_no', 'ASC')
+                                ->orderBy('vehicle_cate', 'ASC')
+                                ->paginate(15);
+        }
+
+        return view('vehicles.list', [
+            // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
+            'vehicles' => $vehicles,
+            'vehicleStatus' => $status,
         ]);
     }
 

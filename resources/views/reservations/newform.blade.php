@@ -59,7 +59,8 @@
                             <option value="14">รับบริจาค</option>
                             <option value="15">ดูสถานที่จัดประชุม/กิจกรรม</option>
                             <option value="16">ร่วมงานศพ</option>
-                            <option value="17">ร่วมงานแต่งงาน</option>
+                            <!-- <option value="17">ร่วมงานแต่งงาน</option> -->
+                            <option value="18">แจ้งความ/ลงบันทึกประจำวันที่สถานีตำรวจ</option>
                             <option value="99">อื่นๆ</option>
                         </select>
                         

@@ -56,7 +56,8 @@
                     vf.id, vf.department, vf.vehicle_id, vf.fuel_type_id, vf.bill_no, vf.bill_date,  
                     vf.volume, vf.unit_price, vf.total, vf.job_desc, vf.remark, v.reg_no
                     FROM vehicle_fuel vf LEFT JOIN vehicles v ON (vf.vehicle_id=v.vehicle_id)
-                    WHERE (vf.bill_date BETWEEN '" .$_GET['_month']. "-01' AND '" .$_GET['_month']. "-15') 
+                    WHERE (vf.bill_date BETWEEN '" .$_GET['_month']. "-01' AND '" .$_GET['_month']. "-15')
+                    #OR (vf.id='242')
                     AND (vf.status NOT IN ('2','3'))
                     ORDER BY vf.bill_date, vf.bill_no";
 

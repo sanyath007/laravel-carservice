@@ -140,6 +140,15 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/tax/validate', 'TaxController@formValidate');
 
 
+    Route::get('/survey/list', 'SurveyController@index');
+    Route::get('/survey/add', 'SurveyController@create');
+    Route::post('/survey/store', 'SurveyController@store');
+    Route::get('/survey/edit/{id}', 'SurveyController@edit');
+    Route::post('/survey/update', 'SurveyController@update');
+    Route::post('/survey/delete/{id}', 'SurveyController@delete');    
+    Route::post('/survey/validate', 'SurveyController@formValidate');
+
+
     Route::get('/fuel/list', 'FuelController@index');
     Route::get('/fuel/new', 'FuelController@create');
     Route::post('/fuel/add', 'FuelController@store');

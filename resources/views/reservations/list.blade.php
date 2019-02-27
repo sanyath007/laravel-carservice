@@ -307,8 +307,7 @@
                 @endif
             </ul>
 
-        </div>
-        <!-- right column -->
+        </div><!-- right column -->
     </div><!-- /.row -->
     
     <!-- Modal -->

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tax;
+use App\Survey;
+use App\SurveyDetail;
+use App\SurveyBullet as Bullet;
+use App\Models\Driver;
+use App\Vehicle;
 
 class SurveyController extends Controller
 {
@@ -47,34 +51,44 @@ class SurveyController extends Controller
     public function create ()
     {
         return view('surveys.add', [
-
+            'bullets'   => Bullet::all(),
+            'vehicles'  => Vehicle::whereNotIn('vehicle_id', [90, 91])
+                                ->where(['status' => 1])
+                                ->with('type')
+                                ->with('changwat')
+                                ->orderBy('vehicle_type', 'DESC')
+                                ->orderBy('vehicle_cate')
+                                ->get(),
+            'drivers'   => Driver::all(),
         ]);    	
     }
 
     public function store (Request $req)
     {
-        // Upload attach file
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
+        $bullets = Bullet::all();
 
-    	$newTax = new Tax();
-        $newTax->doc_no = $req['doc_no'];
-        $newTax->doc_date = $req['doc_date'];
-        $newTax->vehicle_id = $req['vehicle_id'];
-        $newTax->tax_start_date = $req['tax_start_date'];
-        $newTax->tax_renewal_date = $req['tax_renewal_date'];
-        $newTax->tax_receipt_no = $req['tax_receipt_no'];
-        $newTax->tax_charge = $req['tax_charge'];
-        $newTax->remark = $req['remark'];
-        $newTax->attachfile = $req['attachfile'];
-        $newTax->status = '1'; //
+    	$newSurvey = new Survey();
+        $newSurvey->survey_date     = $req['survey_date'];
+        $newSurvey->survey_time     = $req['survey_time'];
+        $newSurvey->driver_id       = $req['driver_id'];
+        $newSurvey->vehicle_id      = $req['vehicle_id'];
+        $newSurvey->user_id         = $req['user_id'];
+        $newSurvey->comment         = $req['survey_comment'];
 
-        if ($newTax->save()) {
-            return redirect('surveys/list');
-        }
+        // if ($newSurvey->save()) {
+            // $lastId = $newSurvey->id;
+
+            foreach ($bullets as $bullet) {
+                $newDetail = new SurveyDetail();
+                $newDetail->bullet_id   = $bullet->id;
+                $newDetail->result   = $req[$bullet->id];
+                $newDetail->comment   = $req[$bullet->id.'_comment'];
+                print_r($newDetail);
+                // $newDetail->save();
+            }
+
+            // return redirect('surveys/list');
+        // }
     }
 
     public function edit ()

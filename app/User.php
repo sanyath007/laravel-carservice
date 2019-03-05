@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ReservePassenger', 'person_id', 'person_id');
     }
+
+    public function survey()
+    {
+        return $this->hasMany('App\Survey', 'user_id', 'person_id');
+    }
 }

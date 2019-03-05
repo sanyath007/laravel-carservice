@@ -42,6 +42,25 @@
                                 <select id="vehicle_id" name="vehicle_id" class="form-control">
                                     <option value="">-- กรุณาเลือก --</option>
 
+                                    @foreach($drivers as $driver)
+                                        <option value="{{ $driver->driver_id }}">{{ $driver->description }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>เวลา</label>
+                                <input type="text" id="survey_time" name="survey_time" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>รถยนต์ทะเบียน</label>
+                                <select id="driver_id" name="driver_id" class="form-control">
+                                    <option value="">-- กรุณาเลือก --</option>
+
                                     @foreach($vehicles as $vehicle)
                                         <option value="{{ $vehicle->vehicle_id }}">
                                             {{ $vehicle->reg_no.' '.$vehicle->changwat->short.
@@ -53,26 +72,14 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>เวร</label>
-                                <select id="survey_time" name="survey_time" class="form-control">
+                                <label>ประเภทการใช้บริการ</label>
+                                <select id="used_type" name="used_type" class="form-control">
                                     <option value="">-- กรุณาเลือก --</option>
-                                    <option value="1">เช้า</option>
-                                    <option value="2">บ่าย</option>
-                                    <option value="3">ดึก</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>รถยนต์ทะเบียน</label>
-                                <select id="driver_id" name="driver_id" class="form-control">
-                                    <option value="">-- กรุณาเลือก --</option>
-
-                                    @foreach($drivers as $driver)
-                                        <option value="{{ $driver->driver_id }}">{{ $driver->description }}</option>
-                                    @endforeach
-
+                                    <option value="1">รับ-ส่งต่อผู้ป่วย</option>
+                                    <option value="2">ออกให้บริการ EMS</option>
+                                    <option value="3">ใช้งานทั่วไป</option>
                                 </select>
                             </div>
                         </div>
@@ -188,6 +195,12 @@
             format: 'YYYY-MM-DD',
             defaultDate: moment(dateNow)
         });
+
+        $('#survey_time').datetimepicker({
+            useCurrent: true,
+            format: 'HH:mm',
+            defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+        }); 
     });
 </script>
 

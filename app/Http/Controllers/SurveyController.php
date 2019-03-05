@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 use App\Survey;
 use App\SurveyDetail;
 use App\SurveyBullet as Bullet;
@@ -37,14 +39,11 @@ class SurveyController extends Controller
 
     public function index ()
     {
-        $taxes = Tax::where('is_actived', '=', '1')
-                        ->with('vehicle')
-                        ->orderBy('tax_start_date', 'DESC')
-                        ->orderBy('id', 'DESC')
-                        ->paginate(10);
+        $searchdate = Input::get('searchdate');
 
         return view('surveys.list', [
-            'taxes' => $taxes,
+            'surveys'       => Survey::paginate(10),
+            'searchdate'    => $searchdate,
         ]);
     }
 
@@ -72,23 +71,25 @@ class SurveyController extends Controller
         $newSurvey->survey_time     = $req['survey_time'];
         $newSurvey->driver_id       = $req['driver_id'];
         $newSurvey->vehicle_id      = $req['vehicle_id'];
+        $newSurvey->used_type       = $req['used_type'];
         $newSurvey->user_id         = $req['user_id'];
         $newSurvey->comment         = $req['survey_comment'];
-
-        // if ($newSurvey->save()) {
-            // $lastId = $newSurvey->id;
+        // print_r($newSurvey);
+        if ($newSurvey->save()) {    
+            $lastId = $newSurvey->id;
 
             foreach ($bullets as $bullet) {
-                $newDetail = new SurveyDetail();
+                $newDetail              = new SurveyDetail();
+                $newDetail->survey_id   = $lastId;
                 $newDetail->bullet_id   = $bullet->id;
-                $newDetail->result   = $req[$bullet->id];
-                $newDetail->comment   = $req[$bullet->id.'_comment'];
-                print_r($newDetail);
-                // $newDetail->save();
+                $newDetail->result      = $req[$bullet->id];
+                $newDetail->comment     = $req[$bullet->id.'_comment'];
+                // print_r($newDetail);
+                $newDetail->save();
             }
 
             // return redirect('surveys/list');
-        // }
+        }
     }
 
     public function edit ()

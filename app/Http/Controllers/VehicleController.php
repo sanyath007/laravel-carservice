@@ -25,7 +25,7 @@ class VehicleController extends Controller
                                 ->with('taxactived')                          
                                 ->orderBy('vehicle_no', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
-                                ->paginate(15);
+                                ->paginate(12);
         } else {
             $vehicles = Vehicle::where(['status' => 1])
                                 ->with('cate')
@@ -40,7 +40,7 @@ class VehicleController extends Controller
                                 ->with('actsactived')                          
                                 ->orderBy('vehicle_no', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
-                                ->paginate(15);
+                                ->paginate(12);
         }
 
         return view('vehicles.list', [

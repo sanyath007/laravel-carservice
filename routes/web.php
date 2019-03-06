@@ -149,6 +149,15 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/survey/validate', 'SurveyController@formValidate');
 
 
+    Route::get('/prepared/list', 'PreparedController@index');
+    Route::get('/prepared/add', 'PreparedController@create');
+    Route::post('/prepared/store', 'PreparedController@store');
+    Route::get('/prepared/edit/{id}', 'PreparedController@edit');
+    Route::post('/prepared/update', 'PreparedController@update');
+    Route::post('/prepared/delete/{id}', 'PreparedController@delete');    
+    Route::post('/prepared/validate', 'PreparedController@formValidate');
+
+
     Route::get('/fuel/list', 'FuelController@index');
     Route::get('/fuel/new', 'FuelController@create');
     Route::post('/fuel/add', 'FuelController@store');

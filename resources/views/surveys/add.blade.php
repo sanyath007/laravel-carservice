@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid" ng-controller="reserveCtrl">
+<div class="container-fluid" ng-controller="surveyCtrl">
   
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
@@ -25,21 +25,24 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ url('survey/store') }}" method="post">
+            <form id="frmSurvey" name="frmSurvey" action="{{ url('survey/store') }}" method="post" role="form">
                 <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->person_id }}">
                 {{ csrf_field() }}
 
                 <div class="panel">
                     <div class="panel-body">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.survey_date.$invalid}">
                                 <label>วันที่</label>
-                                <input type="text" id="survey_date" name="survey_date" class="form-control">
+                                <input type="text" id="survey_date" name="survey_date" ng-model="survey.survey_date" class="form-control">
+                                <div class="help-block" ng-show="frmSurvey.survey_date.$error.required">
+                                    กรุณาเลือกวันที่
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.driver_id.$invalid}">
                                 <label>พนักงานขับรถ</label>
-                                <select id="vehicle_id" name="vehicle_id" class="form-control">
+                                <select id="driver_id" name="driver_id" ng-model="survey.driver_id" class="form-control" required>
                                     <option value="">-- กรุณาเลือก --</option>
 
                                     @foreach($drivers as $driver)
@@ -47,18 +50,37 @@
                                     @endforeach
 
                                 </select>
+                                <div class="help-block" ng-show="frmSurvey.driver_id.$error.required">
+                                    กรุณาเลือกพนักงานขับรถ
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.used_type.$invalid}">
+                                <label>ประเภทการใช้บริการ</label>
+                                <select id="used_type" name="used_type" ng-model="survey.used_type" class="form-control" required>
+                                    <option value="">-- กรุณาเลือก --</option>
+                                    <option value="1">รับ-ส่งต่อผู้ป่วย</option>
+                                    <option value="2">ออกให้บริการ EMS</option>
+                                    <option value="3">ใช้งานทั่วไป</option>
+                                </select>
+                                <div class="help-block" ng-show="frmSurvey.used_type.$error.required">
+                                    กรุณาเลือกประเภทการใช้บริการ
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.survey_time.$invalid}">
                                 <label>เวลา</label>
-                                <input type="text" id="survey_time" name="survey_time" class="form-control">
+                                <input type="text" id="survey_time" name="survey_time" ng-model="survey.survey_time" class="form-control">
+                                <div class="help-block" ng-show="frmSurvey.survey_time.$error.required">
+                                    กรุณาระบุเวลา
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.vehicle_id.$invalid}">
                                 <label>รถยนต์ทะเบียน</label>
-                                <select id="driver_id" name="driver_id" class="form-control">
+                                <select id="vehicle_id" name="vehicle_id" ng-model="survey.vehicle_id" class="form-control" required>
                                     <option value="">-- กรุณาเลือก --</option>
 
                                     @foreach($vehicles as $vehicle)
@@ -69,19 +91,18 @@
                                     @endforeach
 
                                 </select>
+                                <div class="help-block" ng-show="frmSurvey.vehicle_id.$error.required">
+                                    กรุณาเลือกรถยนต์
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>ประเภทการใช้บริการ</label>
-                                <select id="used_type" name="used_type" class="form-control">
-                                    <option value="">-- กรุณาเลือก --</option>
-                                    <option value="1">รับ-ส่งต่อผู้ป่วย</option>
-                                    <option value="2">ออกให้บริการ EMS</option>
-                                    <option value="3">ใช้งานทั่วไป</option>
-                                </select>
-                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : frmSurvey.hn.$invalid}">
+                                <label>HN</label>
+                                <input type="text" id="hn" name="hn" ng-model="survey.hn" class="form-control">
+                                <div class="help-block" ng-show="frmSurvey.hn.$error.required">
+                                    กรุณาระบุ HN
+                                </div>
+                            </div>                            
                         </div>
                     </div><!-- /.panel-body -->
                 </div><!-- /.panel -->
@@ -176,7 +197,7 @@
                 </div>
                 
                 <div>
-                    <button class="btn btn-primary pull-right">บันทึก</button>
+                    <button ng-click="add($event, frmSurvey, {{ htmlspecialchars(json_encode($bullets)) }})" class="btn btn-primary pull-right">บันทึก</button>
                 </div>
 
             </form>

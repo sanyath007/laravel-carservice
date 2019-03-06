@@ -13,7 +13,7 @@
         <span>
             <i class="fa fa-calendar" aria-hidden="true"></i> รายการสอบถามความพึงพอใจ
         </span>
-        <a href="{{ url('/survey/add') }}" class="btn btn-primary pull-right">
+        <a href="{{ url('/prepared/add') }}" class="btn btn-primary pull-right">
             <i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มรายการ
         </a>
@@ -99,112 +99,108 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 10%; text-align: center;">วันที่</th>
-                        <th style="width: 15%; text-align: center;">เวลา</th>
-                        <th style="width: 12%; text-align: center;">ผู้ขอ</th>
-                        <th style="width: 15%; text-align: center;">ไปราชการ</th>
-                        <th style="width: 8%; text-align: center;">รถทะเบียน</th>
-                        <th style="width: 12%; text-align: center;">พขร.</th>
-                        <th style="width: 12%; text-align: center;">คะแนน</th>
-                        <th style="width: 10%; text-align: center;">Actions</th>
+                        <th style="width: 15%; text-align: center;">วันที่</th>
+                        <th style="width: 8%; text-align: center;">เวร</th>
+                        <th style="text-align: center;">พนักงานขับรถ</th>
+                        <th style="width: 12%; text-align: center;">ผลการตรวจ</th>
+                        <th style="width: 12%; text-align: center;">ผู้ตรวจ</th>
+                        <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
-                    @foreach($surveys as $survey)
+                    @foreach($prepareds as $prepared)
                         <?php 
-                            $usedType = [
-                                '1' => 'รับ-ส่งต่อผู้ป่วย',
-                                '2' => 'ออกให้บริการ EMS',
-                                '3' => 'ใช้งานทั่วไป'
+                            $period = [
+                                '1' => 'ดึก',
+                                '2' => 'เช้า',
+                                '3' => 'บ่าย'
                             ];
-                            $vehicle = App\Vehicle::where(['vehicle_id' => $survey->vehicle_id])->with('changwat')->first();
-                            $driver = App\Models\Driver::where(['driver_id' => $survey->driver_id])->with('person')->first();                         
+
+                            $driver = App\Models\Driver::where(['driver_id' => $prepared->driver_id])->with('person')->first();                         
                         ?>
                     <tr>
                         <td style="text-align: center;">
-                            {{ $survey->id }}
+                            {{ $prepared->id }}
                         </td>                        
                         <td style="text-align: center;">
-                            {{ $survey->survey_date }}
+                            {{ $prepared->prepared_date. ' ' .$prepared->prepared_time }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $survey->survey_time }}
+                            {{ $period[$prepared->period] }}
                         </td>
-                        <td style="text-align: center;">
-                            <?= (($survey->user) ? $survey->user->person_firstname. ' ' .$survey->user->person_lastname. ' / ' .$survey->user->person_tel : ''); ?>
-                        </td>
-                        <td>
-                            {{ $usedType[$survey->used_type] }}
-                        </td>
-                        <td style="text-align: center;">
-                            <?= (($vehicle) ? $vehicle->reg_no. ' ' .$vehicle->changwat->short : ''); ?>
-                        </td>
-                        <td style="text-align: center;">
+                        <td style="text-align: left;">
                             <?= (($driver) ? $driver->description. ' / ' .$driver->tel : ''); ?>
                         </td>
                         <td style="text-align: center;">
-                            {{ $survey->result }} 
-                            <i class="fa fa-commenting-o fa-1x text-info" aria-hidden="true"></i>
+                            {{ $prepared->bp }} | 
+                            {{ $prepared->stable }} | 
+                            {{ $prepared->behav }} | 
+                            {{ $prepared->alcohol }} | 
+                            {{ $prepared->drug }}
+                            <?= (!empty($prepared->comment)) ? '<a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>' : '' ?>
+                        </td>                      
+                        <td style="text-align: center;">
+                            <?= (($prepared->user) ? $prepared->user->person_firstname. ' ' .$prepared->user->person_lastname : ''); ?>
                         </td>
                         <td style="text-align: center;">
-                            @if (Auth::user()->person_id == $survey->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
-                                @if (Auth::user()->person_id == $survey->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
-                                    <!-- <a  href="{{ url('/print/print.php') }} ?id={{ $survey->id }}" 
+                            @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                    <!-- <a  href="{{ url('/print/print.php') }} ?id={{ $prepared->id }}" 
                                         class="btn btn-success btn-xs"
                                         target="_blank"
                                         title="พิมพ์ใบขอใช้รถ">
                                         <i class="fa fa-print" aria-hidden="true"></i>
                                     </a> -->
                                 
-                                    <a  href="{{ url('/reserve/edit/' . $survey->id) }}" 
+                                    <a  href="{{ url('/reserve/edit/' . $prepared->id) }}" 
                                         class="btn btn-warning btn-xs"
                                         title="แก้ไขรายการ">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
                                 @endif
                             
-                                @if (Auth::user()->person_id == $survey->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
-                                    <!-- <a  href="{{ url('/reserve/cancel/' . $survey->id) }}" 
-                                        ng-click="cancel($event, {{ $survey->id }})"
+                                @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                    <!-- <a  href="{{ url('/reserve/cancel/' . $prepared->id) }}" 
+                                        ng-click="cancel($event, {{ $prepared->id }})"
                                         class="btn btn-primary btn-xs"
                                         title="ยกเลิกรายการ">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="{{ $survey->id }}-cancel-form" action="{{ url('/reserve/cancel') }}" method="POST" style="display: none;">
+                                    <form id="{{ $prepared->id }}-cancel-form" action="{{ url('/reserve/cancel') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
-                                        <input type="hidden" id="_id" name="_id" value="{{ $survey->id }}">
+                                        <input type="hidden" id="_id" name="_id" value="{{ $prepared->id }}">
                                     </form> -->
                                 @endif
                             @endif
 
                             @if (Auth::user()->person_id == '1300200009261')
-                                <!-- <a  href="{{ url('/reserve/recover/' . $survey->id) }}" 
-                                    ng-click="recover($event, {{ $survey->id }})"
+                                <!-- <a  href="{{ url('/reserve/recover/' . $prepared->id) }}" 
+                                    ng-click="recover($event, {{ $prepared->id }})"
                                     class="btn btn-default btn-xs"
                                     title="นำรายการกลับมาใหม่">
                                     <i class="fa fa-retweet" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="{{ $survey->id }}-recover-form" action="{{ url('/reserve/recover') }}" method="POST" style="display: none;">
+                                <form id="{{ $prepared->id }}-recover-form" action="{{ url('/reserve/recover') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
-                                    <input type="hidden" id="_id" name="_id" value="{{ $survey->id }}">
+                                    <input type="hidden" id="_id" name="_id" value="{{ $prepared->id }}">
                                 </form> -->
 
-                                <a  href="{{ url('/reserve/delete/' . $survey->id) }}" 
-                                    ng-click="delete($event, {{ $survey->id }})"
+                                <a  href="{{ url('/reserve/delete/' . $prepared->id) }}" 
+                                    ng-click="delete($event, {{ $prepared->id }})"
                                     class="btn btn-danger btn-xs"
                                     title="ลบรายการ">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="{{ $survey->id }}-delete-form" action="{{ url('/reserve/delete') }}" method="POST" style="display: none;">
+                                <form id="{{ $prepared->id }}-delete-form" action="{{ url('/reserve/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
-                                    <input type="hidden" id="_id" name="_id" value="{{ $survey->id }}">
+                                    <input type="hidden" id="_id" name="_id" value="{{ $prepared->id }}">
                                 </form>
 
                             @endif
 
                             <a  class="btn btn-info btn-xs"
-                                ng-click="showDetail({{ $survey->id }})"
+                                ng-click="showDetail({{ $prepared->id }})"
                                 title="ดูรายละเอียด">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </a>
@@ -215,31 +211,31 @@
             </div>
             
             <ul class="pagination">
-                @if($surveys->currentPage() !== 1)
+                @if($prepareds->currentPage() !== 1)
                     <li>
-                        <a href="{{ $surveys->url($surveys->url(1)).'&searchdate='.$searchdate }}" aria-label="First">
+                        <a href="{{ $prepareds->url($prepareds->url(1)).'&searchdate='.$searchdate }}" aria-label="First">
                             <span aria-hidden="true">First</span>
                         </a>
                     </li>
                 @endif
 
-                <li class="{{ ($surveys->currentPage() === 1) ? 'disabled' : '' }}">
-                    <a href="{{ $surveys->url($surveys->currentPage() - 1).'&searchdate='.$searchdate }}" aria-label="Prev">
+                <li class="{{ ($prepareds->currentPage() === 1) ? 'disabled' : '' }}">
+                    <a href="{{ $prepareds->url($prepareds->currentPage() - 1).'&searchdate='.$searchdate }}" aria-label="Prev">
                         <span aria-hidden="true">Prev</span>
                     </a>
                 </li>
                 
-                @for($i=$surveys->currentPage(); $i < $surveys->currentPage() + 10; $i++)
-                    @if ($surveys->currentPage() <= $surveys->lastPage() && ($surveys->lastPage() - $surveys->currentPage()) > 10)
-                        <li class="{{ ($surveys->currentPage() === $i) ? 'active' : '' }}">
-                            <a href="{{ $surveys->url($i).'&searchdate='.$searchdate }}">
+                @for($i=$prepareds->currentPage(); $i < $prepareds->currentPage() + 10; $i++)
+                    @if ($prepareds->currentPage() <= $prepareds->lastPage() && ($prepareds->lastPage() - $prepareds->currentPage()) > 10)
+                        <li class="{{ ($prepareds->currentPage() === $i) ? 'active' : '' }}">
+                            <a href="{{ $prepareds->url($i).'&searchdate='.$searchdate }}">
                                 {{ $i }}
                             </a>
                         </li> 
                     @else
-                        @if ($i <= $surveys->lastPage())
-                            <li class="{{ ($surveys->currentPage() === $i) ? 'active' : '' }}">
-                                <a href="{{ $surveys->url($i).'&searchdate='.$searchdate }}">
+                        @if ($i <= $prepareds->lastPage())
+                            <li class="{{ ($prepareds->currentPage() === $i) ? 'active' : '' }}">
+                                <a href="{{ $prepareds->url($i).'&searchdate='.$searchdate }}">
                                     {{ $i }}
                                 </a>
                             </li>
@@ -247,23 +243,23 @@
                     @endif
                 @endfor
                 
-                @if ($surveys->currentPage() < $surveys->lastPage() && ($surveys->lastPage() - $surveys->currentPage()) > 10)
+                @if ($prepareds->currentPage() < $prepareds->lastPage() && ($prepareds->lastPage() - $prepareds->currentPage()) > 10)
                     <li>
-                        <a href="{{ $surveys->url($surveys->currentPage() + 10).'&searchdate='.$searchdate }}">
+                        <a href="{{ $prepareds->url($prepareds->currentPage() + 10).'&searchdate='.$searchdate }}">
                             ...
                         </a>
                     </li>
                 @endif
                 
-                <li class="{{ ($surveys->currentPage() === $surveys->lastPage()) ? 'disabled' : '' }}">
-                    <a href="{{ $surveys->url($surveys->currentPage() + 1).'&searchdate='.$searchdate }}" aria-label="Next">
+                <li class="{{ ($prepareds->currentPage() === $prepareds->lastPage()) ? 'disabled' : '' }}">
+                    <a href="{{ $prepareds->url($prepareds->currentPage() + 1).'&searchdate='.$searchdate }}" aria-label="Next">
                         <span aria-hidden="true">Next</span>
                     </a>
                 </li>
 
-                @if($surveys->currentPage() !== $surveys->lastPage())
+                @if($prepareds->currentPage() !== $prepareds->lastPage())
                     <li>
-                        <a href="{{ $surveys->url($surveys->lastPage()).'&searchdate='.$searchdate }}" aria-label="Last">
+                        <a href="{{ $prepareds->url($prepareds->lastPage()).'&searchdate='.$searchdate }}" aria-label="Last">
                             <span aria-hidden="true">Last</span>
                         </a>
                     </li>
@@ -316,7 +312,7 @@
     <!-- Modal -->   
 
     <!-- Modal -->
-    <div class="modal fade" id="dlgsurveys" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal fade" id="dlgprepareds" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -329,7 +325,7 @@
                             <tbody>
                                 <tr>
                                     <th style="width: 8%; text-align: right;">ID :</th>
-                                    <td>@{{ survey.id }}</td>
+                                    <td>@{{ prepared.id }}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 8%; text-align: right;">ผู้ขอ :</th>

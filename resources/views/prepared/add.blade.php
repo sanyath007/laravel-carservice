@@ -5,13 +5,13 @@
   
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">แบบสอบถามความพึงพอใจ</li>
+        <li class="breadcrumb-item active">แบบสอบตรวจความพร้อมร่างกาย พขร.</li>
     </ol>
 
     <!-- page title -->
     <div class="page__title">
         <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> แบบสอบถามความพึงพอใจ
+            <i class="fa fa-calendar" aria-hidden="true"></i> แบบสอบตรวจความพร้อมร่างกาย พขร.
         </span>
         <!-- <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
             <i class="fa fa-plus" aria-hidden="true"></i>

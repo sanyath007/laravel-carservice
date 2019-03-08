@@ -14,7 +14,8 @@ app.controller('surveyCtrl', function($scope, $http, toaster, ModalService, CONF
         vehicle_id: '',
         used_type: '',
         hn: '',
-        result: '',
+        result_vehicle: '',
+        result_driver: '',
         user_id: '',
     };
 

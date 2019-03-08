@@ -77,7 +77,7 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{ url('/reserve/list') }}" method="GET" class="form-inline">
+                    <form action="{{ url('/survey/list') }}" method="GET" class="form-inline">
                         <div class="form-group">
                             <label for="">วันที่เดินทาง :</label>
                             <input type="text" id="searchdate" name="searchdate" value="{{ $searchdate }}" class="form-control">
@@ -87,7 +87,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                             แสดงตามวันที่
                         </button>
-                        <a href="{{ url('/reserve/list') }}" class="btn btn-success">
+                        <a href="{{ url('/survey/list') }}" class="btn btn-success">
                             <i class="fa fa-search-plus" aria-hidden="true"></i>
                             แสดงทั้งหมด
                         </a>
@@ -99,14 +99,14 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 10%; text-align: center;">วันที่</th>
-                        <th style="width: 15%; text-align: center;">เวลา</th>
-                        <th style="width: 12%; text-align: center;">ผู้ขอ</th>
-                        <th style="width: 15%; text-align: center;">ไปราชการ</th>
-                        <th style="width: 8%; text-align: center;">รถทะเบียน</th>
-                        <th style="width: 12%; text-align: center;">พขร.</th>
-                        <th style="width: 12%; text-align: center;">คะแนน</th>
-                        <th style="width: 10%; text-align: center;">Actions</th>
+                        <th style="width: 10%; text-align: center;">วันที่ เวลา</th>
+                        <th style="text-align: center;">ผู้ขอ</th>
+                        <th style="width: 15%; text-align: center;">ประเภทการใช้บริการ</th>
+                        <th style="width: 15%; text-align: center;">รถทะเบียน</th>
+                        <th style="width: 8%; text-align: center;">คะแนน</th>
+                        <th style="width: 15%; text-align: center;">พขร.</th>
+                        <th style="width: 8%; text-align: center;">คะแนน</th>
+                        <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($surveys as $survey)
                         <?php 
@@ -123,26 +123,27 @@
                             {{ $survey->id }}
                         </td>                        
                         <td style="text-align: center;">
-                            {{ $survey->survey_date }}
+                            {{ $survey->survey_date. ' ' .$survey->survey_time }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $survey->survey_time }}
-                        </td>
-                        <td style="text-align: center;">
-                            <?= (($survey->user) ? $survey->user->person_firstname. ' ' .$survey->user->person_lastname. ' / ' .$survey->user->person_tel : ''); ?>
+                            <?= (($survey->user) ? $survey->user->person_firstname. ' ' .$survey->user->person_lastname : ''); ?>
                         </td>
                         <td>
                             {{ $usedType[$survey->used_type] }}
                         </td>
                         <td style="text-align: center;">
-                            <?= (($vehicle) ? $vehicle->reg_no. ' ' .$vehicle->changwat->short : ''); ?>
+                            <?= (($vehicle) ? $vehicle->reg_no.' '.$vehicle->changwat->short.' '.$vehicle->type->vehicle_type_name : ''); ?>
                         </td>
                         <td style="text-align: center;">
-                            <?= (($driver) ? $driver->description. ' / ' .$driver->tel : ''); ?>
+                            {{ $survey->result_vehicle }} 
+                            <a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>
                         </td>
                         <td style="text-align: center;">
-                            {{ $survey->result }} 
-                            <i class="fa fa-commenting-o fa-1x text-info" aria-hidden="true"></i>
+                            <?= (($driver) ? $driver->description : ''); ?>
+                        </td>
+                        <td style="text-align: center;">
+                            {{ $survey->result_driver }} 
+                            <a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>
                         </td>
                         <td style="text-align: center;">
                             @if (Auth::user()->person_id == $survey->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
@@ -154,7 +155,7 @@
                                         <i class="fa fa-print" aria-hidden="true"></i>
                                     </a> -->
                                 
-                                    <a  href="{{ url('/reserve/edit/' . $survey->id) }}" 
+                                    <a  href="{{ url('/survey/edit/' . $survey->id) }}" 
                                         class="btn btn-warning btn-xs"
                                         title="แก้ไขรายการ">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -189,7 +190,7 @@
                                     <input type="hidden" id="_id" name="_id" value="{{ $survey->id }}">
                                 </form> -->
 
-                                <a  href="{{ url('/reserve/delete/' . $survey->id) }}" 
+                                <!-- <a  href="{{ url('/reserve/delete/' . $survey->id) }}" 
                                     ng-click="delete($event, {{ $survey->id }})"
                                     class="btn btn-danger btn-xs"
                                     title="ลบรายการ">
@@ -199,7 +200,7 @@
                                 <form id="{{ $survey->id }}-delete-form" action="{{ url('/reserve/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     <input type="hidden" id="_id" name="_id" value="{{ $survey->id }}">
-                                </form>
+                                </form> -->
 
                             @endif
 

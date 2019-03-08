@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="form-group" ng-class="{ 'has-error' : frmSurvey.hn.$invalid}">
-                                <label>HN</label>
+                                <label>HN (เฉพาะกรณี Refer หรือออก EMS)</label>
                                 <input type="text" id="hn" name="hn" ng-model="survey.hn" class="form-control">
                                 <div class="help-block" ng-show="frmSurvey.hn.$error.required">
                                     กรุณาระบุ HN
@@ -116,7 +116,7 @@
                             <th style="width: 6%; text-align: center;">ปานกลาง</th>
                             <th style="width: 6%; text-align: center;">ดี</th>
                             <th style="width: 6%; text-align: center;">ดีมาก</th>
-                            <th style="width: 15%; text-align: center;">หากมีข้อเสนอแนะโปรดระบุ</th>
+                            <th style="width: 20%; text-align: center;">หากมีข้อเสนอแนะโปรดระบุ</th>
                         </tr>
                     </thead>
                     <tbody>

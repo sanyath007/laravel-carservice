@@ -76,35 +76,51 @@ class PreparedController extends Controller
         return redirect('prepared/list');
     }
 
-    public function edit ()
+    public function ajaxGetById ($id)
     {
-    	return view('surveys.editform', [
+        return [
+            'prepared' => DriverPrepared::find($id),
+        ];
+    }
 
+    public function detail ($id)
+    {
+        return view('prepared.detail', [
+            'prepared'  => DriverPrepared::find($id),
+            'drivers'   => Driver::all(),
+        ]);
+    }
+
+    public function edit ($id)
+    {
+    	return view('prepared.edit', [
+            'prepared'  => DriverPrepared::find($id),
+            'drivers'   => Driver::all(),
         ]);
     }
 
     public function update (Request $req)
     {
-        // Upload attach file
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
+    	$editDriverPrepared = DriverPrepared::find($req['id']);
+        // $editDriverPrepared->prepared_date       = $req['prepared_date'];
+        // $editDriverPrepared->prepared_time       = date('H:i:s');
+        $editDriverPrepared->driver_id           = $req['driver_id'];
+        $editDriverPrepared->period              = $req['period'];
+        $editDriverPrepared->bp                  = $req['bp'];
+        $editDriverPrepared->bp_text             = $req['bp_text'];
+        $editDriverPrepared->stable              = $req['stable'];
+        $editDriverPrepared->stable_text         = $req['stable_text'];
+        $editDriverPrepared->behav               = $req['behav'];
+        $editDriverPrepared->behav_text          = $req['behav_text'];
+        $editDriverPrepared->alcohol             = $req['alcohol'];
+        $editDriverPrepared->alcohol_text        = $req['alcohol_text'];
+        $editDriverPrepared->drug                = $req['drug'];
+        $editDriverPrepared->drug_text           = $req['drug_text'];
+        $editDriverPrepared->user_id             = $req['user_id'];
+        $editDriverPrepared->comment             = $req['comment'];
 
-    	$tax = Tax::find($req['id'])->first();
-        $tax->doc_no = $req['doc_no'];
-        $tax->doc_date = $req['doc_date'];
-        $tax->vehicle_id = $req['vehicle_id'];
-        $tax->tax_start_date = $req['tax_start_date'];
-        $tax->tax_renewal_date = $req['tax_renewal_date'];
-        $tax->tax_receipt_no = $req['tax_receipt_no'];
-        $tax->tax_charge = $req['tax_charge'];
-        $tax->remark = $req['remark'];
-        $tax->attachfile = $req['attachfile'];
-
-        if ($tax->save()) {
-            return redirect('surveys/list');
+        if ($editDriverPrepared->save()) {
+            return redirect('prepared/list');
         }
     }
 

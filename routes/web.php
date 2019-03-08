@@ -152,6 +152,8 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/prepared/list', 'PreparedController@index');
     Route::get('/prepared/add', 'PreparedController@create');
     Route::post('/prepared/store', 'PreparedController@store');
+    Route::get('/prepared/detail/{id}', 'PreparedController@detail');
+    Route::get('/prepared/ajax-get-prepared/{id}', 'PreparedController@ajaxGetById');
     Route::get('/prepared/edit/{id}', 'PreparedController@edit');
     Route::post('/prepared/update', 'PreparedController@update');
     Route::post('/prepared/delete/{id}', 'PreparedController@delete');    

@@ -4,9 +4,6 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
     let baseUrl = CONFIG.BASE_URL;
 /** ################################################################################## */
     $scope._ = _;
-
-    /** FORM VALIDATION */
-    $scope.formError = null;
     $scope.prepared = {
         prepared_date: '',
         prepared_time: '',
@@ -25,62 +22,64 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
         user_id: '',
         comment: '',
     };
+    /** FORM VALIDATION */
+    // $scope.formError = null;
 
-    $scope.loadEditData = function() {
-        $scope.newFuel.department = $("#department:checked").val()
-        $scope.newFuel.vehicle = $("#vehicle").val()
-        $scope.newFuel.fuelType = $("#fuel_type").val()
-        $scope.newFuel.billNo = $("#bill_no").val()
-        $scope.newFuel.billDate = $("#bill_date").val()
-        $scope.newFuel.volume = $("#volume").val()
-        $scope.newFuel.unitPrice = $("#unit_price").val()
-        $scope.newFuel.total = $("#total").val()
-        $scope.newFuel.jobDesc = $("#job_desc").val()
-    }
+    // $scope.loadEditData = function() {
+    //     $scope.newFuel.department = $("#department:checked").val()
+    //     $scope.newFuel.vehicle = $("#vehicle").val()
+    //     $scope.newFuel.fuelType = $("#fuel_type").val()
+    //     $scope.newFuel.billNo = $("#bill_no").val()
+    //     $scope.newFuel.billDate = $("#bill_date").val()
+    //     $scope.newFuel.volume = $("#volume").val()
+    //     $scope.newFuel.unitPrice = $("#unit_price").val()
+    //     $scope.newFuel.total = $("#total").val()
+    //     $scope.newFuel.jobDesc = $("#job_desc").val()
+    // }
 
-    $scope.formValidate = function(event) {
-        event.preventDefault();
+    // $scope.formValidate = function(event) {
+    //     event.preventDefault();
 
-        $scope.newFuel.billDate = $('#bill_date').val();
+    //     $scope.newFuel.billDate = $('#bill_date').val();
         
-        var req_data = {
-            department: $scope.newFuel.department,
-            vehicle_id: $scope.newFuel.vehicle,
-            fuel_type: $scope.newFuel.fuelType,
-            bill_no: $scope.newFuel.billNo,
-            bill_date: $scope.newFuel.billDate,
-            volume: $scope.newFuel.volume,
-            unit_price: $scope.newFuel.unitPrice,
-            total: $scope.newFuel.total,
-            job_desc: $scope.newFuel.jobDesc,
-        };
-        console.log(req_data);
+    //     var req_data = {
+    //         department: $scope.newFuel.department,
+    //         vehicle_id: $scope.newFuel.vehicle,
+    //         fuel_type: $scope.newFuel.fuelType,
+    //         bill_no: $scope.newFuel.billNo,
+    //         bill_date: $scope.newFuel.billDate,
+    //         volume: $scope.newFuel.volume,
+    //         unit_price: $scope.newFuel.unitPrice,
+    //         total: $scope.newFuel.total,
+    //         job_desc: $scope.newFuel.jobDesc,
+    //     };
+    //     console.log(req_data);
 
-        $http.post(baseUrl + '/fuel/validate', req_data)
-        .then(function (res) {
-            // console.log(res);
-            $scope.formError = res.data;
-            console.log($scope.formError);
+    //     $http.post(baseUrl + '/fuel/validate', req_data)
+    //     .then(function (res) {
+    //         // console.log(res);
+    //         $scope.formError = res.data;
+    //         console.log($scope.formError);
 
-            if ($scope.formError.success === 1) {
-                let formId = $(event.target).closest("form").attr("id")
-                $("#"+formId).submit();
-            } else {
-                toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
-            }
-        })
-        .catch(function (res) {
-            console.log(res);
-        });
-    }
+    //         if ($scope.formError.success === 1) {
+    //             let formId = $(event.target).closest("form").attr("id")
+    //             $("#"+formId).submit();
+    //         } else {
+    //             toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
+    //         }
+    //     })
+    //     .catch(function (res) {
+    //         console.log(res);
+    //     });
+    // }
 
-    $scope.checkValidate = function(field) {
-        var status = false;
+    // $scope.checkValidate = function(field) {
+    //     var status = false;
 
-        status = ($scope.formError && $scope.newFuel[field] === '') ? true : false;
+    //     status = ($scope.formError && $scope.newFuel[field] === '') ? true : false;
 
-        return status;
-    };
+    //     return status;
+    // };
 
     $scope.validateBulletChecked = function(radios) {
         let checkedCount = 0;
@@ -120,6 +119,16 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
 
         // document.getElementById('frmSurvey').reset();
     };
+
+    $scope.getPrepared = function(id) {
+        $http.get(CONFIG.BASE_URL + '/prepared/ajax-get-prepared/' +id)
+        .then(function(res) {
+            console.log(res);
+            $scope.prepared = res.data.prepared;
+        }, function(err) {
+            console.log(err);
+        });
+    }
 
     // $scope.frmAllVehicles = [];
     // $scope.frmVehicle = null;

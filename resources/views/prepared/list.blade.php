@@ -77,7 +77,7 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{ url('/reserve/list') }}" method="GET" class="form-inline">
+                    <form action="{{ url('/prepared/list') }}" method="GET" class="form-inline">
                         <div class="form-group">
                             <label for="">วันที่เดินทาง :</label>
                             <input type="text" id="searchdate" name="searchdate" value="{{ $searchdate }}" class="form-control">
@@ -87,7 +87,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                             แสดงตามวันที่
                         </button>
-                        <a href="{{ url('/reserve/list') }}" class="btn btn-success">
+                        <a href="{{ url('/prepared/list') }}" class="btn btn-success">
                             <i class="fa fa-search-plus" aria-hidden="true"></i>
                             แสดงทั้งหมด
                         </a>
@@ -150,7 +150,7 @@
                                         <i class="fa fa-print" aria-hidden="true"></i>
                                     </a> -->
                                 
-                                    <a  href="{{ url('/reserve/edit/' . $prepared->id) }}" 
+                                    <a  href="{{ url('/prepared/edit/' . $prepared->id) }}" 
                                         class="btn btn-warning btn-xs"
                                         title="แก้ไขรายการ">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -185,7 +185,7 @@
                                     <input type="hidden" id="_id" name="_id" value="{{ $prepared->id }}">
                                 </form> -->
 
-                                <a  href="{{ url('/reserve/delete/' . $prepared->id) }}" 
+                                <!-- <a  href="{{ url('/reserve/delete/' . $prepared->id) }}" 
                                     ng-click="delete($event, {{ $prepared->id }})"
                                     class="btn btn-danger btn-xs"
                                     title="ลบรายการ">
@@ -195,12 +195,12 @@
                                 <form id="{{ $prepared->id }}-delete-form" action="{{ url('/reserve/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     <input type="hidden" id="_id" name="_id" value="{{ $prepared->id }}">
-                                </form>
+                                </form> -->
 
                             @endif
 
                             <a  class="btn btn-info btn-xs"
-                                ng-click="showDetail({{ $prepared->id }})"
+                                href="{{ url('/prepared/detail/' . $prepared->id) }}" 
                                 title="ดูรายละเอียด">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </a>

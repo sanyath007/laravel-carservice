@@ -44,9 +44,10 @@
                               <li><a href="{{ url('/assign/drive') }}">รายการวิ่งรถ</a></li>
                               <!-- <li><a href="{{ url('/reserve/calendar') }}">ตารางทำงาน พขร.</a></li> -->
                               <!-- <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
-                              <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li>
+                              <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li> -->
                               <li role="separator" class="divider"></li>
-                              <li><a href="{{ url('/pos') }}">รายการรออนุมัติ</a></li> -->
+                              <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
+                              <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li>
                             </ul>
                         </li>
 

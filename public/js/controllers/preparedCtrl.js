@@ -89,13 +89,13 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
             }     
         });
 
-        return !(checkedCount == 5);
+        return !(checkedCount == 4);
     };
 
     $scope.add = function(event, form) {
         event.preventDefault();
         console.log($('input[type="radio"]'));
-        console.log()
+        console.log($scope.validateBulletChecked($('input[type="radio"]')))
 
         if (form.$invalid || $scope.validateBulletChecked($('input[type="radio"]'))) {
             if($scope.validateBulletChecked($('input[type="radio"]'))) {

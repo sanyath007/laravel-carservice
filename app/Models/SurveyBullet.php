@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Survey extends Model
+class SurveyBullet extends Model
 {
   	protected $connection = 'vehicle';
-  	protected $table = 'survey';
+  	protected $table = 'survey_bullet';
 
   	// public function vehicle()
    //  {
@@ -18,8 +18,4 @@ class Survey extends Model
    //  {
    //      return $this->belongsTo('App\VehicleFuel', 'fuel_type_id', 'fuel_type_id');
    //  }
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id', 'person_id');
-    }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-use App\DriverPrepared;
+use App\Models\DriverPrepared;
 use App\Models\Driver;
 use App\Vehicle;
 
@@ -63,8 +63,8 @@ class PreparedController extends Controller
         $newDriverPrepared->bp_text             = $req['bp_text'];
         $newDriverPrepared->stable              = $req['stable'];
         $newDriverPrepared->stable_text         = $req['stable_text'];
-        $newDriverPrepared->behav               = $req['behav'];
-        $newDriverPrepared->behav_text          = $req['behav_text'];
+        // $newDriverPrepared->behav               = $req['behav'];
+        // $newDriverPrepared->behav_text          = $req['behav_text'];
         $newDriverPrepared->alcohol             = $req['alcohol'];
         $newDriverPrepared->alcohol_text        = $req['alcohol_text'];
         $newDriverPrepared->drug                = $req['drug'];
@@ -110,8 +110,8 @@ class PreparedController extends Controller
         $editDriverPrepared->bp_text             = $req['bp_text'];
         $editDriverPrepared->stable              = $req['stable'];
         $editDriverPrepared->stable_text         = $req['stable_text'];
-        $editDriverPrepared->behav               = $req['behav'];
-        $editDriverPrepared->behav_text          = $req['behav_text'];
+        // $editDriverPrepared->behav               = $req['behav'];
+        // $editDriverPrepared->behav_text          = $req['behav_text'];
         $editDriverPrepared->alcohol             = $req['alcohol'];
         $editDriverPrepared->alcohol_text        = $req['alcohol_text'];
         $editDriverPrepared->drug                = $req['drug'];

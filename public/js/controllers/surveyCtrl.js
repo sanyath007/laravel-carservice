@@ -99,9 +99,9 @@ app.controller('surveyCtrl', function($scope, $http, toaster, ModalService, CONF
             toaster.pop('warning', "", 'กรุณาข้อมูลให้ครบก่อน !!!');
             return;
         } else {
-            // document.getElementById('frmSurvey').submit();
+            document.getElementById('frmSurvey').submit();
 
-            // $http.post(CONFIG.BASE_URL + '/survey/store', $scope.creditor)
+            // $http.post(CONFIG.BASE_URL + '/survey/store', $scope.survey)
             // .then(function(res) {
             //     console.log(res);
             //     toaster.pop('success', "", 'บันทึกข้อมูลเรียบร้อยแล้ว !!!');

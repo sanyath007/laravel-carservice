@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SurveyBullet extends Model
+class SurveyDetail extends Model
 {
   	protected $connection = 'vehicle';
-  	protected $table = 'survey_bullet';
+  	protected $table = 'survey_detail';
 
   	// public function vehicle()
    //  {

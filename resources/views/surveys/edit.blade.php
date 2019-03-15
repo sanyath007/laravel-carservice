@@ -90,7 +90,6 @@
                                         <option value="{{ $vehicle->vehicle_id }}">
                                             {{ $vehicle->reg_no.' '.$vehicle->changwat->short.
                                                 ' - '.$vehicle->type->vehicle_type_name }}
-                                            {{ (!empty($vehicle->remark)) ? ' ('.$vehicle->remark.')' : '' }}
                                         </option>
                                     @endforeach
 

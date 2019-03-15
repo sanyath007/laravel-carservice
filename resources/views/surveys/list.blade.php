@@ -76,7 +76,7 @@
         <div class="col-md-12">
             
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <form action="{{ url('/survey/list') }}" method="GET" class="form-inline">
                         <div class="form-group">
                             <label for="">วันที่เดินทาง :</label>

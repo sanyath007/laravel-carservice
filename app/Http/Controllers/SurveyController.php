@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-use App\Survey;
-use App\SurveyDetail;
-use App\SurveyBullet as Bullet;
+use App\Models\Survey;
+use App\Models\SurveyDetail;
+use App\Models\SurveyBullet as Bullet;
 use App\Models\Driver;
 use App\Vehicle;
 
@@ -52,6 +52,7 @@ class SurveyController extends Controller
         return view('surveys.add', [
             'bullets'   => Bullet::all(),
             'vehicles'  => Vehicle::whereNotIn('vehicle_id', [90, 91])
+                                ->where('vehicle_type','<>', 3)
                                 ->where(['status' => 1])
                                 ->with('type')
                                 ->with('changwat')
@@ -75,18 +76,42 @@ class SurveyController extends Controller
         $newSurvey->user_id         = $req['user_id'];
         $newSurvey->comment         = $req['survey_comment'];
         // print_r($newSurvey);
+
         if ($newSurvey->save()) {    
-            $lastId = $newSurvey->id;
+            $lastSurveyId   = $newSurvey->id;
+
+            $vehicleCount   = 0;
+            $vehicleResult  = 0;
+            $driverCount    = 0;
+            $driverResult   = 0;
 
             foreach ($bullets as $bullet) {
+                if($bullet->bullet_type == 1) {
+                    $vehicleResult += $req[$bullet->id];
+                    $vehicleCount++;
+                }
+                
+                if($bullet->bullet_type == 2) {
+                    $driverResult += $req[$bullet->id];
+                    $driverCount++;
+                }
+
                 $newDetail              = new SurveyDetail();
-                $newDetail->survey_id   = $lastId;
+                $newDetail->survey_id   = $lastSurveyId;
                 $newDetail->bullet_id   = $bullet->id;
                 $newDetail->result      = $req[$bullet->id];
                 $newDetail->comment     = $req[$bullet->id.'_comment'];
-                // print_r($newDetail);
                 $newDetail->save();
             }
+
+            echo 'Vehicle = '.number_format((float)((int)$vehicleResult)/$vehicleCount, 2);
+            echo 'Driver = '.number_format((float)((int)$driverResult)/$driverCount, 2);
+
+            /** Updated survey with result_vehicle and result_driver. */
+            $survey = Survey::find($lastSurveyId);
+            $survey->result_vehicle = number_format((float)((int)$vehicleResult)/$vehicleCount, 2);
+            $survey->result_driver  = number_format((float)((int)$driverResult)/$driverCount, 2);
+            $survey->save();
 
             // return redirect('surveys/list');
         }
@@ -94,7 +119,7 @@ class SurveyController extends Controller
 
     public function edit ()
     {
-    	return view('surveys.editform', [
+    	return view('surveys.edit', [
 
         ]);
     }

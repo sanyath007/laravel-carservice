@@ -75,27 +75,30 @@ class SurveyController extends Controller
         $newSurvey->used_type       = $req['used_type'];
         $newSurvey->user_id         = $req['user_id'];
         $newSurvey->comment         = $req['survey_comment'];
-        // print_r($newSurvey);
 
         if ($newSurvey->save()) {    
             $lastSurveyId   = $newSurvey->id;
 
+            /** Declare variables for calculate survey result */
             $vehicleCount   = 0;
             $vehicleResult  = 0;
             $driverCount    = 0;
             $driverResult   = 0;
 
             foreach ($bullets as $bullet) {
+                /** Add survey vehicle part result */
                 if($bullet->bullet_type == 1) {
                     $vehicleResult += $req[$bullet->id];
                     $vehicleCount++;
                 }
                 
+                /** Add survey driver part result */
                 if($bullet->bullet_type == 2) {
                     $driverResult += $req[$bullet->id];
                     $driverCount++;
                 }
 
+                /** Insert data to survey detail */
                 $newDetail              = new SurveyDetail();
                 $newDetail->survey_id   = $lastSurveyId;
                 $newDetail->bullet_id   = $bullet->id;
@@ -104,16 +107,13 @@ class SurveyController extends Controller
                 $newDetail->save();
             }
 
-            echo 'Vehicle = '.number_format((float)((int)$vehicleResult)/$vehicleCount, 2);
-            echo 'Driver = '.number_format((float)((int)$driverResult)/$driverCount, 2);
-
             /** Updated survey with result_vehicle and result_driver. */
             $survey = Survey::find($lastSurveyId);
             $survey->result_vehicle = number_format((float)((int)$vehicleResult)/$vehicleCount, 2);
             $survey->result_driver  = number_format((float)((int)$driverResult)/$driverCount, 2);
             $survey->save();
 
-            // return redirect('surveys/list');
+            return redirect('surveys/list');
         }
     }
 

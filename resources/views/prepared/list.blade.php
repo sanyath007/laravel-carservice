@@ -131,8 +131,7 @@
                         </td>
                         <td style="text-align: center;">
                             {{ $prepared->bp }} | 
-                            {{ $prepared->stable }} | 
-                            {{ $prepared->behav }} | 
+                            {{ (!is_null($prepared->stable)) ? $prepared->stable : '-' }} |
                             {{ $prepared->alcohol }} | 
                             {{ $prepared->drug }}
                             <?= (!empty($prepared->comment)) ? '<a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>' : '' ?>

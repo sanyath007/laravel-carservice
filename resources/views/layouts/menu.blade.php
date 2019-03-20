@@ -45,13 +45,24 @@
                               <!-- <li><a href="{{ url('/reserve/calendar') }}">ตารางทำงาน พขร.</a></li> -->
                               <!-- <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
                               <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li> -->
-                              <li role="separator" class="divider"></li>
+                              <!-- <li role="separator" class="divider"></li>
                               <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
-                              <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li>
+                              <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li> -->
                             </ul>
                         </li>
 
                      @endif
+
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          ประเมิน
+                          <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
+                          <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li>
+                        </ul>
+                    </li>
 
                     @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101621053')
 

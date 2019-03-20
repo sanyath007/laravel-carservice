@@ -40,7 +40,7 @@ class PreparedController extends Controller
         $searchdate = Input::get('searchdate');
 
         return view('prepared.list', [
-            'prepareds'       => DriverPrepared::paginate(10),
+            'prepareds'       => DriverPrepared::where('prepared_date', '=', $searchdate)->paginate(10),
             'searchdate'    => $searchdate,
         ]);
     }

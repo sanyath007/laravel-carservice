@@ -123,7 +123,7 @@
                                                 class="form-control">
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td style="margin-left: 5px;">3. พฤติกรรมทั่วไป</td>
                                     <td style="text-align: center;">
                                         <input type="radio" id="behav" name="behav" value="0" ng-checked="prepared.behav==0"> ปกติ
@@ -136,9 +136,9 @@
                                                 ng-model="prepared.behav_text"
                                                 class="form-control">
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
-                                    <td style="margin-left: 5px;">4. แอลกอฮอล์</td>
+                                    <td style="margin-left: 5px;">3. แอลกอฮอล์</td>
                                     <td style="text-align: center;">
                                         <input type="radio" id="alcohol" name="alcohol" value="0" ng-checked="prepared.alcohol==0"> ปกติ
                                         <input type="radio" id="alcohol" name="alcohol" value="1" ng-checked="prepared.alcohol==1"> ผิดปกติ
@@ -152,7 +152,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="margin-left: 5px;">5. การทานยา</td>
+                                    <td style="margin-left: 5px;">4. การทานยา</td>
                                     <td style="text-align: center;">
                                         <input type="radio" id="drug" name="drug" value="0" ng-checked="prepared.drug==0"> ไม่มี 
                                         <input type="radio" id="drug" name="drug" value="1" ng-checked="prepared.drug==1"> มี

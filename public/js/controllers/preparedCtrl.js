@@ -84,12 +84,13 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
     $scope.validateBulletChecked = function(radios) {
         let checkedCount = 0;
         angular.forEach(radios, function(radio, val) {
-            if($(radio).is(":checked")) {
+            console.log($(radio).attr('id'));
+            if($(radio).is(":checked") && $(radio).attr('id') != 'stable') {
                 checkedCount++;
             }     
         });
 
-        return !(checkedCount == 4);
+        return !(checkedCount == 3);
     };
 
     $scope.add = function(event, form) {

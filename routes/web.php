@@ -149,6 +149,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/survey/validate', 'SurveyController@formValidate');
 
 
+    Route::get('/prepared/driver-list', 'PreparedController@driverList');
     Route::get('/prepared/list', 'PreparedController@index');
     Route::get('/prepared/add', 'PreparedController@create');
     Route::post('/prepared/store', 'PreparedController@store');

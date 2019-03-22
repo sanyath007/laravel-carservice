@@ -39,9 +39,34 @@ class PreparedController extends Controller
     {
         $searchdate = Input::get('searchdate');
 
+        if(!empty($searchdate)) {
+            $prepareds = DriverPrepared::where('prepared_date', '=', $searchdate)->paginate(10);
+        } else {
+            $prepareds = DriverPrepared::where('prepared_date', '=', date('Y-m-d'))->paginate(10);
+        }
+
         return view('prepared.list', [
-            'prepareds'       => DriverPrepared::where('prepared_date', '=', $searchdate)->paginate(10),
+            'prepareds'     => $prepareds,
             'searchdate'    => $searchdate,
+        ]);
+    }
+
+    public function driverList ()
+    {
+        $searchMonth = Input::get('searchMonth');        
+
+        if(!empty($searchMonth)) {
+            $sdate = $searchMonth . '-01';
+            $edate = date("Y-m-t", strtotime($sdate));
+        } else {
+            $sdate = date('Y-m-1');
+            $edate = date("Y-m-t", strtotime($sdate));
+        }
+
+        return view('prepared.driver-list', [
+            'searchMonth'    => $searchMonth,
+            'prepareds'     => $prepareds = DriverPrepared::whereBetween('prepared_date', [$sdate, $edate])->paginate(10),
+            'drivers'       => Driver::all(),
         ]);
     }
 
@@ -54,9 +79,12 @@ class PreparedController extends Controller
 
     public function store (Request $req)
     {
+        $d = new \DateTime(date('Y-m-d H:i:s'));
+        $diffHours = new \DateInterval('PT7H');
+
     	$newDriverPrepared = new DriverPrepared();
         $newDriverPrepared->prepared_date       = $req['prepared_date'];
-        $newDriverPrepared->prepared_time       = date('H:i:s');
+        $newDriverPrepared->prepared_time       = $d->add($diffHours);
         $newDriverPrepared->driver_id           = $req['driver_id'];
         $newDriverPrepared->period              = $req['period'];
         $newDriverPrepared->bp                  = $req['bp'];

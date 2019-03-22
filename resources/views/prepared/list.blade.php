@@ -79,7 +79,7 @@
                 <div class="col-md-12">
                     <form action="{{ url('/prepared/list') }}" method="GET" class="form-inline">
                         <div class="form-group">
-                            <label for="">วันที่เดินทาง :</label>
+                            <label for="">วันที่ตรวจ :</label>
                             <input type="text" id="searchdate" name="searchdate" value="{{ $searchdate }}" class="form-control">
                         </div>
 
@@ -87,9 +87,15 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                             แสดงตามวันที่
                         </button>
+
                         <a href="{{ url('/prepared/list') }}" class="btn btn-success">
                             <i class="fa fa-search-plus" aria-hidden="true"></i>
                             แสดงทั้งหมด
+                        </a>
+
+                        <a href="{{ url('/prepared/driver-list') }}" class="btn btn-danger pull-right">
+                            <i class="fa fa-bar-chart-o" aria-hidden="true"></i>
+                            รายงานผลการตรวจ
                         </a>
                     </form>
                 </div>                
@@ -141,7 +147,7 @@
                         </td>
                         <td style="text-align: center;">
                             @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
-                                @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                @if (Auth::user()->person_id == $prepared->user_id || Auth::user()->person_id == '1300200009261')
                                     <!-- <a  href="{{ url('/print/print.php') }} ?id={{ $prepared->id }}" 
                                         class="btn btn-success btn-xs"
                                         target="_blank"
@@ -308,114 +314,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->   
-
     <!-- Modal -->
-    <div class="modal fade" id="dlgprepareds" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">รายละเอียดการขอใช้รถ</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <th style="width: 8%; text-align: right;">ID :</th>
-                                    <td>@{{ prepared.id }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 8%; text-align: right;">ผู้ขอ :</th>
-                                    <td>
-                                        @{{ survey.user.person_firstname + '  ' + survey.user.person_lastname }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">ประเภท</th>
-                                    <td>@{{ activityType[survey.activity_type] }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">เพื่อราชการ :</th>
-                                    <td>@{{ survey.activity }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">สถานที่ :</th>
-                                    <td>@{{ strLocation }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">วันที่ไป :</th>
-                                    <td>@{{ survey.from_date + ' ' + survey.from_time }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">วันที่กลับ :</th>
-                                    <td>@{{ survey.to_date + ' ' + survey.to_time }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">ลักษณะการรับ-ส่ง :</th>
-                                    <td>@{{ transport[survey.transport] }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 30%; text-align: right;">หมายเหตุ :</th>
-                                    <td>@{{ survey.remark }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>           
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->   
-
-    <!-- The actual modal template, just a bit o bootstrap -->
-    <script type="text/ng-template" id="modal.html">
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="">เพิ่มบุคลากร</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10%; text-align: center;">CID</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
-                                        <th style="width: 30%; text-align: center;">สังกัด</th>
-                                        <th style="width: 10%; text-align: center;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="passenger in passengers">
-                                        <td>@{{ passenger.person_id }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script> 
 
 </div><!-- /.container -->
 

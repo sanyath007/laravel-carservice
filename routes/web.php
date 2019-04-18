@@ -121,7 +121,16 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/assign/ajaxchange', 'AssignmentController@ajaxchange');    
     Route::post('/assign/ajaxadd_reservation', 'AssignmentController@ajaxadd_reservation');
 
+    /** พรบ */
+    Route::get('/act/list', 'ActController@index');
+    Route::get('/act/new', 'ActController@create');
+    Route::post('/act/add', 'ActController@store');
+    Route::get('/act/edit/{id}', 'ActController@edit');
+    Route::post('/act/update', 'ActController@update');
+    Route::post('/act/delete/{id}', 'ActController@delete');    
+    Route::post('/act/validate', 'ActController@formValidate');
 
+    /** ประกันภัย */
     Route::get('/insurance/list', 'InsuranceController@index');
     Route::get('/insurance/new', 'InsuranceController@create');
     Route::post('/insurance/add', 'InsuranceController@store');
@@ -130,7 +139,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/insurance/delete/{id}', 'InsuranceController@delete');    
     Route::post('/insurance/validate', 'InsuranceController@formValidate');
 
-
+    /** ภาษี */
     Route::get('/tax/list', 'TaxController@index');
     Route::get('/tax/new', 'TaxController@create');
     Route::post('/tax/add', 'TaxController@store');

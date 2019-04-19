@@ -15,18 +15,17 @@ class ActController extends Controller
         $validator = \Validator::make($request->all(), [
             'doc_no' => 'required',
             'doc_date' => 'required',
-            'insurance_no' => 'required',
-            'insurance_company_id' => 'required',
-            'insurance_type' => 'required',
-            'insurance_detail' => 'required',
-            'insurance_start_date' => 'required',
-            'insurance_start_time' => 'required',
-            'insurance_renewal_date' => 'required',
-            'insurance_renewal_time' => 'required',
-            'insurance_net' => 'required',
-            'insurance_stamp' => 'required',
-            'insurance_vat' => 'required',
-            'insurance_total' => 'required',
+            'act_no' => 'required',
+            'act_company_id' => 'required',
+            'act_detail' => 'required',
+            'act_start_date' => 'required',
+            'act_start_time' => 'required',
+            'act_renewal_date' => 'required',
+            'act_renewal_time' => 'required',
+            'act_net' => 'required',
+            'act_stamp' => 'required',
+            'act_vat' => 'required',
+            'act_total' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +47,8 @@ class ActController extends Controller
     		'acts' => Acts::where(['status' => 1])
     							->with('vehicle')
     							->with('company')
+                                ->orderBy('act_start_date', 'DESC')
+                                ->orderBy('id', 'DESC')
     							->paginate(10),
     	]);
     }
@@ -56,40 +57,37 @@ class ActController extends Controller
     {
     	return view('acts.newform', [
     		'companies' => InsuranceCompany::all(),
-    		'types'	=> InsuranceType::all(),
     	]);
     }
 
     public function store (Request $req)
     {
-        // Upload attach file
-        // var_dump($request->file('attachfile'));
+        /** Upload attach file */
         $filename = '';
         if ($file = $req->file('attachfile')) {
             $filename = $file->getClientOriginalName();
             $file->move('uploads', $filename);
         }
 
-    	$newInsurance = new Insurance();
-    	$newInsurance->doc_no = $req['doc_no'];
-        $newInsurance->doc_date = $req['doc_date'];
-        $newInsurance->vehicle_id = $req['vehicle_id'];
-        $newInsurance->insurance_no = $req['insurance_no'];
-        $newInsurance->insurance_company_id = $req['company'];
-        $newInsurance->insurance_type = $req['insurance_type'];
-        $newInsurance->insurance_detail = $req['insurance_detail'];
-        $newInsurance->insurance_start_date = $req['insurance_start_date'];
-        $newInsurance->insurance_start_time = $req['insurance_start_time'];
-        $newInsurance->insurance_renewal_date = $req['insurance_renewal_date'];
-        $newInsurance->insurance_renewal_time = $req['insurance_renewal_time'];
-        $newInsurance->insurance_net = $req['insurance_net'];
-        $newInsurance->insurance_stamp = $req['insurance_stamp'];
-        $newInsurance->insurance_vat = $req['insurance_vat'];
-        $newInsurance->insurance_total = $req['insurance_total'];
-        $newInsurance->status = '1';
+    	$newAct = new Acts();
+    	$newAct->doc_no = $req['doc_no'];
+        $newAct->doc_date = $req['doc_date'];
+        $newAct->vehicle_id = $req['vehicle_id'];
+        $newAct->act_no = $req['act_no'];
+        $newAct->insurance_company_id = $req['company'];
+        $newAct->act_detail = $req['act_detail'];
+        $newAct->act_start_date = $req['act_start_date'];
+        $newAct->act_start_time = $req['act_start_time'];
+        $newAct->act_renewal_date = $req['act_renewal_date'];
+        $newAct->act_renewal_time = $req['act_renewal_time'];
+        $newAct->act_net = $req['act_net'];
+        $newAct->act_stamp = $req['act_stamp'];
+        $newAct->act_vat = $req['act_vat'];
+        $newAct->act_total = $req['act_total'];
+        $newAct->status = '1';
 
-        if ($newInsurance->save()) {
-            return redirect('acts.list');
+        if ($newAct->save()) {
+            return redirect('act/list');
 		}
     }
 
@@ -110,18 +108,18 @@ class ActController extends Controller
             $file->move('uploads', $filename);
         }
     	
-        $insurance = Insurance::find($req['id'])->first();
-        $insurance->doc_no = $req['doc_no'];
-        $insurance->doc_date = $req['doc_date'];
-        $insurance->insurance_no = $req['insurance_no'];
-        $insurance->insurance_company_id = $req['company'];
-        $insurance->insurance_type = $req['insurance_type'];
-        $insurance->insurance_detail = $req['insurance_detail'];
-        $insurance->insurance_start_date = $req['insurance_start_date'];
-        $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
+        $act = Acts::find($req['id'])->first();
+        $act->doc_no = $req['doc_no'];
+        $act->doc_date = $req['doc_date'];
+        $act->act_no = $req['act_no'];
+        $act->act_company_id = $req['company'];
+        $act->act_type = $req['act_type'];
+        $act->act_detail = $req['act_detail'];
+        $act->act_start_date = $req['act_start_date'];
+        $act->act_renewal_date = $req['act_renewal_date'];
 
         if ($insurance->save()) {
-            return redirect('acts.list');
+            return redirect('act.list');
         }
     }
 

@@ -5,13 +5,13 @@
   
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">รายการต่อประกันภัย</li>
+        <li class="breadcrumb-item active">รายการต่อ พรบ.</li>
     </ol>
 
     <!-- page title -->
     <div class="page__title">
         <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อประกันภัย
+            <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อ พรบ.
         </span>
         <a href="{{ url('/act/new') }}" class="btn btn-primary pull-right">
             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                         <th style="width: 10%; text-align: center;">เลขที่กรมธรรม์</th>
                         <th style="width: 12%; text-align: center;">บริษัท</th>
                         <th style="width: 15%; text-align: center;">ระยะเวลาประกัน</th>
-                        <th style="width: 8%; text-align: center;">ค่าเบี้ย พรบ</th>
+                        <th style="width: 6%; text-align: center;">ค่าเบี้ย พรบ.</th>
                         <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($acts as $act)

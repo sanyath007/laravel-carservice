@@ -77,10 +77,10 @@
                                         '<font style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</font>') : 
                                         '-'); ?> <br>
                                 <b>วันที่หมด พรบ.</b>
-                                    <?= ((count($vehicle->actsactived) > 0) ? 
-                                        (($vehicle->actsactived[0]->acts_renewal_date < date('Y-m-d')) ? 
+                                    <?= ((count($vehicle->actsactived) > 0) ?                                         
+                                        (($vehicle->actsactived[0]->act_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<font style="color: green;">'.$vehicle->actsactived[0]->acts_renewal_date.'</font>') : 
+                                        '<font style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</font>') : 
                                         '-'); ?> <br>
                                 <b>วันที่หมดประกัน</b>
                                     <?= ((count($vehicle->insactived) > 0) ? 

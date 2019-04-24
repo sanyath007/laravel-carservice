@@ -49,6 +49,8 @@ class InsuranceController extends Controller
     							->with('vehicle')
     							->with('company')
     							->with('type')
+                                ->orderBy('insurance_start_date', 'DESC')
+                                ->orderBy('id', 'DESC')
     							->paginate(10),
     	]);
     }
@@ -90,7 +92,7 @@ class InsuranceController extends Controller
         $newInsurance->status = '1';
 
         if ($newInsurance->save()) {
-            return redirect('insurances.list');
+            return redirect('insurance/list');
 		}
     }
 
@@ -122,7 +124,7 @@ class InsuranceController extends Controller
         $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
 
         if ($insurance->save()) {
-            return redirect('insurances.list');
+            return redirect('insurance/list');
         }
     }
 

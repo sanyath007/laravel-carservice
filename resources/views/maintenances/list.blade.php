@@ -53,7 +53,7 @@
                             {{ ($maintained['maintained_id']) ? $maintained['maintained_date'] : '' }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $maintained['mileage'] }}
+                            {{ $maintained['maintained_mileage'] }}
                         </td>
                         <td>
                             {{ $maintained['detail'] }}

@@ -43,7 +43,7 @@
                             {{ $maintenance->maintained_id }}
                         </td>        
                         <td style="text-align: center;">{{ $maintenance->maintained_date }}</td>
-                        <td style="text-align: center;">{{ number_format($maintenance->mileage) }}</td>
+                        <td style="text-align: center;">{{ number_format($maintenance->maintained_mileage) }}</td>
                         <td>{{ $maintenance->detail }}</td>
                         <td style="text-align: center;">{{ number_format($maintenance->total,2) }}</td>
                         <td style="text-align: center;">{{ $maintenance->garage->garage_name }}</td>

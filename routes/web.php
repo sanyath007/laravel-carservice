@@ -28,8 +28,6 @@ Route::get('/', 'Auth\LoginController@showLogin');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'web'], function() {
     /** ============= Authentication ============= */
     Route::get('/auth/login', 'Auth\LoginController@showLogin');
@@ -44,6 +42,8 @@ Route::group(['middleware' => 'web'], function() {
 });
 
 Route::group(['middleware' => ['web','auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
 
     Route::get('/vehicles/list', 'VehicleController@index');
     Route::get('/vehicles/new', 'VehicleController@create');
@@ -159,6 +159,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
     Route::get('/prepared/driver-list', 'PreparedController@driverList');
+    Route::get('/prepared/day-list', 'PreparedController@dayList');
     Route::get('/prepared/list', 'PreparedController@index');
     Route::get('/prepared/add', 'PreparedController@create');
     Route::post('/prepared/store', 'PreparedController@store');

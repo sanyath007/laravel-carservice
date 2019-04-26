@@ -77,7 +77,10 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-body">
-
+                        <div class="col-md-12">
+                            <input type="checkbox" id="not_check" name="not_check" value="1"> ไม่ได้ตรวจ
+                        </div><br>
+                        
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

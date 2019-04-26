@@ -40,9 +40,9 @@ class PreparedController extends Controller
         $searchdate = Input::get('searchdate');
 
         if(!empty($searchdate)) {
-            $prepareds = DriverPrepared::where('prepared_date', '=', $searchdate)->paginate(10);
+            $prepareds = DriverPrepared::where('prepared_date', '=', $searchdate)->orderBy('period')->paginate(10);
         } else {
-            $prepareds = DriverPrepared::where('prepared_date', '=', date('Y-m-d'))->paginate(10);
+            $prepareds = DriverPrepared::where('prepared_date', '=', date('Y-m-d'))->orderBy('period')->paginate(10);
         }
 
         return view('prepared.list', [
@@ -70,6 +70,27 @@ class PreparedController extends Controller
         ]);
     }
 
+    public function dayList ()
+    {
+        $searchMonth = Input::get('searchMonth');        
+
+        if(!empty($searchMonth)) {
+            $sdate = $searchMonth . '-01';
+            $edate = date("Y-m-t", strtotime($sdate));
+        } else {
+            $sdate = date('Y-m-1');
+            $edate = date("Y-m-t", strtotime($sdate));
+        }
+
+        return view('prepared.day-list', [
+            'searchMonth'    => (empty($searchMonth)) ? date('Y-m') : $searchMonth,
+            'prepareds'     => $prepareds = DriverPrepared::whereBetween('prepared_date', [$sdate, $edate])
+                                                ->orderBy('prepared_date')
+                                                ->orderBy('period')
+                                                ->get(),
+        ]);
+    }
+
     public function create ()
     {
         return view('prepared.add', [
@@ -87,18 +108,23 @@ class PreparedController extends Controller
         $newDriverPrepared->prepared_time       = $d->add($diffHours);
         $newDriverPrepared->driver_id           = $req['driver_id'];
         $newDriverPrepared->period              = $req['period'];
-        $newDriverPrepared->bp                  = $req['bp'];
-        $newDriverPrepared->bp_text             = $req['bp_text'];
-        $newDriverPrepared->stable              = $req['stable'];
-        $newDriverPrepared->stable_text         = $req['stable_text'];
-        // $newDriverPrepared->behav               = $req['behav'];
-        // $newDriverPrepared->behav_text          = $req['behav_text'];
-        $newDriverPrepared->alcohol             = $req['alcohol'];
-        $newDriverPrepared->alcohol_text        = $req['alcohol_text'];
-        $newDriverPrepared->drug                = $req['drug'];
-        $newDriverPrepared->drug_text           = $req['drug_text'];
-        $newDriverPrepared->user_id             = $req['user_id'];
-        $newDriverPrepared->comment             = $req['comment'];
+        $newDriverPrepared->not_check           = $req['not_check'];
+
+        if($req['not_check'] != 1) {
+            $newDriverPrepared->bp                  = $req['bp'];
+            $newDriverPrepared->bp_text             = $req['bp_text'];
+            $newDriverPrepared->stable              = $req['stable'];
+            $newDriverPrepared->stable_text         = $req['stable_text'];
+            // $newDriverPrepared->behav               = $req['behav'];
+            // $newDriverPrepared->behav_text          = $req['behav_text'];
+            $newDriverPrepared->alcohol             = $req['alcohol'];
+            $newDriverPrepared->alcohol_text        = $req['alcohol_text'];
+            $newDriverPrepared->drug                = $req['drug'];
+            $newDriverPrepared->drug_text           = $req['drug_text'];
+            $newDriverPrepared->user_id             = $req['user_id'];
+            $newDriverPrepared->comment             = $req['comment'];
+        }
+
         $newDriverPrepared->save();   
 
         return redirect('prepared/list');
@@ -134,6 +160,7 @@ class PreparedController extends Controller
         // $editDriverPrepared->prepared_time       = date('H:i:s');
         $editDriverPrepared->driver_id           = $req['driver_id'];
         $editDriverPrepared->period              = $req['period'];
+        $editDriverPrepared->not_check           = $req['not_check'];
         $editDriverPrepared->bp                  = $req['bp'];
         $editDriverPrepared->bp_text             = $req['bp_text'];
         $editDriverPrepared->stable              = $req['stable'];

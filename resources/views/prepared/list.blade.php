@@ -93,9 +93,14 @@
                             แสดงทั้งหมด
                         </a>
 
-                        <a href="{{ url('/prepared/driver-list') }}" class="btn btn-danger pull-right">
+                        <a href="{{ url('/prepared/day-list') }}" class="btn btn-warning pull-right" style="margin-left: 5px;">
                             <i class="fa fa-bar-chart-o" aria-hidden="true"></i>
-                            รายงานผลการตรวจ
+                            รายงานผลการตรวจรายวัน
+                        </a>
+
+                        <a href="{{ url('/prepared/driver-list') }}" class="btn btn-danger pull-right">
+                            <i class="fa fa-area-chart" aria-hidden="true"></i>
+                            รายงานผลการตรวจรายคน
                         </a>
                     </form>
                 </div>                
@@ -136,11 +141,15 @@
                             <?= (($driver) ? $driver->description. ' / ' .$driver->tel : ''); ?>
                         </td>
                         <td style="text-align: center;">
-                            {{ $prepared->bp }} | 
-                            {{ (!is_null($prepared->stable)) ? $prepared->stable : '-' }} |
-                            {{ $prepared->alcohol }} | 
-                            {{ $prepared->drug }}
-                            <?= (!empty($prepared->comment)) ? '<a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>' : '' ?>
+                            @if($prepared->not_check != 1)
+                                {{ $prepared->bp }} | 
+                                {{ (!is_null($prepared->stable)) ? $prepared->stable : '-' }} |
+                                {{ $prepared->alcohol }} | 
+                                {{ $prepared->drug }}
+                                <?= (!empty($prepared->comment)) ? '<a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>' : '' ?>
+                            @else
+                                <font style="color: red;">ไม่ได้ตรวจ</font>
+                            @endif
                         </td>                      
                         <td style="text-align: center;">
                             <?= (($prepared->user) ? $prepared->user->person_firstname. ' ' .$prepared->user->person_lastname : ''); ?>

@@ -95,10 +95,12 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
 
     $scope.add = function(event, form) {
         event.preventDefault();
-        console.log($('input[type="radio"]'));
-        console.log($scope.validateBulletChecked($('input[type="radio"]')))
+        // console.log($('input[type="radio"]'));
+        // console.log($scope.validateBulletChecked($('input[type="radio"]')))
+        console.log(form.$invalid);
+        console.log(!$('#not_check').is(":checked"));
 
-        if (form.$invalid || $scope.validateBulletChecked($('input[type="radio"]'))) {
+        if (form.$invalid || (!$('#not_check').is(":checked") && $scope.validateBulletChecked($('input[type="radio"]')))) {
             if($scope.validateBulletChecked($('input[type="radio"]'))) {
                 toaster.pop('warning', "", 'กรุณาระบุผลการตรวจในแต่ละข้อก่อน !!!');
             }
@@ -106,6 +108,8 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
             toaster.pop('warning', "", 'กรุณาข้อมูลให้ครบก่อน !!!');
             return;
         } else {
+            console.log('Form is submited !!');
+            console.log($('#not_check').val());
             document.getElementById('frmPrepared').submit();
 
             // $http.post(CONFIG.BASE_URL + '/survey/store', $scope.creditor)

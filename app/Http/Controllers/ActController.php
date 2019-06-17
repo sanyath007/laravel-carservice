@@ -87,6 +87,10 @@ class ActController extends Controller
         $newAct->status = '1';
 
         if ($newAct->save()) {
+             $deactivate = Acts::where('vehicle_id', '=', $req['vehicle_id'])
+                            ->where('id', '<>', $newAct->id)
+                            ->update(['status' => '0']);
+                            
             return redirect('act/list');
 		}
     }

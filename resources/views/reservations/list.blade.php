@@ -99,15 +99,15 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 10%; text-align: center;">วันที่ขอ</th>
-                        <th style="width: 15%; text-align: center;">วันเวลา ไป-กลับ</th>
+                        <th style="width: 9%; text-align: center;">วันที่ขอ</th>
+                        <th style="width: 10%; text-align: center;">วันเวลา ไป-กลับ</th>
                         <th style="width: 12%; text-align: center;">ผู้ขอ</th>
                         <th style="width: 15%; text-align: center;">ไปราชการ</th>
                         <th>สถานที่ไป</th>
                         <th style="width: 6%; text-align: center;">ผู้ร่วมเดินทาง</th>
                         <th style="width: 8%; text-align: center;">รถทะเบียน</th>
-                        <th style="width: 12%; text-align: center;">พขร.</th>
-                        <th style="width: 12%; text-align: center;">สถานะ</th>
+                        <th style="width: 10%; text-align: center;">พขร.</th>
+                        <th style="width: 10%; text-align: center;">สถานะ</th>
                         <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($reservations as $reservation)

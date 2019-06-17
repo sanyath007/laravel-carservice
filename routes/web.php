@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
     Route::get('/vehicles/list', 'VehicleController@index');
+    Route::get('/vehicles/detail/{id}', 'VehicleController@detail');
     Route::get('/vehicles/new', 'VehicleController@create');
     Route::post('/vehicles/add', 'VehicleController@store');
     Route::get('/vehicles/edit/{id}', 'VehicleController@edit');
@@ -195,4 +196,10 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/fuel-day-chart/{month}', 'ReportController@fuelDayChart');
     Route::get('/report/fuel-vehicle', 'ReportController@fuelVehicle');
     Route::get('/report/fuel-vehicle-chart/{month}', 'ReportController@fuelVehicleChart');
+    Route::get('/report/sum-maintained', 'ReportController@sumMaintained');
+    // Route::get('/report/sum-maintained-chart/{year}', 'ReportController@sumMaintainedChart');
+    Route::get('/report/service-vehicle', 'ReportController@serviceVehicle');
+    // Route::get('/report/service-vehicle-chart/{year}', 'ReportController@serviceVehicleChart');
+    Route::get('/report/service-location', 'ReportController@serviceLocation');
+    // Route::get('/report/service-location-chart/{year}', 'ReportController@serviceLocationChart');
 });

@@ -70,9 +70,14 @@ class TaxController extends Controller
         $newTax->tax_charge = $req['tax_charge'];
         $newTax->remark = $req['remark'];
         $newTax->attachfile = $req['attachfile'];
-        $newTax->status = '1'; //
+        $newTax->is_actived = '1';
+        $newTax->status = '1';
 
         if ($newTax->save()) {
+             $deactivate = Tax::where('vehicle_id', '=', $req['vehicle_id'])
+                            ->where('id', '<>', $newTax->id)
+                            ->update(['is_actived' => '0']);
+                            
             return redirect('tax/list');
         }
     }

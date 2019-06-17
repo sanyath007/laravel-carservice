@@ -66,7 +66,6 @@ class InsuranceController extends Controller
     public function store (Request $req)
     {
         // Upload attach file
-        // var_dump($request->file('attachfile'));
         $filename = '';
         if ($file = $req->file('attachfile')) {
             $filename = $file->getClientOriginalName();
@@ -92,6 +91,10 @@ class InsuranceController extends Controller
         $newInsurance->status = '1';
 
         if ($newInsurance->save()) {
+            $deactivate = Insurance::where('vehicle_id', '=', $req['vehicle_id'])
+                            ->where('id', '<>', $newInsurance->id)
+                            ->update(['status' => '0']);
+
             return redirect('insurance/list');
 		}
     }

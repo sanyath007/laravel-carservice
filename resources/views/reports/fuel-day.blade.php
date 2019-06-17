@@ -32,8 +32,7 @@
 
             <div id="barContainer" style="width: 800px; height: 400px; margin: 0 auto; margin-top: 20px;"></div>
 
-        </div>
-        <!-- right column -->
+        </div><!-- col-md-12 -->
     </div><!-- /.row --> 
     
     <script>

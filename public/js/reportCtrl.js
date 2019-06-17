@@ -212,4 +212,32 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
             console.log(err);
         });
     };
+
+    $scope.getSumMaintainedData = function (data) {
+        console.log(data);
+
+        $scope.pieOptions = ReportService.initPieChart("pieContainer", "รายการการยอดการซ่อมรถยนต์");
+        $scope.pieOptions.series[0].data.push({name: "บำรุงรักษาตามระยะ", y: data[0].type1});
+        $scope.pieOptions.series[0].data.push({name: "ซ่อมตามอาการเสีย", y: data[0].type2});
+        $scope.pieOptions.series[0].data.push({name: "ติดตั้งเพิ่ม", y: data[0].type3});
+
+        var chart = new Highcharts.Chart($scope.pieOptions);
+    };
+
+    $scope.getServiceVehicleData = function (data) {
+        console.log(data);
+
+        $scope.pieOptions = ReportService.initPieChart("pieContainer", "รายงานการให้บริการ รายรถ");
+        angular.forEach(data, function(val) {
+            console.log(val);
+            if(val.reg_no) { 
+                $scope.pieOptions.series[0].data.push({name: val.reg_no, y: val.vehicle_count});
+            } else {
+                $scope.pieOptions.series[0].data.push({name: "ไม่ได้ระบุ", y: val.vehicle_count});
+            }
+            
+        });
+
+        var chart = new Highcharts.Chart($scope.pieOptions);
+    };
 });

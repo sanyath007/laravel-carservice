@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Reservation;
 use App\ReservePassenger;
 use App\Maintenance;
@@ -13,6 +14,8 @@ use App\Department;
 use App\Ward;
 use App\Assignment;
 use App\AssignmentReserve;
+use App\Models\Budget;
+use PDO;
 
 class ReportController extends Controller
 {
@@ -184,5 +187,69 @@ class ReportController extends Controller
                 ORDER BY v.vehicle_type, v.vehicle_cate";
 
         return \DB::select($sql);
+    }
+
+    public function sumMaintained ()
+    {
+        $year = Input::get('selectMonth');
+        $sdate = ($year - 1). '-10-01';
+        $edate = $year. '-09-30';
+
+        $sql ="SELECT 
+                SUM(total) as total,
+                SUM(CASE WHEN maintained_type='1' THEN total END) as type1,
+                SUM(CASE WHEN maintained_type='2' THEN total END) as type2,
+                SUM(CASE WHEN maintained_type='3' THEN total END) as type3
+                FROM vehicle_maintenances 
+                WHERE (maintained_date BETWEEN '$sdate' AND '$edate')
+                AND (status<>'3') # สถานะรายการไม่ใช่ 1=รอดำเนินการ, 2=เสร็จเรียบร้อย, 3=ยกเลิก
+                #AND (maintained_type='1') #ประเภท 1=บำรุงรักษา,2=ซ่อมตามอาการเสีย,3=ติดตั้งเพิ่ม";
+
+        return view('reports.sum-maintained', [
+            'data'      => \DB::select($sql),
+            'budget'    => Budget::where(['year' => ($year+543)])->first(),
+        ]);
+    }
+
+    public function serviceVehicle ()
+    {
+        $month = Input::get('selectMonth');
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql ="SELECT r.vehicle_id, v.reg_no,
+                COUNT(DISTINCT r.id) AS 'vehicle_count'
+                FROM reservations r LEFT JOIN vehicles v ON (r.vehicle_id=v.vehicle_id)
+                WHERE (from_date BETWEEN '$sdate' AND '$edate')
+                AND (r.`status` <> 5)
+                GROUP BY r.vehicle_id, v.reg_no ";
+
+        $result = array_map(function($value) {
+            return (array)$value;
+        }, \DB::select($sql));
+
+        return view('reports.service-vehicle', [
+            'vehicles' => Vehicle::where(['status' => 1])->get(),
+            'data' => $result,
+        ]);
+    }
+
+    public function serviceLocation ()
+    {
+        $sql ="SELECT r.vehicle_id,
+                COUNT(DISTINCT r.id) AS 'vehicle_count'
+                FROM reservations r LEFT JOIN vehicles v ON (r.vehicle_id=v.vehicle_id)
+                WHERE (from_date BETWEEN '2019-05-01' AND '2019-05-31')
+                AND (r.`status` <> 5)
+                GROUP BY r.vehicle_id ";
+
+        $result = array_map(function($value) {
+            return (array)$value;
+        }, \DB::select($sql));
+
+        return view('reports.service-vehicle', [
+            'vehicles' => Vehicle::where(['status' => 1])->get(),
+            'data' => $result,
+        ]);
     }
 }

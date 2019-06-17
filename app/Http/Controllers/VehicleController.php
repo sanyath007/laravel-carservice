@@ -10,7 +10,8 @@ use App\Driver;
 
 class VehicleController extends Controller
 {
-    public function index () {
+    public function index () 
+    {
         $status = (Input::get('vehicleStatus')=='') ? 0 : Input::get('vehicleStatus');
 
         if($status != 0) {
@@ -23,8 +24,9 @@ class VehicleController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->with('taxactived')                          
-                                ->orderBy('vehicle_no', 'ASC')
+                                ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
+                                ->orderBy('vehicle_no', 'ASC')
                                 ->paginate(12);
         } else {
             $vehicles = Vehicle::where(['status' => 1])
@@ -38,8 +40,9 @@ class VehicleController extends Controller
                                 ->with('taxactived')                          
                                 ->with('insactived')                          
                                 ->with('actsactived')                          
-                                ->orderBy('vehicle_no', 'ASC')
+                                ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
+                                ->orderBy('vehicle_no', 'ASC')
                                 ->paginate(12);
         }
 
@@ -50,7 +53,39 @@ class VehicleController extends Controller
         ]);
     }
 
-    public function ajaxvehicles () {
+    public function detail($id) 
+    {
+        // $vehicle = Vehicle::where(['vehicle_id' => $id])
+        //                         ->with('cate')
+        //                         ->with('type')
+        //                         ->with('method')
+        //                         ->with('manufacturer')
+        //                         ->with('changwat')
+        //                         ->with('vender')
+        //                         ->with('fuel')
+        //                         ->with('taxactived')                          
+        //                         ->with('insactived')                          
+        //                         ->with('actsactived')
+        //                         ->first();
+        // var_dump($vehicle);         
+        return view('vehicles.detail', [
+            'vehicle' => Vehicle::where(['vehicle_id' => $id])
+                                ->with('cate')
+                                ->with('type')
+                                ->with('method')
+                                ->with('manufacturer')
+                                ->with('changwat')
+                                ->with('vender')
+                                ->with('fuel')
+                                ->with('taxactived')                          
+                                ->with('insactived')                          
+                                ->with('actsactived')
+                                ->first()
+        ]);
+    }
+
+    public function ajaxvehicles () 
+    {
         return [
             'vehicles' => Vehicle::where(['status' => '1'])
                                 ->with('cate')

@@ -44,7 +44,7 @@
                 useCurrent: true,
                 format: 'YYYY',
                 defaultDate: moment(dateNow)
-            })
+            });
             // .on("dp.change", function(e) {
             //     $('#to_date').data('DateTimePicker').date(e.date);
             // });

@@ -191,7 +191,7 @@ class ReportController extends Controller
 
     public function sumMaintained ()
     {
-        $year = Input::get('selectMonth');
+        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
         $sdate = ($year - 1). '-10-01';
         $edate = $year. '-09-30';
 
@@ -213,7 +213,7 @@ class ReportController extends Controller
 
     public function serviceVehicle ()
     {
-        $month = Input::get('selectMonth');
+        $month = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y-m');
         $sdate = $month . '-01';
         $edate = date("Y-m-t", strtotime($sdate));
 
@@ -236,20 +236,53 @@ class ReportController extends Controller
 
     public function serviceLocation ()
     {
-        $sql ="SELECT r.vehicle_id,
-                COUNT(DISTINCT r.id) AS 'vehicle_count'
-                FROM reservations r LEFT JOIN vehicles v ON (r.vehicle_id=v.vehicle_id)
-                WHERE (from_date BETWEEN '2019-05-01' AND '2019-05-31')
-                AND (r.`status` <> 5)
-                GROUP BY r.vehicle_id ";
+        $month = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y-m');
+        $sdate = $month . '-01';
+        $edate = date("Y-m-t", strtotime($sdate));
+
+        $sql ="SELECT * FROM reservations
+                WHERE (from_date BETWEEN '$sdate' AND '$edate')
+                AND (`status` <> 5) ";
 
         $result = array_map(function($value) {
-            return (array)$value;
+            return $value->location;
         }, \DB::select($sql));
 
-        return view('reports.service-vehicle', [
-            'vehicles' => Vehicle::where(['status' => 1])->get(),
-            'data' => $result,
+        $tbLocations = Location::with('province')->with('district')->get();
+
+        $tmp = "";
+        $arrLocations = [];
+
+        for ($i = 0; $i < count($result); $i++) {
+            $separator = ($i != count($result) - 1) ? ',' : '';
+            $tmp .= $result[$i] . $separator;
+        }
+
+        $arrLocations = explode(',', $tmp);
+        $locationsCount = array_count_values($arrLocations);
+
+        $newLocation = new \ArrayObject([]);
+        foreach($tbLocations as $location) {
+            $tmpLocation = [];
+            
+            if(array_key_exists($location->id, $locationsCount)) {
+                $tmpLocation['id'] = $location->id;
+                $tmpLocation['name'] = $location->name;
+                $tmpLocation['chw_id'] = $location->changwat;
+                $tmpLocation['changwat'] = $location->province->changwat;
+                $tmpLocation['amp_id'] = $location->amphur;
+                $tmpLocation['amphur'] = $location->district->amphur;
+                $tmpLocation['count'] = (int)$locationsCount[$location->id];
+
+                $newLocation->append($tmpLocation);
+                $newLocation->uasort(function($a, $b) {
+                    return $a['count'] < $b['count'];
+                });
+            }
+        }
+
+        return view('reports.service-location', [
+            'locations'    => $newLocation,
         ]);
     }
 }

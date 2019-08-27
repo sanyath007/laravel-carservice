@@ -30,7 +30,7 @@
                 <button ng-click="getDepartData()" class="btn btn-primary">แสดง</button>
             </form>
 
-            <div id="pieContainer" style="width: 800px; height: 400px; margin: 0 auto; margin-top: 20px;"></div>
+            <div id="pieContainer" style="width: 800px; height: 500px; margin: 0 auto; margin-top: 20px;"></div>
 
         </div>
         <!-- right column -->

@@ -9,8 +9,13 @@ class Location extends Model
   	protected $connection = 'vehicle';
   	protected $table = 'locations';
 
-  	// public function user()
-   //  {
-   //      return $this->hasMany('App\User', 'position_id', 'position_id');
-   //  }
+  	public function province()
+    {
+        return $this->belongsTo('App\Changwat', 'changwat', 'chw_id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\Amphur', 'amphur', 'id');
+    }
 }

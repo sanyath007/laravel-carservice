@@ -130,6 +130,7 @@
                           <li class="divider"></li>
                           <li><a href="{{ url('/report/service') }}">รายงานการให้บริการทั้งหมด</a></li>
                           <li><a href="{{ url('/report/service-vehicle') }}">รายงานการให้บริการ รายรถ</a></li>
+                          <li><a href="{{ url('/report/service-location') }}">รายงานการให้บริการ รายพื้นที่</a></li>
                           <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
                           <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
                           <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>

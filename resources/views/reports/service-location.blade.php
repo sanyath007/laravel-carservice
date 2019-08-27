@@ -2,18 +2,18 @@
 
 @section('content')
 
-<div class="container-fluid" ng-controller="reportCtrl" ng-init="getSumMaintainedData()">
+<div class="container-fluid" ng-controller="reportCtrl" ng-init="getServiceLocationData({{ json_encode($locations) }})">
   
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
         <li class="breadcrumb-item"><a href="#">รายงาน</a></li>
-        <li class="breadcrumb-item active">รายงานการให้บริการ รายรถ</li>
+        <li class="breadcrumb-item active">รายงานการให้บริการ รายพื้นที่</li>
     </ol>
 
     <!-- page title -->
     <div class="page__title">
         <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายงานการให้บริการ รายรถ
+            <i class="fa fa-calendar" aria-hidden="true"></i> รายงานการให้บริการ รายพื้นที่
         </span>
     </div>
 
@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <form class="form-inline">
+            <form action="{{ url('/report/service-location') }}" method="GET" class="form-inline">
                 <div class="form-group">
                     <label>เดือน :</label>
                     <input id="selectMonth" name="selectMonth" class="form-control"></input>
@@ -45,37 +45,45 @@
                     <thead>
                         <tr>
 
-                            @foreach($vehicles as $vehicle)
-
-                                <th class="text-center">{{ $vehicle->reg_no }}</th>
-
-                            @endforeach
-
+                            <th class="text-center" style="width: 4%">รหัส</th>
+                            <th class="text-center">สถานที่</th>
+                            <th class="text-center" style="width: 10%">อำเภอ</th>
+                            <th class="text-center" style="width: 10%">จังหวัด</th>
+                            <th class="text-center" style="width: 8%">จำนวนที่ให้บริการ (ครั้ง)</th>
+    
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <?php $index = 0; ?>
+                        @foreach($locations as $location)
+                            @if($index < 10)
+                                <tr>                            
+                                    <td class="text-center">{{ ++$index }}</td>
+                                    <td>{{ $location['name'] }}</td>
+                                    <td class="text-center">{{ $location['amphur'] }}</td>
+                                    <td class="text-center">{{ $location['changwat'] }}</td>
+                                    <td class="text-right">{{ $location['count'] }}</td>
+                                </tr>
+                            @endif
+                        @endforeach 
 
-                            @foreach($vehicles as $vehicle)
-
-                                <?php $dataIndex = array_search($vehicle->vehicle_id, array_column($data, 'vehicle_id')); ?>
-
-                                @if($dataIndex !== false)
-                                    <td class="text-center">
-                                        {{ $data[$dataIndex]['vehicle_count'] }}
-                                    </td>
-                                @else 
-                                    <td class="text-center"></td>
-                                @endif
-
-                            @endforeach 
+                        <tr>                            
+                            <td class="text-center" colspan="5">
+                                <a href="">
+                                    more ...
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
             
-
-            <!-- <div id="pieContainer" style="width: 800px; height: 400px; margin: 0 auto; margin-top: 20px;"></div> -->
+            <div class="col-md-6">
+                <div id="pieContainer1" style="width: 100%; height: 400px; margin: 0; margin-top: 20px;"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="pieContainer2" style="width: 100%; height: 400px; margin: 0; margin-top: 20px;"></div>
+            </div>
 
         </div><!-- col-md-12 -->
     </div><!-- /.row --> 

@@ -82,4 +82,10 @@ class Vehicle extends Model
         return $this->hasMany('App\Models\Acts', 'vehicle_id', 'vehicle_id')
                     ->where('status', '=', '1');
     }
+
+    public function mileage()
+    {
+        return $this->hasMany('App\Models\VehicleMileage', 'vehicle_id', 'vehicle_id')
+                    ->where('status', '=', '1');
+    }
 }

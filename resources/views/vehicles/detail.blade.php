@@ -58,6 +58,7 @@
                         $expired : 
                         '<font style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</font>') : 
                         '-'); ?> <br>
+                <b>เลขไมล์ล่าสุด :</b> <font style="color: red;">{{ ($mileage) ? number_format($mileage->mileage) : '-' }}</font> <br>
                 <b>หมายเหตุ :</b> <font style="color: blue;">{{ $vehicle->remark }}</font>
             </div>
             <div class="col-md-6">

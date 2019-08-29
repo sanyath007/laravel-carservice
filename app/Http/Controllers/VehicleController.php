@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Vehicle;
 use App\Driver;
+use App\VehicleMileage;
 
 class VehicleController extends Controller
 {
@@ -23,7 +24,7 @@ class VehicleController extends Controller
                                 ->with('changwat')
                                 ->with('vender')
                                 ->with('fuel')
-                                ->with('taxactived')                          
+                                ->with('taxactived')
                                 ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
                                 ->orderBy('vehicle_no', 'ASC')
@@ -37,9 +38,9 @@ class VehicleController extends Controller
                                 ->with('changwat')
                                 ->with('vender')
                                 ->with('fuel')
-                                ->with('taxactived')                          
-                                ->with('insactived')                          
-                                ->with('actsactived')                          
+                                ->with('taxactived')
+                                ->with('insactived')
+                                ->with('actsactived')
                                 ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
                                 ->orderBy('vehicle_no', 'ASC')
@@ -80,7 +81,10 @@ class VehicleController extends Controller
                                 ->with('taxactived')                          
                                 ->with('insactived')                          
                                 ->with('actsactived')
-                                ->first()
+                                ->first(),
+            'mileage' => VehicleMileage::where(['vehicle_id' => $id])
+                                        ->orderBy('date_in', 'DESC')
+                                        ->first()
         ]);
     }
 

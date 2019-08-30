@@ -75,6 +75,7 @@
                                 <li><a href="{{ url('/tax/list') }}">รายการต่อภาษี</a></li>
                                 <li><a href="{{ url('/insurance/list') }}">รายการต่อประกัน</a></li>
                                 <li><a href="{{ url('/act/list') }}">รายการต่อ พรบ</a></li>
+                                <li class="divider"></li>
                                 <li><a href="{{ url('/fuel/list') }}">รายการใช้น้ำมันเชื้อเพลิง</a></li>
                             </ul>
                         </li>
@@ -134,7 +135,7 @@
                           <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
                           <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
                           <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>
-                          <li><a href="{{ url('/report/fuel-day') }}">รายการการใช้น้ำมันรวม รายวัน</a></li>
+                          <li><a href="{{ url('/report/fuel-day') }}">รายการการใช้น้ำมันรวม รายเดือน</a></li>
                           <li><a href="{{ url('/report/fuel-vehicle') }}">รายการการใช้น้ำมันรวม รายรถ</a></li>
                           <li><a href="{{ url('/report/sum-maintained') }}">รายการการยอดการซ่อมรถยนต์</a></li>
                         </ul>

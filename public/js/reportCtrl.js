@@ -165,7 +165,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
                 mSeries.push(value.net);
             });
 
-            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการใช้น้ำมันรวม รายวัน", categories, 'จำนวน');
+            $scope.barOptions = ReportService.initBarChart("barContainer", "รายงานการใช้น้ำมันรวม รายเดือน", categories, 'จำนวน');
             $scope.barOptions.series.push({
                 name: 'ปริมาณ(ลิตร)',
                 data: nSeries

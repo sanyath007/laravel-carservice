@@ -25,7 +25,7 @@
             <form action="{{ url('/report/service-location') }}" method="GET" class="form-inline">
                 <div class="form-group">
                     <label>เดือน :</label>
-                    <input id="selectMonth" name="selectMonth" class="form-control"></input>
+                    <input id="selectMonth" name="selectMonth" value="{{ $month }}" class="form-control"></input>
                 </div>
 
                 <button type="submit" class="btn btn-primary">แสดง</button>

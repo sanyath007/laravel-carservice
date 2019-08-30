@@ -75,7 +75,7 @@
                         <td style="text-align: right;">{{ $fuel->unit_price }}</td>
                         <td style="text-align: right;">{{ $fuel->total }}</td>
                         <td style="text-align: center;">{{ $fuel->job_desc }}</td>
-                        <td style="text-align: center;">{{ $statusArr[$fuel->status] }}</td>
+                        <td style="text-align: center;">{{ $statusArr[$fuel->fuel_status] }}</td>
                         <td style="text-align: center;">
                             <a  href="{{ url('/fuel/edit/' . $fuel->id) }}" 
                                 class="btn btn-warning btn-xs"

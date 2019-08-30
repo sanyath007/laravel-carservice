@@ -58,7 +58,7 @@
                     FROM vehicle_fuel vf LEFT JOIN vehicles v ON (vf.vehicle_id=v.vehicle_id)
                     WHERE (vf.bill_date BETWEEN '" .$_GET['_month']. "-01' AND '" .$_GET['_month']. "-15')
                     #OR (vf.id='242')
-                    AND (vf.status NOT IN ('2','3'))
+                    AND (vf.fuel_status NOT IN ('2','3'))
                     ORDER BY vf.bill_date, vf.bill_no";
 
             $stmt = $db->prepare($sql);

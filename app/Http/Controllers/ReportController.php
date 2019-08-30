@@ -156,14 +156,16 @@ class ReportController extends Controller
     
     public function fuelDayChart ($month)
     {
-        $sdate = $month . '-01';
-        $edate = date("Y-m-t", strtotime($sdate));
+        $sdate = '2018-10-01';
+        $edate = '2019-09-30';
 
-        $sql = "SELECT bill_date, SUM(volume) as qty, SUM(total) as net 
+        $sql = "SELECT CONCAT(YEAR(bill_date), '-', MONTH(bill_date)) AS bill_date, 
+                SUM(volume) as qty, SUM(total) as net 
                 FROM vehicle_fuel f LEFT JOIN vehicles v ON (f.vehicle_id=v.vehicle_id)
                 WHERE (bill_date BETWEEN '$sdate' AND '$edate')
-                GROUP BY bill_date
-                ORDER BY bill_date";
+                AND (fuel_status='1')
+                GROUP BY CONCAT(YEAR(bill_date), '-', MONTH(bill_date))
+                ORDER BY CONCAT(YEAR(bill_date), '-', MONTH(bill_date))";
 
         return \DB::select($sql);
     }
@@ -231,6 +233,7 @@ class ReportController extends Controller
         return view('reports.service-vehicle', [
             'vehicles' => Vehicle::where(['status' => 1])->get(),
             'data' => $result,
+            'month' => $month,
         ]);
     }
 
@@ -283,6 +286,7 @@ class ReportController extends Controller
 
         return view('reports.service-location', [
             'locations'    => $newLocation,
+            'month' => $month,
         ]);
     }
 }

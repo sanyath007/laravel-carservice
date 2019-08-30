@@ -6,13 +6,13 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
         <li class="breadcrumb-item"><a href="#">รายงาน</a></li>
-        <li class="breadcrumb-item active">รายงานการใช้น้ำมันรวม รายวัน</li>
+        <li class="breadcrumb-item active">รายงานการใช้น้ำมันรวม รายเดือน</li>
     </ol>
 
     <!-- page title -->
     <div class="page__title">
         <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายงานการใช้น้ำมันรวม รายวัน
+            <i class="fa fa-calendar" aria-hidden="true"></i> รายงานการใช้น้ำมันรวม รายเดือน
         </span>
     </div>
 
@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <form class="form-inline">
                 <div class="form-group">
-                    <label>เดือน :</label>
+                    <label>ปีงบประมาณ :</label>
                     <input id="selectMonth" name="selectMonth" class="form-control"></input>
                 </div>
 
@@ -41,7 +41,7 @@
             
             $('#selectMonth').datetimepicker({
                 useCurrent: true,
-                format: 'YYYY-MM',
+                format: 'YYYY',
                 defaultDate: moment(dateNow)
             })
             // .on("dp.change", function(e) {

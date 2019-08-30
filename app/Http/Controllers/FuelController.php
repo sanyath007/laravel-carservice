@@ -102,7 +102,7 @@ class FuelController extends Controller
 		$vf->total 			= $req['total'];
         $vf->job_desc       = $req['job_desc'];
         $vf->remark         = $req['remark'];
-        $vf->status 		= '1';
+        $vf->fuel_status 		= '1';
 
         if($vf->save()) {
     		return redirect('/fuel/new')->with('status', 'บันทึกข้อมูลเรียบร้อย');

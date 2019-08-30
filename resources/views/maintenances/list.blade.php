@@ -25,6 +25,7 @@
                         <th>รถ</th>
                         <th style="width: 10%; text-align: center;">วันที่ซ่อมล่าสุด</th>
                         <th style="width: 10%; text-align: center;">เลขระยะทางเมื่อเข้าซ่อม</th>
+                        <th style="width: 10%; text-align: center;">เลขระยะทางล่าสุด</th>
                         <th style="width: 20%; text-align: center;">รายละเอียด</th>               
                         <th style="width: 8%; text-align: center;">เลขที่ใบส่งของ</th>               
                         <th style="width: 6%; text-align: center;">ค่าซ่อม</th>
@@ -53,7 +54,12 @@
                             {{ ($maintained['maintained_id']) ? $maintained['maintained_date'] : '' }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $maintained['maintained_mileage'] }}
+                            {{ number_format($maintained['maintained_mileage']) }}
+                        </td>
+                        <td style="text-align: center;">
+                            {{ (count($vehicle->mileage) > 0) 
+                                ? number_format($vehicle->mileage[0]->mileage) 
+                                : '-' }}
                         </td>
                         <td>
                             {{ $maintained['detail'] }}
@@ -62,7 +68,7 @@
                             {{ $maintained['delivery_bill'] }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $maintained['total'] }}
+                            {{ number_format($maintained['total'],2) }}
                         </td>
                         <td style="text-align: center;">
                             {{ $maintained['garage']['garage_name'] }}

@@ -85,7 +85,7 @@ class Vehicle extends Model
 
     public function mileage()
     {
-        return $this->hasMany('App\Models\VehicleMileage', 'vehicle_id', 'vehicle_id')
-                    ->where('status', '=', '1');
+        return $this->hasMany('App\VehicleMileage', 'vehicle_id', 'vehicle_id')
+                    ->orderBy('date_in', 'DESC');
     }
 }

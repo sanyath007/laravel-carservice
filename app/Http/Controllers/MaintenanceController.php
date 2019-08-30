@@ -21,6 +21,7 @@ class MaintenanceController extends Controller
                                 ->with('changwat')
                                 ->with('vender')
                                 ->with('fuel')
+                                ->with('mileage')
                                 ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
                                 ->paginate(10),

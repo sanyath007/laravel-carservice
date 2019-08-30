@@ -25,6 +25,7 @@ class VehicleController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->with('taxactived')
+                                ->with('mileage')
                                 ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
                                 ->orderBy('vehicle_no', 'ASC')
@@ -40,7 +41,8 @@ class VehicleController extends Controller
                                 ->with('fuel')
                                 ->with('taxactived')
                                 ->with('insactived')
-                                ->with('actsactived')
+                                ->with('actsactived')                                
+                                ->with('mileage')
                                 ->orderBy('vehicle_type', 'ASC')
                                 ->orderBy('vehicle_cate', 'ASC')
                                 ->orderBy('vehicle_no', 'ASC')
@@ -81,10 +83,8 @@ class VehicleController extends Controller
                                 ->with('taxactived')                          
                                 ->with('insactived')                          
                                 ->with('actsactived')
-                                ->first(),
-            'mileage' => VehicleMileage::where(['vehicle_id' => $id])
-                                        ->orderBy('date_in', 'DESC')
-                                        ->first()
+                                ->with('mileage')
+                                ->first()
         ]);
     }
 

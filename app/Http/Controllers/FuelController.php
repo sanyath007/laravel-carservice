@@ -162,7 +162,7 @@ class FuelController extends Controller
 
     public function cancel (Request $req) {
         $fuel = VehicleFuel::find($req['_id']);
-        $fuel->status = '3';
+        $fuel->fuel_status = '3';
         var_dump($fuel);
 
         if ($fuel->save()) {

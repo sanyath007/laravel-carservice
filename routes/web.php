@@ -197,6 +197,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/fuel-vehicle', 'ReportController@fuelVehicle');
     Route::get('/report/fuel-vehicle-chart/{month}', 'ReportController@fuelVehicleChart');
     Route::get('/report/sum-maintained', 'ReportController@sumMaintained');
+    Route::get('/report/sum-fuel', 'ReportController@sumFuel');
     // Route::get('/report/sum-maintained-chart/{year}', 'ReportController@sumMaintainedChart');
     Route::get('/report/service-vehicle', 'ReportController@serviceVehicle');
     // Route::get('/report/service-vehicle-chart/{year}', 'ReportController@serviceVehicleChart');

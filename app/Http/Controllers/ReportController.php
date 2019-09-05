@@ -210,6 +210,32 @@ class ReportController extends Controller
         return view('reports.sum-maintained', [
             'data'      => \DB::select($sql),
             'budget'    => Budget::where(['year' => ($year+543)])->first(),
+            'year'      => $year
+        ]);
+    }
+
+    public function sumFuel ()
+    {
+        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+        $sdate = ($year - 1). '-10-01';
+        $edate = $year. '-09-30';
+
+        $sql ="SELECT
+                SUM(CASE WHEN v.vehicle_type IN (2,4,5) THEN total END) as 'ambu',
+                SUM(CASE WHEN v.vehicle_type IN (1) THEN total END) as 'gen',
+                SUM(CASE WHEN v.vehicle_type IN (3) THEN total END) as 'inter',
+                SUM(CASE WHEN v.vehicle_id IN (90) THEN total END) as 'glass',
+                SUM(CASE WHEN v.vehicle_id IN (91) THEN total END) as 'elec',
+                SUM(total) as total
+                FROM vehicle_fuel f 
+                LEFT JOIN vehicles v ON (f.vehicle_id=v.vehicle_id)
+                WHERE (f.bill_date BETWEEN '$sdate' AND '$edate')
+                AND (f.fuel_status<>'3')";
+
+        return view('reports.sum-fuel', [
+            'data'      => \DB::select($sql),
+            'budget'    => Budget::where(['year' => ($year+543)])->first(),
+            'year'      => $year
         ]);
     }
 

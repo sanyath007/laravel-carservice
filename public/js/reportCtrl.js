@@ -216,10 +216,23 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
     $scope.getSumMaintainedData = function (data) {
         console.log(data);
 
-        $scope.pieOptions = ReportService.initPieChart("pieContainer", "รายการการยอดการซ่อมรถยนต์");
+        $scope.pieOptions = ReportService.initPieChart("pieContainer", "สรุปยอดการซ่อมรถยนต์");
         $scope.pieOptions.series[0].data.push({name: "บำรุงรักษาตามระยะ", y: data[0].type1});
         $scope.pieOptions.series[0].data.push({name: "ซ่อมตามอาการเสีย", y: data[0].type2});
         $scope.pieOptions.series[0].data.push({name: "ติดตั้งเพิ่ม", y: data[0].type3});
+
+        var chart = new Highcharts.Chart($scope.pieOptions);
+    };
+
+    $scope.getSumFuelData = function (data) {
+        console.log(data);
+
+        $scope.pieOptions = ReportService.initPieChart("pieContainer", "สรุปยอดค่าใช้จ่ายน้ำมันเชื้อเพลิง");
+        $scope.pieOptions.series[0].data.push({name: "รถพยาบาล", y: data[0].ambu});
+        $scope.pieOptions.series[0].data.push({name: "รถทั่วไป", y: data[0].gen});
+        $scope.pieOptions.series[0].data.push({name: "รถใช้ภายใน", y: data[0].inter});
+        $scope.pieOptions.series[0].data.push({name: "เครื่องตัดหญ้า", y: data[0].glass});
+        $scope.pieOptions.series[0].data.push({name: "เครื่องปั่นไฟ", y: data[0].elec});
 
         var chart = new Highcharts.Chart($scope.pieOptions);
     };

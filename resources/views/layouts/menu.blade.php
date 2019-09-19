@@ -128,6 +128,7 @@
                         <ul class="dropdown-menu">
                           <li><a href="{{ url('/report/reserve') }}">รายงานการขอใช้รถ</a></li>
                           <li><a href="{{ url('/report/drive') }}">รายงานการเดินรถ</a></li>
+                          <li><a href="{{ url('/report/reserve-depart') }}">รายงานให้บริการ รายหน่วยงาน</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/report/service') }}">รายงานการให้บริการทั้งหมด</a></li>
                           <li><a href="{{ url('/report/service-vehicle') }}">รายงานการให้บริการ รายรถ</a></li>

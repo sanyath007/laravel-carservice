@@ -257,7 +257,7 @@ class ReportController extends Controller
         }, \DB::select($sql));
 
         return view('reports.service-vehicle', [
-            'vehicles' => Vehicle::where(['status' => 1])->get(),
+            'vehicles' => Vehicle::where(['status' => 1])->whereIn('vehicle_type', [1,2])->get(),
             'data' => $result,
             'month' => $month,
         ]);
@@ -312,6 +312,27 @@ class ReportController extends Controller
 
         return view('reports.service-location', [
             'locations'    => $newLocation,
+            'month' => $month,
+        ]);
+    }
+
+    public function reserveDepart() {
+        $month = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y-m');
+        $sdate = '2017-10-01'; //$month . '-01';
+        $edate = '2018-09-30'; //date("Y-m-t", strtotime($sdate));
+
+        $reserves = \DB::table('vehicle_db.reservations as r')
+                        ->leftjoin('db_ksh.ward as w', 'w.ward_id', '=', 'r.ward')
+                        ->select('r.ward', 'w.ward_name', \DB::raw('count(r.id) as total'))
+                        ->whereBetween('r.from_date', [$sdate, $edate])
+                        ->whereAnd('status', '<>', '5')
+                        ->groupBy('r.ward', 'w.ward_name')
+                        ->orderBy(\DB::raw('count(r.id)'), 'DESC')
+                        ->get();
+                        // ->toSql();
+
+        return view('reports.reserve-depart', [
+            'reserves'    => $reserves,
             'month' => $month,
         ]);
     }

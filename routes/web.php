@@ -180,6 +180,9 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/fuel/delete', 'FuelController@delete');
     Route::post('/fuel/cancel', 'FuelController@cancel');    
     Route::post('/fuel/validate', 'FuelController@formValidate');
+    
+
+    Route::get('/ambulance/list', 'AmbulanceController@index');
 
 
     Route::get('/report/reserve', 'ReportController@reserve');

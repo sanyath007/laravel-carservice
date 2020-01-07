@@ -18,6 +18,7 @@
                 src="{{ ($vehicle->thumbnail) 
                         ? url('/').'/uploads/vehicles/' .$vehicle->thumbnail 
                         : url('/').'/uploads/no-image-300x300.jpg' }}"
+                style="width: 440px; height: 300px;"
             >
         </div>
 

@@ -446,7 +446,7 @@
                                     </p>
                                     
                                     <p style="float: left; padding: 0px; margin:-21 0 0 167px;">จังหวัด</p>
-                                    <p class="UnderlineTagp" style="width: 210px; float: left; padding: 0px; margin:-24 0 0 443px;">
+                                    <p class="UnderlineTagp" style="width: 210px; float: left; padding: 0px; margin:-28 0 0 443px;">
                                         &nbsp;&nbsp;<?= $loc_chw; ?>
                                     </p>
                                 </div>

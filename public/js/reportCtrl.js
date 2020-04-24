@@ -256,7 +256,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
 
     $scope.getServiceLocationData = function (data) {
         /** จังหวัด */
-        var nSeries = 0;
+        var nmSeries = 0;
         var buSeries = 0;
         var suSeries = 0;
         var chSeries = 0;
@@ -264,14 +264,14 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
         var nonSeries = 0;
         var othSeries = 0;
         /** อำเภอ */
-        var onSeries = 0;
-        var nmSeries = 0;
-        var noSeries = 0;
+        var dmSeries = 0;
+        var notdmSeries = 0;
 
+        console.log(data)
         angular.forEach(data, function(value, key) {
             /** จังหวัด */
             if (value.chw_id == 30) {
-                nSeries += parseInt(value.count);
+                nmSeries += parseInt(value.count);
             } else if (value.chw_id == 31) {
                 buSeries += parseInt(value.count);
             } else if (value.chw_id == 32) {
@@ -288,14 +288,15 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
 
             /** อำเภอ */
             if (value.chw_id == 30 && value.amp_id == 3001) {
-                nmSeries += parseInt(value.count);
+                dmSeries += parseInt(value.count);
             } else if (value.chw_id == 30 && value.amp_id != 3001) {
-                noSeries += parseInt(value.count);
+                notdmSeries += parseInt(value.count);
             }
         });
 
+        console.log('nm=' + nmSeries + ', br=' + buSeries + ', sr=' + suSeries + ', cp=' + chSeries + ', bkk=' + bkSeries + ', oth=' + (parseInt(nonSeries) + parseInt(othSeries)))
         $scope.pieOptions1 = ReportService.initPieChart("pieContainer1", "รายงานการให้บริการ รายพื้นที่จังหวัด");
-        $scope.pieOptions1.series[0].data.push({name: 'นครราชสีมา', y: nSeries});
+        $scope.pieOptions1.series[0].data.push({name: 'นครราชสีมา', y: nmSeries});
         $scope.pieOptions1.series[0].data.push({name: "บุรีรัมย์", y: buSeries});
         $scope.pieOptions1.series[0].data.push({name: "สุรินทร์", y: suSeries});
         $scope.pieOptions1.series[0].data.push({name: "ชัยภูมิ", y: chSeries});
@@ -305,8 +306,10 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
         var chart = new Highcharts.Chart($scope.pieOptions1);
 
         $scope.pieOptions2 = ReportService.initPieChart("pieContainer2", "รายงานการให้บริการ รายพื้นที่อำเภอ");
-        $scope.pieOptions2.series[0].data.push({name: 'อ.เมือง', y: nSeries});
-        $scope.pieOptions2.series[0].data.push({name: "ต่าง อ.", y: noSeries});
+        $scope.pieOptions2.series[0].data.push({name: 'อ.เมือง', y: dmSeries});
+        $scope.pieOptions2.series[0].data.push({name: "ต่าง อ.", y: notdmSeries});
+
+        console.log('อ.เมือง=' + dmSeries + ', ต่าง อ.=' + notdmSeries)
         var chart = new Highcharts.Chart($scope.pieOptions2);
     }
 });

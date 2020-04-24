@@ -156,8 +156,9 @@ class ReportController extends Controller
     
     public function fuelDayChart ($month)
     {
-        $sdate = '2018-10-01';
-        $edate = '2019-09-30';
+        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+        $sdate = ($year - 1). '-10-01';
+        $edate = $year. '-09-30';
 
         $sql = "SELECT CONCAT(YEAR(bill_date), '-', MONTH(bill_date)) AS bill_date, 
                 SUM(volume) as qty, SUM(total) as net 
@@ -204,8 +205,8 @@ class ReportController extends Controller
                 SUM(CASE WHEN maintained_type='3' THEN total END) as type3
                 FROM vehicle_maintenances 
                 WHERE (maintained_date BETWEEN '$sdate' AND '$edate')
-                AND (status<>'3') # สถานะรายการไม่ใช่ 1=รอดำเนินการ, 2=เสร็จเรียบร้อย, 3=ยกเลิก
-                #AND (maintained_type='1') #ประเภท 1=บำรุงรักษา,2=ซ่อมตามอาการเสีย,3=ติดตั้งเพิ่ม";
+                AND (status<>'3') # สถานะรายการไม่ใช่ 0=รอเอกสาร, 1=รอซ่อม, 2=เสร็จเรียบร้อย, 3=ยกเลิก
+                #AND (maintained_type='1') #ประเภท 0=รอเอกสาร, 1=บำรุงรักษา,2=ซ่อมตามอาการเสีย,3=ติดตั้งเพิ่ม";
 
         return view('reports.sum-maintained', [
             'data'      => \DB::select($sql),

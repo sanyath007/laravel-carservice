@@ -213,6 +213,16 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
+
+                                    <p style="margin: 10 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................หัวหน้ากลุ่มงานฯ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        นักจัดการงานทั่วไปชำนาญการ
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -351,6 +361,16 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
                                     </p>
+
+                                    <p style="margin: 10 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................หัวหน้ากลุ่มงานฯ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        นักจัดการงานทั่วไปชำนาญการ
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -464,7 +484,7 @@
                                     </p>
                                     <p style="margin: -3 2 2 50px; padding: 0px;">
                                         เจ้าพนักงานทันตสาธารณสุขชำนาญงาน
-                                    </p><br>                                           
+                                    </p>                                           
                                 </td>
                                 <td width="50%" style="vertical-align: top;">
                                     <p style="margin: 5 0 0 15px; padding: 0px; font-weight: bold;">
@@ -478,7 +498,7 @@
                                     </p>
                                     <p style="margin: -3 2 2 100px; padding: 0px;">
                                         เจ้าพนักงานธุรการ
-                                    </p><br>
+                                    </p>
 
                                     <p style="margin: 5 0 0 40px; padding: 0px;">
                                         ลงชื่อ.....................................................ผู้ตรวจสอบ
@@ -488,6 +508,16 @@
                                     </p>
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         นักจัดการงานทั่วไปปฏิบัติการ
+                                    </p>
+
+                                    <p style="margin: 10 0 0 40px; padding: 0px;">
+                                        ลงชื่อ.....................................................หัวหน้ากลุ่มงานฯ
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
+                                    </p>
+                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                        นักจัดการงานทั่วไปชำนาญการ
                                     </p>
                                 </td>
                             </tr>

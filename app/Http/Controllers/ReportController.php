@@ -337,4 +337,37 @@ class ReportController extends Controller
             'month' => $month,
         ]);
     }
+
+    public function maintainVehicle ()
+    {
+        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+
+        return view('reports.maintain-vehicle', [
+            'assignments' => Assignment::orderBy('id','DESC')->paginate(10),
+            'year' => $year
+        ]);
+    }
+    
+    public function maintainVehicleChart ($year)
+    {
+        $sdate = ($year - 1). '-10-01';
+        $edate = $year. '-09-30';
+
+        $sql = "SELECT
+                v.reg_no,
+                SUM(CASE WHEN m.maintained_type='1' THEN m.total END) as type1,
+                SUM(CASE WHEN m.maintained_type='2' THEN m.total END) as type2,
+                SUM(CASE WHEN m.maintained_type='3' THEN m.total END) as type3,
+                SUM(m.total) as total
+                FROM vehicle_maintenances m
+                LEFT JOIN vehicles v ON (m.vehicle_id=v.vehicle_id)
+                WHERE m.maintained_date BETWEEN '$sdate' AND '$edate'
+                AND (m.status IN ('1','2'))
+                GROUP BY v.reg_no
+                ORDER BY v.reg_no";
+                //# สถานะรายการไม่ใช่ 3=ยกเลิก
+                //#AND (maintained_type='1') #ประเภท 1=บำรุงรักษา,2=ซ่อมตามอาการเสีย,3=ติดตั้งเพิ่ม
+
+        return \DB::select($sql);
+    }
 }

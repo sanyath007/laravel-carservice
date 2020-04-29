@@ -49,9 +49,7 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
         console.log(month);
 
         ReportService.getSeriesData('/report/period-chart/', month)
-        .then(function(res) {
-            console.log(res);
-            
+        .then(function(res) {            
             var categories = [];
             var nSeries = [];
             var mSeries = [];
@@ -311,5 +309,42 @@ app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, Rep
 
         console.log('อ.เมือง=' + dmSeries + ', ต่าง อ.=' + notdmSeries)
         var chart = new Highcharts.Chart($scope.pieOptions2);
-    }
+    };
+
+    $scope.getMaintainVehicleData = function () {
+        var selectMonth = document.getElementById('selectMonth').value;
+        var year = (selectMonth == '') ? moment().format('YYYY') : selectMonth;
+        console.log(year);
+
+        ReportService.getSeriesData('/report/maintain-vehicle-chart/', year)
+        .then(function(res) {            
+            var categories = [];
+            var t1Series = []; //บำรุงรักษาตามระยะ
+            var t2Series = []; //ซ่อมตามอาการเสีย
+            var t3Series = []; //ติดตั้งเพิ่ม
+
+            angular.forEach(res.data, function(value, key) {
+                categories.push(value.reg_no);
+                t1Series.push(value.type1);
+                t2Series.push(value.type2);
+                t3Series.push(value.type3);
+            });
+
+            $scope.barOptions = ReportService.initStackChart("barContainer", "รายงานการซ่อมรถยนต์ รายรถ", categories, 'ยอดค่าใช้จ่าย');
+            $scope.barOptions.series.push({
+                name: 'บำรุงรักษาตามระยะ',
+                data: t1Series
+            }, {
+                name: 'ซ่อมตามอาการเสีย',
+                data: t2Series
+            }, {
+                name: 'ติดตั้งเพิ่ม',
+                data: t3Series
+            });
+
+            var chart = new Highcharts.Chart($scope.barOptions);
+        }, function(err) {
+            console.log(err);
+        });
+    };
 });

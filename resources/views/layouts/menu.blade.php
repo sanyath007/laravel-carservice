@@ -138,6 +138,7 @@
                           <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>
                           <li><a href="{{ url('/report/fuel-day') }}">รายงานการใช้น้ำมันรวม รายเดือน</a></li>
                           <li><a href="{{ url('/report/fuel-vehicle') }}">รายงานการใช้น้ำมันรวม รายรถ</a></li>
+                          <li><a href="{{ url('/report/maintain-vehicle') }}">รายงานการซ่อมรถยนต์ รายรถ</a></li>
                           <li class="divider"></li>
                           <li><a href="{{ url('/report/sum-fuel') }}">สรุปยอดค่าใช้จ่ายน้ำมัน</a></li>
                           <li><a href="{{ url('/report/sum-maintained') }}">สรุปยอดการซ่อมรถยนต์</a></li>

@@ -207,4 +207,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/report/service-location', 'ReportController@serviceLocation');
     // Route::get('/report/service-location-chart/{year}', 'ReportController@serviceLocationChart');
     Route::get('/report/reserve-depart', 'ReportController@reserveDepart');
+    Route::get('/report/maintain-vehicle', 'ReportController@maintainVehicle');
+    Route::get('/report/maintain-vehicle-chart/{year}', 'ReportController@maintainVehicleChart');
 });

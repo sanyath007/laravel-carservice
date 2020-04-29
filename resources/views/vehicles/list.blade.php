@@ -54,11 +54,13 @@
                                 <img src="{{ url('/').'/uploads/no-image-300x300.jpg' }}" class="profile-avatar" alt="">
                             </figure> -->
 
-                            <h4 class="card-title mt-3">
-                                <span class="label label-primary">{{ $vehicle->vehicle_no }}</span> 
-                                {{ $vehicle->reg_no }} 
-                                {{ $vehicle->changwat->short }}
-                            </h4>
+                            <div class="alert alert-danger" style="height: 50px;">
+                                <h4 class="card-title mt-3">
+                                    <span class="label label-primary">{{ $vehicle->vehicle_no }}</span> 
+                                    {{ $vehicle->reg_no }} 
+                                    {{ $vehicle->changwat->short }}
+                                </h4>
+                            </div>
                             <!-- <div class="meta card-text">
                                 <a>Friends</a>
                             </div> -->

@@ -301,7 +301,7 @@
                                                     <td style="text-align: center;"><?=$fuel['volume'] ?></td>
                                                     <td style="text-align: center;"><?=$fuel['unit_price'] ?></td>
                                                     <td style="text-align: center;"><?=number_format($fuel['total'],2) ?></td>
-                                                    <td style="padding: 2px;"><?=$fuel['job_desc'] ?></td>
+                                                    <td style="padding: 2px; font-size: 12pt;"><?=$fuel['job_desc'] ?></td>
                                                 </tr>
 
                                             <?php endif ?>
@@ -449,7 +449,7 @@
                                                     <td style="text-align: center;"><?=$fuel['volume'] ?></td>
                                                     <td style="text-align: center;"><?=$fuel['unit_price'] ?></td>
                                                     <td style="text-align: center;"><?=number_format($fuel['total'],2) ?></td>
-                                                    <td style="padding: 2px;"><?=$fuel['job_desc'] ?></td>
+                                                    <td style="padding: 2px; font-size: 12pt;"><?=$fuel['job_desc'] ?></td>
                                                 </tr>
 
                                         <?php endif; ?>

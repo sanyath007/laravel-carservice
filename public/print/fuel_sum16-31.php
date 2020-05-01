@@ -148,7 +148,7 @@
                                                 <td style="text-align: center;"><?=$fuel['volume'] ?></td>
                                                 <td style="text-align: center;"><?=$fuel['unit_price'] ?></td>
                                                 <td style="text-align: center;"><?=number_format($fuel['total'],2) ?></td>
-                                                <td style="padding: 2px;"><?=$fuel['job_desc'] ?></td>
+                                                <td style="padding: 2px; font-size: 12pt;"><?=$fuel['job_desc'] ?></td>
                                             </tr>
 
                                         <?php endif; ?>
@@ -168,7 +168,7 @@
                         </tr>               
                     </table><br>
 
-                    <?=(($cx > 19 && $cx < 25) ? '<hr style="page-break-after: always;">' : '') ?>
+                    <?=(($cx > 19 && $cx < 24) ? '<hr style="page-break-after: always;">' : '') ?>
 
                     <table width="100%" border="0" class="thaitext">
                         <tbody>

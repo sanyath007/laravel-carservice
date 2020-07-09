@@ -51,7 +51,7 @@
     </div>
 
     <!-- #=============== New List ===============# -->
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -99,7 +99,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/3201000048759.jpg') }}" class="img-responsive" alt="">
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -131,7 +131,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
                 <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
@@ -163,20 +163,37 @@
         </div>
     </div>
 
-    <!-- <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="cnt-block equal-hight" style="height: 349px;">
             <figure>
-                <img src="{{ asset('/uploads/drivers/3201000048759.jpg') }}" class="img-responsive" alt="">
+                <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
             </figure>
-            <h3><a href="http://www.webcoderskull.com/">นายสายันต์ คงสม</a></h3>
+            <h3><a href="http://www.webcoderskull.com/">นายภุชงค์ เนยสูงเนิน</a></h3>
             <p>พนักงานขับรถยนต์</p>
-            <ul class="follow-us clearfix">
+            <p>โทร. 0916132711</p>
+            <!-- <ul class="follow-us clearfix">
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-            </ul>
+            </ul> -->
         </div>
-    </div> -->
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="cnt-block equal-hight" style="height: 349px;">
+            <figure>
+                <img src="{{ asset('/uploads/drivers/no-image-300x300.jpg') }}" class="img-responsive" alt="">
+            </figure>
+            <h3><a href="http://www.webcoderskull.com/">นายชัยพงษ์ เพียรทำดี</a></h3>
+            <p>พนักงานขับรถยนต์</p>
+            <p>โทร. 0934864117</p>
+            <!-- <ul class="follow-us clearfix">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            </ul> -->
+        </div>
+    </div>
 
   </div><!-- /. Col-12 -->
 </div><!-- Row -->

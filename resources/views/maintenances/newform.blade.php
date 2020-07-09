@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="ID">เลขที่เอกสาร</label>
-                        <input type="text" id="doc_no" name="doc_no" class="form-control">
+                        <input type="text" id="doc_no" name="doc_no" value="นม0032.001.8.1/NEW" class="form-control">
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->

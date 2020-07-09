@@ -27,7 +27,9 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
         lab         : 'ไปส่ง LAB, เบิกเบือด และราชการอื่นๆ ที่ รพ.มหาราช',
         supply      : 'รับ-ส่งเซตหัตถการ งานจ่ายกลาง',
         laundry     : 'รับ-ส่งผ้าผู้ป่วย งานซักฟอก',
-        electric    : 'เติมเครื่องปั่นไฟฟ้าสำรอง งานช่างซ่อมบำรุง'
+        electric    : 'เติมเครื่องปั่นไฟฟ้าสำรอง งานช่างซ่อมบำรุง',
+        xray        : 'ออกให้บริการรังสีวิทยาเคลื่อนที่ (X-Ray)',
+        biosafety   : 'ออกให้บริการเก็บตัวอย่างทางห้องปฏิบัติการ'
     }
 
     $scope.loadEditData = function () {
@@ -120,6 +122,12 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
         } else if ($scope.newFuel.vehicle == '91') {
             $("#job_desc").val($scope.jobDescText.electric)
             $scope.newFuel.jobDesc = $scope.jobDescText.electric
+        } else if ($scope.newFuel.vehicle == '22') {
+            $("#job_desc").val($scope.jobDescText.xray)
+            $scope.newFuel.jobDesc = $scope.jobDescText.xray
+        } else if ($scope.newFuel.vehicle == '25') {
+            $("#job_desc").val($scope.jobDescText.biosafety)
+            $scope.newFuel.jobDesc = $scope.jobDescText.biosafety
         } else {
             $("#job_desc").val($scope.jobDescText.general)
             $scope.newFuel.jobDesc = $scope.jobDescText.general

@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Vehicle;
+use App\Garage;
 use App\Driver;
+use App\Changwat;
+use App\FuelType;
+use App\Manufacturer;
+use App\Vender;
+use App\VehicleCate;
+use App\VehicleType;
 use App\VehicleMileage;
 
 class VehicleController extends Controller
@@ -86,6 +93,61 @@ class VehicleController extends Controller
                                 ->with('mileage')
                                 ->first()
         ]);
+    }
+
+    public function create ()
+    {
+        return view('vehicles.newform', [
+            'vCates' => VehicleCate::all(),
+            'vTypes' => VehicleType::all(),
+            'fuelTypes' => FuelType::all(),
+            'changwats' => Changwat::all(),
+            'manufacturers' => Manufacturer::all(),
+            'venders' => Vender::all(),
+        ]);
+    }
+
+    public function store (Request $req)
+    {
+        /** Upload attach file */
+        $filename = '';
+        if ($file = $req->file('attachfile')) {
+            $filename = $file->getClientOriginalName();
+            $file->move('uploads', $filename);
+        }
+
+        $newVehicle = new Vehicle();
+        $newVehicle->vehicle_no = $req['vehicle_no'];   
+        $newVehicle->vehicle_cate = $req['vehicle_cate'];
+        $newVehicle->vehicle_type = $req['vehicle_type'];
+        $newVehicle->menufacturer = $req['menufacturer'];
+        $newVehicle->model = $req['model'];
+        $newVehicle->color = $req['color'];
+        $newVehicle->year = $req['year'];
+        $newVehicle->capacity = $req['capacity'];
+        $newVehicle->fuel_type = $req['fuel_type'];
+        $newVehicle->chassis_no = $req['chassis_no'];
+        $newVehicle->engine_no = $req['engine_no'];
+        $newVehicle->reg_no = $req['reg_no'];
+        $newVehicle->reg_chw = $req['reg_chw'];
+        $newVehicle->reg_date = $req['reg_date'];
+        $newVehicle->vender = $req['vender'];
+        $newVehicle->purchased_method = $req['purchased_method'];
+        $newVehicle->purchased_date = $req['purchased_date'];
+        $newVehicle->cam_front = $req['cam_front'];
+        $newVehicle->cam_back = $req['cam_back'];
+        $newVehicle->cam_driver = $req['cam_driver'];
+        $newVehicle->gps = $req['gps'];
+        $newVehicle->siren = $req['siren'];
+        $newVehicle->light = $req['light'];
+        $newVehicle->radio_com = $req['radio_com'];
+        $newVehicle->tele_med = $req['tele_med'];
+        $newVehicle->remark = $req['remark'];
+        $newVehicle->status = '1';
+        echo $newVehicle;
+        // if ($newVehicle->save()) {                            
+        //     return redirect('vehicles/list');
+        // }
     }
 
     public function ajaxvehicles () 

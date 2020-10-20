@@ -5,9 +5,9 @@
   <!-- page title -->
   <div class="page__title">
     <span>รายการพนักงานขับรถ</span>
-    <a class="btn btn-primary pull-right">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      New
+    <a href="{{ url('/drivers/new') }}" class="btn btn-primary pull-right">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        New
     </a>
   </div>
 

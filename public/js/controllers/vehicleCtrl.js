@@ -8,41 +8,60 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newVehicle = {
-        docNo: '',
-        docDate: '',
-        taxStartDate: '',
-        taxRenewalDate: '',
-        taxReceiptNo: '',
-        taxCharge: '',
+        vehicle_no: '',
+        purchased_date: '',
+        manufacturer: '',
+        model: '',
+        color: '',
+        year: '',
+        engine_no: '',
+        chassis_no: '',
+        capacity: '',
+        fuel_type: '',
+        vehicle_cate: '',
+        vehicle_type: '',
+        reg_no: '',
+        reg_chw: '',
+        reg_date: '',
+        vender: '',
+        method: '',
+        cost: '',
+
+        // Accessories
+        cam_front: '',
+        cam_back: '',
+        cam_driver: '',
+        gps: '',
+        radio_com: '',
+        light: '',
+        siren: '',
+        tele_med: '',
     };
 
     $scope.formValidate = function (event) {
         event.preventDefault();
 
-        $scope.newTax.docDate = $('#doc_date').val();
-        $scope.newTax.taxStartDate = $('#tax_start_date').val();
-        $scope.newTax.taxRenewalDate = $('#tax_renewal_date').val();
-        
-        var req_data = {
-            doc_no: $scope.newTax.docNo,
-            doc_date: $scope.newTax.docDate,
-            tax_start_date: $scope.newTax.taxStartDate,
-            tax_renewal_date: $scope.newTax.taxRenewalDate,
-            tax_receipt_no: $scope.newTax.taxReceiptNo,
-            tax_charge: $scope.newTax.taxCharge,
-        };
-        console.log(req_data);
+        $scope.newVehicle.purchased_date = $('#purchased_date').val();
+        $scope.newVehicle.reg_date = $('#reg_date').val();
 
-        $http.post(baseUrl + '/tax/validate', req_data)
+        // Accessories
+        $scope.newVehicle.cam_front = $('#cam_front').is(':checked') ? $('#cam_front').val() : 0;
+        $scope.newVehicle.cam_back = $('#cam_back').is(':checked') ? $('#cam_back').val() : 0;
+        $scope.newVehicle.cam_driver = $('#cam_driver').is(':checked') ? $('#cam_driver').val() : 0;
+        $scope.newVehicle.gps = $('#gps').is(':checked') ? $('#gps').val() : 0;
+        $scope.newVehicle.radio_com = $('#radio_com').is(':checked') ? $('#radio_com').val() : 0;
+        $scope.newVehicle.light = $('#light').is(':checked') ? $('#light').val() : 0;
+        $scope.newVehicle.siren = $('#siren').is(':checked') ? $('#siren').val() : 0;
+        $scope.newVehicle.tele_med = $('#tele_med').is(':checked') ? $('#tele_med').val() : 0;
+
+        $http.post(baseUrl + '/vehicles/validate', { ...$scope.newVehicle })
         .then(function (res) {
-            // console.log(res);
             $scope.formError = res.data;
-            console.log($scope.formError);
 
-            if ($scope.formError.success === 1) {
-                $('#frmNewTax').submit();
-            } else {
+            if ($scope.formError.success === 0) {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
+            } else {
+                $('#frmNewVehicle').submit();
             }
         })
         .catch(function (res) {
@@ -53,13 +72,14 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
     $scope.checkValidate = function (field) {
         var status = false;
 
-        status = ($scope.formError && $scope.newTax[field] === '') ? true : false;
+        if($scope.formError) {
+            status = ($scope.formError.errors.hasOwnProperty(field) && $scope.newVehicle[field] === '') ? true : false;
+        }
 
         return status;
     }
 
     $scope.vehicleStatus = 0;
-
     $scope.showVehicleListWithStatus = function(status) {
         console.log(status);
         

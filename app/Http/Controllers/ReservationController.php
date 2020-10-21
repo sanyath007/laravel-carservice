@@ -125,7 +125,6 @@ class ReservationController extends Controller
 
     public function store (Request $request)
     {
-        // var_dump($request);
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 

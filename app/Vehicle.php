@@ -22,7 +22,7 @@ class Vehicle extends Model
 
     public function method()
     {
-        return $this->belongsTo('App\PurchaseMothod', 'purchase_mothod', 'id');
+        return $this->belongsTo('App\PurchasedMethod', 'purchased_method', 'method_id');
     }
 
     public function manufacturer()

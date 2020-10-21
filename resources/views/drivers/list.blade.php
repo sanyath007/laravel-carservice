@@ -27,7 +27,8 @@
             <th style="width: 12%; text-align: center;">ผ่านการอบรม EMR เมื่อ</th>
             <th style="width: 6%; text-align: center;">Actions</th>
           </tr>
-          {{ $row = 0 }}
+
+          <?php $row = 0; ?>
           @foreach($drivers as $driver)
           <tr>
             <td style=" text-align: center;">{{ ++$row }}</td>
@@ -46,6 +47,7 @@
             </td>
           </tr>
           @endforeach
+          
         </table>
       </div>
     </div>

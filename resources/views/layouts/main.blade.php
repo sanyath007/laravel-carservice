@@ -58,6 +58,7 @@
 	<script src="{{ asset('/js/taxCtrl.js') }}"></script>
 	<script src="{{ asset('/js/fuelCtrl.js') }}"></script>
 	<script src="{{ asset('/js/reportCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/driverCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/actCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/surveyCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/preparedCtrl.js') }}"></script>

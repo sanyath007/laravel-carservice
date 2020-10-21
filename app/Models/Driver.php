@@ -15,6 +15,11 @@ class Driver extends Model
       return $this->belongsTo('App\User', 'person_id', 'person_id');
   }
 
+  public function licenseType()
+  {
+      return $this->belongsTo('App\LicenseType', 'license_type', 'license_type_id');
+  }
+
   public function reservation()
   {
       return $this->hasMany('App\Reservations', 'driver_id', 'driver_id');

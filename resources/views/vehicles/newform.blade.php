@@ -24,8 +24,8 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_no')}">
-                        <label for="doc_no">เลขรถ <span style="color: red;">*</span></label>
-                        <input type="text" id="doc_no" name="vehicle_no" ng-model="newVehicle.vehicle_no" class="form-control">
+                        <label for="vehicle_no">เลขรถ </label>
+                        <input type="text" id="vehicle_no" name="vehicle_no" ng-model="newVehicle.vehicle_no" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('vehicle_no')"></span>
                         <span class="help-block" ng-show="checkValidate('vehicle_no')">กรุณาระบุเลขรถ</span>
                     </div>
@@ -34,11 +34,42 @@
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('purchasedDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('purchased_date')}">
                         <label for="purchased_date">วันที่ซื้อ <span style="color: red;">*</span></label>
-                        <input type="text" id="purchased_date" name="purchased_date" ng-model="newVehicle.purchasedDate" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('purchasedDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('purchasedDate')">กรุณาเลือกวันที่ซื้อ</span>
+                        <input type="text" id="purchased_date" name="purchased_date" ng-model="newVehicle.purchased_date" class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('purchased_date')"></span>
+                        <span class="help-block" ng-show="checkValidate('purchased_date')">กรุณาเลือกวันที่ซื้อ</span>
+                    </div>
+                </div>
+                <!-- right column -->
+            </div><!-- end row -->
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('manufacturer')}">
+                        <label class="control-label" for="manufacturer">
+                            ยีห้อ <span style="color: red;">*</span>
+                        </label>
+                        <select id="manufacturer" name="manufacturer" ng-model="newVehicle.manufacturer" class="form-control">
+                            <option value="">-- กรุณาเลือกยีห้อ --</option>
+                            @foreach ($manufacturers as $manufacturer)
+                                <option value="{{ $manufacturer->manufacturer_id }}">
+                                    {{ $manufacturer->manufacturer_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="help-block" ng-show="checkValidate('manufacturer')">กรุณาเลือกยีห้อ</span>                        
+                    </div>
+                </div>
+                <!-- left column -->
+        
+                <!-- right column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('model')}">
+                        <label for="model">รุ่น <span style="color: red;">*</span></label>
+                        <input type="text" id="model" name="model" ng-model="newVehicle.model" class="form-control">
+                        <span class="help-block" ng-show="checkValidate('model')">กรุณาระบุรุ่น</span>
                     </div>
                 </div>
                 <!-- right column -->
@@ -59,7 +90,7 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('year')}">
-                        <label for="insurance_date">ปีรถ <span style="color: red;">*</span></label>
+                        <label for="year">ปีรถ <span style="color: red;">*</span></label>
                         <input type="text" id="year" name="year" ng-model="newVehicle.year" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('year')"></span>
                         <span class="help-block" ng-show="checkValidate('year')">กรุณาระบุปีรถ</span>
@@ -71,22 +102,22 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('engineNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('engine_no')}">
                         <label for="engine_no">เลขที่เครื่องยนต์ <span style="color: red;">*</span></label>
-                        <input type="text" id="engine_no" name="engine_no" ng-model="newVehicle.engineNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('engineNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('engineNo')">กรุณาระบุเลขที่เครื่องยนต์</span>
+                        <input type="text" id="engine_no" name="engine_no" ng-model="newVehicle.engine_no" class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('engine_no')"></span>
+                        <span class="help-block" ng-show="checkValidate('engine_no')">กรุณาระบุเลขที่เครื่องยนต์</span>
                     </div>
                 </div>
                 <!-- left column -->
                 
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('chassisNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('chassis_no')}">
                         <label for="chassis_no">เลขที่ตัวถัง <span style="color: red;">*</span></label>
-                        <input type="text" id="chassis_no" name="chassis_no" ng-model="newVehicle.chassisNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('chassisNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('chassisNo')">กรุณาระบุเลขที่ตัวถัง</span>
+                        <input type="text" id="chassis_no" name="chassis_no" ng-model="newVehicle.chassis_no" class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('chassis_no')"></span>
+                        <span class="help-block" ng-show="checkValidate('chassis_no')">กรุณาระบุเลขที่ตัวถัง</span>
                     </div>
                 </div>
                 <!-- right column -->
@@ -105,11 +136,11 @@
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('fuelType')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('fuel_type')}">
                         <label class="control-label" for="fuel_type">
                             ประเภทน้ำมันเชื้อเพลิง <span style="color: red;">*</span>
                         </label>
-                        <select id="fuel_type" name="fuel_type" ng-model="newVehicle.fuelType" class="form-control">
+                        <select id="fuel_type" name="fuel_type" ng-model="newVehicle.fuel_type" class="form-control">
                             <option value="">-- กรุณาเลือกประเภทน้ำมันเชื้อเพลิง --</option>
                             @foreach ($fuelTypes as $fuel)
                                 <option value="{{ $fuel->fuel_type_id }}">
@@ -117,7 +148,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <span class="help-block" ng-show="checkValidate('fuelType')">กรุณาเลือกประเภทน้ำมันเชื้อเพลิง</span>                        
+                        <span class="help-block" ng-show="checkValidate('fuel_type')">กรุณาเลือกประเภทน้ำมันเชื้อเพลิง</span>                        
                     </div>
                 </div>
                 <!-- right column -->
@@ -126,22 +157,60 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('regNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_cate')}">
+                        <label for="vehicle_cate">ชนิดรถ <span style="color: red;">*</span></label>
+                        <select id="vehicle_cate" name="vehicle_cate" ng-model="newVehicle.vehicle_cate" class="form-control">
+                            <option value="">-- กรุณาเลือกชนิดรถ --</option>
+                            @foreach ($vCates as $cate)
+                                <option value="{{ $cate->vehicle_cate_id }}">
+                                    {{ $cate->vehicle_cate_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="help-block" ng-show="checkValidate('vehicle_cate')">กรุณาเลือกชนิดรถ</span>
+                    </div>
+                </div>
+                <!-- left column -->
+        
+                <!-- right column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_type')}">
+                        <label class="control-label" for="vehicle_type">
+                            ประเภทการใช้งาน <span style="color: red;">*</span>
+                        </label>
+                        <select id="vehicle_type" name="vehicle_type" ng-model="newVehicle.vehicle_type" class="form-control">
+                            <option value="">-- กรุณาเลือกประเภทการใช้งาน --</option>
+                            @foreach ($vTypes as $type)
+                                <option value="{{ $type->vehicle_type_id }}">
+                                    {{ $type->vehicle_type_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="help-block" ng-show="checkValidate('vehicle_type')">กรุณาเลือกประเภทการใช้งาน</span>                        
+                    </div>
+                </div>
+                <!-- right column -->
+            </div><!-- end row -->
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_no')}">
                         <label for="reg_no">เลขทะเบียน <span style="color: red;">*</span></label>
-                        <input type="text" id="reg_no" name="reg_no" ng-model="newVehicle.regNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('regNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('regNo')">กรุณาระบุเลขทะเบียน</span>
+                        <input type="text" id="reg_no" name="reg_no" ng-model="newVehicle.reg_no" class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('reg_no')"></span>
+                        <span class="help-block" ng-show="checkValidate('reg_no')">กรุณาระบุเลขทะเบียน</span>
                     </div>
                 </div>
                 <!-- left column -->
 
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('regChw')}">
-                        <label class="control-label" for="regChw">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_chw')}">
+                        <label class="control-label" for="reg_chw">
                             จังหวัด <span style="color: red;">*</span>
                         </label>
-                        <select id="reg_chw" name="reg_chw" ng-model="newVehicle.regChw" class="form-control">
+                        <select id="reg_chw" name="reg_chw" ng-model="newVehicle.reg_chw" class="form-control">
                             <option value="">-- กรุณาเลือกจังหวัด --</option>
                             @foreach ($changwats as $changwat)
                                 <option value="{{ $changwat->chw_id }}">
@@ -149,7 +218,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <span class="help-block" ng-show="checkValidate('regChw')">กรุณาเลือกจังหวัด</span>                        
+                        <span class="help-block" ng-show="checkValidate('reg_chw')">กรุณาเลือกจังหวัด</span>                        
                     </div>
                 </div>
                 <!-- right column -->
@@ -158,11 +227,11 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('regDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_date')}">
                         <label for="reg_date">วันที่จดทะเบียน <span style="color: red;">*</span></label>
-                        <input type="text" id="reg_date" name="reg_date" ng-model="newVehicle.regDate" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('regDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('regDate')">กรุณาเลือกวันที่จดทะเบียน</span>
+                        <input type="text" id="reg_date" name="reg_date" ng-model="newVehicle.reg_date" class="form-control">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('reg_date')"></span>
+                        <span class="help-block" ng-show="checkValidate('reg_date')">กรุณาเลือกวันที่จดทะเบียน</span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -196,9 +265,9 @@
                         </label>
                         <select id="method" name="method" ng-model="newVehicle.method" class="form-control">
                             <option value="">-- กรุณาเลือกประเภทการได้มา --</option>
-                            @foreach ($venders as $vender)
-                                <option value="{{ $vender->vender_id }}">
-                                    {{ $vender->vender_name }}
+                            @foreach ($methods as $method)
+                                <option value="{{ $method->method_id }}">
+                                    {{ $method->method_name }}
                                 </option>
                             @endforeach
                         </select>
@@ -229,28 +298,28 @@
                 <div class="col-md-9">
                     <div style="display: flex; justify-content: space-around;">
                         <span>
-                            <input type="checkbox" id="cam_front" name="cam_front"> กล้องหน้า
+                            <input type="checkbox" id="cam_front" name="cam_front" value="1"> กล้องหน้า
                         </span>
                         <span>
-                            <input type="checkbox" id="cam_back" name="cam_back"> กล้องหลัง
+                            <input type="checkbox" id="cam_back" name="cam_back" value="1"> กล้องหลัง
                         </span>
                         <span>
-                            <input type="checkbox" id="cam_driver" name="cam_driver"> กล้องคนขับ
+                            <input type="checkbox" id="cam_driver" name="cam_driver" value="1"> กล้องคนขับ
                         </span>
                         <span>
-                            <input type="checkbox" id="gps" name="gps"> ระบบ GPS
+                            <input type="checkbox" id="gps" name="gps" value="1"> ระบบ GPS
                         </span>
                         <span>
-                            <input type="checkbox" id="radio_com" name="radio_com"> วิทยุสื่อสาร
+                            <input type="checkbox" id="radio_com" name="radio_com" value="1"> วิทยุสื่อสาร
                         </span>
                         <span>
-                            <input type="checkbox" id="light" name="light"> ไฟวับวาบ
+                            <input type="checkbox" id="light" name="light" value="1"> ไฟวับวาบ
                         </span>
                         <span>
-                            <input type="checkbox" id="siren" name="siren"> ไซเรน
+                            <input type="checkbox" id="siren" name="siren" value="1"> ไซเรน
                         </span>
                         <span>
-                            <input type="checkbox" id="tele_med" name="tele_med"> ระบบ Tele Med
+                            <input type="checkbox" id="tele_med" name="tele_med" value="1"> ระบบ Tele Med
                         </span>
                     </div>
                 </div>
@@ -279,7 +348,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="attachfile">รูป</label>
-                        <input type="file" id="attachfile" name="attachfile" class="form-control" placeholder="สถานที่&hellip;" ng-keyup="queryLocation($event)" autocomplete="off" ng-keypress="enterToAddLocation($event)">
+                        <input type="file" id="attachfile" name="attachfile" class="form-control" placeholder="อัพโหลดรูป&hellip;" autocomplete="off">
                     </div>
 
                 </div>
@@ -306,19 +375,12 @@
 
                 $('#purchased_date').datetimepicker({
                     useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                })
-                .on("dp.change", function(e) {
-                    let new_date = moment(e.date, "DD-MM-YYYY").add(1, 'years');
-                    console.log(new_date);
-                    $('#insurance_renewal_date').data('DateTimePicker').date(new_date);
-                }); 
+                    format: 'YYYY-MM-DD'
+                });
 
                 $('#reg_date').datetimepicker({
                     useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
+                    format: 'YYYY-MM-DD'
                 });
             });
         </script>

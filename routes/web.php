@@ -51,7 +51,8 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/vehicles/add', 'VehicleController@store');
     Route::get('/vehicles/edit/{id}', 'VehicleController@edit');
     Route::post('/vehicles/update', 'VehicleController@update');
-    Route::post('/vehicles/delete', 'VehicleController@delete');
+    Route::post('/vehicles/delete', 'VehicleController@delete');    
+    Route::post('/vehicles/validate', 'VehicleController@formValidate');
     Route::get('/ajaxvehicles', 'VehicleController@ajaxvehicles');
 
 
@@ -60,7 +61,8 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/drivers/add', 'DriverController@store');
     Route::get('/drivers/edit/{id}', 'DriverController@edit');
     Route::post('/drivers/update', 'DriverController@update');
-    Route::post('/drivers/delete', 'DriverController@delete');
+    Route::post('/drivers/delete', 'DriverController@delete');    
+    Route::post('/drivers/validate', 'DriverController@formValidate');
 
 
     Route::get('/reserve/new', 'ReservationController@create');

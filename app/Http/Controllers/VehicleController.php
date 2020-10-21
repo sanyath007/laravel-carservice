@@ -15,9 +15,45 @@ use App\Vender;
 use App\VehicleCate;
 use App\VehicleType;
 use App\VehicleMileage;
+use App\PurchasedMethod;
 
 class VehicleController extends Controller
 {
+    public function formValidate (Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'purchased_date' => 'required',
+            'manufacturer' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'year' => 'required',
+            'engine_no' => 'required',
+            'chassis_no' => 'required',
+            'capacity' => 'required',
+            'fuel_type' => 'required',
+            'vehicle_cate' => 'required',
+            'vehicle_type' => 'required',
+            'reg_no' => 'required',
+            'reg_chw' => 'required',
+            'reg_date' => 'required',
+            'vender' => 'required',
+            'method' => 'required',
+            'cost' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'success' => 0,
+                'errors' => $validator->getMessageBag()->toArray(),
+            ];
+        } else {
+            return [
+                'success' => 1,
+                'errors' => $validator->getMessageBag()->toArray(),
+            ];
+        }
+    }
+
     public function index () 
     {
         $status = (Input::get('vehicleStatus')=='') ? 0 : Input::get('vehicleStatus');
@@ -56,8 +92,8 @@ class VehicleController extends Controller
                                 ->paginate(12);
         }
 
+        // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
         return view('vehicles.list', [
-            // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
             'vehicles' => $vehicles,
             'vehicleStatus' => $status,
         ]);
@@ -104,11 +140,16 @@ class VehicleController extends Controller
             'changwats' => Changwat::all(),
             'manufacturers' => Manufacturer::all(),
             'venders' => Vender::all(),
+            'methods' => PurchasedMethod::all(),
         ]);
     }
 
     public function store (Request $req)
     {
+        /** Current date */
+        $d = new \DateTime(date('Y-m-d H:i:s'));
+        $diffHours = new \DateInterval('PT7H');
+
         /** Upload attach file */
         $filename = '';
         if ($file = $req->file('attachfile')) {
@@ -120,7 +161,7 @@ class VehicleController extends Controller
         $newVehicle->vehicle_no = $req['vehicle_no'];   
         $newVehicle->vehicle_cate = $req['vehicle_cate'];
         $newVehicle->vehicle_type = $req['vehicle_type'];
-        $newVehicle->menufacturer = $req['menufacturer'];
+        $newVehicle->manufacturer_id = $req['manufacturer'];
         $newVehicle->model = $req['model'];
         $newVehicle->color = $req['color'];
         $newVehicle->year = $req['year'];
@@ -131,23 +172,26 @@ class VehicleController extends Controller
         $newVehicle->reg_no = $req['reg_no'];
         $newVehicle->reg_chw = $req['reg_chw'];
         $newVehicle->reg_date = $req['reg_date'];
-        $newVehicle->vender = $req['vender'];
-        $newVehicle->purchased_method = $req['purchased_method'];
+        $newVehicle->vender_id = $req['vender'];
+        $newVehicle->purchased_method = $req['method'];
         $newVehicle->purchased_date = $req['purchased_date'];
-        $newVehicle->cam_front = $req['cam_front'];
-        $newVehicle->cam_back = $req['cam_back'];
-        $newVehicle->cam_driver = $req['cam_driver'];
-        $newVehicle->gps = $req['gps'];
-        $newVehicle->siren = $req['siren'];
-        $newVehicle->light = $req['light'];
-        $newVehicle->radio_com = $req['radio_com'];
-        $newVehicle->tele_med = $req['tele_med'];
+        $newVehicle->date_in = $d->add($diffHours);
+
+        /** Accessories */
+        $newVehicle->cam_front = $req['cam_front'] ? $req['cam_front'] : 0;
+        $newVehicle->cam_back = $req['cam_back'] ? $req['cam_back'] : 0;
+        $newVehicle->cam_driver = $req['cam_driver'] ? $req['cam_driver'] : 0;
+        $newVehicle->gps = $req['gps'] ? $req['gps'] : 0;
+        $newVehicle->siren = $req['siren'] ? $req['siren'] : 0;
+        $newVehicle->light = $req['light'] ? $req['light'] : 0;
+        $newVehicle->radio_com = $req['radio_com'] ? $req['radio_com'] : 0;
+        $newVehicle->tele_med = $req['tele_med'] ? $req['tele_med'] : 0;
         $newVehicle->remark = $req['remark'];
         $newVehicle->status = '1';
-        echo $newVehicle;
-        // if ($newVehicle->save()) {                            
-        //     return redirect('vehicles/list');
-        // }
+
+        if ($newVehicle->save()) {                            
+            return redirect('vehicles/list');
+        }
     }
 
     public function ajaxvehicles () 

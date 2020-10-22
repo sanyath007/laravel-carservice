@@ -1,9 +1,10 @@
 /**
  * ######################### Main #########################
  */
+
 .content {
     margin-top: 60px;
-    min-height: 480px;
+    min-height: 77vh;
 }
 
 .page__title {

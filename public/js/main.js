@@ -1,10 +1,17 @@
+var env = {};
+
+// Import variables if present (from env.js)
+if(window){  
+  Object.assign(env, window.__env);
+}
+
 var app = angular.module('app', ['xeditable','ngTagsInput','toaster','ngAnimate','angularModalService']);
 
 app.constant('CONFIG', {
     'APP_NAME' : 'Car Service',
     'APP_VERSION' : '1.0.0',
     'GOOGLE_ANALYTICS_ID' : '',
-    'BASE_URL' : window.location.protocol+ '//' +window.location.host+ '/carservice/public',
+    'BASE_URL' : env.baseUrl,
     'SYSTEM_LANGUAGE' : 'TH'
 });
 

@@ -87,7 +87,6 @@ app.controller('mainCtrl', function($scope, $http, toaster, ModalService, CONFIG
     }
 
     $scope.getView = function (view, element, $scope) {
-        console.log(view);
         console.log(view.type + '  ' + view.title)
         let monthName = {
             "มกราคม":01, "กุมภาพันธ์":02, "มีนาคม":03, "เมษายน":04, "พฤษภาคม":05, "มิถุนายน":06,

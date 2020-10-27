@@ -10,6 +10,7 @@
 
 	<title>Car Service</title>
 
+	<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- Compiled and minified CSS -->
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> -->
@@ -19,8 +20,8 @@
 	<link rel="stylesheet" href="{{ asset('/bower/ng-tags-input/ng-tags-input.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/bower/AngularJS-Toaster/toaster.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/bower/angular-xeditable/dist/css/xeditable.css') }}">
-	<!-- <link href="{{ asset('/css/bootstrap-tagsinput.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet"> -->
+	<!-- <link rel="stylesheet" href="{{ asset('/css/bootstrap-tagsinput.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/bootstrap-tagsinput-typeahead.css') }}"> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
 	<link rel="stylesheet" href="{{ asset('/css/main.css') }}">
 
@@ -51,14 +52,14 @@
 	
 	<script src="{{ asset('/js/env.js') }}"></script>
 	<script src="{{ asset('/js/main.js') }}"></script>
-	<script src="{{ asset('/js/mainCtrl.js') }}"></script>
-	<script src="{{ asset('/js/reserveCtrl.js') }}"></script>
-	<script src="{{ asset('/js/assignCtrl.js') }}"></script>
-	<script src="{{ asset('/js/maintainedCtrl.js') }}"></script>
-	<script src="{{ asset('/js/insuranceCtrl.js') }}"></script>
-	<script src="{{ asset('/js/taxCtrl.js') }}"></script>
-	<script src="{{ asset('/js/fuelCtrl.js') }}"></script>
-	<script src="{{ asset('/js/reportCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/mainCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/reserveCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/assignCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/maintainedCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/insuranceCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/taxCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/fuelCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/reportCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/driverCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/actCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/surveyCtrl.js') }}"></script>

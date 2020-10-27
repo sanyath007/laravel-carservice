@@ -26,7 +26,7 @@
             <form action="{{ url('/report/sum-fuel') }}" method="GET" class="form-inline">
                 <div class="form-group">
                     <label>ปีงบประมาณ :</label>
-                    <input id="selectMonth" name="selectMonth" value="{{ $year }}" class="form-control"></input>
+                    <input id="selectMonth" name="selectMonth" value="{{ $year }}" class="form-control" autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary">แสดง</button>

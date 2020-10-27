@@ -25,7 +25,7 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label>ปีงบประมาณ :</label>
-                    <input id="selectMonth" name="selectMonth" value="{{ $year }}" class="form-control"></input>
+                    <input id="selectMonth" name="selectMonth" value="{{ $year }}" class="form-control" autocomplete="off">
                 </div>
 
                 <button ng-click="getMaintainVehicleData()" class="btn btn-primary">แสดง</button>

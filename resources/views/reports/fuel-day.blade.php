@@ -24,7 +24,7 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label>ปีงบประมาณ :</label>
-                    <input id="selectMonth" name="selectMonth" class="form-control"></input>
+                    <input id="selectMonth" name="selectMonth" class="form-control" autocomplete="off">
                 </div>
 
                 <button ng-click="getFuelDayData()" class="btn btn-primary">แสดง</button>

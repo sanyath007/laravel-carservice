@@ -1,8 +1,5 @@
 app.controller('reportCtrl', function(CONFIG, $scope, limitToFilter, $scope, ReportService) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-    
     $scope.pieOptions = {};
     $scope.barOptions = {};
 

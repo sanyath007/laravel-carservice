@@ -1,9 +1,7 @@
 app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-/** ################################################################################## */
     $scope._ = _;
+    
     $scope.prepared = {
         prepared_date: '',
         prepared_time: '',
@@ -55,7 +53,7 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
     //     };
     //     console.log(req_data);
 
-    //     $http.post(baseUrl + '/fuel/validate', req_data)
+    //     $http.post(CONFIG.baseUrl + '/fuel/validate', req_data)
     //     .then(function (res) {
     //         // console.log(res);
     //         $scope.formError = res.data;
@@ -139,7 +137,7 @@ app.controller('preparedCtrl', function($scope, $http, toaster, ModalService, CO
     // $scope.frmVehicle = null;
     // $scope.frmVehicleDetail = '';
     // $scope.popUpAllVehicle = function () {
-    //     $http.get(baseUrl + '/ajaxvehicles')
+    //     $http.get(CONFIG.baseUrl + '/ajaxvehicles')
     //     .then(function (res) {
     //         console.log(res);
     //         $scope.frmAllVehicles = res.data.vehicles;

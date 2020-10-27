@@ -1,8 +1,5 @@
 app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-/** ################################################################################## */
 	$scope._ = _;
 	
 	$scope.selectedVehicle = '';
@@ -43,7 +40,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 
         console.log($scope.selectedVehicle);
 
-		$http.get(baseUrl + '/maintained/ajaxchecklist/' + $('#check_date').val() + '/' + $scope.selectedVehicle)
+		$http.get(CONFIG.baseUrl + '/maintained/ajaxchecklist/' + $('#check_date').val() + '/' + $scope.selectedVehicle)
 	    .then(function (res) {
 	        let checkList = res.data.dailycheck;
         	console.log(checkList);
@@ -150,7 +147,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 	$scope.frmVehicle = null;
 	$scope.frmVehicleDetail = '';
 	$scope.popUpAllVehicle = function () {
-		$http.get(baseUrl + '/ajaxvehicles')
+		$http.get(CONFIG.baseUrl + '/ajaxvehicles')
 	    .then(function (res) {
 	    	console.log(res);
 	    	$scope.frmAllVehicles = res.data.vehicles;

@@ -1,8 +1,5 @@
 app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-/** ################################################################################## */
     $scope._ = _;
 
     /** FORM VALIDATION */
@@ -40,7 +37,7 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
         $scope.newDriver.is_certificated = $('#is_certificated').is(':checked') ? $('#is_certificated').val() : 0;
         $scope.newDriver.is_emr = $('#is_emr').is(':checked') ? $('#is_emr').val() : 0;
 
-        $http.post(baseUrl + '/drivers/validate', { ...$scope.newDriver })
+        $http.post(CONFIG.baseUrl + '/drivers/validate', { ...$scope.newDriver })
         .then(function (res) {
             $scope.formError = res.data;
             console.log($scope.formError)

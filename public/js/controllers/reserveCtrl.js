@@ -1,8 +1,5 @@
 app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-/** ################################################################################## */
     $scope.locationQuery = [];
     $scope.locations = [];
     $scope.locationIds = '';
@@ -28,7 +25,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
             $scope.locationItemSelected = $scope.locationItemSelected + 1;
             $scope.setLocationItemSelected();
         } else {
-            $http.get(baseUrl + '/location/ajaxquery/' + keyword)
+            $http.get(CONFIG.baseUrl + '/location/ajaxquery/' + keyword)
             .then(function (data) {
                 // console.log(data);
                 $scope.locationQuery = data.data;
@@ -158,7 +155,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
             $scope.setPersonItemSelected();
         } else {
             console.log('keyword = ' + keyword);
-            $http.get(baseUrl + '/ajaxperson/' + keyword)
+            $http.get(CONFIG.baseUrl + '/ajaxperson/' + keyword)
             .then(function (data) {
                 // console.log(data);
                 $scope.persons = data.data;
@@ -268,7 +265,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
         }
 
         console.log(data);       
-        $http.post(baseUrl + '/location/ajaxadd', data)
+        $http.post(CONFIG.baseUrl + '/location/ajaxadd', data)
         .then(function (data) {
             console.log(data);
             if (data.status === 200) {
@@ -291,7 +288,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
     }
 
     $scope.showNewLocationForm = function (event) {        
-        $http.get(baseUrl + '/location/ajaxchangwat')
+        $http.get(CONFIG.baseUrl + '/location/ajaxchangwat')
         .then(function (data) {
             $scope.changwats = data.data;
             console.log($scope.changwats);
@@ -302,7 +299,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
 
     $scope.getAmphur = function (event, changwat) {
         console.log(changwat);
-        $http.get(baseUrl + '/location/ajaxamphur/' + changwat)
+        $http.get(CONFIG.baseUrl + '/location/ajaxamphur/' + changwat)
         .then(function (data) {
             $scope.amphurs = data.data;
             console.log($scope.amphurs);
@@ -311,7 +308,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
 
     $scope.getTambon = function (event, amphur) {
         console.log(amphur);
-        $http.get(baseUrl + '/location/ajaxtambon/' + amphur)
+        $http.get(CONFIG.baseUrl + '/location/ajaxtambon/' + amphur)
         .then(function (data) {
             $scope.tambons = data.data;
             console.log($scope.tambons);
@@ -321,7 +318,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
     $scope.wards = [];
     $scope.getWard = function (event, department) {
         console.log(event);
-        $http.get(baseUrl + '/reserve/ajaxward/' + department)
+        $http.get(CONFIG.baseUrl + '/reserve/ajaxward/' + department)
         .then(function (res) {
             $scope.wards = res.data;
             console.log($scope.wards);
@@ -354,7 +351,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
         };
         console.log(req_data);
 
-        $http.post(baseUrl + '/reserve/validate', req_data)
+        $http.post(CONFIG.baseUrl + '/reserve/validate', req_data)
         .then(function (res) {
             // console.log(res);
             $scope.formError = res.data;
@@ -414,7 +411,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
 /** ################################################################################## */
 	/** EDIT ACTION */
 	$scope.loadReservationData = function (id) {
-		$http.get(baseUrl + '/reserve/ajaxedit/' + id)
+		$http.get(CONFIG.baseUrl + '/reserve/ajaxedit/' + id)
         .then(function (res) {
             console.log(res);
 			
@@ -433,7 +430,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
 		    console.log($scope.wards);
 
             /*ดึงข้อมูล passenger มาแสดงรายการ passenger*/
-			$http.get(baseUrl + '/ajaxpassenger/' + id + '/1')
+			$http.get(CONFIG.baseUrl + '/ajaxpassenger/' + id + '/1')
 	        .then(function (res) {
 	            // console.log(res.data);
 	            $scope.passengerList = res.data[1];
@@ -444,7 +441,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
 	        // console.log(l);
 	        angular.forEach(l, function(l) {
 		        // console.log(l);
-	            $http.get(baseUrl + '/location/ajaxlocation/' + l)
+	            $http.get(CONFIG.baseUrl + '/location/ajaxlocation/' + l)
 		        .then(function (res) {
 		            // console.log(res);
 		            $scope.locations.push({
@@ -477,7 +474,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
     $scope.showDetail = function (id) {
         console.log(id);
         $scope.strLocation = '';
-        $http.get(baseUrl + '/reserve/ajaxdetail/' + id)
+        $http.get(CONFIG.baseUrl + '/reserve/ajaxdetail/' + id)
         .then(function (res) {
             console.log(res);
             $scope.reservation = res.data.reservation;
@@ -486,7 +483,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
             
             let arrLocations = $scope.reservation.location.split(',');
             angular.forEach(arrLocations, function(l) {
-                $http.get(baseUrl + '/location/ajaxlocation/' + l)
+                $http.get(CONFIG.baseUrl + '/location/ajaxlocation/' + l)
                 .then(function (res) {
                     console.log(res);
                     $scope.strLocation += res.data.name + ', ';

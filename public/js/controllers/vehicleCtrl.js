@@ -1,8 +1,5 @@
 app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
-/** ################################################################################## */
     $scope._ = _;
 
     /** FORM VALIDATION */
@@ -54,7 +51,7 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
         $scope.newVehicle.siren = $('#siren').is(':checked') ? $('#siren').val() : 0;
         $scope.newVehicle.tele_med = $('#tele_med').is(':checked') ? $('#tele_med').val() : 0;
 
-        $http.post(baseUrl + '/vehicles/validate', { ...$scope.newVehicle })
+        $http.post(CONFIG.baseUrl + '/vehicles/validate', { ...$scope.newVehicle })
         .then(function (res) {
             $scope.formError = res.data;
 

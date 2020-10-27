@@ -1,8 +1,5 @@
 app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL)
-    let baseUrl = CONFIG.BASE_URL
-/** ################################################################################## */
 	// let dateNow = new Date()
 	// $scope.assignDate = moment(dateNow)
 	$scope.reservations = []
@@ -24,7 +21,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 	$scope.loadVehicleIsIdle = function (reserve_date) {
 		console.log($('#reserve_date').val())
 		console.log($scope.shifts)
-		$http.get(baseUrl + '/assign/ajaxassign/' + $('#reserve_date').val() + '/' + $scope.shifts)
+		$http.get(CONFIG.baseUrl + '/assign/ajaxassign/' + $('#reserve_date').val() + '/' + $scope.shifts)
 		.then(function (res) {
 			console.log(res.data)
 			$scope.reservations = res.data.reservations
@@ -70,7 +67,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 			$('#url').val(url)
 
 			/** หำหนดค่า url ใน attribute action ของ form */
-			$('#mileage-form').attr('action', baseUrl + url)
+			$('#mileage-form').attr('action', CONFIG.baseUrl + url)
 			console.log($('#mileage-form').attr('action'))
 		} else {
 			event.preventDefault()
@@ -88,7 +85,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 			console.log(url)
 
 			if (url == '/assign/drivearrived') {
-				$http.get(baseUrl + '/assign/ajaxstartmileage/' + $('#id').val())
+				$http.get(CONFIG.baseUrl + '/assign/ajaxstartmileage/' + $('#id').val())
 				.then ((res) => {
 					console.log($('#mileage').val() + ' > ' + res.data)
 					console.log(parseInt($('#mileage').val()) > parseInt(res.data))
@@ -97,7 +94,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 						$('#mileage-form').submit()
 
 						/** บันทึกข้อมูลแบบ AJAX */
-						// $http.post(baseUrl + url, reqData)
+						// $http.post(CONFIG.baseUrl + url, reqData)
 						// .then ((res) => {
 							// 	console.log(res)
 
@@ -118,7 +115,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 				$('#mileage-form').submit()
 
 				/** บันทึกข้อมูลแบบ AJAX */
-				// $http.post(baseUrl + url, reqData)
+				// $http.post(CONFIG.baseUrl + url, reqData)
 				// .then ((res) => {
 					// 	console.log(res)
 
@@ -165,7 +162,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 			// 	vehicle: $('#vehicle').val(),
 			// }
 
-			// $http.post(baseUrl + '/assign/ajaxchange', reqData)
+			// $http.post(CONFIG.baseUrl + '/assign/ajaxchange', reqData)
 			// .then( res => {
 			// 	console.log(res)
 			// })
@@ -200,7 +197,7 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
         }
         console.log(data);  
 
-        $http.post(baseUrl + '/assign/ajaxadd_reservation', data)
+        $http.post(CONFIG.baseUrl + '/assign/ajaxadd_reservation', data)
         .then(function (res) {
             console.log(res);
             // if (res.status === 200) {

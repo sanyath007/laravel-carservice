@@ -1,63 +1,43 @@
-app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
+app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
-    console.log(CONFIG.BASE_URL);
-    let baseUrl = CONFIG.BASE_URL;
     $scope._ = _;
-/** ################################################################################## */
+
     /** FORM VALIDATION */
     $scope.formError = null;
-    $scope.newInsurance = {
+    $scope.newTax = {
         docNo: '',
         docDate: '',
-        vehicleId: '',
-        insuranceNo: '',
-        company: '',
-        insuranceType: '',
-        insuranceDetail: '',
-        insuranceStartDate: '',
-        insuranceStartTime: '',
-        insuranceRenewalDate: '',
-        insuranceRenewalTime:'',
-        insuranceNet: '',
-        insuranceStamp: '',
-        insuranceVat: '',
-        insuranceTotal: ''
+        taxStartDate: '',
+        taxRenewalDate: '',
+        taxReceiptNo: '',
+        taxCharge: '',
     };
 
     $scope.formValidate = function (event) {
         event.preventDefault();
 
-        $scope.newInsurance.docDate = $('#doc_date').val();
-        $scope.newInsurance.insuranceStartDate = $('#insurance_start_date').val();
-        $scope.newInsurance.insuranceRenewalDate = $('#insurance_renewal_date').val();
+        $scope.newTax.docDate = $('#doc_date').val();
+        $scope.newTax.taxStartDate = $('#tax_start_date').val();
+        $scope.newTax.taxRenewalDate = $('#tax_renewal_date').val();
         
         var req_data = {
-            doc_no: $scope.newInsurance.docNo,
-            doc_date: $scope.newInsurance.docDate,
-            vehicle_id: $scope.newInsurance.vehicleId,
-            insurance_no: $scope.newInsurance.insuranceNo,
-            insurance_company_id: $scope.newInsurance.company,
-            insurance_type: $scope.newInsurance.insuranceType,
-            insurance_detail: $scope.newInsurance.insuranceDetail,
-            insurance_start_date: $scope.newInsurance.insuranceStartDate,
-            insurance_start_time: $scope.newInsurance.insuranceStartTime,
-            insurance_renewal_date: $scope.newInsurance.insuranceRenewalDate,
-            insurance_renewal_time: $scope.newInsurance.insuranceRenewalTime,
-            insurance_net: $scope.newInsurance.insuranceNet,
-            insurance_stamp: $scope.newInsurance.insuranceStamp,
-            insurance_vat: $scope.newInsurance.insuranceVat,
-            insurance_total: $scope.newInsurance.insuranceTotal,
+            doc_no: $scope.newTax.docNo,
+            doc_date: $scope.newTax.docDate,
+            tax_start_date: $scope.newTax.taxStartDate,
+            tax_renewal_date: $scope.newTax.taxRenewalDate,
+            tax_receipt_no: $scope.newTax.taxReceiptNo,
+            tax_charge: $scope.newTax.taxCharge,
         };
         console.log(req_data);
 
-        $http.post(baseUrl + '/insurance/validate', req_data)
+        $http.post(CONFIG.baseUrl + '/tax/validate', req_data)
         .then(function (res) {
             // console.log(res);
             $scope.formError = res.data;
             console.log($scope.formError);
 
             if ($scope.formError.success === 1) {
-                $('#frmNewInsurance').submit();
+                $('#frmNewTax').submit();
             } else {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             }
@@ -70,7 +50,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     $scope.checkValidate = function (field) {
         var status = false;
 
-        status = ($scope.formError && $scope.newInsurance[field] === '') ? true : false;
+        status = ($scope.formError && $scope.newTax[field] === '') ? true : false;
 
         return status;
     }
@@ -79,7 +59,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     $scope.frmVehicle = null;
     $scope.frmVehicleDetail = '';
     $scope.popUpAllVehicle = function () {
-        $http.get(baseUrl + '/ajaxvehicles')
+        $http.get(CONFIG.baseUrl + '/ajaxvehicles')
         .then(function (res) {
             console.log(res);
             $scope.frmAllVehicles = res.data.vehicles;

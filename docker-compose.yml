@@ -1,11 +1,13 @@
 version: "3.8"
 services:
-  web:
-    build: 
-      context: .
-      dockerfile: .docker/Dockerfile
+  car_app:
     image: leandrosilva/php5.6-apache
     ports:
-      - 8080:80
+      - "8080:80"
     volumes:
-      -.:/var/www/html
+      - .:/var/www/html
+
+  car_db:
+    image: mariadb
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql

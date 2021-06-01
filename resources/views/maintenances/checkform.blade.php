@@ -392,7 +392,7 @@
         
         <!-- Modal -->
         <div class="modal fade" id="dlgAllVehicle" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
@@ -422,7 +422,7 @@
                                         </td>
                                         <td>@{{   }}</td>
                                         <td>
-                                            <a class="btn btn-primary" ng-click="frmSetVehicle(vehicle)">
+                                            <a class="btn btn-primary btn-sm" ng-click="frmSetVehicle(vehicle)">
                                                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -431,7 +431,7 @@
                             </table>
                         </div>
 
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin: 0 auto;">
                             <li>
                                 <a ng-click="paginate($event, frmAllVehicles.path)" aria-label="First">
                                     <span aria-hidden="true">First</span>
@@ -444,7 +444,7 @@
                                     <span aria-hidden="true">Prev</span>
                                 </a>
                             </li>                         
-                           
+
                             <li ng-repeat="i in _.range(1, frmAllVehicles.last_page + 1)"
                                 ng-class="{ 'active': (frmAllVehicles.current_page === i) }">
                                 <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + i)">

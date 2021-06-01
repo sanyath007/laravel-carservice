@@ -18,14 +18,21 @@
             ทะเบียน {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}
         </span>
         
-        <a href="{{ url('/maintained/vehicleprint') }}/{{ $vehicle->vehicle_id }}" class="btn btn-success pull-right">
-            <i class="fa fa-print" aria-hidden="true"></i>
-            print
-        </a>
-
-        <a href="{{ url('/maintained/new') }}/{{ $vehicle->vehicle_id }}" class="btn btn-primary pull-right">
+        <a
+            href="{{ url('/maintained/new') }}/{{ $vehicle->vehicle_id }}"
+            class="btn btn-primary pull-right"
+            style="margin-left: 8px;"
+        >
             <i class="fa fa-plus" aria-hidden="true"></i>
             New
+        </a>
+
+        <a 
+            href="{{ url('/maintained/vehicleprint') }}/{{ $vehicle->vehicle_id }}"
+            class="btn btn-success pull-right"
+        >
+            <i class="fa fa-print" aria-hidden="true"></i>
+            print
         </a>
     </div>
 

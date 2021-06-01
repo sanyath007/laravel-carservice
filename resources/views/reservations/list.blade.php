@@ -283,7 +283,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($reservations->currentPage() !== 1)
                     <li>
                         <a href="{{ $reservations->url($reservations->url(1)).'&searchdate='.$searchdate }}" aria-label="First">

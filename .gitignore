@@ -3,6 +3,7 @@
 /public/uploads/attachfiles/*
 /public/uploads/drivers/*
 /public/uploads/vehicles/*
+/public/uploads/*
 
 /storage/*.key
 /vendor

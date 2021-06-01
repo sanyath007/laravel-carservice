@@ -178,9 +178,30 @@
                             <?= (($reservation->status==5) ? '<span class="label label-danger">' .$reserveStatus[$reservation->status]. '</span>' : $reserveStatus[$reservation->status]); ?>
                         </td>
                         <td style="text-align: center;">
-                            @if (Auth::user()->person_id == $reservation->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                            @if (Auth::user()->person_id == $reservation->user_id || 
+                                Auth::user()->person_id == '1300200009261' || 
+                                Auth::user()->person_id == '3300101554160' || 
+                                Auth::user()->person_id == '3340700927877' || 
+                                Auth::user()->person_id == '1431100020874' || 
+                                Auth::user()->person_id == '3300100375865' || 
+                                Auth::user()->person_id == '3201000048759' || 
+                                Auth::user()->person_id == '3302000684566' || 
+                                Auth::user()->person_id == '1309900710679' || 
+                                Auth::user()->person_id == '5301100037355' ||
+                                Auth::user()->person_id == '1301800150364')
+
                                 @if ($reservation->status != '5')
-                                    @if (Auth::user()->person_id == $reservation->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                    @if (Auth::user()->person_id == $reservation->user_id || 
+                                        Auth::user()->person_id == '1300200009261' || 
+                                        Auth::user()->person_id == '3300101554160' || 
+                                        Auth::user()->person_id == '3340700927877' || 
+                                        Auth::user()->person_id == '1431100020874' || 
+                                        Auth::user()->person_id == '3300100375865' || 
+                                        Auth::user()->person_id == '3201000048759' || 
+                                        Auth::user()->person_id == '3302000684566' || 
+                                        Auth::user()->person_id == '1309900710679' || 
+                                        Auth::user()->person_id == '5301100037355' ||
+                                        Auth::user()->person_id == '1301800150364')
                                         <a  href="{{ url('/print/print.php') }} ?id={{ $reservation->id }}" 
                                             class="btn btn-success btn-xs"
                                             target="_blank"
@@ -195,7 +216,17 @@
                                         </a>
                                     @endif
                                 
-                                    @if (Auth::user()->person_id == $reservation->user_id || Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                                    @if (Auth::user()->person_id == $reservation->user_id || 
+                                        Auth::user()->person_id == '1300200009261' || 
+                                        Auth::user()->person_id == '3300101554160' || 
+                                        Auth::user()->person_id == '3340700927877' || 
+                                        Auth::user()->person_id == '1431100020874' || 
+                                        Auth::user()->person_id == '3300100375865' || 
+                                        Auth::user()->person_id == '3201000048759' || 
+                                        Auth::user()->person_id == '3302000684566' || 
+                                        Auth::user()->person_id == '1309900710679' || 
+                                        Auth::user()->person_id == '5301100037355' ||
+                                        Auth::user()->person_id == '1301800150364')
                                         <a  href="{{ url('/reserve/cancel/' . $reservation->id) }}" 
                                             ng-click="cancel($event, {{ $reservation->id }})"
                                             class="btn btn-primary btn-xs"
@@ -209,6 +240,7 @@
                                         </form>
                                     @endif
                                 @endif
+
                             @endif
 
                             @if (Auth::user()->person_id == '1300200009261')

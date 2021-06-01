@@ -31,7 +31,16 @@
                         </ul>
                     </li>
 
-                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                    @if (Auth::user()->person_id == '1300200009261' || 
+                        Auth::user()->person_id == '3300101554160' || 
+                        Auth::user()->person_id == '3340700927877' || 
+                        Auth::user()->person_id == '1431100020874' || 
+                        Auth::user()->person_id == '3300100375865' || 
+                        Auth::user()->person_id == '3201000048759' || 
+                        Auth::user()->person_id == '3302000684566' || 
+                        Auth::user()->person_id == '1309900710679' || 
+                        Auth::user()->person_id == '5301100037355' ||
+                        Auth::user()->person_id == '1301800150364')
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +73,9 @@
                         </ul>
                     </li>
 
-                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101621053')
+                    @if (Auth::user()->person_id == '1300200009261' || 
+                        Auth::user()->person_id == '3300101621053' ||
+                        Auth::user()->person_id == '1301800150364')
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +93,16 @@
 
                     @endif
 
-                    @if (Auth::user()->person_id == '1300200009261' || Auth::user()->person_id == '3300101554160' || Auth::user()->person_id == '3340700927877' || Auth::user()->person_id == '1431100020874' || Auth::user()->person_id == '3300100375865' || Auth::user()->person_id == '3201000048759' || Auth::user()->person_id == '3302000684566' || Auth::user()->person_id == '1309900710679' || Auth::user()->person_id == '5301100037355')
+                    @if (Auth::user()->person_id == '1300200009261' || 
+                        Auth::user()->person_id == '3300101554160' || 
+                        Auth::user()->person_id == '3340700927877' || 
+                        Auth::user()->person_id == '1431100020874' || 
+                        Auth::user()->person_id == '3300100375865' || 
+                        Auth::user()->person_id == '3201000048759' || 
+                        Auth::user()->person_id == '3302000684566' || 
+                        Auth::user()->person_id == '1309900710679' || 
+                        Auth::user()->person_id == '5301100037355' ||
+                        Auth::user()->person_id == '1301800150364')
                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

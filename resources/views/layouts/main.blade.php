@@ -71,7 +71,7 @@
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
 
-	<div class="container-fluid">
+	<div class="app container-fluid">
 		@extends('layouts.menu')
 
 		<div class="container-fluid">

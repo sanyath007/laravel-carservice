@@ -13,7 +13,7 @@
 
     <hr />
     <!-- page title -->
-  
+
     <div class="row">
         <div class="col-md-12">
 
@@ -40,20 +40,23 @@
                     </select>
                 </div>
             </form>
-            
+
             @foreach($vehicles as $vehicle)
                 <?php $expired = '<font style="color: red;">หมดอายุ</font>'; ?>
 
                 <div class="col-sm-6 col-md-4 col-lg-3">
 
                     <div class="card card-inverse card-info">
-                        <img class="card-img-top" src="{{ ($vehicle->thumbnail) ? url('/').'/uploads/vehicles/' .$vehicle->thumbnail : url('/').'/uploads/no-image-300x300.jpg' }}">
-                        
-                        <div class="card-block">
-                            <!-- <figure class="profile">
-                                <img src="{{ url('/').'/uploads/no-image-300x300.jpg' }}" class="profile-avatar" alt="">
-                            </figure> -->
+                        <img
+                            class="card-img-top"
+                            src="{{
+                                ($vehicle->thumbnail) 
+                                ? url('/').'/uploads/vehicles/thumbnails/' .$vehicle->thumbnail
+                                : url('/').'/uploads/no-image-300x300.jpg'
+                            }}"
+                        />
 
+                        <div class="card-block">
                             <div class="alert alert-danger" style="height: 50px;">
                                 <h4 class="card-title mt-3">
                                     <span class="label label-primary">{{ $vehicle->vehicle_no }}</span> 
@@ -61,9 +64,7 @@
                                     {{ $vehicle->changwat->short }}
                                 </h4>
                             </div>
-                            <!-- <div class="meta card-text">
-                                <a>Friends</a>
-                            </div> -->
+
                             <div class="card-text" style="height: 200px;">
                                 {{ $vehicle->cate->vehicle_cate_name }} <b>ใช้งาน</b> {{ $vehicle->type->vehicle_type_name }} <br>
                                 <b>ยี่ห้อ</b> {{ $vehicle->manufacturer->manufacturer_name }} <b>ปี</b> {{ $vehicle->year }} <br>
@@ -76,27 +77,27 @@
                                     <?= ((count($vehicle->taxactived) > 0) ? 
                                         (($vehicle->taxactived[0]->tax_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<font style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</font>') : 
+                                        '<span style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</span>') : 
                                         '-'); ?> <br>
                                 <b>วันที่หมด พรบ.</b>
                                     <?= ((count($vehicle->actsactived) > 0) ?                                         
                                         (($vehicle->actsactived[0]->act_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<font style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</font>') : 
+                                        '<span style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</span>') : 
                                         '-'); ?> <br>
                                 <b>วันที่หมดประกัน</b>
                                     <?= ((count($vehicle->insactived) > 0) ? 
                                         (($vehicle->insactived[0]->insurance_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<font style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</font>') : 
-                                        '-'); ?> <br>
+                                        '<span style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</span>') : 
+                                        '-'); ?> <br/>
                                 <b>เลขไมล์ล่าสุด</b>
-                                    <font style="color: red;">
-                                        {{ (count($vehicle->mileage) > 0) 
-                                            ? number_format($vehicle->mileage[0]->mileage) 
-                                            : '-' }}
-                                    </font> <br>
-                                <font style="color: blue;">{{ $vehicle->remark }}</font>
+                                <span style="color: red;">
+                                    {{ (count($vehicle->mileage) > 0) 
+                                        ? number_format($vehicle->mileage[0]->mileage) 
+                                        : '-' }}
+                                </span> <br />
+                                <span style="color: blue;">{{ $vehicle->remark }}</span>
                             </div>
                         </div>
                         

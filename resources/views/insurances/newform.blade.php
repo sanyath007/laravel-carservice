@@ -227,7 +227,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                   <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
                         <label class="control-label" for="remark">หมายเหตุ</label>
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
@@ -263,7 +263,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="dlgAllVehicle" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
@@ -293,7 +293,7 @@
                                         </td>
                                         <td>@{{   }}</td>
                                         <td>
-                                            <a class="btn btn-primary" ng-click="frmSetVehicle(vehicle)">
+                                            <a class="btn btn-primary btn-sm" ng-click="frmSetVehicle(vehicle)">
                                                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -302,8 +302,8 @@
                             </table>
                         </div> 
 
-                        <ul class="pagination">
-                            <li>
+                        <ul class="pagination" style="margin: 0 auto;">
+                            <li ng-class="{ 'disabled': (frmAllVehicles.current_page === 1) }">
                                 <a ng-click="paginate($event, frmAllVehicles.path)" aria-label="First">
                                     <span aria-hidden="true">First</span>
                                 </a>
@@ -315,7 +315,7 @@
                                     <span aria-hidden="true">Prev</span>
                                 </a>
                             </li>                         
-                           
+
                             <li ng-repeat="i in _.range(1, frmAllVehicles.last_page + 1)"
                                 ng-class="{ 'active': (frmAllVehicles.current_page === i) }">
                                 <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + i)">
@@ -329,7 +329,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <li ng-class="{ 'disabled': (frmAllVehicles.current_page === frmAllVehicles.last_page) }">
                                 <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + frmAllVehicles.last_page)" aria-label="Last">
                                     <span aria-hidden="true">Last</span>
                                 </a>

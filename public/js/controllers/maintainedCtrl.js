@@ -271,14 +271,24 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         $scope.sparePartList.splice(index, 1);
     }
 
-    $scope.calculateMaintainedVatnet = function (event) {
-        var tmpVat = $(event.target).val();
-        var tmpAmt = $('#amt').val();
+	$scope.calculateMaintainedTotal = function (event) {
+		var tmpAmt = $('#amt').val();
+        var tmpVat = $('#vat').val();
         var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
         var tmpTotal = parseFloat(tmpAmt) + parseFloat(tmpVatnet);
+
         $('#total').val(tmpTotal);
         $('#vatnet').val(tmpVatnet);
-        console.log(tmpTotal);
+    };
+
+    $scope.calculateMaintainedVatnet = function (event) {
+		var tmpAmt = $('#amt').val();
+        var tmpVat = $(event.target).val();
+        var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
+        
+        $('#vatnet').val(tmpVatnet);
+
+		$scope.calculateMaintainedTotal(event);
     };
 
 	/** =============== FORM VALIDATION =============== */

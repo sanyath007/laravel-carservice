@@ -189,7 +189,7 @@
                 <div class="col-md-5">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('amt')}">
                         <label for="ID">(ก) ค่าใช้จ่าย (ไม่ต้องใส่เครื่องหมายคอมมา หรือ ,)</label>
-                        <input type="text" id="amt" name="amt" class="form-control">
+                        <input type="text" id="amt" name="amt" class="form-control" ng-keyup="calculateMaintainedTotal($event)">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('amt')"></span>
                         <span class="help-block" ng-show="checkValidate('amt')">กรุณาระบุค่าใช้จ่าย</span>
                     </div>

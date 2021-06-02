@@ -34,6 +34,8 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
         light: '',
         siren: '',
         tele_med: '',
+        red_label: '',
+        status: 1
     };
 
     $scope.formValidate = function (event) {
@@ -120,6 +122,8 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             light: vehicle.light,
             siren: vehicle.siren,
             tele_med: vehicle.tele_med,
+            red_label: vehicle.red_label,
+            status: vehicle.status.toString()
         };
     }
 });

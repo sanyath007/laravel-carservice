@@ -213,13 +213,6 @@ class VehicleController extends Controller
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 
-        /** Upload attach file */
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
         $newVehicle = new Vehicle();
         $newVehicle->vehicle_no = $req['vehicle_no'];   
         $newVehicle->vehicle_cate = $req['vehicle_cate'];
@@ -250,7 +243,7 @@ class VehicleController extends Controller
         $newVehicle->radio_com = $req['radio_com'] ? $req['radio_com'] : 0;
         $newVehicle->tele_med = $req['tele_med'] ? $req['tele_med'] : 0;
         $newVehicle->remark = $req['remark'];
-        $newVehicle->status = '1';
+        $newVehicle->status = $req['status'];
 
         if ($newVehicle->save()) {                            
             return redirect('vehicles/list');

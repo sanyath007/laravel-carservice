@@ -168,7 +168,10 @@
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_no')}">
-                        <label for="reg_no">เลขทะเบียน <span style="color: red;">*</span></label>
+                        <label for="reg_no">
+                            เลขทะเบียน (กรณียังเป็นป้ายแดงอยู่ให้ระบุ "<span style="color: red;">ป้ายแดง</span>" และระบุเลขทะเบียนป้ายแดงด้านล่าง) 
+                            <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="reg_no" name="reg_no" ng-model="newVehicle.reg_no" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('reg_no')"></span>
                         <span class="help-block" ng-show="checkValidate('reg_no')">กรุณาระบุเลขทะเบียน</span>
@@ -288,6 +291,31 @@
 
                     <div class="form-group">
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('red_label')}">
+                        <label for="red_label">เลขทะเบียนป้ายแดง</label>
+                        <input type="text" id="red_label" name="red_label" ng-model="newVehicle.red_label" class="form-control">
+                        <span class="help-block" ng-show="checkValidate('red_label')">กรุณาระบุเลขทะเบียนป้ายแดง</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('status')}">
+                        <label class="control-label" for="status">
+                            สถานะ
+                        </label>
+                        <select id="status" name="status" ng-model="newVehicle.status" class="form-control">
+                            <option value="">-- กรุณาเลือกสถานะ --</option>
+                                <option value="1">ใช้งาน</option>
+                                <option value="2">ให้ยืม</option>
+                                <option value="3">เสีย/อยู่ระหว่างซ่อม</option>
+                                <option value="4">จำหน่าย</option>
+                                <option value="5">โอน</option>
+                        </select>
+                        <span class="help-block" ng-show="checkValidate('status')">กรุณาเลือกสถานะ</span>                        
                     </div>
                 </div>
 

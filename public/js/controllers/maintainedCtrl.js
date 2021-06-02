@@ -230,6 +230,17 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 	$scope.sparePartPrice = 0;
     $scope.fillinSparePartList = function(event) {
 		event.preventDefault();
+		
+		if ($scope.sparePartDesc === '') {
+			toaster.pop('error', "", "รายการอะไหล่ต้องไม่เป็นค่าว่าง !!!");
+			return;
+		}
+		
+		let reg = /^\d+$/;
+		if ($scope.sparePartPrice === 0 || !reg.test($scope.sparePartPrice)) {
+			toaster.pop('error', "", "ข้อมูลราคาต้องเป็นตัวเลข และต้องมากกว่าศูนย์ !!!");
+			return;
+		}
 
 		console.log($scope.sparePartDesc, $scope.sparePartPrice);
 		$scope.sparePartList.push({ desc: $scope.sparePartDesc, price: $scope.sparePartPrice });

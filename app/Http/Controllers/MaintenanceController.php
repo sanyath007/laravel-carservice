@@ -16,9 +16,9 @@ class MaintenanceController extends Controller
         $validator = \Validator::make($request->all(), [
             'mileage' => 'required',
             'garage' => 'required',
-            'amt' => 'required',
-            'vat' => 'required',
-            'total' => 'required',
+            'amt' => 'required|numeric',
+            'vat' => 'required|numeric',
+            'total' => 'required|numeric',
             'detail' => 'required',
             'spare_parts' => 'required',
         ]);

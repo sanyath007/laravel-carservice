@@ -191,7 +191,7 @@
                         <label for="ID">(ก) ค่าใช้จ่าย (ไม่ต้องใส่เครื่องหมายคอมมา หรือ ,)</label>
                         <input type="text" id="amt" name="amt" class="form-control" ng-keyup="calculateMaintainedTotal($event)">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('amt')"></span>
-                        <span class="help-block" ng-show="checkValidate('amt')">กรุณาระบุค่าใช้จ่าย</span>
+                        <span class="help-block" ng-show="checkValidate('amt')">กรุณาระบุค่าใช้จ่าย และ ต้องระบุเป็นตัวเลข</span>
                     </div>
                 </div>
 
@@ -200,7 +200,7 @@
                         <label for="ID">(ข) VAT</label>
                         <input type="text" id="vat" name="vat" class="form-control" ng-keyup="calculateMaintainedVatnet($event)">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('vat')"></span>
-                        <span class="help-block" ng-show="checkValidate('vat')">กรุณาระบุจำนวน VAT</span>
+                        <span class="help-block" ng-show="checkValidate('vat')">กรุณาระบุจำนวน VAT และ ต้องระบุเป็นตัวเลข</span>
                     </div>
                 </div>
 
@@ -209,7 +209,7 @@
                         <label for="ID">(ก+ข) ยอดรวมทั้งสิ้น</label>
                         <input type="text" id="total" name="total" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('total')"></span>
-                        <span class="help-block" ng-show="checkValidate('total')">กรุณาระบุยอดรวมทั้งสิ้น</span>
+                        <span class="help-block" ng-show="checkValidate('total')">กรุณาระบุยอดรวมทั้งสิ้น และ ต้องระบุเป็นตัวเลข</span>
                     </div>
                 </div>
 

@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="vehicleCtrl" ng-init="setVehicleStatus('{{ $vehicleStatus }}')">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+        <li class="breadcrumb-item active">รายการรถ</li>
+    </ol>
+
     <!-- page title -->
     <div class="page__title">
         <span>รายการรถ</span>

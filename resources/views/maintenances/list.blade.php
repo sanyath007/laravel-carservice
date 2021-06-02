@@ -35,7 +35,7 @@
                     </tr>
                     @foreach($vehicles as $vehicle)
                         
-                        <?php $maintained = App\Maintenance::where(
+                        <?php $maintained = App\Models\Maintenance::where(
                             ['vehicle_id' => $vehicle->vehicle_id]
                         )->with('garage')->orderBy('maintained_date', 'DESC')->first() ?>
                     <tr>

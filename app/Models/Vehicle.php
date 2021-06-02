@@ -52,7 +52,7 @@ class Vehicle extends Model
 
     public function maintained()
     {
-        return $this->hasMany('App\Maintenance', 'vehicle_id', 'vehicle_id');
+        return $this->hasMany('App\Models\Maintenance', 'vehicle_id', 'vehicle_id');
     }
 
     public function tax()

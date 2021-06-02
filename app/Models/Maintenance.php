@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,12 +12,12 @@ class Maintenance extends Model
 
   public function vehicle()
   {
-    return $this->belongsTo('App\Vehicle', 'vehicle_id', 'vehicle_id');
+    return $this->belongsTo('App\Models\Vehicle', 'vehicle_id', 'vehicle_id');
   }  
 
   public function garage()
   {
-    return $this->belongsTo('App\Garage', 'garage_id', 'garage_id');
+    return $this->belongsTo('App\Models\Garage', 'garage_id', 'garage_id');
   }
 
   public function user()

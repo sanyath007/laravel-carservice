@@ -16,7 +16,7 @@
             </span>
         </div>
 
-        <hr />
+        <hr style="margin: 5px auto 20px;" />
         <!-- page title -->
         
         <form id="frmNewVehicle" action="{{ url('/vehicles/add') }}" method="post" enctype="multipart/form-data">
@@ -196,7 +196,10 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_no')}">
-                        <label for="reg_no">เลขทะเบียน <span style="color: red;">*</span></label>
+                        <label for="reg_no">
+                            เลขทะเบียน (กรณียังเป็นป้ายแดงอยู่ให้ระบุ "<span style="color: red;">ป้ายแดง</span>" และระบุเลขทะเบียนป้ายแดงด้านล่าง) 
+                            <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="reg_no" name="reg_no" ng-model="newVehicle.reg_no" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('reg_no')"></span>
                         <span class="help-block" ng-show="checkValidate('reg_no')">กรุณาระบุเลขทะเบียน</span>
@@ -332,14 +335,20 @@
                 </span>
 
                 <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                   <div class="form-group">
-                        <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
                     </div>
-                </div>
-                <!-- left column -->
-            </div><!-- end row -->
+
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('red_label')}">
+                            <label for="red_label">เลขทะเบียนป้ายแดง</label>
+                            <input type="text" id="red_label" name="red_label" ng-model="newVehicle.red_label" class="form-control">
+                            <span class="help-block" ng-show="checkValidate('red_label')">กรุณาระบุเลขทะเบียนป้ายแดง</span>
+                        </div>
+                    </div>
+                </div><!-- end row -->
             </div>
 
             <div class="row">

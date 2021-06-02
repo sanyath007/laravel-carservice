@@ -3,7 +3,17 @@
     @section('content')
     <div class="container-fluid" ng-controller="maintainedCtrl">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('/maintained/list') }}">
+                    รายการประวัติการบำรุงรักษารถล่าสุด
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('/maintained/'.$vehicle->vehicle_id.'/vehicle') }}">
+                    {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}
+                </a>
+            </li>
             <li class="breadcrumb-item active">บันทึกการบำรุงรักษารถ</li>
         </ol>
 
@@ -41,15 +51,15 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ID">วันที่ขออนุมัติ</label>
+                        <label for="doc_date">วันที่ขออนุมัติ</label>
                         <input type="text" id="doc_date" name="doc_date" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ID">เลขที่เอกสาร</label>
-                        <input type="text" id="doc_no" name="doc_no" value="นม0032.001.8.1/NEW" class="form-control">
+                        <label for="doc_no">เลขที่เอกสาร</label>
+                        <input type="text" id="doc_no" name="doc_no" value="นม0032.001.8.1/" class="form-control">
                     </div>
                 </div>
 

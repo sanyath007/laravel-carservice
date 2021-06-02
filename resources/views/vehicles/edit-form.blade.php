@@ -1,26 +1,34 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="vehicleCtrl">
+    <div class="container-fluid" ng-controller="vehicleCtrl" ng-init="edit({{ $vehicle }})">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/vehicles/list') }}">รายการรถ</a></li>
             <li class="breadcrumb-item active">แก้ไขข้อมูลรถ</li>
+            <li class="breadcrumb-item active">
+                {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}
+            </li>
         </ol>
 
         <!-- page title -->
         <div class="page__title">
             <span>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                แก้ไขข้อมูลรถ
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> 
+                แก้ไขข้อมูลรถ (ทะเบียน {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }})
             </span>
         </div>
 
-        <hr />
+        <hr style="margin: 5px auto 20px;" />
         <!-- page title -->
-        
-        {{ $vehicle }}
-        <form id="frmEditVehicle" action="{{ url('/vehicles/update') }}" method="post" enctype="multipart/form-data">
+
+        <form
+            id="frmEditVehicle"
+            action="{{ url('/vehicles/update') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_no')}">
@@ -59,7 +67,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('model')}">
-                        <label for="model">รุ่น <span style="color: red;">*</span></label>
+                        <label for="model">รุ่น</label>
                         <input type="text" id="model" name="model" ng-model="newVehicle.model" class="form-control">
                         <span class="help-block" ng-show="checkValidate('model')">กรุณาระบุรุ่น</span>
                     </div>
@@ -83,14 +91,6 @@
                     </div>
                 </div>
 
-
-
-
-                <!-- ================================================================================= -->
-            </div><!-- end row -->
-
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('engine_no')}">
                         <label for="engine_no">เลขที่เครื่องยนต์ <span style="color: red;">*</span></label>
@@ -99,9 +99,7 @@
                         <span class="help-block" ng-show="checkValidate('engine_no')">กรุณาระบุเลขที่เครื่องยนต์</span>
                     </div>
                 </div>
-                <!-- left column -->
-                
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('chassis_no')}">
                         <label for="chassis_no">เลขที่ตัวถัง <span style="color: red;">*</span></label>
@@ -110,11 +108,7 @@
                         <span class="help-block" ng-show="checkValidate('chassis_no')">กรุณาระบุเลขที่ตัวถัง</span>
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('capacity')}">
                         <label for="capacity">ปริมาตรกระบอกสูบ (ซีซี.) <span style="color: red;">*</span></label>
@@ -122,9 +116,7 @@
                         <span class="help-block" ng-show="checkValidate('capacity')">กรุณาระบุปริมาตรกระบอกสูบ (ซีซี.)</span>
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('fuel_type')}">
                         <label class="control-label" for="fuel_type">
@@ -141,11 +133,7 @@
                         <span class="help-block" ng-show="checkValidate('fuel_type')">กรุณาเลือกประเภทน้ำมันเชื้อเพลิง</span>                        
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_cate')}">
                         <label for="vehicle_cate">ชนิดรถ <span style="color: red;">*</span></label>
@@ -160,9 +148,7 @@
                         <span class="help-block" ng-show="checkValidate('vehicle_cate')">กรุณาเลือกชนิดรถ</span>
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_type')}">
                         <label class="control-label" for="vehicle_type">
@@ -179,11 +165,7 @@
                         <span class="help-block" ng-show="checkValidate('vehicle_type')">กรุณาเลือกประเภทการใช้งาน</span>                        
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_no')}">
                         <label for="reg_no">เลขทะเบียน <span style="color: red;">*</span></label>
@@ -192,9 +174,7 @@
                         <span class="help-block" ng-show="checkValidate('reg_no')">กรุณาระบุเลขทะเบียน</span>
                     </div>
                 </div>
-                <!-- left column -->
 
-                <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_chw')}">
                         <label class="control-label" for="reg_chw">
@@ -211,11 +191,7 @@
                         <span class="help-block" ng-show="checkValidate('reg_chw')">กรุณาเลือกจังหวัด</span>                        
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('reg_date')}">
                         <label for="reg_date">วันที่จดทะเบียน <span style="color: red;">*</span></label>
@@ -224,9 +200,7 @@
                         <span class="help-block" ng-show="checkValidate('reg_date')">กรุณาเลือกวันที่จดทะเบียน</span>
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vender')}">
                         <label class="control-label" for="vender">
@@ -243,15 +217,11 @@
                         <span class="help-block" ng-show="checkValidate('vender')">กรุณาเลือกตัวแทนจำหน่าย</span>                        
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('method')}">
                         <label class="control-label" for="method">
-                            ประเภทการได้มา <span style="color: red;">*</span>
+                            ประเภทการได้มา
                         </label>
                         <select id="method" name="method" ng-model="newVehicle.method" class="form-control">
                             <option value="">-- กรุณาเลือกประเภทการได้มา --</option>
@@ -264,98 +234,80 @@
                         <span class="help-block" ng-show="checkValidate('method')">กรุณาเลือกประเภทการได้มา</span>                        
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('cost')}">
-                        <label for="cost">ราคา <span style="color: red;">*</span></label>
+                        <label for="cost">ราคา</label>
                         <input type="text" id="cost" name="cost" ng-model="newVehicle.cost" class="form-control">
                         <span class="help-block" ng-show="checkValidate('cost')">กรุณาระบุราคา</span>
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
-            
-            <div class="page__title">
-                <span>
-                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Accessories
-                </span>
-            </div>
 
-            <div class="row" style="margin-top: 1.5rem">
-                <!-- left column -->
-                <div class="col-md-9">
-                    <div style="display: flex; justify-content: space-around;">
+                <div class="col-md-12">
+                    <div class="page__title">
                         <span>
-                            <input type="checkbox" id="cam_front" name="cam_front" value="1"> กล้องหน้า
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Accessories
+                        </span>
+                    </div><!-- /. page__title -->
+
+                    <div style="display: flex; justify-content: space-around; margin: 1.5rem auto 0;">
+                        <span>
+                            <input type="checkbox" id="cam_front" name="cam_front" value="1" ng-checked="newVehicle.cam_front===1">
+                            กล้องหน้า
                         </span>
                         <span>
-                            <input type="checkbox" id="cam_back" name="cam_back" value="1"> กล้องหลัง
+                            <input type="checkbox" id="cam_back" name="cam_back" value="1" ng-checked="newVehicle.cam_back===1"> กล้องหลัง
                         </span>
                         <span>
-                            <input type="checkbox" id="cam_driver" name="cam_driver" value="1"> กล้องคนขับ
+                            <input type="checkbox" id="cam_driver" name="cam_driver" value="1" ng-checked="newVehicle.cam_driver===1"> กล้องคนขับ
                         </span>
                         <span>
-                            <input type="checkbox" id="gps" name="gps" value="1"> ระบบ GPS
+                            <input type="checkbox" id="gps" name="gps" value="1" ng-checked="newVehicle.gps===1"> ระบบ GPS
                         </span>
                         <span>
-                            <input type="checkbox" id="radio_com" name="radio_com" value="1"> วิทยุสื่อสาร
+                            <input type="checkbox" id="radio_com" name="radio_com" value="1" ng-checked="newVehicle.radio_com===1"> วิทยุสื่อสาร
                         </span>
                         <span>
-                            <input type="checkbox" id="light" name="light" value="1"> ไฟวับวาบ
+                            <input type="checkbox" id="light" name="light" value="1" ng-checked="newVehicle.light===1"> ไฟวับวาบ
                         </span>
                         <span>
-                            <input type="checkbox" id="siren" name="siren" value="1"> ไซเรน
+                            <input type="checkbox" id="siren" name="siren" value="1" ng-checked="newVehicle.siren===1"> ไซเรน
                         </span>
                         <span>
-                            <input type="checkbox" id="tele_med" name="tele_med" value="1"> ระบบ Tele Med
+                            <input type="checkbox" id="tele_med" name="tele_med" value="1" ng-checked="newVehicle.tele_med===1"> ระบบ Tele Med
                         </span>
                     </div>
                 </div>
-                <!-- left column -->
-            </div><!-- end row -->
 
-            <div class="page__title" style="margin-top: 1.5rem">
-                <span>
-                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i> หมายเหตุ
-                </span>
-
-                <div class="row">
-                <!-- left column -->
                 <div class="col-md-12">
-                   <div class="form-group">
+                    <div class="page__title" style="margin-top: 1.5rem">
+                        <span>
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i> หมายเหตุ
+                        </span>
+                    </div><!-- /. page__title -->
+
+                    <div class="form-group">
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
-                <!-- left column -->
-            </div><!-- end row -->
-            </div>
 
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-
+                <!-- <div class="col-md-12">
                     <div class="form-group">
                         <label class="control-label" for="attachfile">รูป</label>
                         <input type="file" id="attachfile" name="attachfile" class="form-control" placeholder="อัพโหลดรูป&hellip;" autocomplete="off">
                     </div>
+                </div> -->
 
-                </div>
-                <!-- left column -->
-            </div>
-
-            <div class="row">
                 <div class="col-md-12">
                     <br>
-                    <button class="btn btn-primary pull-right" ng-click="formValidate($event)">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
+                    <button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>
             </div>
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="vehicle_id" name="vehicle_id" ng-model="newVehicle.vehicleId">
+            <input type="hidden" id="vehicle_id" name="vehicle_id" ng-model="newVehicle.vehicle_id">
             {{ csrf_field() }}
         </form>
         

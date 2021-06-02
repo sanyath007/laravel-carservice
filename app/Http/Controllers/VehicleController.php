@@ -24,7 +24,6 @@ class VehicleController extends Controller
         $validator = \Validator::make($request->all(), [
             'purchased_date' => 'required',
             'manufacturer' => 'required',
-            'model' => 'required',
             'color' => 'required',
             'year' => 'required',
             'engine_no' => 'required',

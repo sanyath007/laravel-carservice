@@ -67,7 +67,7 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('model')}">
-                        <label for="model">รุ่น <span style="color: red;">*</span></label>
+                        <label for="model">รุ่น</label>
                         <input type="text" id="model" name="model" ng-model="newVehicle.model" class="form-control">
                         <span class="help-block" ng-show="checkValidate('model')">กรุณาระบุรุ่น</span>
                     </div>
@@ -261,7 +261,7 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('method')}">
                         <label class="control-label" for="method">
-                            ประเภทการได้มา <span style="color: red;">*</span>
+                            ประเภทการได้มา
                         </label>
                         <select id="method" name="method" ng-model="newVehicle.method" class="form-control">
                             <option value="">-- กรุณาเลือกประเภทการได้มา --</option>
@@ -279,7 +279,7 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('cost')}">
-                        <label for="cost">ราคา <span style="color: red;">*</span></label>
+                        <label for="cost">ราคา</label>
                         <input type="text" id="cost" name="cost" ng-model="newVehicle.cost" class="form-control">
                         <span class="help-block" ng-show="checkValidate('cost')">กรุณาระบุราคา</span>
                     </div>

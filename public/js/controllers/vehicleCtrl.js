@@ -5,6 +5,7 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newVehicle = {
+        vehicle_id: '',
         vehicle_no: '',
         purchased_date: '',
         manufacturer: '',
@@ -58,7 +59,7 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             if ($scope.formError.success === 0) {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             } else {
-                $('#frmNewVehicle').submit();
+                // $('#frmNewVehicle').submit();
             }
         })
         .catch(function (res) {
@@ -87,4 +88,38 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
         $scope.vehicleStatus = status;
     }
 /** ################################################################################## */
+
+    $scope.edit = function (vehicle) {
+        $scope.newVehicle = {
+            vehicle_id: vehicle.vehicle_id,
+            vehicle_no: vehicle.vehicle_no,
+            purchased_date: vehicle.purchased_date,
+            manufacturer: vehicle.manufacturer_id.toString(),
+            model: vehicle.model,
+            color: vehicle.color,
+            year: vehicle.year,
+            engine_no: vehicle.engine_no,
+            chassis_no: vehicle.chassis_no,
+            capacity: vehicle.capacity,
+            fuel_type: vehicle.fuel_type.toString(),
+            vehicle_cate: vehicle.vehicle_cate.toString(),
+            vehicle_type: vehicle.vehicle_type.toString(),
+            reg_no: vehicle.reg_no,
+            reg_chw: vehicle.reg_chw.toString(),
+            reg_date: vehicle.reg_date,
+            vender: vehicle.vender_id.toString(),
+            method: vehicle.purchased_method.toString(),
+            cost: vehicle.purchased_cost,
+    
+            // Accessories
+            cam_front: vehicle.cam_front,
+            cam_back: vehicle.cam_back,
+            cam_driver: vehicle.cam_driver,
+            gps: vehicle.gps,
+            radio_com: vehicle.radio_com,
+            light: vehicle.light,
+            siren: vehicle.siren,
+            tele_med: vehicle.tele_med,
+        };
+    }
 });

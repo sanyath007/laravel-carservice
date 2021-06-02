@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
-use App\Vehicle;
-use App\Garage;
+use App\Models\Vehicle;
+use App\Models\Garage;
 use App\Driver;
-use App\Changwat;
-use App\FuelType;
-use App\Manufacturer;
-use App\Vender;
-use App\VehicleCate;
-use App\VehicleType;
-use App\VehicleMileage;
-use App\PurchasedMethod;
+use App\Models\Changwat;
+use App\Models\FuelType;
+use App\Models\Manufacturer;
+use App\Models\Vender;
+use App\Models\VehicleCate;
+use App\Models\VehicleType;
+use App\Models\VehicleMileage;
+use App\Models\PurchasedMethod;
 
 class VehicleController extends Controller
 {
@@ -145,6 +145,70 @@ class VehicleController extends Controller
     }
 
     public function store (Request $req)
+    {
+        /** Current date */
+        $d = new \DateTime(date('Y-m-d H:i:s'));
+        $diffHours = new \DateInterval('PT7H');
+
+        /** Upload attach file */
+        $filename = '';
+        if ($file = $req->file('attachfile')) {
+            $filename = $file->getClientOriginalName();
+            $file->move('uploads', $filename);
+        }
+
+        $newVehicle = new Vehicle();
+        $newVehicle->vehicle_no = $req['vehicle_no'];   
+        $newVehicle->vehicle_cate = $req['vehicle_cate'];
+        $newVehicle->vehicle_type = $req['vehicle_type'];
+        $newVehicle->manufacturer_id = $req['manufacturer'];
+        $newVehicle->model = $req['model'];
+        $newVehicle->color = $req['color'];
+        $newVehicle->year = $req['year'];
+        $newVehicle->capacity = $req['capacity'];
+        $newVehicle->fuel_type = $req['fuel_type'];
+        $newVehicle->chassis_no = $req['chassis_no'];
+        $newVehicle->engine_no = $req['engine_no'];
+        $newVehicle->reg_no = $req['reg_no'];
+        $newVehicle->reg_chw = $req['reg_chw'];
+        $newVehicle->reg_date = $req['reg_date'];
+        $newVehicle->vender_id = $req['vender'];
+        $newVehicle->purchased_method = $req['method'];
+        $newVehicle->purchased_date = $req['purchased_date'];
+        $newVehicle->date_in = $d->add($diffHours);
+
+        /** Accessories */
+        $newVehicle->cam_front = $req['cam_front'] ? $req['cam_front'] : 0;
+        $newVehicle->cam_back = $req['cam_back'] ? $req['cam_back'] : 0;
+        $newVehicle->cam_driver = $req['cam_driver'] ? $req['cam_driver'] : 0;
+        $newVehicle->gps = $req['gps'] ? $req['gps'] : 0;
+        $newVehicle->siren = $req['siren'] ? $req['siren'] : 0;
+        $newVehicle->light = $req['light'] ? $req['light'] : 0;
+        $newVehicle->radio_com = $req['radio_com'] ? $req['radio_com'] : 0;
+        $newVehicle->tele_med = $req['tele_med'] ? $req['tele_med'] : 0;
+        $newVehicle->remark = $req['remark'];
+        $newVehicle->status = '1';
+
+        if ($newVehicle->save()) {                            
+            return redirect('vehicles/list');
+        }
+    }
+
+    public function edit($id)
+    {
+        return view('vehicles.edit-form', [
+            'vehicle' => Vehicle::find($id),
+            'vCates' => VehicleCate::all(),
+            'vTypes' => VehicleType::all(),
+            'fuelTypes' => FuelType::all(),
+            'changwats' => Changwat::all(),
+            'manufacturers' => Manufacturer::all(),
+            'venders' => Vender::all(),
+            'methods' => PurchasedMethod::all(),
+        ]);
+    }
+
+    public function update(Request $req, $id)
     {
         /** Current date */
         $d = new \DateTime(date('Y-m-d H:i:s'));

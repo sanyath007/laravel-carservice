@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class VehicleCate extends Model
 
   public function vehicle()
   {
-      return $this->hasMany('App\Vehicle', 'vehicle_cate_id', 'vehicle_cate');
+      return $this->hasMany('App\Models\Vehicle', 'vehicle_cate_id', 'vehicle_cate');
   }
 }

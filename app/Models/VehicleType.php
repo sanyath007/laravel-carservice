@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class VehicleType extends Model
 
   public function vehicle()
   {
-      return $this->hasMany('App\Vehicle', 'vehicle_type_id', 'vehicle_type');
+      return $this->hasMany('App\Models\Vehicle', 'vehicle_type_id', 'vehicle_type');
   }
 }

@@ -46,27 +46,27 @@
                         <?= ((count($vehicle->taxactived) > 0) ? 
                             (($vehicle->taxactived[0]->tax_renewal_date < date('Y-m-d')) ? 
                             $expired : 
-                            '<font style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</font>') : 
+                            '<span style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</span>') : 
                             '-'); ?> <br>
                     <b>วันที่หมด พรบ. :</b>
                         <?= ((count($vehicle->actsactived) > 0) ?                                         
                             (($vehicle->actsactived[0]->act_renewal_date < date('Y-m-d')) ? 
                             $expired : 
-                            '<font style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</font>') : 
+                            '<span style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</span>') : 
                             '-'); ?> <br>
                     <b>วันที่หมดประกัน :</b>
                         <?= ((count($vehicle->insactived) > 0) ? 
                             (($vehicle->insactived[0]->insurance_renewal_date < date('Y-m-d')) ? 
                             $expired : 
-                            '<font style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</font>') : 
+                            '<span style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</span>') : 
                             '-'); ?> <br>
                     <b>เลขไมล์ล่าสุด :</b> 
-                        <font style="color: red;">
+                        <span style="color: red;">
                             {{ (count($vehicle->mileage) > 0) 
                                 ? number_format($vehicle->mileage[0]->mileage) 
                                 : '-' }}
-                        </font> <br>
-                    <b>หมายเหตุ :</b> <font style="color: blue;">{{ $vehicle->remark }}</font>
+                        </span> <br>
+                    <b>หมายเหตุ :</b> <span style="color: blue;">{{ $vehicle->remark }}</span>
                 </div>
                 <div class="col-md-6">
                     <h4 class="card-title mt-3">Options</h4>
@@ -78,11 +78,11 @@
                 </div>            
 
                 <div class="col-md-12">                
-                    <br><a href="{{ url('/vehicles'). '/edit/' .$vehicle->vehicle_id }}" class="btn btn-warning">
+                    <br><a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/edit' }}" class="btn btn-warning">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </a>
 
-                    <a href="{{ url('/vehicles'). '/delete/' .$vehicle->vehicle_id }}" class="btn btn-danger">
+                    <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/delete' }}" class="btn btn-danger">
                         <i class="fa fa-times" aria-hidden="true"></i> ลบ
                     </a>
                 </div>

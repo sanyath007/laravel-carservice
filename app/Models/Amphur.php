@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Amphur extends Model
 {
-  	protected $connection = 'vehicle';
-  	protected $table = 'amphur';
+    protected $connection = 'vehicle';
+    protected $table = 'amphur';
 
-  	public function location()
+    public function location()
     {
         return $this->hasMany('App\Location', 'amphur', 'id');
     }

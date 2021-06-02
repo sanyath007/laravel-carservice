@@ -19,9 +19,9 @@
         <hr />
         <!-- page title -->
         
-        <form id="frmNewVehicle" action="{{ url('/vehicles/add') }}" method="post" enctype="multipart/form-data">
+        {{ $vehicle }}
+        <form id="frmEditVehicle" action="{{ url('/vehicles/update') }}" method="post" enctype="multipart/form-data">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vehicle_no')}">
                         <label for="vehicle_no">เลขรถ </label>
@@ -30,9 +30,7 @@
                         <span class="help-block" ng-show="checkValidate('vehicle_no')">กรุณาระบุเลขรถ</span>
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('purchased_date')}">
                         <label for="purchased_date">วันที่ซื้อ <span style="color: red;">*</span></label>
@@ -41,11 +39,7 @@
                         <span class="help-block" ng-show="checkValidate('purchased_date')">กรุณาเลือกวันที่ซื้อ</span>
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('manufacturer')}">
                         <label class="control-label" for="manufacturer">
@@ -62,9 +56,7 @@
                         <span class="help-block" ng-show="checkValidate('manufacturer')">กรุณาเลือกยีห้อ</span>                        
                     </div>
                 </div>
-                <!-- left column -->
-        
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('model')}">
                         <label for="model">รุ่น <span style="color: red;">*</span></label>
@@ -72,11 +64,7 @@
                         <span class="help-block" ng-show="checkValidate('model')">กรุณาระบุรุ่น</span>
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
 
-            <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('color')}">
                         <label for="insurance_no">สี <span style="color: red;">*</span></label>
@@ -85,9 +73,7 @@
                         <span class="help-block" ng-show="checkValidate('color')">กรุณาระบุสี</span>
                     </div>
                 </div>
-                <!-- left column -->
-                
-                <!-- right column -->
+
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('year')}">
                         <label for="year">ปีรถ <span style="color: red;">*</span></label>
@@ -96,7 +82,11 @@
                         <span class="help-block" ng-show="checkValidate('year')">กรุณาระบุปีรถ</span>
                     </div>
                 </div>
-                <!-- right column -->
+
+
+
+
+                <!-- ================================================================================= -->
             </div><!-- end row -->
 
             <div class="row">

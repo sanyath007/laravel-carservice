@@ -102,15 +102,15 @@
                         </div>
                         
                         <div class="card-footer">
-                            <a href="{{ url('/vehicles'). '/detail/' .$vehicle->vehicle_id }}" class="btn btn-info btn-xs">
+                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/detail' }}" class="btn btn-info btn-xs">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{{ url('/vehicles'). '/edit/' .$vehicle->vehicle_id }}" class="btn btn-warning btn-xs">
+                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/edit' }}" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{{ url('/vehicles'). '/delete/' .$vehicle->vehicle_id }}" class="btn btn-danger btn-xs">
+                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/delete' }}" class="btn btn-danger btn-xs">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>

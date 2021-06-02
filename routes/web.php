@@ -46,12 +46,12 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
     Route::get('/vehicles/list', 'VehicleController@index');
-    Route::get('/vehicles/detail/{id}', 'VehicleController@detail');
+    Route::get('/vehicles/{id}/detail', 'VehicleController@detail');
     Route::get('/vehicles/new', 'VehicleController@create');
     Route::post('/vehicles/add', 'VehicleController@store');
-    Route::get('/vehicles/edit/{id}', 'VehicleController@edit');
-    Route::post('/vehicles/update', 'VehicleController@update');
-    Route::post('/vehicles/delete', 'VehicleController@delete');    
+    Route::get('/vehicles/{id}/edit', 'VehicleController@edit');
+    Route::post('/vehicles/{id}/update', 'VehicleController@update');
+    Route::post('/vehicles/{id}/delete', 'VehicleController@delete');    
     Route::post('/vehicles/validate', 'VehicleController@formValidate');
     Route::get('/ajaxvehicles', 'VehicleController@ajaxvehicles');
 

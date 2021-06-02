@@ -24,8 +24,6 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
         vender: '',
         method: '',
         cost: '',
-
-        // Accessories
         cam_front: '',
         cam_back: '',
         cam_driver: '',
@@ -112,8 +110,6 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             vender: vehicle.vender_id.toString(),
             method: vehicle.purchased_method.toString(),
             cost: vehicle.purchased_cost,
-    
-            // Accessories
             cam_front: vehicle.cam_front,
             cam_back: vehicle.cam_back,
             cam_driver: vehicle.cam_driver,
@@ -125,5 +121,5 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             red_label: vehicle.red_label,
             status: vehicle.status.toString()
         };
-    }
+    };
 });

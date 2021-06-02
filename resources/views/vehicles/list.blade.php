@@ -124,7 +124,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">            
+        <div class="col-md-12" style="text-align: center;">            
             <ul class="pagination">
                 @if($vehicles->currentPage() !== 1)
                     <li>

@@ -23,7 +23,6 @@
         
         <form id="frmNewMaintenance" action="{{ url('/maintained/add') }}" method="post">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="ID">เลขที่รายการ</label>
@@ -33,10 +32,10 @@
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('mileage')}">
-                        <label for="ID">เลขระยะทางเมื่อเข้าซ่อม</label>
+                        <label for="ID">เลขระยะเมื่อขออนุมัติ</label>
                         <input type="text" id="mileage" name="mileage" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('mileage')"></span>
-                        <span class="help-block" ng-show="checkValidate('mileage')">กรุณาระบุเลขระยะทางเมื่อเข้าซ่อม</span>
+                        <span class="help-block" ng-show="checkValidate('mileage')">กรุณาระบุเลขระยะเมื่อขออนุมัติ</span>
                     </div>
                 </div>
 
@@ -55,20 +54,40 @@
                 </div>
 
                 <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('maintained_type')}">
+                        <label for="maintained_type">ประเภท</label>
+                        <select id="maintained_type" name="maintained_type" class="form-control">
+                            <option value="">-- กรุณาเลือกประเภท --</option>
+                            <option value="1">บำรุงรักษาตามรอบปกติ</option>
+                            <option value="2">ซ่อมตามอาการเสีย</option>
+                            <option value="3">ติดตั้งเพิ่ม</option>
+                        </select>
+                        <!-- <span class="help-block" ng-show="checkValidate('maintained_type')">กรุณาเลือกประเภท</span> -->
+                    </div>
+                </div>
+
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ID">วันที่เข้าซ่อม</label>
+                        <label for="maintained_date">วันที่เข้าซ่อม</label>
                         <input type="text" id="maintained_date" name="maintained_date" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ID">วันที่ซ่อมเสร็จ</label>
+                        <label for="maintained_mileage">เลขระยะทางเมื่อเข้าซ่อมจริง</label>
+                        <input type="text" id="maintained_mileage" name="maintained_mileage" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="receive_date">วันที่ซ่อมเสร็จ</label>
                         <input type="text" id="receive_date" name="receive_date" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('garage')}">
                         <label for="garage">สถานที่ซ่อม</label>
                         <select id="garage" name="garage" class="form-control">
@@ -80,10 +99,15 @@
                                 </option>
                             @endforeach
                         </select>
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('garage')"></span>
-                        <span class="help-block" ng-show="checkValidate('garage')">กรุณาเลือกสถานที่ซ่อม</span>
-                    </div>         
-                        
+                        <!-- <span class="help-block" ng-show="checkValidate('garage')">กรุณาเลือกสถานที่ซ่อม</span> -->
+                    </div>                        
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">เลขที่ใบส่งของ</label>
+                        <input type="text" id="delivery_bill" name="delivery_bill" class="form-control">
+                    </div>
                 </div>
 
                 <div class="col-md-6">

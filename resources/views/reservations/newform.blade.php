@@ -367,7 +367,7 @@
                         <label class="control-label" for="passengers">ผู้ร่วมเดินทาง</label> 
                         ( 
                             <input type="checkbox" name="chkUserIn" checked="checked"> 
-                            <font style="color: red;">รวมผู้ขอ</font> 
+                            <span style="color: red;">รวมผู้ขอ</span> 
                         )
                         <div class="input-group">
                             <span class="input-group-btn">
@@ -421,7 +421,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal -->  
+                    <!-- Modal -->
 
                     <div class="table-responsive" style="height: 200px;border: 1px solid #D8D8D8;">
                         <table id="passenger-list" class="table table-striped">

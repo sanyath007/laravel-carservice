@@ -15,6 +15,7 @@ class MaintenanceController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'mileage' => 'required',
+            'maintained_type' => 'required',
             'garage' => 'required',
             'amt' => 'required|numeric',
             'vat' => 'required|numeric',
@@ -78,11 +79,14 @@ class MaintenanceController extends Controller
         $newMaintained->mileage = $req['mileage'];
         $newMaintained->doc_date = $req['doc_date'];
         $newMaintained->doc_no = $req['doc_no'];
+        $newMaintained->maintained_mileage = $req['maintained_mileage'];
+        $newMaintained->maintained_type = $req['maintained_type'];
         $newMaintained->maintained_date = $req['maintained_date'];
         $newMaintained->receive_date = $req['receive_date'];
         $newMaintained->detail = $req['detail'];
         $newMaintained->spare_parts = $req['spare_parts'];
         $newMaintained->remark = $req['remark'];
+        $newMaintained->delivery_bill = $req['delivery_bill'];
         $newMaintained->amt = $req['amt'];
         $newMaintained->vat = $req['vat'];
         $newMaintained->vatnet = $req['vatnet'];

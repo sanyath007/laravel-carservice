@@ -308,6 +308,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 
         var req_data = {
             mileage: $('#mileage').val(),
+            maintained_type: $('#maintained_type').val(),
             garage: $('#garage').val(),
             amt: $('#amt').val(),
             vat: $('#vat').val(),
@@ -329,7 +330,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         .catch(function (err) {
             console.log(err);
         });
-    }
+    };
 
     $scope.checkValidate = function (field) {
 		if (!$scope.formError) return;
@@ -343,5 +344,15 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         // }
 
         return (field in $scope.formError);
-    }
+    };
+
+	$scope.showReceiveBillForm = function (event) {        
+        // $http.get(CONFIG.baseUrl + '/location/ajaxchangwat')
+        // .then(function (data) {
+        //     $scope.changwats = data.data;
+        //     console.log($scope.changwats);
+
+            $('#dlgReceiveBillForm').modal('show')
+        // });
+    };
 });

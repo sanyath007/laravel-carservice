@@ -346,13 +346,30 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         return (field in $scope.formError);
     };
 
-	$scope.showReceiveBillForm = function (event) {        
-        // $http.get(CONFIG.baseUrl + '/location/ajaxchangwat')
-        // .then(function (data) {
-        //     $scope.changwats = data.data;
-        //     console.log($scope.changwats);
+	$scope.showReceiveBillForm = function (event, id) {
+		console.log(id);
+		$('#_id').val(id);
 
-            $('#dlgReceiveBillForm').modal('show')
-        // });
+		$('#dlgReceiveBillForm').modal('show');
+    };
+	
+	$scope.updateReceiveBill = function (event) {
+		const id = $('#_id').val();
+		const req_data = {
+			maintained_mileage: $('#maintained_mileage').val(),
+			delivery_bill: $('#delivery_bill').val()
+		}
+
+        $http.put(CONFIG.baseUrl + `/maintained/${id}/receive-bill`, req_data)
+        .then(function (res) {
+			if (res.data.status === 1) {
+				toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
+
+				window.location.href = CONFIG.baseUrl + 'maintained/list';
+			}
+        })
+		.catch(function (err) {
+			console.log(err);
+		});
     };
 });

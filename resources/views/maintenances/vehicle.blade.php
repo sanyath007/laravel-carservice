@@ -4,8 +4,9 @@
 <div class="container-fluid" ng-controller="maintainedCtrl">
     
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">รายการประวัติการบำรุงรักษารถล่าสุด</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/maintained/list') }}">รายการประวัติการบำรุงรักษารถล่าสุด</a></li>
+        <li class="breadcrumb-item active">{{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}</li>
     </ol>
 
     <!-- page title -->
@@ -46,17 +47,17 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 5%; text-align: center;">#</th>
-                            <th style="width: 8%; text-align: center;">วันที่ซ่อม</th>
-                            <th style="width: 10%; text-align: center;">เลขระยะทางเมื่อเข้าซ่อม</th>
+                            <th style="width: 3%; text-align: center;">#</th>
+                            <th style="width: 6%; text-align: center;">วันที่ซ่อม</th>
+                            <th style="width: 7%; text-align: center;">เลขระยะทางเมื่อเข้าซ่อม</th>
                             <th style="text-align: center;">รายละเอียด</th>
                             <th style="width: 8%; text-align: center;">เลขที่ใบส่งของ</th>              
-                            <th style="width: 8%; text-align: center;">ค่าใช้จ่าย</th>
+                            <th style="width: 6%; text-align: center;">ค่าใช้จ่าย</th>
                             <th style="width: 12%; text-align: center;">สถานที่ซ่อม</th>
                             <th style="width: 10%; text-align: center;">ผู้แจ้ง</th>
                             <th style="width: 6%; text-align: center;">สถานะ</th>
                             <th style="width: 12%; text-align: center;">หมายเหตุ</th>
-                            <th style="width: 6%; text-align: center;">Actions</th>
+                            <th style="width: 8%; text-align: center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,16 +84,33 @@
                             </td>
                             <td>{{ $maintenance->remark }}</td>
                             <td style="text-align: center;">
-                                <a href="{{$maintenance->maintain_id}}" class="btn btn-warning btn-xs">
+                                <a
+                                    href="{{ url('/maintained'). '/detail/' .$maintenance->maintained_id }}"
+                                    class="btn btn-info btn-xs"
+                                    title="ดูรายละเอียด"
+                                >
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </a>
+                                <a
+                                    href="{{ $maintenance->maintained_id }}"
+                                    class="btn btn-warning btn-xs"                                    
+                                    title="แก้ไขรายการ"
+                                >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{$maintenance->maintain_id}}" class="btn btn-danger btn-xs">
+                                <a
+                                    href="{{ $maintenance->maintained_id }}"
+                                    class="btn btn-danger btn-xs"
+                                    title="ยกเลิกรายการ"
+                                >
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                                 <a
-                                    href="{{$maintenance->maintain_id}}"
+                                    href="#"
                                     class="btn btn-primary btn-xs"
-                                    ng-click="showReceiveBillForm($event)"
+                                    ng-click="showReceiveBillForm($event, '{{ $maintenance->maintained_id }}')"
+                                    title="ส่งเอกสารใบส่งของ"
+                                    ng-show="'{{ $maintenance->status }}' !== '2'"
                                 >
                                     <i class="fa fa-calculator" aria-hidden="true"></i>
                                 </a>
@@ -133,34 +151,34 @@
 
         </div>
     </div>
-</div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="dlgReceiveBillForm" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="">ฟอร์มส่งเอกสารใบส่งของ</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="_id" name="_id" />
 
-<!-- Modal -->
-<div class="modal fade" id="dlgReceiveBillForm" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="">เพิ่มบุคลากร</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="">เลขที่ใบส่งของ</label>
-                    <input type="text" id="deliver_no" name="deliver_no" ng-model="product" class="form-control">
+                    <div class="form-group">
+                        <label for="">เลขระยะทางเมื่อเข้าซ่อมจริง</label>
+                        <input type="text" id="maintained_mileage" name="maintained_mileage" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">เลขที่ใบส่งของ</label>
+                        <input type="text" id="delivery_bill" name="delivery_bill" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="">เลขที่ใบส่งของ</label>
-                    <input type="text" id="deliver_no" name="deliver_no" ng-model="product" class="form-control">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="updateReceiveBill()" data-dismiss="modal">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> บันทึกส่งเอกสาร
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary">
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Add
-                </button>
             </div>
         </div>
-    </div>
-</div>
-<!-- Modal -->  
+    </div><!-- Modal -->
+</div>  
 @endsection

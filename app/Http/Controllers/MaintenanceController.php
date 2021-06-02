@@ -72,7 +72,8 @@ class MaintenanceController extends Controller
         ]);
     }
 
-    public function store (Request $req) {
+    public function store (Request $req)
+    {
         $newMaintained = new Maintenance();
         $newMaintained->garage_id = $req['garage'];
         $newMaintained->vehicle_id = $req['vehicle'];
@@ -99,7 +100,24 @@ class MaintenanceController extends Controller
         }
     }
 
-    public function edit ($maintainedid) {
+    public function receiveBill (Request $req, $maintainedid)
+    {
+        $maintained = Maintenance::where(['maintained_id' => $maintainedid])->update([
+            'maintained_mileage' => $req['maintained_mileage'],
+            'delivery_bill' => $req['delivery_bill'],
+            'status' => 2
+        ]);
+
+        if ($maintained) {
+            return [
+                'status' => 1,
+                'msg' => 'Update Successfully'
+            ];
+        }
+    }
+
+    public function edit ($maintainedid)
+    {
         $maintenances = Maintenance::where(['vehicle_id' => $maintainedid])
                                 ->with('vehicle')
                                 ->with('garage')
@@ -120,7 +138,8 @@ class MaintenanceController extends Controller
         ]);
     }
 
-    public function vehiclemaintain ($vehicleid) {
+    public function vehiclemaintain ($vehicleid)
+    {
         return view('maintenances.vehicle', [
             'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
                                 ->with('cate')
@@ -140,7 +159,8 @@ class MaintenanceController extends Controller
         ]);
     }
 
-    public function vehicleprint ($vehicleid) {
+    public function vehicleprint ($vehicleid)
+    {
         return view('maintenances.vehicleprint', [
             'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
                                 ->with('cate')

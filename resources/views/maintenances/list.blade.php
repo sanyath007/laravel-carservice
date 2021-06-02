@@ -21,7 +21,7 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th style="width: 4%; text-align: center;">#</th>
+                        <th style="width: 3%; text-align: center;">#</th>
                         <th>รถ</th>
                         <th style="width: 10%; text-align: center;">วันที่ซ่อมล่าสุด</th>
                         <th style="width: 10%; text-align: center;">เลขระยะทางเมื่อเข้าซ่อม</th>
@@ -30,7 +30,7 @@
                         <th style="width: 8%; text-align: center;">เลขที่ใบส่งของ</th>               
                         <th style="width: 6%; text-align: center;">ค่าซ่อม</th>
                         <th style="width: 10%; text-align: center;">สถานที่ซ่อม</th>
-                        <th style="width: 10%; text-align: center;">หมายเหตุ</th>
+                        <!-- <th style="width: 10%; text-align: center;">หมายเหตุ</th> -->
                         <!-- <th style="width: 10%; text-align: center;">Actions</th> -->
                     </tr>
                     @foreach($vehicles as $vehicle)
@@ -73,9 +73,9 @@
                         <td style="text-align: center;">
                             {{ $maintained['garage']['garage_name'] }}
                         </td>
-                        <td>
+                        <!-- <td>
                             {{ $maintained['remark'] }}
-                        </td>
+                        </td> -->
                         <!-- <td style="text-align: center;">
                             <a href="{{ $maintained['maintain_id'] }}" class="btn btn-warning">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -89,7 +89,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($vehicles->currentPage() !== 1)
                     <li>
                         <a href="{{ $vehicles->url($vehicles->url(1)) }}" aria-label="Previous">

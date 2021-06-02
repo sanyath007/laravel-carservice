@@ -36,8 +36,6 @@ class VehicleController extends Controller
             'reg_chw' => 'required',
             'reg_date' => 'required',
             'vender' => 'required',
-            'method' => 'required',
-            'cost' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -213,7 +211,7 @@ class VehicleController extends Controller
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 
-        $newVehicle = new Vehicle();
+        $newVehicle = Vehicle::find($id);
         $newVehicle->vehicle_no = $req['vehicle_no'];   
         $newVehicle->vehicle_cate = $req['vehicle_cate'];
         $newVehicle->vehicle_type = $req['vehicle_type'];

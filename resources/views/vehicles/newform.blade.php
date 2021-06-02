@@ -367,7 +367,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <br>
-                    <button class="btn btn-primary pull-right" ng-click="formValidate($event)">
+                    <button class="btn btn-primary pull-right" ng-click="formValidate($event, 'frmNewVehicle')">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
                     </button>
                 </div>

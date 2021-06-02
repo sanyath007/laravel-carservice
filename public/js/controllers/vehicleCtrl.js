@@ -32,11 +32,12 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
         light: '',
         siren: '',
         tele_med: '',
+        remark: '',
         red_label: '',
         status: 1
     };
 
-    $scope.formValidate = function (event) {
+    $scope.formValidate = function (event, formName) {
         event.preventDefault();
 
         $scope.newVehicle.purchased_date = $('#purchased_date').val();
@@ -59,7 +60,7 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             if ($scope.formError.success === 0) {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             } else {
-                // $('#frmNewVehicle').submit();
+                $(`#${formName}`).submit();
             }
         })
         .catch(function (res) {
@@ -118,6 +119,7 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             light: vehicle.light,
             siren: vehicle.siren,
             tele_med: vehicle.tele_med,
+            remark: vehicle.remark,
             red_label: vehicle.red_label,
             status: vehicle.status.toString()
         };

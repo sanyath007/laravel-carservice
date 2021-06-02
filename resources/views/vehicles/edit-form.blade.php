@@ -25,7 +25,7 @@
 
         <form
             id="frmEditVehicle"
-            action="{{ url('/vehicles/update') }}"
+            action="{{ url('/vehicles/' .$vehicle->vehicle_id. '/update') }}"
             method="post"
             enctype="multipart/form-data"
         >
@@ -290,7 +290,7 @@
                     </div><!-- /. page__title -->
 
                     <div class="form-group">
-                        <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea id="remark" name="remark" cols="30" rows="5" ng-model="newVehicle.remark" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -328,7 +328,7 @@
 
                 <div class="col-md-12">
                     <br>
-                    <button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                    <button class="btn btn-warning pull-right" ng-click="formValidate($event, 'frmEditVehicle')">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>

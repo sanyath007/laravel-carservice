@@ -143,7 +143,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
         var keyword = ($(event.target).val() == '') ? '' : $(event.target).val();
         $scope.hidethis = false;
 
-         if((event.keyCode < 40 || event.keyCode == 8) && keyword == '') {
+        if((event.keyCode < 40 || event.keyCode == 8) && keyword == '') {
             $scope.personItemSelected = 0;
             $scope.hidethis = true;
             return;
@@ -360,7 +360,7 @@ app.controller('reserveCtrl', function($scope, $http, toaster, ModalService, CON
             if ($scope.formError.success === 1) {
                 $('#frmNewReserve').submit();
             } else {
-            	toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
+                toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             }
         })
         .catch(function (res) {

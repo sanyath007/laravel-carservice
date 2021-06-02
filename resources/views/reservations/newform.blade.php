@@ -2,7 +2,7 @@
 
     @section('content')
     <div class="container-fluid" ng-controller="reserveCtrl">
-      
+
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
             <li class="breadcrumb-item active">บันทึกขอใช้รถ</li>
@@ -121,9 +121,9 @@
 
                         <!-- Autocomplete List -->
                         <div class="list-group" 
-                             style="width: auto; z-index: 10; position: absolute;" 
-                             ng-model="hidePopupLocation" 
-                             ng-hide="hidePopupLocation">
+                            style="width: auto; z-index: 10; position: absolute;" 
+                            ng-model="hidePopupLocation" 
+                            ng-hide="hidePopupLocation">
                             <a  class="list-group-item" 
                                 ng-repeat="(index, l) in filterLocation" 
                                 ng-click="addLocation(l)"

@@ -41,17 +41,17 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         console.log($scope.selectedVehicle);
 
 		$http.get(CONFIG.baseUrl + '/maintained/ajaxchecklist/' + $('#check_date').val() + '/' + $scope.selectedVehicle)
-	    .then(function (res) {
-	        let checkList = res.data.dailycheck;
-        	console.log(checkList);
+		.then(function (res) {
+			let checkList = res.data.dailycheck;
+			console.log(checkList);
 
-        	angular.forEach (checkList, function (list) {
-			    let arrCheckDate = list.check_date.split('-');
-			    let checkdate = parseInt(arrCheckDate[2]);
+			angular.forEach (checkList, function (list) {
+				let arrCheckDate = list.check_date.split('-');
+				let checkdate = parseInt(arrCheckDate[2]);
 
-			    $scope.date.push(checkdate);
+				$scope.date.push(checkdate);
 
-			    $scope.tiresList.push({
+				$scope.tiresList.push({
 					date: checkdate,
 					state: list.tires,
 					text: list.tires_text
@@ -148,10 +148,10 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 	$scope.frmVehicleDetail = '';
 	$scope.popUpAllVehicle = function () {
 		$http.get(CONFIG.baseUrl + '/ajaxvehicles')
-	    .then(function (res) {
-	    	console.log(res);
-	    	$scope.frmAllVehicles = res.data.vehicles;
-	    	console.log($scope.frmAllVehicles);
+		.then(function (res) {
+			console.log(res);
+			$scope.frmAllVehicles = res.data.vehicles;
+			console.log($scope.frmAllVehicles);
 			$('#dlgAllVehicle').modal('show');
 		});
 	}
@@ -183,24 +183,144 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
     }
 
     $scope.checkListPopup = function (list) {
-    	console.log(list);
-	    var popup = document.getElementById("myPopup");
-	    if (list.text != null) {
-	    	popup.textContent = list.text;
-	    	popup.classList.toggle("show");
-	    }
+		console.log(list);
+		var popup = document.getElementById("myPopup");
+		if (list.text != null) {
+			popup.textContent = list.text;
+			popup.classList.toggle("show");
+		}
+    };
+
+	/** ################################################################################## */
+    $scope.maintenanceList = [];
+    $scope.fillinMaintenanceList = function(event) {
+        if (event.which === 13) {
+            event.preventDefault();
+            $scope.maintenanceList.push($(event.target).val());
+
+            //เคลียร์ค่าใน textfield
+            $(event.target).val('');
+
+			// สร้างข้อความรายการอะไหล่ที่จะบันทึกลงใน db โดยคั่นด้วย comma
+            var maindetained_detail = "";
+            var count = 0;
+            angular.forEach($scope.maintenanceList, function(maintained) {
+                if(count != $scope.maintenanceList.length - 1){
+                    maindetained_detail += maintained + ",";
+                } else {
+                    maindetained_detail += maintained
+                }
+
+                count++;
+            });
+
+            $('#detail').val(maindetained_detail);
+        }
+    };
+
+    // ลบรายการ
+    $scope.removeMaintenanceList = function(m) {
+        let index = $scope.maintenanceList.indexOf(m);
+        $scope.maintenanceList.splice(index, 1);
     }
-})
-// .directive('toggle', function(){
-//   return {
-//     restrict: 'A',
-//     link: function(scope, element, attrs){
-//       if (attrs.toggle=="tooltip"){
-//         $(element).tooltip();
-//       }
-//       if (attrs.toggle=="popover"){
-//         $(element).popover();
-//       }
-//     }
-//   };
-// });
+
+	/** ################################################################################## */
+    $scope.sparePartList = [];
+	$scope.sparePartDesc = '';
+	$scope.sparePartPrice = 0;
+    $scope.fillinSparePartList = function(event) {
+		event.preventDefault();
+
+		console.log($scope.sparePartDesc, $scope.sparePartPrice);
+		$scope.sparePartList.push({ desc: $scope.sparePartDesc, price: $scope.sparePartPrice });
+
+		//เคลียร์ค่าใน textfield
+		$scope.sparePartDesc = '';
+		$scope.sparePartPrice = 0;
+
+		// สร้างข้อความรายการอะไหล่ที่จะบันทึกลงใน db โดยคั่นด้วย comma
+		var sparePartList_detail = "";
+		var count = 0;
+		angular.forEach($scope.sparePartList, function(spare) {
+			if(count != $scope.sparePartList.length - 1){
+				sparePartList_detail += spare.desc+ ' (' +spare.price+ 'บาท)' + ", ";
+			} else {
+				sparePartList_detail += spare.desc+ ' (' +spare.price+ 'บาท)'
+			}
+
+			count++;
+		});
+
+		$('#spare_parts').val(sparePartList_detail);
+    };
+
+    // ลบรายการ
+    $scope.removeSparePartList = function(m) {
+        let index = $scope.sparePartList.indexOf(m);
+        $scope.sparePartList.splice(index, 1);
+    }
+
+    $scope.calculateMaintainedVatnet = function (event) {
+        var tmpVat = $(event.target).val();
+        var tmpAmt = $('#amt').val();
+        var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
+        var tmpTotal = parseFloat(tmpAmt) + parseFloat(tmpVatnet);
+        $('#total').val(tmpTotal);
+        $('#vatnet').val(tmpVatnet);
+        console.log(tmpTotal);
+    };
+
+	/** =============== FORM VALIDATION =============== */
+    $scope.formError = null;
+    // $scope.newReserve = {
+    //     activity_type: '',
+    //     activity: '',
+    //     locationId: '',
+    //     department: '',
+    //     ward: '',
+    //     transport: '',
+    //     startpoint: '',
+    // };
+
+    $scope.formValidate = function (event) {
+        event.preventDefault();
+
+        var req_data = {
+            mileage: $('#mileage').val(),
+            garage: $('#garage').val(),
+            amt: $('#amt').val(),
+            vat: $('#vat').val(),
+            total: $('#total').val(),
+            detail: $('#detail').val(),
+            spare_parts: $('#spare_parts').val(),
+        };
+
+        $http.post(CONFIG.baseUrl + '/maintained/validate', req_data)
+        .then(function (res) {
+            $scope.formError = res.data.errors;
+			console.log($scope.formError);
+            if (res.data.success === 1) {
+                $('#frmNewMaintenance').submit();
+            } else {
+                toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    }
+
+    $scope.checkValidate = function (field) {
+		if (!$scope.formError) return;
+        // var status = false;
+        // if (field == 'activity_type_text') {
+        //     status = ($scope.formError && $scope.newReserve.activity_type === '99' && $scope.newReserve.activity_type_text === '') ? true : false;
+        // } else if (field == 'locationId') {
+        //     status = ($scope.formError && $('#locationId').val() === '') ? true : false;
+        // } else {
+        //     status = ($scope.formError[field].length > 0) ? true : false;
+        // }
+
+        return (field in $scope.formError);
+    }
+});

@@ -11,6 +11,31 @@ use App\Models\VehicleDailyCheck;
 
 class MaintenanceController extends Controller
 {
+    public function formValidate (Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'mileage' => 'required',
+            'garage' => 'required',
+            'amt' => 'required',
+            'vat' => 'required',
+            'total' => 'required',
+            'detail' => 'required',
+            'spare_parts' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'success' => 0,
+                'errors' => $validator->getMessageBag()->toArray(),
+            ];
+        } else {
+            return [
+                'success' => 1,
+                'errors' => $validator->getMessageBag()->toArray(),
+            ];
+        }
+    }
+
     public function index () {
         return view('maintenances.list', [
             'vehicles' => Vehicle::where(['status' => '1'])
@@ -56,16 +81,19 @@ class MaintenanceController extends Controller
         $newMaintained->maintained_date = $req['maintained_date'];
         $newMaintained->receive_date = $req['receive_date'];
         $newMaintained->detail = $req['detail'];
+        $newMaintained->spare_parts = $req['spare_parts'];
         $newMaintained->remark = $req['remark'];
         $newMaintained->amt = $req['amt'];
         $newMaintained->vat = $req['vat'];
         $newMaintained->vatnet = $req['vatnet'];
         $newMaintained->total = $req['total'];
         $newMaintained->staff = $req['staff'];
-
-        if ($newMaintained->save()) {
-            return redirect('/maintained/list');
-        }
+        $newMaintained->status = 0;
+        
+        return $newMaintained;
+        // if ($newMaintained->save()) {
+        //     return redirect('/maintained/list');
+        // }
     }
 
     public function edit ($maintainedid) {

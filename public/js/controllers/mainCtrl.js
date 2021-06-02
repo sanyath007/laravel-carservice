@@ -149,49 +149,7 @@ app.controller('mainCtrl', function($scope, $http, toaster, ModalService, CONFIG
         })
         .catch(error => console.log(error));
     }
-/** ################################################################################## */
-    //################## autocomplete ##################
-    $scope.maintenanceList = [];
-    $scope.fillinMaintenanceList = function(event) {
-        console.log(event.keyCode);
-        if (event.which === 13) {
-            event.preventDefault();
-            $scope.maintenanceList.push($(event.target).val());
 
-            //เคลียร์ค่าใน text searchProduct
-            $(event.target).val('');
-
-            var maindetained_detail = "";
-            var count = 0;
-            angular.forEach($scope.maintenanceList, function(maintained) {
-                if(count != $scope.maintenanceList.length - 1){
-                    maindetained_detail += maintained + ",";
-                } else {
-                    maindetained_detail += maintained
-                }
-
-                count++;
-            });
-
-            $('#detail').val(maindetained_detail);
-        }
-    }
-
-    // ลบรายการ
-    $scope.removeMaintenanceList = function(m) {
-        let index = $scope.maintenanceList.indexOf(m);
-        $scope.maintenanceList.splice(index, 1);
-    }
-
-    $scope.calculateMaintainedVatnet = function (event) {
-        var tmpVat = $(event.target).val();
-        var tmpAmt = $('#amt').val();
-        var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
-        var tmpTotal = parseFloat(tmpAmt) + parseFloat(tmpVatnet);
-        $('#total').val(tmpTotal);
-        $('#vatnet').val(tmpVatnet);
-        console.log(tmpTotal);
-    }
 /** ################################################################################## */
     $scope.passengers = [];
     $scope.showPassengers = function (event, reserveid) {

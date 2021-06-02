@@ -98,7 +98,8 @@ Route::group(['middleware' => ['web','auth']], function () {
 
     Route::get('/maintained/list', 'MaintenanceController@index');
     Route::get('/maintained/new/{vehicleid}', 'MaintenanceController@create');
-    Route::post('/maintained/add', 'MaintenanceController@store');
+    Route::post('/maintained/add', 'MaintenanceController@store');    
+    Route::post('/maintained/validate', 'MaintenanceController@formValidate');
     Route::get('/maintained/edit/{maintainedid}', 'MaintenanceController@edit');
     Route::post('/maintained/update', 'MaintenanceController@update');
     Route::post('/maintained/delete/{maintainedid}', 'MaintenanceController@delete');

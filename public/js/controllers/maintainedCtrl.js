@@ -277,8 +277,8 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
         var tmpTotal = parseFloat(tmpAmt) + parseFloat(tmpVatnet);
 
-        $('#total').val(tmpTotal);
-        $('#vatnet').val(tmpVatnet);
+        $('#total').val(tmpTotal.toFixed(2));
+        $('#vatnet').val(tmpVatnet.toFixed(2));
     };
 
     $scope.calculateMaintainedVatnet = function (event) {
@@ -286,7 +286,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
         var tmpVat = $(event.target).val();
         var tmpVatnet = parseFloat((tmpAmt * tmpVat) / 100);
         
-        $('#vatnet').val(tmpVatnet);
+        $('#vatnet').val(tmpVatnet.toFixed(2));
 
 		$scope.calculateMaintainedTotal(event);
     };

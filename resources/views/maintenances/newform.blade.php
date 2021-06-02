@@ -102,7 +102,7 @@
                         <label for="garage">สถานที่ซ่อม</label>
                         <select id="garage" name="garage" class="form-control">
                             <option value="">-- กรุณาเลือกสถานที่ซ่อม --</option>
-                            <?php $garages = App\Garage::all(); ?>                      
+                            <?php $garages = App\Models\Garage::all(); ?>                      
                             @foreach($garages as $garage)
                                 <option value="{{ $garage->garage_id }}">
                                     {{ $garage->garage_name }}

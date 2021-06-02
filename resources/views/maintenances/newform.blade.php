@@ -140,7 +140,7 @@
                                 name="sparePartPrice"
                                 ng-model="sparePartPrice"
                                 class="form-control"
-                                placeholder="ราคา&hellip;"
+                                placeholder="รวมเป็นเงิน&hellip;"
                                 style="width: 20%; margin-left: 5px;"
                             >
                             <button

@@ -238,7 +238,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 		
 		let reg = /^\d+$/;
 		if ($scope.sparePartPrice === 0 || !reg.test($scope.sparePartPrice)) {
-			toaster.pop('error', "", "ข้อมูลราคาต้องเป็นตัวเลข และต้องมากกว่าศูนย์ !!!");
+			toaster.pop('error', "", "ข้อมูลรวมเป็นเงินต้องเป็นตัวเลข และต้องมากกว่าศูนย์ !!!");
 			return;
 		}
 

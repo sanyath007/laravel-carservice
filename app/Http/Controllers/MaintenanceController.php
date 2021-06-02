@@ -90,10 +90,9 @@ class MaintenanceController extends Controller
         $newMaintained->staff = $req['staff'];
         $newMaintained->status = 0;
         
-        return $newMaintained;
-        // if ($newMaintained->save()) {
-        //     return redirect('/maintained/list');
-        // }
+        if ($newMaintained->save()) {
+            return redirect('/maintained/list');
+        }
     }
 
     public function edit ($maintainedid) {

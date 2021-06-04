@@ -4,7 +4,7 @@
     <div class="col-md-12" style="padding-top: 10px;">
       <p class="text-muted credit">
         © ลิขสิทธิ์ถูกต้อง 2560<br>
-        เวอร์ชั่น 1.0 Created by <a>บริษัท iQuery จำกัด</a><br>
+        เวอร์ชั่น 1.0 Created by <a>นายสัญญา ธรรมวงษ์</a><br>
         รองรับการทำงานบน :
         <span style="color: #fff; margin: 0px; padding: 0px;">
           <i class="fa fa-chrome fa-lg" aria-hidden="true"></i>

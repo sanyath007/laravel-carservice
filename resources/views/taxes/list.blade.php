@@ -2,24 +2,28 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="taxCtrl">
-  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">รายการเสียภาษี</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+        <li class="breadcrumb-item active">รายการภาษีรถยนต์</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการเสียภาษี
-        </span>
-        <a href="{{ url('/tax/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
-    </div>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการภาษีรถยนต์
+            </span>
 
-    <hr />
+            <div>
+                <a href="{{ url('/tax/new') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    เพิ่มรายการ
+                </a>
+            </div>
+        </div>
+        
+        <hr />
+    </div>
     <!-- page title -->
 
     <div class="row">
@@ -27,8 +31,8 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 20%; text-align: center;">รถ</th>
+                        <th style="width: 5%; text-align: center;">#</th>
+                        <th style="text-align: center;">รถ</th>
                         <th style="width: 10%; text-align: center;">วันที่เสียภาษี</th>
                         <th style="width: 10%; text-align: center;">วันที่ครบกำหนดเสียภาษี</th>
                         <th style="width: 10%; text-align: center;">เลขที่ใบเสร็จ</th>
@@ -36,7 +40,7 @@
                         <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($taxes as $tax)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $tax->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $tax->vehicle_id])->with('changwat')->first();
                         ?>
                     <tr>
                         <td style="text-align: center;">
@@ -102,7 +106,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($taxes->currentPage() !== 1)
                     <li>
                         <a href="{{ $taxes->url($taxes->url(1)) }}" aria-label="Previous">

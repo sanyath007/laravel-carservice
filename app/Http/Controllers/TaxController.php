@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tax;
+use App\Models\Tax;
 
 class TaxController extends Controller
 {
@@ -60,7 +60,7 @@ class TaxController extends Controller
             $file->move('uploads', $filename);
         }
 
-    	$newTax = new Tax();
+        $newTax = new Tax();
         $newTax->doc_no = $req['doc_no'];
         $newTax->doc_date = $req['doc_date'];
         $newTax->vehicle_id = $req['vehicle_id'];
@@ -74,7 +74,7 @@ class TaxController extends Controller
         $newTax->status = '1';
 
         if ($newTax->save()) {
-             $deactivate = Tax::where('vehicle_id', '=', $req['vehicle_id'])
+            $deactivate = Tax::where('vehicle_id', '=', $req['vehicle_id'])
                             ->where('id', '<>', $newTax->id)
                             ->update(['is_actived' => '0']);
                             
@@ -84,7 +84,7 @@ class TaxController extends Controller
 
     public function edit ()
     {
-    	return view('insurances.editform', [
+        return view('insurances.editform', [
 
         ]);
     }
@@ -98,7 +98,7 @@ class TaxController extends Controller
             $file->move('uploads', $filename);
         }
 
-    	$tax = Tax::find($req['id'])->first();
+        $tax = Tax::find($req['id'])->first();
         $tax->doc_no = $req['doc_no'];
         $tax->doc_date = $req['doc_date'];
         $tax->vehicle_id = $req['vehicle_id'];
@@ -116,6 +116,6 @@ class TaxController extends Controller
 
     public function delete ()
     {
-    	
+        
     }
 }

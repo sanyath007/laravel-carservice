@@ -149,7 +149,7 @@
                                 {{ $prepared->drug }}
                                 <?= (!empty($prepared->comment)) ? '<a><i class="fa fa-info-circle fa-1x text-info" aria-hidden="true"></i></a>' : '' ?>
                             @else
-                                <font style="color: red;">ไม่ได้ตรวจ</font>
+                                <span style="color: red;">ไม่ได้ตรวจ</span>
                             @endif
                         </td>                      
                         <td style="text-align: center;">
@@ -225,7 +225,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto">
                 @if($prepareds->currentPage() !== 1)
                     <li>
                         <a href="{{ $prepareds->url($prepareds->url(1)).'&searchdate='.$searchdate }}" aria-label="First">

@@ -212,7 +212,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($assignments->currentPage() !== 1)
                     <li>
                         <a href="{{ $assignments->url($assignments->url(1)).'&fromdate='.$fromdate }}" aria-label="Previous">

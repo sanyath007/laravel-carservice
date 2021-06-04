@@ -2,26 +2,30 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="maintainedCtrl">
-
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการตรวจเช็ครถ</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการตรวจเช็ครถ
-        </span>
-        <a href="{{ url('/maintained/checkform/1') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
-    </div>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการตรวจเช็ครถ
+            </span>
 
-    <hr />
+            <div>
+                <a href="{{ url('/maintained/checkform/1') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    เพิ่มรายการ
+                </a>
+            </div>
+        </div>
+        
+        <hr />
+    </div>
     <!-- page title -->
-  
+
     <div class="row">
         <div class="col-md-12">
             <div class="row">

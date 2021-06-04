@@ -56,6 +56,15 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/ajaxvehicles', 'VehicleController@ajaxvehicles');
 
 
+    Route::get('/accidents/list', 'AccidentController@index');
+    Route::get('/accidents/new', 'AccidentController@create');
+    Route::post('/accidents/add', 'AccidentController@store');
+    Route::get('/accidents/edit/{id}', 'AccidentController@edit');
+    Route::post('/accidents/update', 'AccidentController@update');
+    Route::post('/accidents/delete', 'AccidentController@delete');    
+    Route::post('/accidents/validate', 'AccidentController@formValidate');
+
+
     Route::get('/drivers/list', 'DriverController@index');
     Route::get('/drivers/new', 'DriverController@create');
     Route::post('/drivers/add', 'DriverController@store');

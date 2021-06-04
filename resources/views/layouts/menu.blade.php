@@ -103,7 +103,7 @@
                         Auth::user()->person_id == '1309900710679' || 
                         Auth::user()->person_id == '5301100037355' ||
                         Auth::user()->person_id == '1301800150364')
-                       
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                               บำรุงรักษารถ
@@ -111,7 +111,7 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a href="{{ url('/maintained/list') }}">ประวัติการบำรุงรักษารถ</a></li>
-                              <li><a href="{{ url('/maintained/accident') }}">ประวัติการเกิดอุบัติเหตุรถ</a></li>
+                              <li><a href="{{ url('/accidents/list') }}">ประวัติการเกิดอุบัติเหตุรถ</a></li>
                               <!-- <li><a href="#">ขอสนับสนุนจ้างซ่อมบำรุง</a></li> -->
                               <li role="separator" class="divider"></li>
                               <li><a href="{{ url('/maintained/checklist') }}">การตรวจเช็ครถประจำเดือน</a></li>

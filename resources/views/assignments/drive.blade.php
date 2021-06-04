@@ -2,24 +2,21 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="assignCtrl">
-  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการวิ่งรถ</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการวิ่งรถ
-        </span>
-        <!-- <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a> -->
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการวิ่งรถ
+            </span>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
 
     <div class="row">
@@ -53,7 +50,7 @@
                     </tr>
 
                     @foreach($assignments as $assignment)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
                         ?>
 
                         <?php $driver = App\Models\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
@@ -69,14 +66,14 @@
                         </td>
                         <td style="text-align: left;">
                             @foreach($assignment->assignreserve as $reserve)
-                                <?php $reservation = App\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
+                                <?php $reservation = App\Models\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
                                 ?>
 
                                 <?php
                                     $locationIds = [];
                                     $locationList = '';
                                     $locationIds = explode(",", $reservation->location);
-                                    $locations = App\Location::where('id','<>','1')
+                                    $locations = App\Models\Location::where('id','<>','1')
                                                     ->pluck('name','id')->toArray();
                                     // print_r($locations);
                                     $locationList = '<ul class="tag__list">';
@@ -142,7 +139,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($assignments->currentPage() !== 1)
                     <li>
                         <a href="{{ $assignments->url($assignments->url(1)) }}" aria-label="Previous">

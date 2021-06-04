@@ -110,11 +110,11 @@
                               <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ url('/maintained/list') }}">ประวัติการบำรุงรักษารถ</a></li>
+                              <li><a href="{{ url('/maintenances/list') }}">ประวัติการบำรุงรักษารถ</a></li>
                               <li><a href="{{ url('/accidents/list') }}">ประวัติการเกิดอุบัติเหตุรถ</a></li>
                               <!-- <li><a href="#">ขอสนับสนุนจ้างซ่อมบำรุง</a></li> -->
                               <li role="separator" class="divider"></li>
-                              <li><a href="{{ url('/maintained/checklist') }}">การตรวจเช็ครถประจำเดือน</a></li>
+                              <li><a href="{{ url('/maintenances/checklist') }}">การตรวจเช็ครถประจำเดือน</a></li>
                               <!-- <li><a href="#">Separated link</a></li>
                               <li role="separator" class="divider"></li>
                               <li><a href="#">One more separated link</a></li> -->

@@ -31,13 +31,9 @@ Auth::routes();
 Route::group(['middleware' => 'web'], function() {
     /** ============= Authentication ============= */
     Route::get('/auth/login', 'Auth\LoginController@showLogin');
-
     Route::post('/auth/signin', 'Auth\LoginController@doLogin');
-
     Route::get('/auth/logout', 'Auth\LoginController@doLogout');
-
     Route::get('/auth/register', 'Auth\RegisterController@register');
-
     Route::post('/auth/signup', 'Auth\RegisterController@create');
 });
 
@@ -105,20 +101,20 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/ajaxpassenger/{reserveid}/{withuser}', 'ReservePassengerController@ajaxpassenger');
 
 
-    Route::get('/maintained/list', 'MaintenanceController@index');
-    Route::get('/maintained/new/{vehicleid}', 'MaintenanceController@create');
-    Route::post('/maintained/add', 'MaintenanceController@store');    
-    Route::post('/maintained/validate', 'MaintenanceController@formValidate');
-    Route::put('/maintained/{maintainedid}/receive-bill', 'MaintenanceController@receiveBill');
-    Route::get('/maintained/edit/{maintainedid}', 'MaintenanceController@edit');
-    Route::post('/maintained/update', 'MaintenanceController@update');
-    Route::post('/maintained/delete/{maintainedid}', 'MaintenanceController@delete');
-    Route::get('/maintained/vehicle/{vehicleid}', 'MaintenanceController@vehiclemaintain');    
-    Route::get('/maintained/vehicleprint/{vehicleid}', 'MaintenanceController@vehicleprint');
-    Route::get('/maintained/checklist', 'MaintenanceController@checklist');
-    Route::get('/maintained/checkform/{vehicleid}', 'MaintenanceController@checkform');
-    Route::post('/maintained/adddailycheck', 'MaintenanceController@storecheck');
-    Route::get('/maintained/ajaxchecklist/{yymm}/{vehicleid}', 'MaintenanceController@ajaxchecklist');
+    Route::get('/maintenances/list', 'MaintenanceController@index');
+    Route::get('/maintenances/new/{vehicleid}', 'MaintenanceController@create');
+    Route::post('/maintenances/add', 'MaintenanceController@store');    
+    Route::post('/maintenances/validate', 'MaintenanceController@formValidate');
+    Route::put('/maintenances/{maintainedid}/receive-bill', 'MaintenanceController@receiveBill');
+    Route::get('/maintenances/edit/{maintainedid}', 'MaintenanceController@edit');
+    Route::post('/maintenances/update', 'MaintenanceController@update');
+    Route::post('/maintenances/delete/{maintainedid}', 'MaintenanceController@delete');
+    Route::get('/maintenances/{vehicleid}/vehicle', 'MaintenanceController@vehiclemaintain');    
+    Route::get('/maintenances/vehicleprint/{vehicleid}', 'MaintenanceController@vehicleprint');
+    Route::get('/maintenances/checklist', 'MaintenanceController@checklist');
+    Route::get('/maintenances/checkform/{vehicleid}', 'MaintenanceController@checkform');
+    Route::post('/maintenances/adddailycheck', 'MaintenanceController@storecheck');
+    Route::get('/maintenances/ajaxchecklist/{yymm}/{vehicleid}', 'MaintenanceController@ajaxchecklist');
     
 
     Route::get('/assign/list', 'AssignmentController@index');

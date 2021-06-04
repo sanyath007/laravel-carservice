@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการประวัติการบำรุงรักษารถล่าสุด</li>
     </ol>
 
@@ -45,7 +45,7 @@
                             {{ $vehicle->vehicle_id }}
                         </td>
                         <td>
-                            <a href="{{ url('/maintained/vehicle') }}/{{ $vehicle->vehicle_id }}">
+                            <a href="{{ url('/maintenances/'.$vehicle->vehicle_id.'/vehicle') }}">
                                 {{ $vehicle->cate->vehicle_cate_name }} 
                                 {{ $vehicle->type->vehicle_type_name }}
                                 {{ $vehicle->manufacturer->manufacturer_name }}

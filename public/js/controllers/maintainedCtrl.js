@@ -40,7 +40,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 
         console.log($scope.selectedVehicle);
 
-		$http.get(CONFIG.baseUrl + '/maintained/ajaxchecklist/' + $('#check_date').val() + '/' + $scope.selectedVehicle)
+		$http.get(`${CONFIG.baseUrl}/maintenances/ajaxchecklist/${$('#check_date').val()}/${$scope.selectedVehicle}`)
 		.then(function (res) {
 			let checkList = res.data.dailycheck;
 			console.log(checkList);
@@ -317,7 +317,7 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
             spare_parts: $('#spare_parts').val(),
         };
 
-        $http.post(CONFIG.baseUrl + '/maintained/validate', req_data)
+        $http.post(CONFIG.baseUrl + '/maintenances/validate', req_data)
         .then(function (res) {
             $scope.formError = res.data.errors;
 			console.log($scope.formError);
@@ -360,12 +360,12 @@ app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, 
 			delivery_bill: $('#delivery_bill').val()
 		}
 
-        $http.put(CONFIG.baseUrl + `/maintained/${id}/receive-bill`, req_data)
+        $http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
         .then(function (res) {
 			if (res.data.status === 1) {
 				toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
 
-				window.location.href = CONFIG.baseUrl + 'maintained/list';
+				window.location.href = CONFIG.baseUrl + 'maintenances/list';
 			}
         })
 		.catch(function (err) {

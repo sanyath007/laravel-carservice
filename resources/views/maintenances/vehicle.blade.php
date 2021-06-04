@@ -5,7 +5,7 @@
     
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
-        <li class="breadcrumb-item"><a href="{{ url('/maintained/list') }}">รายการประวัติการบำรุงรักษารถล่าสุด</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/maintenances/list') }}">รายการประวัติการบำรุงรักษารถล่าสุด</a></li>
         <li class="breadcrumb-item active">{{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}</li>
     </ol>
 
@@ -24,7 +24,7 @@
             
             <div>
                 <a
-                    href="{{ url('/maintained/new') }}/{{ $vehicle->vehicle_id }}"
+                    href="{{ url('/maintenances/new') }}/{{ $vehicle->vehicle_id }}"
                     class="btn btn-primary pull-right"
                 >
                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                 </a>
 
                 <a 
-                    href="{{ url('/maintained/vehicleprint') }}/{{ $vehicle->vehicle_id }}"
+                    href="{{ url('/maintenances/vehicleprint') }}/{{ $vehicle->vehicle_id }}"
                     class="btn btn-success pull-right"
                 >
                     <i class="fa fa-print" aria-hidden="true"></i>

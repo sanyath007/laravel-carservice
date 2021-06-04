@@ -5,12 +5,12 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/maintained/list') }}">
+                <a href="{{ url('/maintenances/list') }}">
                     รายการประวัติการบำรุงรักษารถล่าสุด
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/maintained/'.$vehicle->vehicle_id.'/vehicle') }}">
+                <a href="{{ url('/maintenances/'.$vehicle->vehicle_id.'/vehicle') }}">
                     {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}
                 </a>
             </li>
@@ -31,7 +31,7 @@
         <hr />
         <!-- page title -->
         
-        <form id="frmNewMaintenance" action="{{ url('/maintained/add') }}" method="post">
+        <form id="frmNewMaintenance" action="{{ url('/maintenances/add') }}" method="post">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

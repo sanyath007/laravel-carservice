@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Insurance;
-use App\InsuranceCompany;
-use App\InsuranceType;
+use App\Models\Insurance;
+use App\Models\InsuranceCompany;
+use App\Models\InsuranceType;
 
 class InsuranceController extends Controller
 {
@@ -44,23 +44,23 @@ class InsuranceController extends Controller
 
     public function index ()
     {
-    	return view('insurances.list', [
-    		'insurances' => Insurance::where(['status' => 1])
-    							->with('vehicle')
-    							->with('company')
-    							->with('type')
+        return view('insurances.list', [
+            'insurances' => Insurance::where(['status' => 1])
+                                ->with('vehicle')
+                                ->with('company')
+                                ->with('type')
                                 ->orderBy('insurance_start_date', 'DESC')
                                 ->orderBy('id', 'DESC')
-    							->paginate(10),
-    	]);
+                                ->paginate(10),
+        ]);
     }
 
     public function create ()
     {
-    	return view('insurances.newform', [
-    		'companies' => InsuranceCompany::all(),
-    		'types'	=> InsuranceType::all(),
-    	]);
+        return view('insurances.newform', [
+            'companies' => InsuranceCompany::all(),
+            'types'	=> InsuranceType::all(),
+        ]);
     }
 
     public function store (Request $req)
@@ -72,8 +72,8 @@ class InsuranceController extends Controller
             $file->move('uploads', $filename);
         }
 
-    	$newInsurance = new Insurance();
-    	$newInsurance->doc_no = $req['doc_no'];
+        $newInsurance = new Insurance();
+        $newInsurance->doc_no = $req['doc_no'];
         $newInsurance->doc_date = $req['doc_date'];
         $newInsurance->vehicle_id = $req['vehicle_id'];
         $newInsurance->insurance_no = $req['insurance_no'];
@@ -101,9 +101,7 @@ class InsuranceController extends Controller
 
     public function edit ()
     {
-    	return view('insurances.editform', [
-
-    	]);
+        return view('insurances.editform', []);
     }
 
     public function update (Request $req)
@@ -115,7 +113,7 @@ class InsuranceController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move('uploads', $filename);
         }
-    	
+
         $insurance = Insurance::find($req['id'])->first();
         $insurance->doc_no = $req['doc_no'];
         $insurance->doc_date = $req['doc_date'];
@@ -133,6 +131,6 @@ class InsuranceController extends Controller
 
     public function delete ()
     {
-    	
+
     }
 }

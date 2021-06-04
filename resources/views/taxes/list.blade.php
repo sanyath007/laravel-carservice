@@ -4,14 +4,14 @@
 <div class="container-fluid" ng-controller="taxCtrl">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">รายการภาษีรถยนต์</li>
+        <li class="breadcrumb-item active">รายการต่อภาษี</li>
     </ol>
 
     <!-- page title -->
     <div class="page__title-wrapper">
         <div class="page__title">
             <span>
-                <i class="fa fa-calendar" aria-hidden="true"></i> รายการภาษีรถยนต์
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อภาษี
             </span>
 
             <div>
@@ -31,11 +31,11 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th style="width: 5%; text-align: center;">#</th>
+                        <th style="width: 8%; text-align: center;">#</th>
                         <th style="text-align: center;">รถ</th>
                         <th style="width: 10%; text-align: center;">วันที่เสียภาษี</th>
                         <th style="width: 10%; text-align: center;">วันที่ครบกำหนดเสียภาษี</th>
-                        <th style="width: 10%; text-align: center;">เลขที่ใบเสร็จ</th>
+                        <th style="width: 20%; text-align: center;">เลขที่ใบเสร็จ</th>
                         <th style="width: 10%; text-align: center;">ค่าภาษี</th>
                         <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>

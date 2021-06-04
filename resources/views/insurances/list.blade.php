@@ -2,24 +2,25 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="reserveCtrl">
-  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการต่อประกันภัย</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อประกันภัย
-        </span>
-        <a href="{{ url('/insurance/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อประกันภัย
+            </span>
+            <a href="{{ url('/insurance/new') }}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                เพิ่มรายการ
+            </a>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
 
     <div class="row">
@@ -27,17 +28,17 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th style="width: 4%; text-align: center;">#</th>
+                        <th style="width: 8%; text-align: center;">#</th>
                         <th style="width: 15%; text-align: center;">รถ</th>
                         <th style="width: 12%; text-align: center;">เลขที่กรมธรรม์</th>
                         <th style="width: 12%; text-align: center;">ประเภทประกันภัย</th>
                         <th>รายละเอียด</th>
-                        <th style="width: 15%; text-align: center;">ระยะเวลาประกัน</th>
+                        <th style="width: 12%; text-align: center;">ระยะเวลาประกัน</th>
                         <th style="width: 8%; text-align: center;">ค่าเบี้ยประกัน</th>
-                        <th style="width: 10%; text-align: center;">Actions</th>
+                        <th style="width: 8%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($insurances as $insurance)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $insurance->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $insurance->vehicle_id])->with('changwat')->first();
                         ?>
                     <tr>
                         <td style="text-align: center;">
@@ -109,7 +110,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($insurances->currentPage() !== 1)
                     <li>
                         <a href="{{ $insurances->url($insurances->url(1)) }}" aria-label="Previous">

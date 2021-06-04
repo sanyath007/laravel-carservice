@@ -1,25 +1,29 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid" ng-controller="assignCtrl">
-  
+<div class="container-fluid" ng-controller="assignCtrl">  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการจัดรถ</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการจัดรถ
-        </span>
-        <a href="{{ url('/assign/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
-    </div>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการจัดรถ
+            </span>
 
-    <hr />
+            <div>
+                <a href="{{ url('/assign/new') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    เพิ่มรายการ
+                </a>
+            </div>
+        </div>
+
+        <hr />
+    </div>
     <!-- page title -->
     
     @if (session('status'))
@@ -87,7 +91,7 @@
                         <td style="text-align: left;">
 
                             @foreach($assignment->assignreserve as $reserve)
-                                <?php $reservation = App\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
+                                <?php $reservation = App\Models\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
                                 ?>
 
                                 <?php

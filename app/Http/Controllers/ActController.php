@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Acts;
-use App\InsuranceCompany;
-use App\InsuranceType;
+use App\Models\InsuranceCompany;
+use App\Models\InsuranceType;
 
 class ActController extends Controller
 {
@@ -43,21 +43,21 @@ class ActController extends Controller
 
     public function index ()
     {
-    	return view('acts.list', [
-    		'acts' => Acts::where(['status' => 1])
-    							->with('vehicle')
-    							->with('company')
+        return view('acts.list', [
+            'acts' => Acts::where(['status' => 1])
+                                ->with('vehicle')
+                                ->with('company')
                                 ->orderBy('act_start_date', 'DESC')
                                 ->orderBy('id', 'DESC')
-    							->paginate(10),
-    	]);
+                                ->paginate(10),
+        ]);
     }
 
     public function create ()
     {
-    	return view('acts.newform', [
-    		'companies' => InsuranceCompany::all(),
-    	]);
+        return view('acts.newform', [
+            'companies' => InsuranceCompany::all(),
+        ]);
     }
 
     public function store (Request $req)
@@ -69,8 +69,8 @@ class ActController extends Controller
             $file->move('uploads', $filename);
         }
 
-    	$newAct = new Acts();
-    	$newAct->doc_no = $req['doc_no'];
+        $newAct = new Acts();
+        $newAct->doc_no = $req['doc_no'];
         $newAct->doc_date = $req['doc_date'];
         $newAct->vehicle_id = $req['vehicle_id'];
         $newAct->act_no = $req['act_no'];
@@ -87,7 +87,7 @@ class ActController extends Controller
         $newAct->status = '1';
 
         if ($newAct->save()) {
-             $deactivate = Acts::where('vehicle_id', '=', $req['vehicle_id'])
+            $deactivate = Acts::where('vehicle_id', '=', $req['vehicle_id'])
                             ->where('id', '<>', $newAct->id)
                             ->update(['status' => '0']);
                             
@@ -97,9 +97,7 @@ class ActController extends Controller
 
     public function edit ()
     {
-    	return view('acts.editform', [
-
-    	]);
+        return view('acts.editform', []);
     }
 
     public function update (Request $req)
@@ -111,7 +109,7 @@ class ActController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move('uploads', $filename);
         }
-    	
+
         $act = Acts::find($req['id'])->first();
         $act->doc_no = $req['doc_no'];
         $act->doc_date = $req['doc_date'];
@@ -129,6 +127,6 @@ class ActController extends Controller
 
     public function delete ()
     {
-    	
+
     }
 }

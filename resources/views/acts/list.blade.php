@@ -2,24 +2,25 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="reserveCtrl">
-  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการต่อ พรบ.</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อ พรบ.
-        </span>
-        <a href="{{ url('/act/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อ พรบ.
+            </span>
+            <a href="{{ url('/act/new') }}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                เพิ่มรายการ
+            </a>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
 
     <div class="row">
@@ -27,16 +28,16 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th style="width: 4%; text-align: center;">#</th>
-                        <th style="width: 15%; text-align: center;">รถ</th>
-                        <th style="width: 10%; text-align: center;">เลขที่กรมธรรม์</th>
-                        <th style="width: 12%; text-align: center;">บริษัท</th>
+                        <th style="width: 8%; text-align: center;">#</th>
+                        <th style="text-align: center;">รถ</th>
+                        <th style="width: 12%; text-align: center;">เลขที่กรมธรรม์</th>
+                        <th style="width: 20%; text-align: center;">บริษัท</th>
                         <th style="width: 15%; text-align: center;">ระยะเวลาประกัน</th>
-                        <th style="width: 6%; text-align: center;">ค่าเบี้ย พรบ.</th>
+                        <th style="width: 8%; text-align: center;">ค่าเบี้ย พรบ.</th>
                         <th style="width: 10%; text-align: center;">Actions</th>
                     </tr>
                     @foreach($acts as $act)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $act->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $act->vehicle_id])->with('changwat')->first();
                         ?>
                     <tr>
                         <td style="text-align: center;">
@@ -70,8 +71,12 @@
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="cancel-form" action="{{ url('/reserve/cancel/' . $act->id) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
+                                <form
+                                    id="cancel-form"
+                                    action="{{ url('/reserve/cancel/' . $act->id) }}"
+                                    method="POST" style="display: none;"
+                                >
+                                    {{ csrf_field() }}
                                 </form>
                             @endif
 
@@ -83,8 +88,12 @@
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/reserve/return/' . $act->id) }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                    <form
+                                        id="return-form"
+                                        action="{{ url('/reserve/return/' . $act->id) }}"
+                                        method="POST" style="display: none;"
+                                    >
+                                        {{ csrf_field() }}
                                     </form>
                                 @endif
 
@@ -94,7 +103,12 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/reserve/delete/' . $act->id) }}" method="POST" style="display: none;">
+                                <form
+                                    id="delete-form"
+                                    action="{{ url('/reserve/delete/' . $act->id) }}"
+                                    method="POST"
+                                    style="display: none;"
+                                >
                                     {{ csrf_field() }}
                                 </form>
                             @endif
@@ -104,7 +118,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($acts->currentPage() !== 1)
                     <li>
                         <a href="{{ $acts->url($acts->url(1)) }}" aria-label="Previous">

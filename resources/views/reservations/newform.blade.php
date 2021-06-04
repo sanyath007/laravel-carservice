@@ -96,7 +96,7 @@
                 <div class="col-md-12">
 
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('locationId')}">
-                        <label class="control-label" for="location">สถานที่ <font style="color: red;">*</font></label>
+                        <label class="control-label" for="location">สถานที่ <span style="color: red;">*</span></label>
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary" ng-click="showNewLocationForm($event)">
@@ -271,7 +271,7 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('department')}">
-                        <label class="control-label" for="department">หน่วยงานผู้จอง <font style="color: red;">*</font> </label>
+                        <label class="control-label" for="department">หน่วยงานผู้จอง <span style="color: red;">*</span> </label>
                         <select id="department" 
                                 name="department" 
                                 ng-model="newReserve.department"

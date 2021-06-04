@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Location;
-use App\Changwat;
-use App\Amphur;
-use App\Tambon;
+use App\Models\Location;
+use App\Models\Changwat;
+use App\Models\Amphur;
+use App\Models\Tambon;
 
 class LocationController extends Controller
 {

@@ -13,10 +13,13 @@
             <span>
                 <i class="fa fa-calendar" aria-hidden="true"></i> รายการขอใช้รถ
             </span>
-            <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                เพิ่มรายการ
-            </a>
+
+            <div>
+                <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    เพิ่มรายการ
+                </a>
+            </div>
         </div>
         
         <hr />

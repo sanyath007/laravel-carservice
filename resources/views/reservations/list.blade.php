@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="reserveCtrl">
-  
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการขอใช้รถ</li>
@@ -120,14 +119,14 @@
                                 'จบงาน',
                                 'ยกเลิก'
                             ];
-                            $vehicle = App\Vehicle::where(['vehicle_id' => $reservation->vehicle_id])->with('changwat')->first();
+                            $vehicle = App\Models\Vehicle::where(['vehicle_id' => $reservation->vehicle_id])->with('changwat')->first();
                             $driver = App\Models\Driver::where(['driver_id' => $reservation->driver_id])->with('person')->first();
                         ?>
 
                         <?php
                             $locationIds = [];
                             $locationIds = explode(",", $reservation->location);
-                            $locations = App\Location::where('id','<>','1')
+                            $locations = App\Models\Location::where('id','<>','1')
                                             ->pluck('name','id')->toArray();
 
                             $locationList = '<ul class="tag__list">';

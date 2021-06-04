@@ -11,7 +11,7 @@ use App\ReservePassenger;
 use App\Models\Maintenance;
 use App\Models\Vehicle;
 use App\Models\Driver;
-use App\Location;
+use App\Models\Location;
 use App\Department;
 use App\Ward;
 

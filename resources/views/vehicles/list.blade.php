@@ -8,15 +8,18 @@
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>รายการรถ</span>
-        <a href="{{ url('/vehicles/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            New
-        </a>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>รายการรถ</span>
+            <a href="{{ url('/vehicles/new') }}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                New
+            </a>
+        </div>
+
+        <hr />
     </div>
 
-    <hr />
     <!-- page title -->
 
     <div class="row">

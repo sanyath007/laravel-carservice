@@ -11,8 +11,18 @@
   min-height: 77vh;
 }
 
+.page__title-wrapper {
+  margin: 0px auto 20px;
+  padding: 0px 5px;
+  border: 1px solid gray;
+}
+
 .page__title {
   margin: 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border: 1px solid red;
 }
 
 .page__title span {
@@ -20,6 +30,10 @@
   padding: 0px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.page__title-wrapper hr {
+  margin: 10px auto 0px;
 }
 /**
  * ######################### Main #########################

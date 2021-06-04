@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Reservation;
-use App\ReservePassenger;
-use App\Maintenance;
-use App\Vehicle;
-use App\Driver;
-use App\Location;
+use App\Models\Reservation;
+use App\Models\ReservePassenger;
+use App\Models\Maintenance;
+use App\Models\Vehicle;
+use App\Models\Driver;
+use App\Models\Location;
 use App\Department;
 use App\Ward;
-use App\Assignment;
-use App\AssignmentReserve;
+use App\Models\Assignment;
+use App\Models\AssignmentReserve;
 use App\Models\Budget;
 use PDO;
 

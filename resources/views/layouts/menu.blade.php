@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Car Service</a>
+            <a class="navbar-brand" href="{{ url('/') }}">Car Service</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -18,16 +18,16 @@
         
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          รายการใช้รถ
-                          <span class="caret"></span>
+                        รายการใช้รถ
+                        <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{ url('/reserve/calendar') }}">ตารางใช้รถวันนี้</a></li>
-                          <li><a href="{{ url('/reserve/list') }}">รายการขอใช้รถ</a></li>
-                          <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
-                          <!-- <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="{{ url('/pos') }}">รายการรออนุมัติ</a></li> -->
+                        <li><a href="{{ url('/reserve/calendar') }}">ตารางใช้รถวันนี้</a></li>
+                        <li><a href="{{ url('/reserve/list') }}">รายการขอใช้รถ</a></li>
+                        <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
+                        <!-- <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('/pos') }}">รายการรออนุมัติ</a></li> -->
                         </ul>
                     </li>
 
@@ -44,32 +44,32 @@
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                              พนักงานขับรถ
-                              <span class="caret"></span>
+                            พนักงานขับรถ
+                            <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ url('/assign/list') }}">รายการจัดรถ</a></li>
-                              <li><a href="{{ url('/assign/new') }}">บันทึกการจัดรถ</a></li>
-                              <li><a href="{{ url('/assign/drive') }}">รายการวิ่งรถ</a></li>
-                              <!-- <li><a href="{{ url('/reserve/calendar') }}">ตารางทำงาน พขร.</a></li> -->
-                              <!-- <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
-                              <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li> -->
-                              <!-- <li role="separator" class="divider"></li>
-                              <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
-                              <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li> -->
+                            <li><a href="{{ url('/assign/list') }}">รายการจัดรถ</a></li>
+                            <li><a href="{{ url('/assign/new') }}">บันทึกการจัดรถ</a></li>
+                            <li><a href="{{ url('/assign/drive') }}">รายการวิ่งรถ</a></li>
+                            <!-- <li><a href="{{ url('/reserve/calendar') }}">ตารางทำงาน พขร.</a></li> -->
+                            <!-- <li><a href="{{ url('/reserve/new') }}">บันทึกขอใช้รถ</a></li>
+                            <li><a href="{{ url('/reserve/cancel') }}">ยกเลิกการขอใช้รถ</a></li> -->
+                            <!-- <li role="separator" class="divider"></li>
+                            <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
+                            <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li> -->
                             </ul>
                         </li>
 
-                     @endif
+                    @endif
 
-                     <li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          ประเมิน
-                          <span class="caret"></span>
+                        ประเมิน
+                        <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
-                          <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li>
+                        <li><a href="{{ url('/prepared/list') }}">ตรวจความพร้อมร่างกาย พขร.</a></li>
+                        <li><a href="{{ url('/survey/list') }}">สอบถามความพึงพอใจการใช้บริการ</a></li>
                         </ul>
                     </li>
 
@@ -106,35 +106,35 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                              บำรุงรักษารถ
-                              <span class="caret"></span>
+                            บำรุงรักษารถ
+                            <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ url('/maintenances/list') }}">ประวัติการบำรุงรักษารถ</a></li>
-                              <li><a href="{{ url('/accidents/list') }}">ประวัติการเกิดอุบัติเหตุรถ</a></li>
-                              <!-- <li><a href="#">ขอสนับสนุนจ้างซ่อมบำรุง</a></li> -->
-                              <li role="separator" class="divider"></li>
-                              <li><a href="{{ url('/maintenances/checklist') }}">การตรวจเช็ครถประจำเดือน</a></li>
-                              <!-- <li><a href="#">Separated link</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">One more separated link</a></li> -->
+                            <li><a href="{{ url('/maintenances/list') }}">ประวัติการบำรุงรักษารถ</a></li>
+                            <li><a href="{{ url('/accidents/list') }}">ประวัติการเกิดอุบัติเหตุรถ</a></li>
+                            <!-- <li><a href="#">ขอสนับสนุนจ้างซ่อมบำรุง</a></li> -->
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url('/maintenances/checklist') }}">การตรวจเช็ครถประจำเดือน</a></li>
+                            <!-- <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li> -->
                             </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                              ข้อมูลพื้นฐาน
-                              <span class="caret"></span>
+                            ข้อมูลพื้นฐาน
+                            <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ url('/vehicles/list') }}">รายการรถ</a></li>
-                              <li><a href="{{ url('/drivers/list') }}">พนักงานขับรถ</a></li>
-                              <!-- <li role="separator" class="divider"></li>
-                              <li><a href="#">ประเภทรถ</a></li>
-                              <li><a href="#">ชนิดรถ</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">ผู้จัดจำหน่าย</a></li>
-                              <li><a href="#">อู่ซ่อมรถ</a></li> -->
+                            <li><a href="{{ url('/vehicles/list') }}">รายการรถ</a></li>
+                            <li><a href="{{ url('/drivers/list') }}">พนักงานขับรถ</a></li>
+                            <!-- <li role="separator" class="divider"></li>
+                            <li><a href="#">ประเภทรถ</a></li>
+                            <li><a href="#">ชนิดรถ</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">ผู้จัดจำหน่าย</a></li>
+                            <li><a href="#">อู่ซ่อมรถ</a></li> -->
                             </ul>
                         </li>
 
@@ -142,33 +142,33 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          รายงาน
-                          <span class="caret"></span>
+                        รายงาน
+                        <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{ url('/report/reserve') }}">รายงานการขอใช้รถ</a></li>
-                          <li><a href="{{ url('/report/drive') }}">รายงานการเดินรถ</a></li>
-                          <li><a href="{{ url('/report/reserve-depart') }}">รายงานให้บริการ รายหน่วยงาน</a></li>
-                          <li class="divider"></li>
-                          <li><a href="{{ url('/report/service') }}">รายงานการให้บริการทั้งหมด</a></li>
-                          <li><a href="{{ url('/report/service-vehicle') }}">รายงานการให้บริการ รายรถ</a></li>
-                          <li><a href="{{ url('/report/service-location') }}">รายงานการให้บริการ รายพื้นที่</a></li>
-                          <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
-                          <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
-                          <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>
-                          <li><a href="{{ url('/report/fuel-day') }}">รายงานการใช้น้ำมันรวม รายเดือน</a></li>
-                          <li><a href="{{ url('/report/fuel-vehicle') }}">รายงานการใช้น้ำมันรวม รายรถ</a></li>
-                          <li><a href="{{ url('/report/maintain-vehicle') }}">รายงานการซ่อมรถยนต์ รายรถ</a></li>
-                          <li class="divider"></li>
-                          <li><a href="{{ url('/report/sum-fuel') }}">สรุปยอดค่าใช้จ่ายน้ำมัน</a></li>
-                          <li><a href="{{ url('/report/sum-maintained') }}">สรุปยอดการซ่อมรถยนต์</a></li>
+                        <li><a href="{{ url('/report/reserve') }}">รายงานการขอใช้รถ</a></li>
+                        <li><a href="{{ url('/report/drive') }}">รายงานการเดินรถ</a></li>
+                        <li><a href="{{ url('/report/reserve-depart') }}">รายงานให้บริการ รายหน่วยงาน</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url('/report/service') }}">รายงานการให้บริการทั้งหมด</a></li>
+                        <li><a href="{{ url('/report/service-vehicle') }}">รายงานการให้บริการ รายรถ</a></li>
+                        <li><a href="{{ url('/report/service-location') }}">รายงานการให้บริการ รายพื้นที่</a></li>
+                        <li><a href="{{ url('/report/period') }}">รายงานการให้บริการ ตามช่วงเวลา</a></li>
+                        <li><a href="{{ url('/report/depart') }}">รายงานการให้บริการ ตามหน่วยงาน</a></li>
+                        <li><a href="{{ url('/report/refer') }}">รายงานการรับ-ส่งผู้ป่วย (Refer)</a></li>
+                        <li><a href="{{ url('/report/fuel-day') }}">รายงานการใช้น้ำมันรวม รายเดือน</a></li>
+                        <li><a href="{{ url('/report/fuel-vehicle') }}">รายงานการใช้น้ำมันรวม รายรถ</a></li>
+                        <li><a href="{{ url('/report/maintain-vehicle') }}">รายงานการซ่อมรถยนต์ รายรถ</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url('/report/sum-fuel') }}">สรุปยอดค่าใช้จ่ายน้ำมัน</a></li>
+                        <li><a href="{{ url('/report/sum-maintained') }}">สรุปยอดการซ่อมรถยนต์</a></li>
                         </ul>
                     </li>
 
                 @endif
 
             </ul>
-      
+    
             <ul class="nav navbar-nav navbar-right">
 
                 @if (Auth::guest())
@@ -180,8 +180,8 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                          {{ Auth::user()->person_firstname }} {{ Auth::user()->person_lastname }}
-                          <span class="caret"></span>
+                        {{ Auth::user()->person_firstname }} {{ Auth::user()->person_lastname }}
+                        <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>

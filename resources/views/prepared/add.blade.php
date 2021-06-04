@@ -2,24 +2,24 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="preparedCtrl">
-  
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-        <li class="breadcrumb-item active">แบบตรวจความพร้อมร่างกาย พขร.</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+        <li class="breadcrumb-item active">
+            <a href="{{ url('/prepared/list') }}">รายการตรวจความพร้อมร่างกาย พขร.</a>
+        </li>
+        <li class="breadcrumb-item active">ฟอร์มบันทึกตรวจความพร้อมร่างกาย พขร.</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> แบบตรวจความพร้อมร่างกาย พขร.
-        </span>
-        <!-- <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            รายการสอบถามความพึงพอใจ
-        </a> -->
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> ฟอร์มบันทึกตรวจความพร้อมร่างกาย พขร.
+            </span>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
 
     <div class="row">

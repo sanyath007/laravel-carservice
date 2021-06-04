@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Reservation;
 use App\ReservePassenger;
-use App\Maintenance;
+use App\Models\Maintenance;
 use App\Models\Vehicle;
 use App\Models\Driver;
 use App\Location;

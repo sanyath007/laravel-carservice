@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 
-use App\Reservation;
-use App\ReservePassenger;
+use App\Models\Reservation;
+use App\Models\ReservePassenger;
 use App\Models\Maintenance;
 use App\Models\Vehicle;
 use App\Models\Driver;

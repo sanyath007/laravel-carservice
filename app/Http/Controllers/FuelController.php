@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-use App\Vehicle;
-use App\VehicleFuel;
-use App\FuelType;
+use App\Models\Vehicle;
+use App\Models\VehicleFuel;
+use App\Models\FuelType;
 
 class FuelController extends Controller
 {

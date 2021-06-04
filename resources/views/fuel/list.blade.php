@@ -2,24 +2,43 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="fuelCtrl">
-  
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการใช้น้ำมันเชื้อเพลิง</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการใช้น้ำมันเชื้อเพลิง
-        </span>
-        <a href="{{ url('/fuel/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
-    </div>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการใช้น้ำมันเชื้อเพลิง
+            </span>
 
-    <hr />
+            <div>
+                <a href="{{ url('/fuel/new') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    เพิ่มรายการ
+                </a>
+
+                <a href="{{ url('/print/fuel_sum1-15.php'). '?_month=' .$_month }}" target="_blank" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปราย 1-15
+                </a>
+
+                <a href="{{ url('/print/fuel_sum16-31.php'). '?_month=' .$_month  }}" target="_blank" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปราย 16-30
+                </a>
+
+                <!-- <a href="{{ url('/print/fuel_sum.php'). '?_month=' .$_month  }}" class="btn btn-success">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    พิมพ์ใบสรุปรายเดือน
+                </a> -->
+            </div>
+        </div>
+        
+        <hr />
+    </div>
     <!-- page title -->
 
     <div class="row">
@@ -49,7 +68,7 @@
                         <th style="width: 6%; text-align: center;">น้ำมัน</th>
                         <th style="width: 8%; text-align: center;">จำนวนลิตร</th>
                         <th style="width: 8%; text-align: center;">ราคา/ลิตร</th>
-                        <th style="width: 10%; text-align: center;">รวมราคา</th>
+                        <th style="width: 8%; text-align: center;">รวมราคา</th>
                         <th style="text-align: center;">งานที่ปฏิบัติ</th>
                         <th style="text-align: center;">สถานะ</th>
                         <th style="width: 8%; text-align: center;">Actions</th>
@@ -58,7 +77,7 @@
                     <?php $departmentArr = [1 => 'รพ.', 2 => 'ศูนย์ 3 วัดบูรพ์', 3 => 'ศูนย์ 9 ราชภัฎ', 4 => 'ช่างฯ']; ?>
 
                     @foreach($fuels as $fuel)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $fuel->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $fuel->vehicle_id])->with('changwat')->first();
                         ?>
                     <tr <?=($fuel->status==3) ? 'class="cancel-data"' : ''?>>
                         <td style="text-align: center;">
@@ -71,9 +90,9 @@
                         <td style="text-align: center;">{{ $fuel->bill_date }}</td>
                         <td style="text-align: center;">{{ $fuel->vehicle[0]->reg_no }}</td>
                         <td style="text-align: center;">{{ $fuel->fuel_type[0]->fuel_type_name }}</td>
-                        <td style="text-align: right;">{{ $fuel->volume }}</td>
-                        <td style="text-align: right;">{{ $fuel->unit_price }}</td>
-                        <td style="text-align: right;">{{ $fuel->total }}</td>
+                        <td style="text-align: center;">{{ $fuel->volume }}</td>
+                        <td style="text-align: center;">{{ $fuel->unit_price }}</td>
+                        <td style="text-align: center;">{{ $fuel->total }}</td>
                         <td style="text-align: center;">{{ $fuel->job_desc }}</td>
                         <td style="text-align: center;">{{ $statusArr[$fuel->fuel_status] }}</td>
                         <td style="text-align: center;">
@@ -128,7 +147,7 @@
                 </table>
             </div>
             
-            <ul class="pagination">
+            <ul class="pagination" style="margin: 0 auto;">
                 @if($fuels->currentPage() !== 1)
                     <li>
                         <a href="{{ $fuels->url($fuels->url(1)). '&_month='.$_month }}" aria-label="Previous">
@@ -153,27 +172,7 @@
                     </li>
                 @endif
             </ul>
-
-            <div class="row" style="text-align: center;">
-                <a href="{{ url('/print/fuel_sum1-15.php'). '?_month=' .$_month }}" target="_blank" class="btn btn-success">
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                    พิมพ์ใบสรุปราย 1-15
-                </a>
-
-                <a href="{{ url('/print/fuel_sum16-31.php'). '?_month=' .$_month  }}" target="_blank" class="btn btn-success">
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                    พิมพ์ใบสรุปราย 16-30
-                </a>
-
-                <!-- <a href="{{ url('/print/fuel_sum.php'). '?_month=' .$_month  }}" class="btn btn-success">
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                    พิมพ์ใบสรุปรายเดือน
-                </a> -->
-            </div>
-            
-
-        </div>
-        <!-- right column -->
+        </div><!-- right column -->
     </div><!-- /.row -->
     
     <!-- Modal -->

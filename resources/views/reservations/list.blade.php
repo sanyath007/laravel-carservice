@@ -3,22 +3,24 @@
 @section('content')
 <div class="container-fluid" ng-controller="reserveCtrl">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการขอใช้รถ</li>
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i> รายการขอใช้รถ
-        </span>
-        <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มรายการ
-        </a>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                <i class="fa fa-calendar" aria-hidden="true"></i> รายการขอใช้รถ
+            </span>
+            <a href="{{ url('/reserve/new') }}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                เพิ่มรายการ
+            </a>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
 
     <!-- <form action="" method="POST" class="form-horizontal"> -->

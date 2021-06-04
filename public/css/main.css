@@ -14,15 +14,13 @@
 .page__title-wrapper {
   margin: 0px auto 20px;
   padding: 0px 5px;
-  border: 1px solid gray;
 }
 
-.page__title {
+.page__title-wrapper .page__title {
   margin: 0px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  border: 1px solid red;
 }
 
 .page__title span {
@@ -32,8 +30,16 @@
   font-weight: bold;
 }
 
+.page__title div .btn {
+  margin-left: 8px;
+}
+
 .page__title-wrapper hr {
   margin: 10px auto 0px;
+}
+
+.page__title .text-muted {
+  font-weight: 200;
 }
 /**
  * ######################### Main #########################

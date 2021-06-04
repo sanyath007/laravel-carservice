@@ -10,35 +10,39 @@
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>
-            รายการประวัติการบำรุงรักษารถ
-            {{ $vehicle->cate->vehicle_cate_name }}
-            {{ $vehicle->type->vehicle_type_name }}
-            {{ $vehicle->manufacturer->manufacturer_name }}
-            ทะเบียน {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }}
-        </span>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>
+                รายการประวัติการบำรุงรักษารถ  
+                <span class="text-muted">
+                    ({{ $vehicle->cate->vehicle_cate_name }}
+                    {{ $vehicle->type->vehicle_type_name }}
+                    {{ $vehicle->manufacturer->manufacturer_name }}
+                    ทะเบียน {{ $vehicle->reg_no }} {{ $vehicle->changwat->short }})
+                </span>
+            </span>
+            
+            <div>
+                <a
+                    href="{{ url('/maintained/new') }}/{{ $vehicle->vehicle_id }}"
+                    class="btn btn-primary pull-right"
+                >
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    New
+                </a>
+
+                <a 
+                    href="{{ url('/maintained/vehicleprint') }}/{{ $vehicle->vehicle_id }}"
+                    class="btn btn-success pull-right"
+                >
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    print
+                </a>
+            </div>
+        </div>
         
-        <a
-            href="{{ url('/maintained/new') }}/{{ $vehicle->vehicle_id }}"
-            class="btn btn-primary pull-right"
-            style="margin-left: 8px;"
-        >
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            New
-        </a>
-
-        <a 
-            href="{{ url('/maintained/vehicleprint') }}/{{ $vehicle->vehicle_id }}"
-            class="btn btn-success pull-right"
-        >
-            <i class="fa fa-print" aria-hidden="true"></i>
-            print
-        </a>
-    </div>
-
-    <hr />
-    <!-- page title -->
+        <hr />
+    </div><!-- page title -->
 
     <div class="row">
         <div class="col-md-12">

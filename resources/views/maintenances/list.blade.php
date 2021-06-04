@@ -9,13 +9,15 @@
     </ol>
 
     <!-- page title -->
-    <div class="page__title">
-        <span>รายการประวัติการบำรุงรักษารถล่าสุด</span>
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>รายการประวัติการบำรุงรักษารถล่าสุด</span>
+        </div>
+        
+        <hr />
     </div>
-
-    <hr />
     <!-- page title -->
-  
+
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">

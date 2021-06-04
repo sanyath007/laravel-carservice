@@ -2,14 +2,18 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="vehicleCtrl">
-    <!-- page title -->
-    <div class="page__title">
-        <span>รายการรถ</span>
-    </div>
 
-    <hr />
+
     <!-- page title -->
-  
+    <div class="page__title-wrapper">
+        <div class="page__title">
+            <span>รายการรถ</span>
+        </div>
+        
+        <hr />
+    </div>
+    <!-- page title -->
+
     <?php $expired = '<span style="color: red;">หมดอายุ</span>'; ?>
 
     <div class="row">

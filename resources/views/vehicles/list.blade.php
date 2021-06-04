@@ -11,16 +11,17 @@
     <div class="page__title-wrapper">
         <div class="page__title">
             <span>รายการรถ</span>
-            <a href="{{ url('/vehicles/new') }}" class="btn btn-primary pull-right">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                New
-            </a>
+
+            <div>
+                <a href="{{ url('/vehicles/new') }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    New
+                </a>
+            </div>
         </div>
 
         <hr />
-    </div>
-
-    <!-- page title -->
+    </div><!-- page title -->
 
     <div class="row">
         <div class="col-md-12">

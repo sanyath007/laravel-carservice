@@ -2,12 +2,20 @@
 
 @section('content')
 <div class="container-fluid" ng-controller="vehicleCtrl">
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/vehicles/list') }}">รายการรถ</a></li>
+        <li class="breadcrumb-item active">{{ $vehicle->reg_no. ' ' .$vehicle->changwat->short }}</li>
+    </ol>
 
     <!-- page title -->
     <div class="page__title-wrapper">
         <div class="page__title">
-            <span>รายการรถ</span>
+            <span>รายละเอียดรถ
+                <span class="text-muted">
+                    ({{ $vehicle->reg_no }} {{ $vehicle->changwat->short }})
+                </span>
+            </span>
         </div>
         
         <hr />

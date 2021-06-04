@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="maintenanceCtrl">
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>

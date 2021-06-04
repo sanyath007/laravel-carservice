@@ -1,4 +1,4 @@
-app.controller('maintainedCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
+app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService, CONFIG) {
 /** ################################################################################## */
 	$scope._ = _;
 	

@@ -1,8 +1,7 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="maintainedCtrl" ng-init="popUpAllVehicle()">
-      
+    <div class="container-fluid" ng-controller="maintenanceCtrl" ng-init="popUpAllVehicle()">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
             <li class="breadcrumb-item active">บันทึกการตรวจสภาพรถและอุปกรณ์ประจำรถ</li>

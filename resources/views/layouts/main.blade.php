@@ -55,7 +55,7 @@
 	<script src="{{ asset('/js/controllers/mainCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/reserveCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/assignCtrl.js') }}"></script>
-	<script src="{{ asset('/js/controllers/maintainedCtrl.js') }}"></script>
+	<script src="{{ asset('/js/controllers/maintenanceCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/insuranceCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/taxCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/fuelCtrl.js') }}"></script>

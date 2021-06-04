@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
-use App\Assignment;
-use App\AssignmentReserve;
-use App\Reservation;
-use App\Vehicle;
-use App\Location;
+use App\Models\Assignment;
+use App\Models\AssignmentReserve;
+use App\Models\Reservation;
+use App\Models\Vehicle;
+use App\Models\Location;
 use App\User;
 
 class AssignmentController extends Controller

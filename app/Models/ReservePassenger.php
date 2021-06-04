@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class ReservePassenger extends Model
 
   public function reserve()
   {
-    return $this->belongsTo('App\Reservation', 'reserve_id', 'id');
+    return $this->belongsTo('App\Models\Reservation', 'reserve_id', 'id');
   }
 
   public function user()

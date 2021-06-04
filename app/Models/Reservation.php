@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +27,6 @@ class Reservation extends Model
 
     public function passenger()
     {
-            return $this->hasMany('App\ReservePassenger', 'id', 'reserve_id');
+            return $this->hasMany('App\Models\ReservePassenger', 'id', 'reserve_id');
     }
 }

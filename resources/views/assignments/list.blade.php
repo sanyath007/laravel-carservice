@@ -70,7 +70,7 @@
                     </tr>
 
                     @foreach($assignments as $assignment)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
                         ?>
 
                         <?php $driver = App\Models\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
@@ -95,7 +95,7 @@
                                     $locationIds = [];
                                     $locationList = '';
                                     $locationIds = explode(",", $reservation->location);
-                                    $locations = App\Location::where('id','<>','1')
+                                    $locations = App\Models\Location::where('id','<>','1')
                                                     ->pluck('name','id')->toArray();
 
                                     $locationList = '<ul class="tag__list">';

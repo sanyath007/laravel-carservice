@@ -47,7 +47,7 @@ class Vehicle extends Model
 
     public function reserve()
     {
-        return $this->hasMany('App\Reservation', 'vehicle_id', 'vehicle_id');
+        return $this->hasMany('App\Models\Reservation', 'vehicle_id', 'vehicle_id');
     }
 
     public function maintained()
@@ -57,23 +57,23 @@ class Vehicle extends Model
 
     public function tax()
     {
-        return $this->hasMany('App\Tax', 'vehicle_id', 'vehicle_id');
+        return $this->hasMany('App\Models\Tax', 'vehicle_id', 'vehicle_id');
     }
 
     public function fuel_used()
     {
-        return $this->hasMany('App\VehicleFuel', 'vehicle_id', 'vehicle_id');
+        return $this->hasMany('App\Models\VehicleFuel', 'vehicle_id', 'vehicle_id');
     }
 
     public function taxactived()
     {
-        return $this->hasMany('App\Tax', 'vehicle_id', 'vehicle_id')
+        return $this->hasMany('App\Models\Tax', 'vehicle_id', 'vehicle_id')
                     ->where('is_actived', '=', '1');
     }
 
     public function insactived()
     {
-        return $this->hasMany('App\Insurance', 'vehicle_id', 'vehicle_id')
+        return $this->hasMany('App\Models\Insurance', 'vehicle_id', 'vehicle_id')
                     ->where('status', '=', '1');
     }
 

@@ -1,16 +1,16 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="maintenanceCtrl">
+    <div class="container-fluid" ng-controller="maintenanceCtrl" ng-init="edit({{ $maintenance }})">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/maintenance/list') }}">
+                <a href="{{ url('/maintenances/list') }}">
                     รายการประวัติการบำรุงรักษารถล่าสุด
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ url('/maintenance/'.$maintenance->vehicle->vehicle_id.'/vehicle') }}">
+                <a href="{{ url('/maintenances/'.$maintenance->vehicle->vehicle_id.'/vehicle') }}">
                     {{ $maintenance->vehicle->reg_no }} {{ $maintenance->vehicle->changwat->short }}
                 </a>
             </li>
@@ -31,20 +31,20 @@
 
         <hr />
         <!-- page title -->
-        
+
         <form id="frmNewMaintenance" action="{{ url('/maintenance/update') }}" method="post">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="ID">เลขที่รายการ</label>
-                        <input type="text" value="MT60-NEW" class="form-control" readonly>
+                        <input type="text" value="MT60-{{ $maintenance->maintained_id }}" class="form-control" readonly>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('mileage')}">
                         <label for="ID">เลขระยะเมื่อขออนุมัติ</label>
-                        <input type="text" id="mileage" name="mileage" class="form-control">
+                        <input type="text" id="mileage" name="mileage" value="{{ $maintenance->mileage }}" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('mileage')"></span>
                         <span class="help-block" ng-show="checkValidate('mileage')">กรุณาระบุเลขระยะเมื่อขออนุมัติ</span>
                     </div>
@@ -53,14 +53,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="doc_date">วันที่ขออนุมัติ</label>
-                        <input type="text" id="doc_date" name="doc_date" class="form-control">
+                        <input type="text" id="doc_date" name="doc_date" value="{{ $maintenance->doc_date }}" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="doc_no">เลขที่เอกสาร</label>
-                        <input type="text" id="doc_no" name="doc_no" value="นม0032.001.8.1/" class="form-control">
+                        <input type="text" id="doc_no" name="doc_no" value="{{ $maintenance->doc_no }}" class="form-control">
                     </div>
                 </div>
 
@@ -69,9 +69,9 @@
                         <label for="maintained_type">ประเภท</label>
                         <select id="maintained_type" name="maintained_type" class="form-control">
                             <option value="">-- กรุณาเลือกประเภท --</option>
-                            <option value="1">บำรุงรักษาตามรอบปกติ</option>
-                            <option value="2">ซ่อมตามอาการเสีย</option>
-                            <option value="3">ติดตั้งเพิ่ม</option>
+                            <option value="1" ng-selected="'{{ $maintenance->maintained_type }}' === '1'">บำรุงรักษาตามรอบปกติ</option>
+                            <option value="2" ng-selected="'{{ $maintenance->maintained_type }}' === '2'">ซ่อมตามอาการเสีย</option>
+                            <option value="3" ng-selected="'{{ $maintenance->maintained_type }}' === '3'">ติดตั้งเพิ่ม</option>
                         </select>
                         <!-- <span class="help-block" ng-show="checkValidate('maintained_type')">กรุณาเลือกประเภท</span> -->
                     </div>
@@ -80,21 +80,21 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="maintained_date">วันที่เข้าซ่อม</label>
-                        <input type="text" id="maintained_date" name="maintained_date" class="form-control">
+                        <input type="text" id="maintained_date" name="maintained_date" value="{{ $maintenance->maintained_date }}" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="maintained_mileage">เลขระยะทางเมื่อเข้าซ่อมจริง</label>
-                        <input type="text" id="maintained_mileage" name="maintained_mileage" class="form-control">
+                        <input type="text" id="maintained_mileage" name="maintained_mileage" value="{{ $maintenance->maintained_mileage }}" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="receive_date">วันที่ซ่อมเสร็จ</label>
-                        <input type="text" id="receive_date" name="receive_date" class="form-control">
+                        <input type="text" id="receive_date" name="receive_date" value="{{ $maintenance->receive_date }}" class="form-control">
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                             <option value="">-- กรุณาเลือกสถานที่ซ่อม --</option>
                             <?php $garages = App\Models\Garage::all(); ?>                      
                             @foreach($garages as $garage)
-                                <option value="{{ $garage->garage_id }}">
+                                <option value="{{ $garage->garage_id }}" ng-selected="'{{ $maintenance->garage_id }}' === '{{ $garage->garage_id }}'">
                                     {{ $garage->garage_name }}
                                 </option>
                             @endforeach
@@ -117,7 +117,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">เลขที่ใบส่งของ</label>
-                        <input type="text" id="delivery_bill" name="delivery_bill" class="form-control">
+                        <input type="text" id="delivery_bill" name="delivery_bill" value="{{ $maintenance->delivery_bill }}" class="form-control">
                     </div>
                 </div>
 
@@ -175,7 +175,7 @@
                                 name="sparePartPrice"
                                 ng-model="sparePartPrice"
                                 class="form-control"
-                                placeholder="รวมเป็นเงิน&hellip;"
+                                placeholder="เป็นเงิน&hellip;"
                                 style="width: 20%; margin-left: 5px;"
                             >
                             <button
@@ -202,7 +202,7 @@
                             <tbody>
                                 <tr ng-repeat="(index, spare) in sparePartList">
                                     <td style="text-align: center;">@{{ index + 1 }}</td>
-                                    <td>@{{ spare.desc+ ' (' +spare.price+ 'บาท)' }}</td>
+                                    <td>@{{ spare.desc+ ' ราคา ' +spare.price+ ' บาท' }}</td>
                                     <td style="text-align: center;">
                                         <a ng-click="removeSparePartList(spare)" style="color: red;cursor: pointer;">
                                             <i class="fa fa-times-circle" aria-hidden="true"></i>
@@ -217,14 +217,14 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="ID">หมายเหตุ</label>
-                        <textarea id="remark" name="remark" cols="30" rows="4" class="form-control"></textarea>
+                        <textarea id="remark" name="remark" value="{{ $maintenance->remark }}" cols="30" rows="4" class="form-control"></textarea>
                     </div>
                 </div>
 
                 <div class="col-md-5">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('amt')}">
                         <label for="ID">(ก) ค่าใช้จ่าย (ไม่ต้องใส่เครื่องหมายคอมมา หรือ ,)</label>
-                        <input type="text" id="amt" name="amt" class="form-control" ng-keyup="calculateMaintainedTotal($event)">
+                        <input type="text" id="amt" name="amt" value="{{ $maintenance->amt }}" class="form-control" ng-keyup="calculateMaintainedTotal($event)">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('amt')"></span>
                         <span class="help-block" ng-show="checkValidate('amt')">กรุณาระบุค่าใช้จ่าย และ ต้องระบุเป็นตัวเลข</span>
                     </div>
@@ -233,7 +233,7 @@
                 <div class="col-md-2">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('vat')}">
                         <label for="ID">(ข) VAT</label>
-                        <input type="text" id="vat" name="vat" class="form-control" ng-keyup="calculateMaintainedVatnet($event)">
+                        <input type="text" id="vat" name="vat" value="{{ $maintenance->vat }}" class="form-control" ng-keyup="calculateMaintainedVatnet($event)">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('vat')"></span>
                         <span class="help-block" ng-show="checkValidate('vat')">กรุณาระบุจำนวน VAT และ ต้องระบุเป็นตัวเลข</span>
                     </div>
@@ -242,7 +242,7 @@
                 <div class="col-md-5">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('total')}">
                         <label for="ID">(ก+ข) ยอดรวมทั้งสิ้น</label>
-                        <input type="text" id="total" name="total" class="form-control">
+                        <input type="text" id="total" name="total" value="{{ $maintenance->total }}" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('total')"></span>
                         <span class="help-block" ng-show="checkValidate('total')">กรุณาระบุยอดรวมทั้งสิ้น และ ต้องระบุเป็นตัวเลข</span>
                     </div>
@@ -256,11 +256,11 @@
 
             </div><!-- /.row -->
 
-            <input type="hidden" id="detail" name="detail">
-            <input type="hidden" id="spare_parts" name="spare_parts">
-            <input type="hidden" id="vatnet" name="vatnet">
-            <input type="hidden" id="staff" name="staff" value="{{ Auth::user()->person_id }}">
             <input type="hidden" id="vehicle" name="vehicle" value="{{ $maintenance->vehicle->vehicle_id }}">
+            <input type="hidden" id="detail" name="detail" value="{{ $maintenance->detail }}">
+            <input type="hidden" id="spare_parts" name="spare_parts" value="{{ $maintenance->spare_parts }}">
+            <input type="hidden" id="vatnet" name="vatnet" value="{{ $maintenance->vatnet }}">
+            <input type="hidden" id="staff" name="staff" value="{{ Auth::user()->person_id }}">
             {{ csrf_field() }}
 
         </form>

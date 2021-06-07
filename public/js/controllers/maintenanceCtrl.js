@@ -38,8 +38,6 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 		$scope.damageList = [];
 		$scope.isWashedList = [];
 
-        console.log($scope.selectedVehicle);
-
 		$http.get(`${CONFIG.baseUrl}/maintenances/ajaxchecklist/${$('#check_date').val()}/${$scope.selectedVehicle}`)
 		.then(function (res) {
 			let checkList = res.data.dailycheck;
@@ -177,7 +175,6 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
             $http.get(url).then(function (res) {
                 console.log(res);
                 $scope.frmAllVehicles = res.data.vehicles;
-                // console.log($scope.frmAllVehicles);
             });
         }
     }
@@ -190,6 +187,17 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 			popup.classList.toggle("show");
 		}
     };
+
+	$scope.edit = function (maintenance) {
+		$scope.maintenanceList = maintenance.detail.split(',');
+
+		if (maintenance.spare_parts) {
+			maintenance.spare_parts.split(',').forEach(sp => {
+				let item = sp.split('ราคา');
+				$scope.sparePartList.push({ desc: item[0], price: item[1] });
+			});
+		}
+	};
 
 	/** ################################################################################## */
     $scope.maintenanceList = [];
@@ -227,7 +235,7 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 	/** ################################################################################## */
     $scope.sparePartList = [];
 	$scope.sparePartDesc = '';
-	$scope.sparePartPrice = 0;
+	$scope.sparePartPrice = '';
     $scope.fillinSparePartList = function(event) {
 		event.preventDefault();
 		
@@ -247,16 +255,16 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 
 		//เคลียร์ค่าใน textfield
 		$scope.sparePartDesc = '';
-		$scope.sparePartPrice = 0;
+		$scope.sparePartPrice = '';
 
 		// สร้างข้อความรายการอะไหล่ที่จะบันทึกลงใน db โดยคั่นด้วย comma
 		var sparePartList_detail = "";
 		var count = 0;
 		angular.forEach($scope.sparePartList, function(spare) {
 			if(count != $scope.sparePartList.length - 1){
-				sparePartList_detail += spare.desc+ ' (' +spare.price+ 'บาท)' + ", ";
+				sparePartList_detail += `${spare.desc} ราคา ${spare.price} บาท,`;
 			} else {
-				sparePartList_detail += spare.desc+ ' (' +spare.price+ 'บาท)'
+				sparePartList_detail += `${spare.desc} ราคา ${spare.price} บาท`
 			}
 
 			count++;

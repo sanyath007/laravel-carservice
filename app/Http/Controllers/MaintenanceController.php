@@ -118,23 +118,14 @@ class MaintenanceController extends Controller
 
     public function edit ($maintainedid)
     {
-        $maintenances = Maintenance::where(['vehicle_id' => $maintainedid])
-                                ->with('vehicle')
-                                ->with('garage')
-                                ->with('user')
-                                ->orderBy('maintain_date', 'DESC')
-                                ->first();
-
-        return view('maintenances.newform', [
-            'vehicle' => Vehicle::where(['vehicle_id' => $id])
-                                ->with('cate')
-                                ->with('type')
-                                ->with('method')
-                                ->with('manufacturer')
-                                ->with('changwat')
-                                ->with('vender')
-                                ->with('fuel')
-                                ->paginate(10),
+        $maintenance = Maintenance::where(['maintained_id' => $maintainedid])
+                            ->with('vehicle')
+                            ->with('garage')
+                            ->with('user')
+                            ->first();
+                            
+        return view('maintenances.edit-form', [
+            'maintenance' => $maintenance,
         ]);
     }
 

@@ -106,9 +106,9 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/maintenances/add', 'MaintenanceController@store');    
     Route::post('/maintenances/validate', 'MaintenanceController@formValidate');
     Route::put('/maintenances/{maintainedid}/receive-bill', 'MaintenanceController@receiveBill');
-    Route::get('/maintenances/edit/{maintainedid}', 'MaintenanceController@edit');
+    Route::get('/maintenances/{maintainedid}/edit', 'MaintenanceController@edit');
     Route::post('/maintenances/update', 'MaintenanceController@update');
-    Route::post('/maintenances/delete/{maintainedid}', 'MaintenanceController@delete');
+    Route::post('/maintenances/{maintainedid}/delete', 'MaintenanceController@delete');
     Route::get('/maintenances/{vehicleid}/vehicle', 'MaintenanceController@vehiclemaintain');    
     Route::get('/maintenances/vehicleprint/{vehicleid}', 'MaintenanceController@vehicleprint');
     Route::get('/maintenances/checklist', 'MaintenanceController@checklist');

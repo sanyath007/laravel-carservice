@@ -89,14 +89,14 @@
                             <td>{{ $maintenance->remark }}</td>
                             <td style="text-align: center;">
                                 <a
-                                    href="{{ url('/maintained'). '/detail/' .$maintenance->maintained_id }}"
+                                    href="{{ url('/maintenances' .$maintenance->maintained_id. '/detail') }}"
                                     class="btn btn-info btn-xs"
                                     title="ดูรายละเอียด"
                                 >
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </a>
                                 <a
-                                    href="{{ $maintenance->maintained_id }}"
+                                    href="{{ url('/maintenances/' .$maintenance->maintained_id. '/edit') }}"
                                     class="btn btn-warning btn-xs"                                    
                                     title="แก้ไขรายการ"
                                 >

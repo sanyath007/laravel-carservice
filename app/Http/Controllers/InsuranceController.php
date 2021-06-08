@@ -23,10 +23,10 @@ class InsuranceController extends Controller
             'insurance_start_time' => 'required',
             'insurance_renewal_date' => 'required',
             'insurance_renewal_time' => 'required',
-            'insurance_net' => 'required',
-            'insurance_stamp' => 'required',
-            'insurance_vat' => 'required',
-            'insurance_total' => 'required',
+            'insurance_net' => 'required|numeric',
+            'insurance_stamp' => 'required|numeric',
+            'insurance_vat' => 'required|numeric',
+            'insurance_total' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -65,13 +65,6 @@ class InsuranceController extends Controller
 
     public function store (Request $req)
     {
-        // Upload attach file
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
         $newInsurance = new Insurance();
         $newInsurance->doc_no = $req['doc_no'];
         $newInsurance->doc_date = $req['doc_date'];
@@ -90,16 +83,33 @@ class InsuranceController extends Controller
         $newInsurance->insurance_total = $req['insurance_total'];
         $newInsurance->status = '1';
 
+        // Upload attach file
+        $attachfile = $this->uploadFile($req->file('attachfile'),'uploads/insurances');
+        if(!empty($attachfile)) {
+            $newInsurance->attachfile = $attachfile;
+        }
+
         if ($newInsurance->save()) {
             $deactivate = Insurance::where('vehicle_id', '=', $req['vehicle_id'])
                             ->where('id', '<>', $newInsurance->id)
                             ->update(['status' => '0']);
 
-            return redirect('insurance/list');
+            return redirect('insurances/list');
 		}
     }
 
-    public function edit ($id)
+    private function uploadFile($file, $destPath)
+    {
+        $filename = '';
+        if($file) {
+            $filename = $file->getClientOriginalName();
+            $file->move('uploads', $filename);
+        }
+
+        return $filename;
+    }
+
+    public function edit($id)
     {
         return view('insurances.editform', [
             'insurance' => Insurance::with('vehicle')->find($id),
@@ -108,32 +118,31 @@ class InsuranceController extends Controller
         ]);
     }
 
-    public function update (Request $req)
+    public function update($id, Request $req)
     {
+        $insurance = Insurance::find($id)->first();
+        // $insurance->doc_no = $req['doc_no'];
+        // $insurance->doc_date = $req['doc_date'];
+        // $insurance->insurance_no = $req['insurance_no'];
+        // $insurance->insurance_company_id = $req['company'];
+        // $insurance->insurance_type = $req['insurance_type'];
+        // $insurance->insurance_detail = $req['insurance_detail'];
+        // $insurance->insurance_start_date = $req['insurance_start_date'];
+        // $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
+
         // Upload attach file
-        // var_dump($request->file('attachfile'));
-        $filename = '';
-        if ($file = $request->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
+        $attachfile = $this->uploadFile($req->file('attachfile'),'uploads/insurances');
+        if(!empty($attachfile)) {
+            $insurance->attachfile = $attachfile;
         }
+        var_dump($insurance);
 
-        $insurance = Insurance::find($req['id'])->first();
-        $insurance->doc_no = $req['doc_no'];
-        $insurance->doc_date = $req['doc_date'];
-        $insurance->insurance_no = $req['insurance_no'];
-        $insurance->insurance_company_id = $req['company'];
-        $insurance->insurance_type = $req['insurance_type'];
-        $insurance->insurance_detail = $req['insurance_detail'];
-        $insurance->insurance_start_date = $req['insurance_start_date'];
-        $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
-
-        if ($insurance->save()) {
-            return redirect('insurance/list');
-        }
+        // if ($insurance->save()) {
+        //     return redirect('insurance/list');
+        // }
     }
 
-    public function delete ()
+    public function delete($id)
     {
 
     }

@@ -24,7 +24,12 @@
             <hr />
         </div><!-- page title -->
         
-        <form id="frmEditInsurance" action="{{ url('/insurance/update') }}" method="post" enctype="multipart/form-data">
+        <form
+            id="frmEditInsurance"
+            action="{{ url('/insurances/' .$insurance->id. '/update') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -297,6 +302,7 @@
                             id="insurance_net"
                             name="insurance_net"
                             ng-model="newInsurance.insuranceNet"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span
@@ -319,6 +325,7 @@
                             id="insurance_stamp"
                             name="insurance_stamp"
                             ng-model="newInsurance.insuranceStamp"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span
@@ -341,6 +348,7 @@
                             id="insurance_vat"
                             name="insurance_vat"
                             ng-model="newInsurance.insuranceVat"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span
@@ -406,10 +414,6 @@
                             id="attachfile"
                             name="attachfile"
                             class="form-control"
-                            placeholder="สถานที่&hellip;"
-                            ng-keyup="queryLocation($event)"
-                            ng-keypress="enterToAddLocation($event)"
-                            autocomplete="off"
                         />
                     </div>
                 </div>
@@ -441,6 +445,12 @@
         <script>
             $(document).ready(function($) {
                 var dateNow = new Date();
+                
+                $('#doc_date').datetimepicker({
+                    useCurrent: true,
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment(dateNow)
+                });
 
                 $('#insurance_start_date').datetimepicker({
                     useCurrent: true,
@@ -459,10 +469,16 @@
                     defaultDate: moment(dateNow)
                 });
 
-                $('#doc_date').datetimepicker({
+                $('#insurance_start_time').datetimepicker({
                     useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                });
+                
+                $('#insurance_renewal_time').datetimepicker({
+                    useCurrent: true,
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
                 });
             });
         </script>

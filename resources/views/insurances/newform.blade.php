@@ -25,7 +25,7 @@
         <hr />
         <!-- page title -->
         
-        <form id="frmNewInsurance" action="{{ url('/insurance/add') }}" method="post" enctype="multipart/form-data">
+        <form id="frmNewInsurance" action="{{ url('/insurances/add') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">

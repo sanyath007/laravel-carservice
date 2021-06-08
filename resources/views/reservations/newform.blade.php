@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('activity_type')}">
                     <label class="control-label" for="activity_type">
-                        ประเภทกิจกรรม <font style="color: red;">*</font>
+                        ประเภทกิจกรรม <span style="color: red;">*</span>
                     </label>
                     <select id="activity_type" 
                             name="activity_type"
@@ -79,7 +79,7 @@
             <div class="col-md-12">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('activity')}">
                     <label class="control-label" for="activity">
-                        เพื่อไปราชการ <font style="color: red;">*</font>
+                        เพื่อไปราชการ <span style="color: red;">*</span>
                     </label>
                     <input  type="text" 
                             id="activity" 

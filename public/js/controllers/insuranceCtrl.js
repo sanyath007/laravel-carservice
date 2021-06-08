@@ -72,6 +72,15 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         return (field in $scope.formError.errors);
     }
 
+    $scope.calculateTotal = function (event) {
+		var tmpNet = parseFloat($('#insurance_net').val());
+        var tmpStamp = parseFloat($('#insurance_stamp').val());
+        var tmpVat = parseFloat($('#insurance_vat').val());
+        var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
+
+        $('#insurance_total').val(tmpTotal.toFixed(2));
+    };
+
     $scope.frmAllVehicles = [];
     $scope.frmVehicle = null;
     $scope.frmVehicleDetail = '';

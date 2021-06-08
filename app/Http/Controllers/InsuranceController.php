@@ -99,9 +99,13 @@ class InsuranceController extends Controller
 		}
     }
 
-    public function edit ()
+    public function edit ($id)
     {
-        return view('insurances.editform', []);
+        return view('insurances.editform', [
+            'insurance' => Insurance::with('vehicle')->find($id),
+            'companies' => InsuranceCompany::all(),
+            'types'	=> InsuranceType::all(),
+        ]);
     }
 
     public function update (Request $req)

@@ -137,7 +137,12 @@
             </div><!-- end row -->
 
             <div class="row">
-                <div class="col-md-6">
+                <div
+                    ng-class="{
+                        'col-md-12': '{{ $tax->attachfile }}' === '',
+                        'col-md-6': '{{ $tax->attachfile }}' !== ''
+                    }"
+                >
                     <div class="form-group">
                         <label class="control-label" for="attachfile">แนบไฟล์</label>
                         <input type="file" id="attachfile" name="attachfile" class="form-control" placeholder="สถานที่&hellip;" ng-keyup="queryLocation($event)" autocomplete="off" ng-keypress="enterToAddLocation($event)">
@@ -149,6 +154,7 @@
                         src="{{ url('/uploads/taxes/' .$tax->attachfile) }}"
                         style="width: 200px; height: 200px;"
                         alt=""
+                        ng-show="'{{ $tax->attachfile }}' !== ''"
                     />
                 </div>
 

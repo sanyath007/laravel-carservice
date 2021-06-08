@@ -29,11 +29,11 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('doc_no')}">
                         <label for="doc_no">เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
                         <input type="text" id="doc_no" name="doc_no" ng-model="newTax.docNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('docNo')">กรุณาระบุเลขที่หนังสือขออนุมัติ</span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('doc_no')"></span>
+                        <span class="help-block" ng-show="checkValidate('doc_no')">กรุณาระบุเลขที่หนังสือขออนุมัติ</span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -76,22 +76,33 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxReceiptNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('tax_receipt_no')}">
                         <label for="tax_receipt_no">เลขที่ใบเสร็จ <span style="color: red;">*</span></label>
                         <input type="text" id="tax_receipt_no" name="tax_receipt_no" ng-model="newTax.taxReceiptNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('taxReceiptNo')">กรุณาระบุเลขที่ใบเสร็จ</span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('tax_receipt_no')"></span>
+                        <span class="help-block" ng-show="checkValidate('tax_receipt_no')">กรุณาระบุเลขที่ใบเสร็จ</span>
                     </div>
                 </div>
                 <!-- left column -->
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxCharge')}">
-                        <label for="tax_charge">ค่าภาษี <span style="color: red;">*</span></label>
-                        <input type="text" id="tax_charge" name="tax_charge" ng-model="newTax.taxCharge" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('taxCharge')"></span>
-                        <span class="help-block" ng-show="checkValidate('taxCharge')">กรุณากรอกค่าภาษี</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('tax_charge')}">
+                        <label for="tax_charge">
+                            ค่าภาษี <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="tax_charge"
+                            name="tax_charge"
+                            ng-model="newTax.taxCharge"
+                            class="form-control"
+                        >
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('tax_charge')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('tax_charge')">กรุณาระบุค่าภาษี หรือ ต้องระบุค่าภาษีเป็นตัวเลข</span>
                     </div>
                 </div>
                 <!-- right column -->

@@ -74,7 +74,7 @@ class TaxController extends Controller
                             ->where('id', '<>', $newTax->id)
                             ->update(['is_actived' => '0']);
                             
-            return redirect('tax/list');
+            return redirect('taxes/list');
         }
     }
     
@@ -117,7 +117,7 @@ class TaxController extends Controller
         }
 
         if ($tax->save()) {
-            return redirect('tax/list');
+            return redirect('taxes/list');
         }
     }
 

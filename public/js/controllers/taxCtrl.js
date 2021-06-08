@@ -30,11 +30,9 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             tax_receipt_no: $scope.newTax.taxReceiptNo,
             tax_charge: $scope.newTax.taxCharge,
         };
-        console.log(req_data);
 
         $http.post(CONFIG.baseUrl + '/taxes/validate', req_data)
         .then(function (res) {
-            // console.log(res);
             $scope.formError = res.data;
             console.log($scope.formError);
 
@@ -50,11 +48,9 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     }
 
     $scope.checkValidate = function (field) {
-        var status = false;
+        if (!$scope.formError) return;
 
-        status = ($scope.formError && $scope.newTax[field] === '') ? true : false;
-
-        return status;
+        return (field in $scope.formError.errors);
     }
 
     $scope.frmAllVehicles = [];

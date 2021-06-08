@@ -82,10 +82,10 @@ class TaxController extends Controller
         }
     }
 
-    public function edit ()
+    public function edit ($id)
     {
-        return view('insurances.editform', [
-
+        return view('taxes.edit-form', [
+            'tax'   => Tax::with('vehicle')->find($id)
         ]);
     }
 

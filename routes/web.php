@@ -132,31 +132,31 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/assign/ajaxadd_reservation', 'AssignmentController@ajaxadd_reservation');
 
     /** พรบ */
-    Route::get('/act/list', 'ActController@index');
-    Route::get('/act/new', 'ActController@create');
-    Route::post('/act/add', 'ActController@store');
-    Route::get('/act/edit/{id}', 'ActController@edit');
-    Route::post('/act/update', 'ActController@update');
-    Route::post('/act/delete/{id}', 'ActController@delete');    
-    Route::post('/act/validate', 'ActController@formValidate');
+    Route::get('/acts/list', 'ActController@index');
+    Route::get('/acts/new', 'ActController@create');
+    Route::post('/acts/add', 'ActController@store');
+    Route::get('/acts/{id}/edit', 'ActController@edit');
+    Route::post('/acts/{id}/update', 'ActController@update');
+    Route::post('/acts/{id}/delete', 'ActController@delete');    
+    Route::post('/acts/validate', 'ActController@formValidate');
 
     /** ประกันภัย */
-    Route::get('/insurance/list', 'InsuranceController@index');
-    Route::get('/insurance/new', 'InsuranceController@create');
-    Route::post('/insurance/add', 'InsuranceController@store');
-    Route::get('/insurance/edit/{id}', 'InsuranceController@edit');
-    Route::post('/insurance/update', 'InsuranceController@update');
-    Route::post('/insurance/delete/{id}', 'InsuranceController@delete');    
-    Route::post('/insurance/validate', 'InsuranceController@formValidate');
+    Route::get('/insurances/list', 'InsuranceController@index');
+    Route::get('/insurances/new', 'InsuranceController@create');
+    Route::post('/insurances/add', 'InsuranceController@store');
+    Route::get('/insurances/{id}/edit', 'InsuranceController@edit');
+    Route::post('/insurances/{id}/update', 'InsuranceController@update');
+    Route::post('/insurances/{id}/delete', 'InsuranceController@delete');    
+    Route::post('/insurances/validate', 'InsuranceController@formValidate');
 
     /** ภาษี */
-    Route::get('/tax/list', 'TaxController@index');
-    Route::get('/tax/new', 'TaxController@create');
-    Route::post('/tax/add', 'TaxController@store');
-    Route::get('/tax/edit/{id}', 'TaxController@edit');
-    Route::post('/tax/update', 'TaxController@update');
-    Route::post('/tax/delete/{id}', 'TaxController@delete');    
-    Route::post('/tax/validate', 'TaxController@formValidate');
+    Route::get('/taxes/list', 'TaxController@index');
+    Route::get('/taxes/new', 'TaxController@create');
+    Route::post('/taxes/add', 'TaxController@store');
+    Route::get('/taxes/{id}/edit', 'TaxController@edit');
+    Route::post('/taxes/{id}/update', 'TaxController@update');
+    Route::post('/taxes/{id}/delete', 'TaxController@delete');    
+    Route::post('/taxes/validate', 'TaxController@formValidate');
 
 
     Route::get('/survey/list', 'SurveyController@index');

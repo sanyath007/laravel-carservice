@@ -5,12 +5,14 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newTax = {
+        id: '',
         docNo: '',
         docDate: '',
         taxStartDate: '',
         taxRenewalDate: '',
         taxReceiptNo: '',
         taxCharge: '',
+        remark: ''
     };
 
     $scope.formValidate = function (event) {
@@ -89,9 +91,22 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             $http.get(url).then(function (res) {
                 console.log(res);
                 $scope.frmAllVehicles = res.data.vehicles;
-                // console.log($scope.frmAllVehicles);
             });
         }
+    }
+
+    $scope.edit = function (tax) {
+        console.log(tax);
+        $scope.newTax = {
+            id: tax.id,
+            docNo: tax.doc_no,
+            docDate: tax.doc_date,
+            taxStartDate: tax.tax_start_date,
+            taxRenewalDate: tax.tax_renewal_date,
+            taxReceiptNo: tax.tax_receipt_no,
+            taxCharge: tax.tax_charge,
+            remark: tax.remark
+        };
     }
 /** ################################################################################## */
 });

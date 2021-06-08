@@ -15,7 +15,7 @@
             </span>
 
             <div>
-                <a href="{{ url('/tax/new') }}" class="btn btn-primary pull-right">
+                <a href="{{ url('/taxes/new') }}" class="btn btn-primary pull-right">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     เพิ่มรายการ
                 </a>
@@ -60,43 +60,55 @@
                         <td style="text-align: center;">{{ $tax->tax_receipt_no }}</td>
                         <td style="text-align: center;">{{ $tax->tax_charge }}</td>
                         <td style="text-align: center;">
-                            <a  href="{{ url('/tax/edit/' . $tax->id) }}" 
-                                class="btn btn-warning btn-xs">
+                            <a
+                                href="{{ url('/taxes/' .$tax->id. '/edit') }}" 
+                                class="btn btn-warning btn-xs"
+                                title="แก้ไขรายการ"
+                            >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
                             @if ($tax->status != '3')
-                                <a  href="{{ url('/tax/cancel/' . $tax->id) }}" 
+                                <a
+                                    href="{{ url('/taxes/' .$tax->id. '/cancel') }}" 
                                     ng-click="cancel($event)"
-                                    class="btn btn-primary btn-xs">
+                                    class="btn btn-primary btn-xs"
+                                    title="ยกเลิกรายการ"
+                                >
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="cancel-form" action="{{ url('/tax/cancel/' . $tax->id) }}" method="POST" style="display: none;">
+                                <form id="cancel-form" action="{{ url('/taxes/cancel/' . $tax->id) }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                 </form>
                             @endif
 
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($tax->status == '3')
-                                    <a  href="{{ url('/tax/return/' . $tax->id) }}" 
+                                    <a
+                                        href="{{ url('/taxes/' .$tax->id. '/return') }}" 
                                         ng-click="return($event)"
-                                        class="btn btn-default btn-xs">
+                                        class="btn btn-default btn-xs"
+                                        title="นำรายการกลับมา"
+                                    >
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/tax/return/' . $tax->id) }}" method="POST" style="display: none;">
+                                    <form id="return-form" action="{{ url('/taxes/return/' . $tax->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/tax/delete/' . $tax->id) }}" 
+                                <a
+                                    href="{{ url('/taxes/' .$tax->id. 'delete') }}" 
                                     ng-click="delete($event)"
-                                    class="btn btn-danger btn-xs">
+                                    class="btn btn-danger btn-xs"
+                                    title="ลบรายการ"
+                                >
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/tax/delete/' . $tax->id) }}" method="POST" style="display: none;">
+                                <form id="delete-form" action="{{ url('/taxes/delete/' . $tax->id) }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             @endif

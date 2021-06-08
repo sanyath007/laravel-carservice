@@ -2,28 +2,31 @@
 
     @section('content')
     <div class="container-fluid" ng-controller="insuranceCtrl" ng-init="popUpAllVehicle()">
-      
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/insurances/list') }}">รายการต่อประกันภัย</a></li>
             <li class="breadcrumb-item active">บันทึกการต่อประกันภัย</li>
         </ol>
 
         <!-- page title -->
-        <div class="page__title">
-            <span>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                บันทึกการต่อประกันภัย
-                @{{ frmVehicleDetail }}
+        <div class="page__title-wrapper">
+            <div class="page__title">
+                <span>
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
+                    บันทึกการต่อประกันภัย
+                    <span class="text-muted">
+                        (@{{ frmVehicleDetail }})
+                    </span>
 
-                <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    เปลี่ยนรถ
-                </a>
-            </span>
-        </div>
+                    <a class="btn btn-warning btn-sm" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        เปลี่ยนรถ
+                    </a>
+                </span>
+            </div>
 
-        <hr />
-        <!-- page title -->
+            <hr />
+        </div><!-- page title -->
         
         <form
             id="frmNewInsurance"

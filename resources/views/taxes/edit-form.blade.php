@@ -153,8 +153,8 @@
                 </div>
 
                 <div class="col-md-12">
-                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
+                    <br><button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>
             </div>

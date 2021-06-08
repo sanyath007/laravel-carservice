@@ -1,7 +1,7 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="insuranceCtrl">
+    <div class="container-fluid" ng-controller="insuranceCtrl" ng-init="edit({{ $insurance }})">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/insurances/list') }}">รายการต่อประกันภัย</a></li>
@@ -106,7 +106,12 @@
                         <label class="control-label" for="company">
                             บริษัทประกันภัย <span style="color: red;">*</span>
                         </label>
-                        <select id="company" name="company" ng-model="newInsurance.company" class="form-control">
+                        <select
+                            id="company"
+                            name="company" 
+                            ng-model="newInsurance.company"
+                            class="form-control"
+                        >
                             <option value="">-- กรุณาเลือกบริษัทประกันภัย --</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->insurance_company_id }}">
@@ -192,7 +197,6 @@
             </div>
 
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartDate')}">
                         <label class="control-label" for="from_date">
@@ -214,13 +218,33 @@
                         </span>
                     </div>
                 </div>
-                <!-- left column -->
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartTime')}">
+                        <label class="control-label" for="to_date">
+                            เวลาเริ่ม <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_start_time"
+                            name="insurance_start_time"
+                            ng-model="newInsurance.insuranceStartTime"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceStartTime')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceStartTime')">
+                            กรุณากรอกเวลาเริ่ม
+                        </span>
+                    </div>
+                </div>
             
-                <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalDate')}">
                         <label class="control-label" for="to_date">
-                            ถึงวันที่ <span style="color: red;">*</span>
+                            วันที่สิ้นสุด <span style="color: red;">*</span>
                         </label>
                         <input
                             type="text"
@@ -237,11 +261,122 @@
                             กรุณาเลือกวันที่
                         </span>
                     </div>
-                </div><!-- right column -->
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalTime')}">
+                        <label class="control-label" for="from_date">
+                            เวลาสิ้นสุด <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_renewal_time"
+                            name="insurance_renewal_time"
+                            ng-model="newInsurance.insuranceRenewalTime"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceRenewalTime')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceRenewalTime')">
+                            กรุณากรอกเวลาสิ้นสุด
+                        </span>
+                    </div>
+                </div>
             </div><!-- end row -->
 
             <div class="row">
-                <!-- left column -->
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNet')}">
+                        <label class="control-label" for="from_date">
+                            เบี้ยประกันสุทธิ <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_net"
+                            name="insurance_net"
+                            ng-model="newInsurance.insuranceNet"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceNet')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceNet')">
+                            กรุณาเลือกวันที่
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStamp')}">
+                        <label class="control-label" for="to_date">
+                            อากร <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_stamp"
+                            name="insurance_stamp"
+                            ng-model="newInsurance.insuranceStamp"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceStamp')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceStamp')">
+                            กรุณากรอกอากร
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceVat')}">
+                        <label class="control-label" for="from_date">
+                            ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_vat"
+                            name="insurance_vat"
+                            ng-model="newInsurance.insuranceVat"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceVat')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceVat')">
+                            กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceTotal')}">
+                        <label class="control-label" for="to_date">
+                            รวม/Total <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_total"
+                            name="insurance_total"
+                            ng-model="newInsurance.insuranceTotal"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insuranceTotal')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insuranceTotal')">
+                            กรุณากรอกยอดรวม
+                        </span>
+                    </div>
+                </div>
+            </div><!-- end row -->
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
                         <label class="control-label" for="remark">
@@ -250,16 +385,14 @@
                         <textarea
                             id="remark"
                             name="remark"
+                            ng-model="newInsurance.remark"
                             cols="30"
                             rows="5"
                             class="form-control"
                         ></textarea>
                     </div>
                 </div>
-                <!-- left column -->
-            </div><!-- end row -->
 
-            <div class="row">
                 <div
                     ng-class="{
                         'col-md-12': '{{ $insurance->attachfile }}' === '',
@@ -295,98 +428,12 @@
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>
-            </div>
+            </div><!-- end row -->
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
             <input type="hidden" id="vehicle_id" name="vehicle_id">
             {{ csrf_field() }}
         </form>
-
-        <!-- Modal -->
-        <div class="modal fade" id="dlgAllVehicle" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                        <h4 class="modal-title" id="">กรุณาเลือกรถ</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 4%; text-align: center;">#</th>
-                                        <th style="width: 15%; text-align: center;">ทะเบียน</th>
-                                        <th>รายละเอียดรถ</th>
-                                        <th style="width: 30%; text-align: center;">ผู้รับผิดชอบ</th>
-                                        <th style="width: 5%; text-align: center;">เลือก</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="(index, vehicle) in frmAllVehicles.data">
-                                        <td>@{{ index + 1 }}</td>
-                                        <td>@{{ vehicle.reg_no }} @{{ vehicle.changwat.short }}</td>
-                                        <td>
-                                            @{{ vehicle.cate.vehicle_cate_name }}
-                                            @{{ vehicle.manufacturer.manufacturer_name }}
-                                            @{{ vehicle.model }}
-                                            @{{ (vehicle.remark) ? '(' + vehicle.remark + ')' : '' }}
-                                        </td>
-                                        <td>@{{   }}</td>
-                                        <td>
-                                            <a class="btn btn-primary" ng-click="frmSetVehicle(vehicle)">
-                                                <i class="fa fa-sign-in" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> 
-
-                        <ul class="pagination">
-                            <li>
-                                <a ng-click="paginate($event, frmAllVehicles.path)" aria-label="First">
-                                    <span aria-hidden="true">First</span>
-                                </a>
-                            </li>
-
-                            <li ng-class="{ 'disabled': (frmAllVehicles.current_page === 1) }">
-                                <a  ng-click="paginate($event, frmAllVehicles.prev_page_url)" 
-                                    aria-label="Prev">
-                                    <span aria-hidden="true">Prev</span>
-                                </a>
-                            </li>                         
-
-                            <li ng-repeat="i in _.range(1, frmAllVehicles.last_page + 1)"
-                                ng-class="{ 'active': (frmAllVehicles.current_page === i) }">
-                                <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + i)">
-                                    {{ i }}
-                                </a>
-                            </li>
-                            
-                            <li ng-class="{ 'disabled': (frmAllVehicles.current_page === frmAllVehicles.last_page) }">
-                                <a ng-click="paginate($event, frmAllVehicles.next_page_url)" aria-label="Next">
-                                    <span aria-hidden="true">Next</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + frmAllVehicles.last_page)" aria-label="Last">
-                                    <span aria-hidden="true">Last</span>
-                                </a>
-                            </li>
-                        </ul> 
-
-                    </div>
-                    <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-        <!-- Modal -->
         
         <script>
             $(document).ready(function($) {

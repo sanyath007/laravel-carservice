@@ -5,6 +5,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newInsurance = {
+        id: '',
         docNo: '',
         docDate: '',
         vehicleId: '',
@@ -19,7 +20,8 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         insuranceNet: '',
         insuranceStamp: '',
         insuranceVat: '',
-        insuranceTotal: ''
+        insuranceTotal: '',
+        remark: ''
     };
 
     $scope.formValidate = function (event) {
@@ -110,6 +112,29 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
                 // console.log($scope.frmAllVehicles);
             });
         }
+    }
+
+    $scope.edit = function (insurance) {
+        console.log(insurance);
+        $scope.newInsurance = {
+            id: insurance.id,
+            docNo: insurance.doc_no,
+            docDate: insurance.doc_date,
+            vehicleId: insurance.vehicle_id,
+            insuranceNo: insurance.insurance_no,
+            company: insurance.insurance_company_id.toString(),
+            insuranceType: insurance.insurance_type.toString(),
+            insuranceDetail: insurance.insurance_detail,
+            insuranceStartDate: insurance.insurance_start_date,
+            insuranceStartTime: insurance.insurance_start_time,
+            insuranceRenewalDate: insurance.insurance_renewal_date,
+            insuranceRenewalTime:insurance.insurance_renewal_time,
+            insuranceNet: insurance.insurance_net,
+            insuranceStamp: insurance.insurance_stamp,
+            insuranceVat: insurance.insurance_vat,
+            insuranceTotal: insurance.insurance_total,
+            remark: insurance.remark
+        };
     }
 /** ################################################################################## */
 });

@@ -15,7 +15,7 @@ class TaxController extends Controller
             'tax_start_date' => 'required',
             'tax_renewal_date' => 'required',
             'tax_receipt_no' => 'required',
-            'tax_charge' => 'required',
+            'tax_charge' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -46,20 +46,11 @@ class TaxController extends Controller
 
     public function create ()
     {
-        return view('taxes.newform', [
-
-        ]);    	
+        return view('taxes.newform');    	
     }
 
     public function store (Request $req)
     {
-        // Upload attach file
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
         $newTax = new Tax();
         $newTax->doc_no = $req['doc_no'];
         $newTax->doc_date = $req['doc_date'];
@@ -69,9 +60,14 @@ class TaxController extends Controller
         $newTax->tax_receipt_no = $req['tax_receipt_no'];
         $newTax->tax_charge = $req['tax_charge'];
         $newTax->remark = $req['remark'];
-        $newTax->attachfile = $req['attachfile'];
         $newTax->is_actived = '1';
         $newTax->status = '1';
+
+        // Upload attach file        
+        $filename = $this->uploadFile($req->file('attachfile'), 'uploads/taxes');
+        if ($filename != '') {
+            $newTax->attachfile = $filename;
+        }
 
         if ($newTax->save()) {
             $deactivate = Tax::where('vehicle_id', '=', $req['vehicle_id'])
@@ -80,6 +76,18 @@ class TaxController extends Controller
                             
             return redirect('tax/list');
         }
+    }
+    
+    private function uploadFile ($file, $destPath)
+    {
+        $filename = '';
+        if ($file) {
+            $filename = date('mdYHis') . uniqid(). '.' .$file->getClientOriginalExtension();
+
+            $file->move($destPath, $filename);
+        }
+
+        return $filename;
     }
 
     public function edit ($id)
@@ -91,13 +99,7 @@ class TaxController extends Controller
 
     public function update (Request $req)
     {
-        // Upload attach file
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
+        
         $tax = Tax::find($req['id'])->first();
         $tax->doc_no = $req['doc_no'];
         $tax->doc_date = $req['doc_date'];
@@ -107,7 +109,12 @@ class TaxController extends Controller
         $tax->tax_receipt_no = $req['tax_receipt_no'];
         $tax->tax_charge = $req['tax_charge'];
         $tax->remark = $req['remark'];
-        $tax->attachfile = $req['attachfile'];
+
+        // Upload attach file
+        $filename = $this->uploadFile($req->file('attachfile'), 'uploads/taxes');
+        if ($filename != '') {
+            $tax->attachfile = $filename;
+        }
 
         if ($tax->save()) {
             return redirect('tax/list');

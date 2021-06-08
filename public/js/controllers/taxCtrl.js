@@ -32,7 +32,7 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         };
         console.log(req_data);
 
-        $http.post(CONFIG.baseUrl + '/tax/validate', req_data)
+        $http.post(CONFIG.baseUrl + '/taxes/validate', req_data)
         .then(function (res) {
             // console.log(res);
             $scope.formError = res.data;

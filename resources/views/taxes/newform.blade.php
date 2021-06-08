@@ -25,7 +25,7 @@
         <hr />
         <!-- page title -->
         
-        <form id="frmNewTax" action="{{ url('/tax/add') }}" method="post" enctype="multipart/form-data">
+        <form id="frmNewTax" action="{{ url('/taxes/add') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -66,7 +66,7 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxRenewalDate')}">
                         <label class="control-label" for="tax_renewal_date">วันที่ครบกำหนด <span style="color: red;">*</span></label>
-                        <input type="text" id="tax_renewal_date" name="tax_renewal_date" class="form-control" ng-model="newtax.taxRenewalDate">
+                        <input type="text" id="tax_renewal_date" name="tax_renewal_date" ng-model="newTax.taxRenewalDate" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('taxRenewalDate')"></span>
                         <span class="help-block" ng-show="checkValidate('taxRenewalDate')">กรุณาเลือกวันที่</span>
                     </div>
@@ -102,7 +102,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="control-label" for="remark">หมายเหตุ</label>
-                        <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea id="remark" name="remark" ng-model="newTax.remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
                 <!-- left column -->

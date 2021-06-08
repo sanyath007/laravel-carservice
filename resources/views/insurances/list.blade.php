@@ -13,7 +13,7 @@
             <span>
                 <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อประกันภัย
             </span>
-            <a href="{{ url('/insurance/new') }}" class="btn btn-primary pull-right">
+            <a href="{{ url('/insurances/new') }}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 เพิ่มรายการ
             </a>
@@ -49,7 +49,9 @@
                         <td style="text-align: center;">
                             {{ $insurance->vehicle->reg_no }}
                         </td>
-                        <td style="text-align: center;">{{ $insurance->insurance_no }}</td>
+                        <td style="text-align: center;">
+                            {{ $insurance->insurance_no }}
+                        </td>
                         <td style="text-align: center;">
                             {{ $insurance->type->insurance_type_name }}
                         </td>
@@ -58,49 +60,62 @@
                             {{ $insurance->insurance_detail }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $insurance->insurance_start_date }} - {{ $insurance->insurance_renewal_date }}
+                            {{ $insurance->insurance_start_date }} - 
+                            {{ $insurance->insurance_renewal_date }}
                         </td>
                         <td style="text-align: center;">
                             {{ number_format($insurance->insurance_total,2) }}
                         </td>
                         <td style="text-align: center;">
-                            <a  href="{{ url('/reserve/edit/' . $insurance->id) }}" 
-                                class="btn btn-warning btn-xs">
+                            <a
+                                href="{{ url('/insurances/' .$insurance->id. '/edit') }}" 
+                                class="btn btn-warning btn-xs"
+                                title="แก้ไขรายการ"
+                            >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
                             @if ($insurance->status != '3')
-                                <a  href="{{ url('/reserve/cancel/' . $insurance->id) }}" 
+                                <a
+                                    href="{{ url('/insurances/' .$insurance->id. '/cancel') }}" 
                                     ng-click="cancel($event)"
-                                    class="btn btn-primary btn-xs">
+                                    class="btn btn-primary btn-xs"
+                                    title="ยกเลิกรายการ"
+                                >
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="cancel-form" action="{{ url('/reserve/cancel/' . $insurance->id) }}" method="POST" style="display: none;">
+                                <form id="cancel-form" action="{{ url('/insurances/' .$insurance->id. '/cancel') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                 </form>
                             @endif
 
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($insurance->status == '3')
-                                    <a  href="{{ url('/reserve/return/' . $insurance->id) }}" 
+                                    <a
+                                        href="{{ url('/insurances' .$insurance->id. '/return') }}" 
                                         ng-click="return($event)"
-                                        class="btn btn-default btn-xs">
+                                        class="btn btn-default btn-xs"
+                                        title="นำรายการกลับมา"
+                                    >
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/reserve/return/' . $insurance->id) }}" method="POST" style="display: none;">
+                                    <form id="return-form" action="{{ url('/insurances' .$insurance->id. '/return') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/reserve/delete/' . $insurance->id) }}" 
+                                <a
+                                    href="{{ url('/insurances/' .$insurance->id. '/delete') }}" 
                                     ng-click="delete($event)"
-                                    class="btn btn-danger btn-xs">
+                                    class="btn btn-danger btn-xs"
+                                    title="ลบรายการ"
+                                >
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/reserve/delete/' . $insurance->id) }}" method="POST" style="display: none;">
+                                <form id="delete-form" action="{{ url('/insurances/' .$insurance->id. '/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             @endif

@@ -438,7 +438,7 @@
             </div><!-- end row -->
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="vehicle_id" name="vehicle_id">
+            <input type="hidden" id="vehicle_id" name="vehicle_id" value="{{ $insurance->vehicle_id }}">
             {{ csrf_field() }}
         </form>
         

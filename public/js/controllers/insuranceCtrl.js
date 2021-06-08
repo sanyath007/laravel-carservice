@@ -36,7 +36,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
             doc_date: $scope.newInsurance.docDate,
             vehicle_id: $scope.newInsurance.vehicleId,
             insurance_no: $scope.newInsurance.insuranceNo,
-            insurance_company_id: $scope.newInsurance.company,
+            company: $scope.newInsurance.company,
             insurance_type: $scope.newInsurance.insuranceType,
             insurance_detail: $scope.newInsurance.insuranceDetail,
             insurance_start_date: $scope.newInsurance.insuranceStartDate,

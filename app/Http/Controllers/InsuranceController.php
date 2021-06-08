@@ -81,6 +81,7 @@ class InsuranceController extends Controller
         $newInsurance->insurance_stamp = $req['insurance_stamp'];
         $newInsurance->insurance_vat = $req['insurance_vat'];
         $newInsurance->insurance_total = $req['insurance_total'];
+        $newInsurance->remark = $req['remark'];
         $newInsurance->status = '1';
 
         // Upload attach file
@@ -102,8 +103,8 @@ class InsuranceController extends Controller
     {
         $filename = '';
         if($file) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
+            $filename = date('mdYHis') . uniqid(). '.' .$file->getClientOriginalExtension();
+            $file->move($destPath, $filename);
         }
 
         return $filename;
@@ -120,26 +121,34 @@ class InsuranceController extends Controller
 
     public function update($id, Request $req)
     {
-        $insurance = Insurance::find($id)->first();
-        // $insurance->doc_no = $req['doc_no'];
-        // $insurance->doc_date = $req['doc_date'];
-        // $insurance->insurance_no = $req['insurance_no'];
-        // $insurance->insurance_company_id = $req['company'];
-        // $insurance->insurance_type = $req['insurance_type'];
-        // $insurance->insurance_detail = $req['insurance_detail'];
-        // $insurance->insurance_start_date = $req['insurance_start_date'];
-        // $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
+        $insurance = Insurance::find($id);
+        $insurance->doc_no = $req['doc_no'];
+        $insurance->doc_date = $req['doc_date'];
+        $insurance->vehicle_id = $req['vehicle_id'];
+        $insurance->insurance_no = $req['insurance_no'];
+        $insurance->insurance_company_id = $req['company'];
+        $insurance->insurance_type = $req['insurance_type'];
+        $insurance->insurance_detail = $req['insurance_detail'];
+        $insurance->insurance_start_date = $req['insurance_start_date'];
+        $insurance->insurance_start_time = $req['insurance_start_time'];
+        $insurance->insurance_renewal_date = $req['insurance_renewal_date'];
+        $insurance->insurance_renewal_time = $req['insurance_renewal_time'];
+        $insurance->insurance_net = $req['insurance_net'];
+        $insurance->insurance_stamp = $req['insurance_stamp'];
+        $insurance->insurance_vat = $req['insurance_vat'];
+        $insurance->insurance_total = $req['insurance_total'];
+        $insurance->remark = $req['remark'];
 
         // Upload attach file
         $attachfile = $this->uploadFile($req->file('attachfile'),'uploads/insurances');
         if(!empty($attachfile)) {
             $insurance->attachfile = $attachfile;
         }
-        var_dump($insurance);
 
-        // if ($insurance->save()) {
-        //     return redirect('insurance/list');
-        // }
+        var_dump($insurance);
+        if ($insurance->save()) {
+            return redirect('insurances/list');
+        }
     }
 
     public function delete($id)

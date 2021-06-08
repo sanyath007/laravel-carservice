@@ -96,7 +96,6 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     }
 
     $scope.edit = function (tax) {
-        console.log(tax);
         $scope.newTax = {
             id: tax.id,
             docNo: tax.doc_no,

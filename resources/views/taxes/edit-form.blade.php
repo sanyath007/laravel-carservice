@@ -57,7 +57,10 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxStartDate')}">
-                        <label class="control-label" for="tax_start_date">วันที่เสียภาษี <span style="color: red;">*</span></label>
+                        <label class="control-label" for="tax_start_date">
+                            วันที่เสียภาษี 
+                            <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="tax_start_date" name="tax_start_date" ng-model="newTax.taxStartDate" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('taxStartDate')"></span>
                         <span class="help-block" ng-show="checkValidate('taxStartDate')">กรุณาเลือกวันที่</span>
@@ -68,8 +71,17 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxRenewalDate')}">
-                        <label class="control-label" for="tax_renewal_date">วันที่ครบกำหนด <span style="color: red;">*</span></label>
-                        <input type="text" id="tax_renewal_date" name="tax_renewal_date" ng-model="newtax.taxRenewalDate" class="form-control">
+                        <label class="control-label" for="tax_renewal_date">
+                            วันที่ครบกำหนด 
+                            <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="tax_renewal_date"
+                            name="tax_renewal_date"
+                            ng-model="newTax.taxRenewalDate"
+                            class="form-control"
+                        >
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('taxRenewalDate')"></span>
                         <span class="help-block" ng-show="checkValidate('taxRenewalDate')">กรุณาเลือกวันที่</span>
                     </div>
@@ -80,7 +92,10 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxReceiptNo')}">
-                        <label for="tax_receipt_no">เลขที่ใบเสร็จ <span style="color: red;">*</span></label>
+                        <label for="tax_receipt_no">
+                            เลขที่ใบเสร็จ 
+                            <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="tax_receipt_no" name="tax_receipt_no" ng-model="newTax.taxReceiptNo" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span>
                         <span class="help-block" ng-show="checkValidate('taxReceiptNo')">กรุณาระบุเลขที่ใบเสร็จ</span>
@@ -91,7 +106,10 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('taxCharge')}">
-                        <label for="tax_charge">ค่าภาษี <span style="color: red;">*</span></label>
+                        <label for="tax_charge">
+                            ค่าภาษี 
+                            <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="tax_charge" name="tax_charge" ng-model="newTax.taxCharge" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('taxCharge')"></span>
                         <span class="help-block" ng-show="checkValidate('taxCharge')">กรุณากรอกค่าภาษี</span>
@@ -119,19 +137,21 @@
             </div><!-- end row -->
 
             <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-
+                <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label" for="attachfile">แนบไฟล์</label>
                         <input type="file" id="attachfile" name="attachfile" class="form-control" placeholder="สถานที่&hellip;" ng-keyup="queryLocation($event)" autocomplete="off" ng-keypress="enterToAddLocation($event)">
                     </div>
-
                 </div>
-                <!-- left column -->
-            </div>
 
-            <div class="row">
+                <div class="col-md-6">
+                    <img
+                        src="{{ url('/uploads/taxes/' .$tax->attachfile) }}"
+                        style="width: 200px; height: 200px;"
+                        alt=""
+                    />
+                </div>
+
                 <div class="col-md-12">
                     <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
@@ -255,9 +275,7 @@
                     useCurrent: true,
                     format: 'YYYY-MM-DD',
                     defaultDate: moment(dateNow)
-                }); 
-
-                // $("#activity").tagsinput('items')
+                });
             });
         </script>
 

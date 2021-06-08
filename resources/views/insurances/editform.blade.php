@@ -33,7 +33,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('doc_no')}">
                         <label for="doc_no">
                             เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span>
                         </label>
@@ -46,9 +46,9 @@
                         />
                         <!-- <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('docNo')"
+                            ng-show="checkValidate('doc_no')"
                         ></span> -->
-                        <span class="help-block" ng-show="checkValidate('docNo')">
+                        <span class="help-block" ng-show="checkValidate('doc_no')">
                             กรุณาระบุเลขที่หนังสือขออนุมัติ
                         </span>
                     </div>
@@ -57,8 +57,8 @@
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docDate')}">
-                        <label for="insurance_date">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('doc_date')}">
+                        <label for="doc_date">
                             วันที่หนังสือขออนุมัติ <span style="color: red;">*</span>
                         </label>
                         <input
@@ -70,9 +70,9 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('docDate')"
+                            ng-show="checkValidate('doc_date')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('docDate')">
+                        <span class="help-block" ng-show="checkValidate('doc_date')">
                             กรุณาเลือกวันที่หนังสือขออนุมัติ
                         </span>
                     </div>
@@ -83,7 +83,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_no')}">
                         <label for="insurance_no">
                             เลขที่กรมธรรม์ <span style="color: red;">*</span>
                         </label>
@@ -96,9 +96,9 @@
                         />
                         <!-- <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceNo')"
+                            ng-show="checkValidate('insurance_no')"
                         ></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceNo')">
+                        <span class="help-block" ng-show="checkValidate('insurance_no')">
                             กรุณาระบุเลขที่กรมธรรม์
                         </span>
                     </div>
@@ -139,7 +139,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceType')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_type')}">
                         <label class="control-label" for="insurance_type">
                             ประเภทประกันภัย <span style="color: red;">*</span>
                         </label>
@@ -158,9 +158,9 @@
                         </select>                        
                         <!-- <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceType')"
+                            ng-show="checkValidate('insurance_type')"
                         ></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceType')">
+                        <span class="help-block" ng-show="checkValidate('insurance_type')">
                             กรุณาเลือกประเภทประกันภัย
                         </span>                        
                     </div>
@@ -171,7 +171,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceDetail')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_detail')}">
                         <label class="control-label" for="insurance_detail">
                             รายละเอียด <span style="color: red;">*</span>
                         </label>
@@ -185,9 +185,9 @@
                         ></textarea>
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceDetail')"
+                            ng-show="checkValidate('insurance_detail')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceDetail')">
+                        <span class="help-block" ng-show="checkValidate('insurance_detail')">
                             กรุณาระบุรายละเอียด
                         </span>
                     </div>
@@ -203,7 +203,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_start_date')}">
                         <label class="control-label" for="from_date">
                             เริ่มต้นวันที่ <span style="color: red;">*</span>
                         </label>
@@ -216,16 +216,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceStartDate')"
+                            ng-show="checkValidate('insurance_start_date')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStartDate')">
+                        <span class="help-block" ng-show="checkValidate('insurance_start_date')">
                             กรุณาเลือกวันที่
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartTime')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_start_time')}">
                         <label class="control-label" for="to_date">
                             เวลาเริ่ม <span style="color: red;">*</span>
                         </label>
@@ -238,16 +238,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceStartTime')"
+                            ng-show="checkValidate('insurance_start_time')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStartTime')">
+                        <span class="help-block" ng-show="checkValidate('insurance_start_time')">
                             กรุณากรอกเวลาเริ่ม
                         </span>
                     </div>
                 </div>
             
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_renewal_date')}">
                         <label class="control-label" for="to_date">
                             วันที่สิ้นสุด <span style="color: red;">*</span>
                         </label>
@@ -260,16 +260,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceRenewalDate')"
+                            ng-show="checkValidate('insurance_renewal_date')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceRenewalDate')">
+                        <span class="help-block" ng-show="checkValidate('insurance_renewal_date')">
                             กรุณาเลือกวันที่
                         </span>
                     </div>
                 </div>
                 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalTime')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_renewal_time')}">
                         <label class="control-label" for="from_date">
                             เวลาสิ้นสุด <span style="color: red;">*</span>
                         </label>
@@ -282,9 +282,9 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceRenewalTime')"
+                            ng-show="checkValidate('insurance_renewal_time')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceRenewalTime')">
+                        <span class="help-block" ng-show="checkValidate('insurance_renewal_time')">
                             กรุณากรอกเวลาสิ้นสุด
                         </span>
                     </div>
@@ -293,7 +293,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNet')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_net')}">
                         <label class="control-label" for="from_date">
                             เบี้ยประกันสุทธิ <span style="color: red;">*</span>
                         </label>
@@ -307,16 +307,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceNet')"
+                            ng-show="checkValidate('insurance_net')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceNet')">
+                        <span class="help-block" ng-show="checkValidate('insurance_net')">
                             กรุณาเลือกวันที่
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStamp')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_stamp')}">
                         <label class="control-label" for="to_date">
                             อากร <span style="color: red;">*</span>
                         </label>
@@ -330,16 +330,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceStamp')"
+                            ng-show="checkValidate('insurance_stamp')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStamp')">
+                        <span class="help-block" ng-show="checkValidate('insurance_stamp')">
                             กรุณากรอกอากร
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceVat')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_vat')}">
                         <label class="control-label" for="from_date">
                             ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
                         </label>
@@ -353,16 +353,16 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceVat')"
+                            ng-show="checkValidate('insurance_vat')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceVat')">
+                        <span class="help-block" ng-show="checkValidate('insurance_vat')">
                             กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceTotal')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_total')}">
                         <label class="control-label" for="to_date">
                             รวม/Total <span style="color: red;">*</span>
                         </label>
@@ -375,9 +375,9 @@
                         />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceTotal')"
+                            ng-show="checkValidate('insurance_total')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceTotal')">
+                        <span class="help-block" ng-show="checkValidate('insurance_total')">
                             กรุณากรอกยอดรวม
                         </span>
                     </div>

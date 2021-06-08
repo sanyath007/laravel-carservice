@@ -25,26 +25,45 @@
         <hr />
         <!-- page title -->
         
-        <form id="frmNewInsurance" action="{{ url('/insurances/add') }}" method="post" enctype="multipart/form-data">
+        <form
+            id="frmNewInsurance"
+            action="{{ url('/insurances/add') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docNo')}">
-                        <label for="doc_no">เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('doc_no')}">
+                        <label for="doc_no">
+                            เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="doc_no" name="doc_no" ng-model="newInsurance.docNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('docNo')">กรุณาระบุเลขที่หนังสือขออนุมัติ</span>
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('doc_no')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('doc_no')">
+                            กรุณาระบุเลขที่หนังสือขออนุมัติ
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
         
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docDate')}">
-                        <label for="insurance_date">วันที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('doc_date')}">
+                        <label for="insurance_date">
+                            วันที่หนังสือขออนุมัติ <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="doc_date" name="doc_date" ng-model="newInsurance.docDate" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('docDate')">กรุณาเลือกวันที่หนังสือขออนุมัติ</span>
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('doc_date')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('doc_date')">
+                            กรุณาเลือกวันที่หนังสือขออนุมัติ
+                        </span>
                     </div>
                 </div>
                 <!-- right column -->
@@ -53,11 +72,18 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNo')}">
-                        <label for="insurance_no">เลขที่กรมธรรม์ <span style="color: red;">*</span></label>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_no')}">
+                        <label for="insurance_no">
+                            เลขที่กรมธรรม์ <span style="color: red;">*</span>
+                        </label>
                         <input type="text" id="insurance_no" name="insurance_no" ng-model="newInsurance.insuranceNo" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceNo')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceNo')">กรุณาระบุเลขที่กรมธรรม์</span>
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_no')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_no')">
+                            กรุณาระบุเลขที่กรมธรรม์
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -66,10 +92,10 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('company')}">
                         <label class="control-label" for="company">
-                            บริษัท <span style="color: red;">*</span>
+                            บริษัทประกันภัย <span style="color: red;">*</span>
                         </label>
                         <select id="company" name="company" ng-model="newInsurance.company" class="form-control">
-                            <option value="">-- กรุณาเลือกบริษัท --</option>
+                            <option value="">-- กรุณาเลือกบริษัทประกันภัย --</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->insurance_company_id }}">
                                     {{ $company->insurance_company_name }}
@@ -77,8 +103,13 @@
                             @endforeach
                         </select>
                         
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('company')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('company')">กรุณาเลือกบริษัท</span>                        
+                        <!-- <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('company')"
+                        ></span> -->
+                        <span class="help-block" ng-show="checkValidate('company')">
+                            กรุณาเลือกบริษัทประกันภัย
+                        </span>                        
                     </div>
                 </div>
                 <!-- right column -->
@@ -87,7 +118,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceType')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_type')}">
                         <label class="control-label" for="insurance_type">
                             ประเภทประกันภัย <span style="color: red;">*</span>
                         </label>
@@ -100,8 +131,13 @@
                             @endforeach
                         </select>
                         
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceType')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceType')">กรุณาเลือกประเภทประกันภัย</span>                        
+                        <!-- <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_type')"
+                        ></span> -->
+                        <span class="help-block" ng-show="checkValidate('insurance_type')">
+                            กรุณาเลือกประเภทประกันภัย
+                        </span>                        
                     </div>
                 </div>
                 <!-- left column -->
@@ -110,16 +146,25 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceDetail')}">
-                        <label class="control-label" for="insurance_detail">รายละเอียด <span style="color: red;">*</span></label>
-                        <textarea id="insurance_detail" name="insurance_detail" ng-model="newInsurance.insuranceDetail" cols="30" rows="5" class="form-control"></textarea>
-                        <!-- <input  type="text" 
-                                id="insurance_detail" 
-                                name="insurance_detail" 
-                                ng-model="newInsurance.insuranceDetail"
-                                class="form-control"> -->
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceDetail')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceDetail')">กรุณาระบุรายละเอียด</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_detail')}">
+                        <label class="control-label" for="insurance_detail">
+                            รายละเอียด <span style="color: red;">*</span>
+                        </label>
+                        <textarea
+                            id="insurance_detail"
+                            name="insurance_detail"
+                            ng-model="newInsurance.insuranceDetail"
+                            cols="30"
+                            rows="5"
+                            class="form-control"
+                        ></textarea>
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_detail')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_detail')">
+                            กรุณาระบุรายละเอียด
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -181,22 +226,49 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNet')}">
-                        <label class="control-label" for="from_date">เบี้ยประกันสุทธิ <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_net" name="insurance_net" class="form-control" ng-model="newInsurance.insuranceNet">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceNet')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceNet')">กรุณาเลือกวันที่</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_net')}">
+                        <label class="control-label" for="from_date">
+                            เบี้ยประกันสุทธิ <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_net"
+                            name="insurance_net"
+                            ng-model="newInsurance.insuranceNet"
+                            ng-keyup="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_net')"></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_net')">
+                            กรุณากรอกเบี้ยประกันสุทธิ
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
             
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStamp')}">
-                        <label class="control-label" for="to_date">อากร <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_stamp" name="insurance_stamp" class="form-control" ng-model="newInsurance.insuranceStamp">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceStamp')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStamp')">กรุณากรอกอากร</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_stamp')}">
+                        <label class="control-label" for="to_date">
+                            อากร <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_stamp"
+                            name="insurance_stamp"
+                            ng-model="newInsurance.insuranceStamp"
+                            ng-keyup="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_stamp')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_stamp')">
+                            กรุณากรอกอากร
+                        </span>
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->
@@ -204,22 +276,49 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceVat')}">
-                        <label class="control-label" for="from_date">ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_vat" name="insurance_vat" class="form-control" ng-model="newInsurance.insuranceVat">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceVat')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceVat')">กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_vat')}">
+                        <label class="control-label" for="from_date">
+                            ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_vat"
+                            name="insurance_vat"
+                            ng-model="newInsurance.insuranceVat"
+                            ng-keyup="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_vat')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_vat')">
+                            กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
             
                 <!-- right column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceTotal')}">
-                        <label class="control-label" for="to_date">รวม/Total <span style="color: red;">*</span></label>
-                        <input type="text" id="insurance_total" name="insurance_total" class="form-control" ng-model="newInsurance.insuranceTotal">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceTotal')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceTotal')">กรุณากรอกยอดรวม</span>
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insurance_total')}">
+                        <label class="control-label" for="to_date">
+                            รวม/Total <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="insurance_total"
+                            name="insurance_total"
+                            ng-model="newInsurance.insuranceTotal"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('insurance_total')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('insurance_total')">
+                            กรุณากรอกยอดรวม
+                        </span>
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->
@@ -354,6 +453,12 @@
             $(document).ready(function($) {
                 var dateNow = new Date();
 
+                $('#doc_date').datetimepicker({
+                    useCurrent: true,
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment(dateNow)
+                });
+
                 $('#insurance_start_date').datetimepicker({
                     useCurrent: true,
                     format: 'YYYY-MM-DD',
@@ -371,31 +476,22 @@
                     defaultDate: moment(dateNow)
                 });
 
-
-                // $('#insurance_start_time').datetimepicker({
-                //     useCurrent: true,
-                //     format: 'HH:mm',
-                //     defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
-                // })
+                $('#insurance_start_time').datetimepicker({
+                    useCurrent: true,
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                })
                 // .on("dp.change", function(e) {
                 //     let new_date = moment(e.date, "DD-MM-YYYY").add(1, 'years');
                 //     console.log(new_date);
                 //     $('#insurance_renewal_date').data('DateTimePicker').date(new_date);
-                // }); 
-
-                // $('#insurance_renewal_time').datetimepicker({
-                //     useCurrent: true,
-                //     format: 'HH:mm',
-                //     defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
                 // });
-
-                $('#doc_date').datetimepicker({
+                
+                $('#insurance_renewal_time').datetimepicker({
                     useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                }); 
-
-                // $("#activity").tagsinput('items')
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                });
             });
         </script>
 

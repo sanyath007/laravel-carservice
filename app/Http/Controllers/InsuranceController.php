@@ -16,7 +16,7 @@ class InsuranceController extends Controller
             'doc_no' => 'required',
             'doc_date' => 'required',
             'insurance_no' => 'required',
-            'insurance_company_id' => 'required',
+            'company' => 'required',
             'insurance_type' => 'required',
             'insurance_detail' => 'required',
             'insurance_start_date' => 'required',

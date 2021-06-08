@@ -48,7 +48,6 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
             insurance_vat: $scope.newInsurance.insuranceVat,
             insurance_total: $scope.newInsurance.insuranceTotal,
         };
-        console.log(req_data);
 
         $http.post(CONFIG.baseUrl + '/insurances/validate', req_data)
         .then(function (res) {
@@ -78,7 +77,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         var tmpVat = parseFloat($('#insurance_vat').val());
         var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
 
-        $('#insurance_total').val(tmpTotal.toFixed(2));
+        $scope.newInsurance.insuranceTotal = tmpTotal.toFixed(2);
     };
 
     $scope.frmAllVehicles = [];
@@ -95,8 +94,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     }
 
     $scope.frmSetVehicle = function (vehicle) {
-        $('#vehicle_id').val(vehicle.vehicle_id);       
-        console.log($('#vehicle_id').val());
+        $('#vehicle_id').val(vehicle.vehicle_id);
 
         $scope.frmVehicle = vehicle;
         $scope.frmVehicleDetail = vehicle.cate.vehicle_cate_name;

@@ -424,7 +424,10 @@
                 </div>
 
                 <div class="col-md-12">
-                    <br><button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                    <button
+                        class="btn btn-warning pull-right"
+                        ng-click="formValidate($event, 'frmEditInsurance')"
+                    >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>

@@ -24,7 +24,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         remark: ''
     };
 
-    $scope.formValidate = function (event) {
+    $scope.formValidate = function (event, frmName) {
         event.preventDefault();
 
         $scope.newInsurance.docDate = $('#doc_date').val();
@@ -50,14 +50,13 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         };
         console.log(req_data);
 
-        $http.post(CONFIG.baseUrl + '/insurance/validate', req_data)
+        $http.post(CONFIG.baseUrl + '/insurances/validate', req_data)
         .then(function (res) {
-            // console.log(res);
             $scope.formError = res.data;
             console.log($scope.formError);
 
             if ($scope.formError.success === 1) {
-                $('#frmNewInsurance').submit();
+                $(`#${frmName}`).submit();
             } else {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             }
@@ -68,11 +67,9 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     }
 
     $scope.checkValidate = function (field) {
-        var status = false;
+        if (!$scope.formError) return;
 
-        status = ($scope.formError && $scope.newInsurance[field] === '') ? true : false;
-
-        return status;
+        return (field in $scope.formError.errors);
     }
 
     $scope.frmAllVehicles = [];

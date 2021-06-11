@@ -47,6 +47,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             act_stamp: $scope.newAct.actStamp,
             act_vat: $scope.newAct.actVat,
             act_total: $scope.newAct.actTotal,
+            remark: $scope.newAct.remark,
         };
 
         $http.post(CONFIG.baseUrl + '/act/validate', req_data)

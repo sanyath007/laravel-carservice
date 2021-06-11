@@ -162,10 +162,24 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actNet')}">
-                        <label class="control-label" for="from_date">เบี้ยประกันสุทธิ <span style="color: red;">*</span></label>
-                        <input type="text" id="act_net" name="act_net" class="form-control" ng-model="newAct.actNet">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actNet')"></span>
-                        <span class="help-block" ng-show="checkValidate('actNet')">กรุณาเลือกวันที่</span>
+                        <label class="control-label" for="from_date">
+                            เบี้ยประกันสุทธิ <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="act_net"
+                            name="act_net"
+                            ng-model="newAct.actNet"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actNet')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('actNet')">
+                            กรุณาเลือกวันที่
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -173,10 +187,24 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actStamp')}">
-                        <label class="control-label" for="to_date">อากร <span style="color: red;">*</span></label>
-                        <input type="text" id="act_stamp" name="act_stamp" class="form-control" ng-model="newAct.actStamp">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actStamp')"></span>
-                        <span class="help-block" ng-show="checkValidate('actStamp')">กรุณากรอกอากร</span>
+                        <label class="control-label" for="to_date">
+                            อากร <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="act_stamp"
+                            name="act_stamp"
+                            ng-model="newAct.actStamp"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actStamp')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('actStamp')">
+                            กรุณากรอกอากร
+                        </span>
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->
@@ -185,10 +213,24 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actVat')}">
-                        <label class="control-label" for="from_date">ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span></label>
-                        <input type="text" id="act_vat" name="act_vat" class="form-control" ng-model="newAct.actVat">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actVat')"></span>
-                        <span class="help-block" ng-show="checkValidate('actVat')">กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน</span>
+                        <label class="control-label" for="from_date">
+                            ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="act_vat"
+                            name="act_vat"
+                            ng-model="newAct.actVat"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actVat')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('actVat')">
+                            กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -196,10 +238,23 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actTotal')}">
-                        <label class="control-label" for="to_date">รวม/Total <span style="color: red;">*</span></label>
-                        <input type="text" id="act_total" name="act_total" class="form-control" ng-model="newAct.actTotal">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actTotal')"></span>
-                        <span class="help-block" ng-show="checkValidate('actTotal')">กรุณากรอกยอดรวม</span>
+                        <label class="control-label" for="to_date">
+                            รวม/Total <span style="color: red;">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="act_total"
+                            name="act_total"
+                            ng-model="newAct.actTotal"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actTotal')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('actTotal')">
+                            กรุณากรอกยอดรวม
+                        </span>
                     </div>
                 </div><!-- right column -->
             </div><!-- end row -->
@@ -208,8 +263,17 @@
                 <!-- left column -->
                 <div class="col-md-12">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
-                        <label class="control-label" for="remark">หมายเหตุ</label>
-                        <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
+                        <label class="control-label" for="remark">
+                            หมายเหตุ
+                        </label>
+                        <textarea
+                            id="remark"
+                            name="remark"
+                            ng-model="newAct.remark"
+                            cols="30"
+                            rows="5"
+                            class="form-control"
+                        ></textarea>
                     </div>
                 </div>
                 <!-- left column -->

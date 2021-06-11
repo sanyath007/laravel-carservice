@@ -282,7 +282,7 @@
                             ng-show="checkValidate('act_net')"
                         ></span>
                         <span class="help-block" ng-show="checkValidate('act_net')">
-                            กรุณาเลือกวันที่
+                            กรุณากรอกเบี้ยประกันสุทธิ หรือ ระบุเบี้ยประกันสุทธิเป็นตัวเลข
                         </span>
                     </div>
                 </div>
@@ -307,7 +307,7 @@
                             ng-show="checkValidate('act_stamp')"
                         ></span>
                         <span class="help-block" ng-show="checkValidate('act_stamp')">
-                            กรุณากรอกอากร
+                            กรุณากรอกอากร หรือ ระบุอากรเป็นตัวเลข
                         </span>
                     </div>
                 </div><!-- right column -->
@@ -333,7 +333,7 @@
                             ng-show="checkValidate('act_vat')"
                         ></span>
                         <span class="help-block" ng-show="checkValidate('act_vat')">
-                            กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
+                            กรุณากรอกภาษีมูลค่าเพิ่มก่อน หรือ ระบุภาษีมูลค่าเพิ่มเป็นตัวเลข
                         </span>
                     </div>
                 </div>
@@ -357,7 +357,7 @@
                             ng-show="checkValidate('act_total')"
                         ></span>
                         <span class="help-block" ng-show="checkValidate('act_total')">
-                            กรุณากรอกยอดรวม
+                            กรุณากรอกยอดรวมก่อน หรือ ระบุยอดรวมเป็นตัวเลข
                         </span>
                     </div>
                 </div><!-- right column -->

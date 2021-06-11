@@ -16,16 +16,15 @@ class ActController extends Controller
             'doc_no' => 'required',
             'doc_date' => 'required',
             'act_no' => 'required',
-            'act_company_id' => 'required',
-            'act_detail' => 'required',
+            'company' => 'required',
             'act_start_date' => 'required',
             'act_start_time' => 'required',
             'act_renewal_date' => 'required',
             'act_renewal_time' => 'required',
-            'act_net' => 'required',
-            'act_stamp' => 'required',
-            'act_vat' => 'required',
-            'act_total' => 'required',
+            'act_net' => 'required|numeric',
+            'act_stamp' => 'required|numeric',
+            'act_vat' => 'required|numeric',
+            'act_total' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {

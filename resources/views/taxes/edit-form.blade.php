@@ -28,7 +28,7 @@
             <hr />
         </div><!-- page title -->
         
-        <form id="frmNewTax" action="{{ url('/tax/update') }}" method="post" enctype="multipart/form-data">
+        <form id="frmNewTax" action="{{ url('/taxes/' .$tax->id. '/update') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -165,7 +165,7 @@
                 </div>
             </div>
 
-            <input type="hidden" id="vehicle_id" name="vehicle_id">
+            <input type="hidden" id="vehicle_id" name="vehicle_id" value="{{ $tax->vehicle_id }}">
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
             {{ csrf_field() }}
         </form>

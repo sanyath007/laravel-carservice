@@ -97,10 +97,9 @@ class TaxController extends Controller
         ]);
     }
 
-    public function update (Request $req)
+    public function update ($id, Request $req)
     {
-        
-        $tax = Tax::find($req['id'])->first();
+        $tax = Tax::find($id);
         $tax->doc_no = $req['doc_no'];
         $tax->doc_date = $req['doc_date'];
         $tax->vehicle_id = $req['vehicle_id'];

@@ -167,9 +167,9 @@ class VehicleController extends Controller
         $newVehicle->status = '1';
 
         /** Upload attach file */
-        $attachfile = uploadFile($req->file('attachfile'), 'uploads/vehicles/thumbnails');
-        if ($attachfile != '') {
-            $newVehicle->attachfile = $attachfile;
+        $thumbnail = uploadFile($req->file('attachfile'), 'uploads/vehicles/thumbnails');
+        if ($thumbnail != '') {
+            $newVehicle->thumbnail = $thumbnail;
         }
 
         if ($newVehicle->save()) {                            
@@ -230,9 +230,9 @@ class VehicleController extends Controller
         $vehicle->status = $req['status'];
 
         /** Upload attach file */
-        $attachfile = uploadFile($req->file('attachfile'), 'uploads/vehicles/thumbnails');
-        if ($attachfile != '') {
-            $vehicle->attachfile = $attachfile;
+        $thumbnail = uploadFile($req->file('attachfile'), 'uploads/vehicles/thumbnails');
+        if ($thumbnail != '') {
+            $vehicle->thumbnail = $thumbnail;
         }
 
         if ($vehicle->save()) {                            

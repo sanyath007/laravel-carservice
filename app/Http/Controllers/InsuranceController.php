@@ -85,7 +85,7 @@ class InsuranceController extends Controller
         $newInsurance->status = '1';
 
         // Upload attach file
-        $attachfile = $this->uploadFile($req->file('attachfile'),'uploads/insurances');
+        $attachfile = uploadFile($req->file('attachfile'),'uploads/insurances');
         if(!empty($attachfile)) {
             $newInsurance->attachfile = $attachfile;
         }
@@ -97,17 +97,6 @@ class InsuranceController extends Controller
 
             return redirect('insurances/list');
 		}
-    }
-
-    private function uploadFile($file, $destPath)
-    {
-        $filename = '';
-        if($file) {
-            $filename = date('mdYHis') . uniqid(). '.' .$file->getClientOriginalExtension();
-            $file->move($destPath, $filename);
-        }
-
-        return $filename;
     }
 
     public function edit($id)
@@ -140,7 +129,7 @@ class InsuranceController extends Controller
         $insurance->remark = $req['remark'];
 
         // Upload attach file
-        $attachfile = $this->uploadFile($req->file('attachfile'),'uploads/insurances');
+        $attachfile = uploadFile($req->file('attachfile'),'uploads/insurances');
         if(!empty($attachfile)) {
             $insurance->attachfile = $attachfile;
         }

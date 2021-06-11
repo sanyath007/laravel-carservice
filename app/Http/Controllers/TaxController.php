@@ -64,7 +64,7 @@ class TaxController extends Controller
         $newTax->status = '1';
 
         // Upload attach file        
-        $filename = $this->uploadFile($req->file('attachfile'), 'uploads/taxes');
+        $filename = uploadFile($req->file('attachfile'), 'uploads/taxes');
         if ($filename != '') {
             $newTax->attachfile = $filename;
         }
@@ -76,18 +76,6 @@ class TaxController extends Controller
                             
             return redirect('taxes/list');
         }
-    }
-    
-    private function uploadFile ($file, $destPath)
-    {
-        $filename = '';
-        if ($file) {
-            $filename = date('mdYHis') . uniqid(). '.' .$file->getClientOriginalExtension();
-
-            $file->move($destPath, $filename);
-        }
-
-        return $filename;
     }
 
     public function edit ($id)
@@ -110,7 +98,7 @@ class TaxController extends Controller
         $tax->remark = $req['remark'];
 
         // Upload attach file
-        $filename = $this->uploadFile($req->file('attachfile'), 'uploads/taxes');
+        $filename = uploadFile($req->file('attachfile'), 'uploads/taxes');
         if ($filename != '') {
             $tax->attachfile = $filename;
         }

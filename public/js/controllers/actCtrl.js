@@ -11,7 +11,6 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         vehicleId: '',
         actNo: '',
         company: '',
-        actType: '',
         actDetail: '',
         actStartDate: '',
         actStartTime: '',

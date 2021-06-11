@@ -2,27 +2,31 @@
 
     @section('content')
     <div class="container-fluid" ng-controller="taxCtrl" ng-init="popUpAllVehicle()">
-      
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/taxes/list') }}">รายการเสียภาษี</a></li>
             <li class="breadcrumb-item active">บันทึกการเสียภาษี</li>
         </ol>
 
         <!-- page title -->
-        <div class="page__title">
-            <span>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                บันทึกการเสียภาษี
-                @{{ frmVehicleDetail }}
+        <div class="page__title-wrapper">
+            <div class="page__title">
+                <span>
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
+                    บันทึกการเสียภาษี
+                    <span class="text-muted">
+                        (@{{ frmVehicleDetail }})
+                    </span>
 
-                <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    เปลี่ยนรถ
-                </a>
-            </span>
+                    <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        เปลี่ยนรถ
+                    </a>
+                </span>
+            </div>
+            
+            <hr />
         </div>
-
-        <hr />
         <!-- page title -->
         
         <form id="frmNewTax" action="{{ url('/taxes/add') }}" method="post" enctype="multipart/form-data">
@@ -152,6 +156,12 @@
             $(document).ready(function($) {
                 var dateNow = new Date();
 
+                $('#doc_date').datetimepicker({
+                    useCurrent: true,
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment(dateNow)
+                });
+
                 $('#tax_start_date').datetimepicker({
                     useCurrent: true,
                     format: 'YYYY-MM-DD',
@@ -168,14 +178,6 @@
                     format: 'YYYY-MM-DD',
                     defaultDate: moment(dateNow)
                 });
-
-                $('#doc_date').datetimepicker({
-                    useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                }); 
-
-                // $("#activity").tagsinput('items')
             });
         </script>
 

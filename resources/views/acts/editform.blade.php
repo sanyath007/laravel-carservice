@@ -245,7 +245,7 @@
                             id="act_net"
                             name="act_net"
                             ng-model="newAct.actNet"
-                            ng-keypress="calculateTotal($event)"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span
@@ -268,7 +268,7 @@
                             id="act_stamp"
                             name="act_stamp"
                             ng-model="newAct.actStamp"
-                            ng-keypress="calculateTotal($event)"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span
@@ -291,7 +291,7 @@
                             id="act_vat"
                             name="act_vat"
                             ng-model="newAct.actVat"
-                            ng-keypress="calculateTotal($event)"
+                            ng-keyup="calculateTotal($event)"
                             class="form-control"
                         />
                         <span

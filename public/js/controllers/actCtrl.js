@@ -16,7 +16,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         actStartDate: '',
         actStartTime: '',
         actRenewalDate: '',
-        actRenewalTime:'',
+        actRenewalTime: '',
         actNet: '',
         actStamp: '',
         actVat: '',
@@ -30,6 +30,8 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         $scope.newAct.docDate = $('#doc_date').val();
         $scope.newAct.actStartDate = $('#act_start_date').val();
         $scope.newAct.actRenewalDate = $('#act_renewal_date').val();
+        $scope.newAct.actStartTime = $('#act_start_time').val();
+        $scope.newAct.actRenewalTime = $('#act_renewal_time').val();
         
         var req_data = {
             doc_no: $scope.newAct.docNo,
@@ -73,9 +75,10 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     }
 
     $scope.calculateTotal = function (event) {
-		var tmpNet = parseFloat($('#act_net').val());
-        var tmpStamp = parseFloat($('#act_stamp').val());
-        var tmpVat = parseFloat($('#act_vat').val());
+        console.log($('#act_net').val());
+		var tmpNet = $('#act_net').val() === '' ? 0 : parseFloat($('#act_net').val());
+        var tmpStamp = $('#act_stamp').val() === '' ? 0 : parseFloat($('#act_stamp').val());
+        var tmpVat = $('#act_vat').val() === '' ? 0 : parseFloat($('#act_vat').val());
         var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
 
         $scope.newAct.actTotal = tmpTotal.toFixed(2);

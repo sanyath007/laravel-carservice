@@ -38,8 +38,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             doc_date: $scope.newAct.docDate,
             vehicle_id: $scope.newAct.vehicleId,
             act_no: $scope.newAct.actNo,
-            act_company_id: $scope.newAct.company,
-            act_type: $scope.newAct.actType,
+            company: $scope.newAct.company,
             act_detail: $scope.newAct.actDetail,
             act_start_date: $scope.newAct.actStartDate,
             act_start_time: $scope.newAct.actStartTime,
@@ -90,16 +89,14 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     $scope.popUpAllVehicle = function () {
         $http.get(CONFIG.baseUrl + '/ajaxvehicles')
         .then(function (res) {
-            console.log(res);
             $scope.frmAllVehicles = res.data.vehicles;
-            console.log($scope.frmAllVehicles);
+
             $('#dlgAllVehicle').modal('show');
         });
     }
 
     $scope.frmSetVehicle = function (vehicle) {
-        $('#vehicle_id').val(vehicle.vehicle_id);       
-        console.log($('#vehicle_id').val());
+        $('#vehicle_id').val(vehicle.vehicle_id);
 
         $scope.frmVehicle = vehicle;
         $scope.frmVehicleDetail = vehicle.cate.vehicle_cate_name;

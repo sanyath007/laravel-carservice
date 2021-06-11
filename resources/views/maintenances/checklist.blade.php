@@ -15,7 +15,7 @@
             </span>
 
             <div>
-                <a href="{{ url('/maintained/checkform/1') }}" class="btn btn-primary pull-right">
+                <a href="{{ url('/maintenances/checkform/1') }}" class="btn btn-primary pull-right">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     เพิ่มรายการ
                 </a>

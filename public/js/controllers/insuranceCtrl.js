@@ -30,6 +30,8 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         $scope.newInsurance.docDate = $('#doc_date').val();
         $scope.newInsurance.insuranceStartDate = $('#insurance_start_date').val();
         $scope.newInsurance.insuranceRenewalDate = $('#insurance_renewal_date').val();
+        $scope.newInsurance.insuranceStartTime = $('#insurance_start_time').val();
+        $scope.newInsurance.insuranceRenewalTime = $('#insurance_renewal_time').val();
         
         var req_data = {
             doc_no: $scope.newInsurance.docNo,
@@ -72,9 +74,9 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
     }
 
     $scope.calculateTotal = function (event) {
-		var tmpNet = parseFloat($('#insurance_net').val());
-        var tmpStamp = parseFloat($('#insurance_stamp').val());
-        var tmpVat = parseFloat($('#insurance_vat').val());
+		var tmpNet = $('#insurance_net').val() === '' ? 0 : parseFloat($('#insurance_net').val());
+        var tmpStamp = $('#insurance_stamp').val() === '' ? 0 : parseFloat($('#insurance_stamp').val());
+        var tmpVat = $('#insurance_vat').val() === '' ? 0 : parseFloat($('#insurance_vat').val());
         var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
 
         $scope.newInsurance.insuranceTotal = tmpTotal.toFixed(2);

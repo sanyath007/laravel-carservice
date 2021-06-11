@@ -5,6 +5,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newAct = {
+        id: '',
         docNo: '',
         docDate: '',
         vehicleId: '',
@@ -19,10 +20,11 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         actNet: '',
         actStamp: '',
         actVat: '',
-        actTotal: ''
+        actTotal: '',
+        remark: ''
     };
 
-    $scope.formValidate = function (event) {
+    $scope.formValidate = function (event, frmName) {
         event.preventDefault();
 
         $scope.newAct.docDate = $('#doc_date').val();
@@ -46,7 +48,6 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             act_vat: $scope.newAct.actVat,
             act_total: $scope.newAct.actTotal,
         };
-        console.log(req_data);
 
         $http.post(CONFIG.baseUrl + '/act/validate', req_data)
         .then(function (res) {
@@ -55,7 +56,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             console.log($scope.formError);
 
             if ($scope.formError.success === 1) {
-                $('#frmNewAct').submit();
+                $(`#${frmName}`).submit();
             } else {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             }
@@ -66,12 +67,19 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
     }
 
     $scope.checkValidate = function (field) {
-        var status = false;
+        if (!$scope.formError) return;
 
-        status = ($scope.formError && $scope.newAct[field] === '') ? true : false;
-
-        return status;
+        return (field in $scope.formError.errors);
     }
+
+    $scope.calculateTotal = function (event) {
+		var tmpNet = parseFloat($('#act_net').val());
+        var tmpStamp = parseFloat($('#act_stamp').val());
+        var tmpVat = parseFloat($('#act_vat').val());
+        var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
+
+        $scope.newInsurance.insuranceTotal = tmpTotal.toFixed(2);
+    };
 
     $scope.frmAllVehicles = [];
     $scope.frmVehicle = null;

@@ -25,7 +25,7 @@
         </div>
         <!-- page title -->
         
-        <form id="frmEditAct" action="{{ url('/acts/update') }}" method="post" enctype="multipart/form-data">
+        <form id="frmEditAct" action="{{ url('/acts/' .$act->id. '/update') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -216,7 +216,10 @@
                             ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
                         </label>
                         <input type="text" id="act_vat" name="act_vat" class="form-control" ng-model="newAct.actVat">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actVat')"></span>
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actVat')"
+                        ></span>
                         <span class="help-block" ng-show="checkValidate('actVat')">
                             กรุณากรอกภาษีมูลค่าเพิ่มเบี้ยประกัน
                         </span>
@@ -281,7 +284,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                    <button class="btn btn-warning pull-right" ng-click="formValidate($event, 'frmEditAct')">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>

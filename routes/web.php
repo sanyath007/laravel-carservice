@@ -55,9 +55,9 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/accidents/list', 'AccidentController@index');
     Route::get('/accidents/new', 'AccidentController@create');
     Route::post('/accidents/add', 'AccidentController@store');
-    Route::get('/accidents/edit/{id}', 'AccidentController@edit');
-    Route::post('/accidents/update', 'AccidentController@update');
-    Route::post('/accidents/delete', 'AccidentController@delete');    
+    Route::get('/accidents/{id}/edit', 'AccidentController@edit');
+    Route::post('/accidents/{id}/update', 'AccidentController@update');
+    Route::post('/accidents/{id}/delete', 'AccidentController@delete');    
     Route::post('/accidents/validate', 'AccidentController@formValidate');
 
 

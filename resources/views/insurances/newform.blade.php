@@ -399,7 +399,8 @@
                 $('#insurance_start_time').datetimepicker({
                     useCurrent: true,
                     format: 'HH:mm',
-                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                    locale: 'th',
+                    defaultDate: moment().minutes(0)
                 })
                 // .on("dp.change", function(e) {
                 //     let new_date = moment(e.date, "DD-MM-YYYY").add(1, 'years');
@@ -410,7 +411,8 @@
                 $('#insurance_renewal_time').datetimepicker({
                     useCurrent: true,
                     format: 'HH:mm',
-                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                    locale: 'th',
+                    defaultDate: moment().minutes(0)
                 });
             });
         </script>

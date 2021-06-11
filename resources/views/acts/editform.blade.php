@@ -1,7 +1,7 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="actCtrl">
+    <div class="container-fluid" ng-controller="actCtrl" ng-init="edit({{ $act }})">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/acts/list') }}">รายการต่อ พรบ.</a></li>
@@ -25,15 +25,25 @@
         </div>
         <!-- page title -->
         
-        <form id="frmEditAct" action="{{ url('/acts/' .$act->id. '/update') }}" method="post" enctype="multipart/form-data">
+        <form
+            id="frmEditAct"
+            action="{{ url('/acts/' .$act->id. '/update') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docNo')}">
                         <label for="doc_no">เลขที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
-                        <input type="text" id="doc_no" name="doc_no" ng-model="newInsurance.docNo" class="form-control">
-                        <!-- <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docNo')"></span> -->
-                        <span class="help-block" ng-show="checkValidate('docNo')">กรุณาระบุเลขที่หนังสือขออนุมัติ</span>
+                        <input type="text" id="doc_no" name="doc_no" ng-model="newAct.docNo" class="form-control">
+                        <!-- <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('docNo')"
+                        ></span> -->
+                        <span class="help-block" ng-show="checkValidate('docNo')">
+                            กรุณาระบุเลขที่หนังสือขออนุมัติ
+                        </span>
                     </div>
                 </div>
                 <!-- left column -->
@@ -42,9 +52,14 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('docDate')}">
                         <label for="act_date">วันที่หนังสือขออนุมัติ <span style="color: red;">*</span></label>
-                        <input type="text" id="doc_date" name="doc_date" ng-model="newInsurance.docDate" class="form-control">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('docDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('docDate')">กรุณาเลือกวันที่หนังสือขออนุมัติ</span>
+                        <input type="text" id="doc_date" name="doc_date" ng-model="newAct.docDate" class="form-control">
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('docDate')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('docDate')">
+                            กรุณาเลือกวันที่หนังสือขออนุมัติ
+                        </span>
                     </div>
                 </div>
                 <!-- right column -->
@@ -53,16 +68,16 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceNo')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_no')}">
                         <label for="act_no">
                             เลขที่กรมธรรม์ <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_no" name="act_no" ng-model="newInsurance.insuranceNo" class="form-control">
-                        <!-- <span
+                        <input type="text" id="act_no" name="act_no" ng-model="newAct.actNo" class="form-control">
+                        <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceNo')"
-                        ></span> -->
-                        <span class="help-block" ng-show="checkValidate('insuranceNo')">
+                            ng-show="checkValidate('act_no')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('act_no')">
                             กรุณาระบุเลขที่กรมธรรม์
                         </span>
                     </div>
@@ -75,7 +90,7 @@
                         <label class="control-label" for="company">
                             บริษัท <span style="color: red;">*</span>
                         </label>
-                        <select id="company" name="company" ng-model="newInsurance.company" class="form-control">
+                        <select id="company" name="company" ng-model="newAct.company" class="form-control">
                             <option value="">-- กรุณาเลือกบริษัท --</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->insurance_company_id }}">
@@ -99,23 +114,23 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceDetail')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_detail')}">
                         <label class="control-label" for="act_detail">
                             รายละเอียด
                         </label>
                         <textarea
                             id="act_detail"
                             name="act_detail"
-                            ng-model="newInsurance.insuranceDetail"
+                            ng-model="newAct.actDetail"
                             cols="30"
                             rows="5"
                             class="form-control"
                         ></textarea>
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
-                            ng-show="checkValidate('insuranceDetail')"
+                            ng-show="checkValidate('act_detail')"
                         ></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceDetail')">
+                        <span class="help-block" ng-show="checkValidate('act_detail')">
                             กรุณาระบุรายละเอียด
                         </span>
                     </div>
@@ -131,52 +146,88 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceStartDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_start_date')}">
                         <label class="control-label" for="from_date">
                             เริ่มต้นวันที่ <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_start_date" name="act_start_date" class="form-control" ng-model="newInsurance.insuranceStartDate">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceStartDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceStartDate')">
+                        <input
+                            type="text"
+                            id="act_start_date"
+                            name="act_start_date"
+                            ng-model="newAct.actStartDate"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('act_start_date')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('act_start_date')">
                             กรุณาเลือกวันที่
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actStartTime')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_start_time')}">
                         <label class="control-label" for="to_date">
                             เวลาเริ่ม <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_start_time" name="act_start_time" class="form-control" ng-model="newAct.actStartTime">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actStartTime')"></span>
-                        <span class="help-block" ng-show="checkValidate('actStartTime')">
+                        <input
+                            type="text"
+                            id="act_start_time"
+                            name="act_start_time"
+                            ng-model="newAct.actStartTime"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('act_start_time')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('act_start_time')">
                             กรุณากรอกเวลาเริ่ม
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('insuranceRenewalDate')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_renewal_date')}">
                         <label class="control-label" for="to_date">
                             ถึงวันที่ <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_renewal_date" name="act_renewal_date" class="form-control" ng-model="newInsurance.insuranceRenewalDate">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('insuranceRenewalDate')"></span>
-                        <span class="help-block" ng-show="checkValidate('insuranceRenewalDate')">
+                        <input
+                            type="text"
+                            id="act_renewal_date"
+                            name="act_renewal_date"
+                            class="form-control"
+                            ng-model="newAct.actRenewalDate"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('act_renewal_date')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('act_renewal_date')">
                             กรุณาเลือกวันที่
                         </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('actRenewalTime')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('act_renewal_time')}">
                         <label class="control-label" for="from_date">
                             เวลาสิ้นสุด <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_renewal_time" name="act_renewal_time" class="form-control" ng-model="newAct.actRenewalTime">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actRenewalTime')"></span>
-                        <span class="help-block" ng-show="checkValidate('actRenewalTime')">
+                        <input
+                            type="text"
+                            id="act_renewal_time"
+                            name="act_renewal_time"
+                            ng-model="newAct.actRenewalTime"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('act_renewal_time')"
+                        ></span>
+                        <span class="help-block" ng-show="checkValidate('act_renewal_time')">
                             กรุณากรอกเวลาสิ้นสุด
                         </span>
                     </div>
@@ -189,8 +240,18 @@
                         <label class="control-label" for="from_date">
                             เบี้ยประกันสุทธิ <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_net" name="act_net" class="form-control" ng-model="newAct.actNet">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actNet')"></span>
+                        <input
+                            type="text"
+                            id="act_net"
+                            name="act_net"
+                            ng-model="newAct.actNet"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actNet')"
+                        ></span>
                         <span class="help-block" ng-show="checkValidate('actNet')">
                             กรุณาเลือกวันที่
                         </span>
@@ -202,8 +263,18 @@
                         <label class="control-label" for="to_date">
                             อากร <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_stamp" name="act_stamp" class="form-control" ng-model="newAct.actStamp">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actStamp')"></span>
+                        <input
+                            type="text"
+                            id="act_stamp"
+                            name="act_stamp"
+                            ng-model="newAct.actStamp"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
+                        <span
+                            class="glyphicon glyphicon-remove form-control-feedback"
+                            ng-show="checkValidate('actStamp')"
+                        ></span>
                         <span class="help-block" ng-show="checkValidate('actStamp')">
                             กรุณากรอกอากร
                         </span>
@@ -215,7 +286,14 @@
                         <label class="control-label" for="from_date">
                             ภาษีมูลค่าเพิ่ม/VAT <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_vat" name="act_vat" class="form-control" ng-model="newAct.actVat">
+                        <input
+                            type="text"
+                            id="act_vat"
+                            name="act_vat"
+                            ng-model="newAct.actVat"
+                            ng-keypress="calculateTotal($event)"
+                            class="form-control"
+                        />
                         <span
                             class="glyphicon glyphicon-remove form-control-feedback"
                             ng-show="checkValidate('actVat')"
@@ -231,7 +309,13 @@
                         <label class="control-label" for="to_date">
                             รวม/Total <span style="color: red;">*</span>
                         </label>
-                        <input type="text" id="act_total" name="act_total" class="form-control" ng-model="newAct.actTotal">
+                        <input
+                            type="text"
+                            id="act_total"
+                            name="act_total"
+                            ng-model="newAct.actTotal"
+                            class="form-control"
+                        />
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('actTotal')"></span>
                         <span class="help-block" ng-show="checkValidate('actTotal')">
                             กรุณากรอกยอดรวม

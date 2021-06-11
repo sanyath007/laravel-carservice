@@ -78,7 +78,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         var tmpVat = parseFloat($('#act_vat').val());
         var tmpTotal = parseFloat(tmpNet + tmpStamp + tmpVat);
 
-        $scope.newInsurance.insuranceTotal = tmpTotal.toFixed(2);
+        $scope.newAct.actTotal = tmpTotal.toFixed(2);
     };
 
     $scope.frmAllVehicles = [];
@@ -115,9 +115,29 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             $http.get(url).then(function (res) {
                 console.log(res);
                 $scope.frmAllVehicles = res.data.vehicles;
-                // console.log($scope.frmAllVehicles);
             });
         }
+    }
+
+    $scope.edit = function (act) {
+        $scope.newAct = {
+            id: act.id,
+            docNo: act.doc_no,
+            docDate: act.doc_date,
+            vehicleId: act.vehicle_id,
+            actNo: act.act_no,
+            company: act.insurance_company_id.toString(),
+            actDetail: act.act_detail,
+            actStartDate: act.act_start_date,
+            actStartTime: act.act_start_time,
+            actRenewalDate: act.act_renewal_date,
+            actRenewalTime:act.act_renewal_time,
+            actNet: act.act_net,
+            actStamp: act.act_stamp,
+            actVat: act.act_vat,
+            actTotal: act.act_total,
+            remark: act.remark
+        };
     }
 /** ################################################################################## */
 });

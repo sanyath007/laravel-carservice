@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Acts extends Model
+class Act extends Model
 {
     protected $connection = 'vehicle';
     protected $table = 'vehicle_acts';

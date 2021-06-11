@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Acts;
+use App\Models\Act;
 use App\Models\InsuranceCompany;
 use App\Models\InsuranceType;
 
@@ -44,7 +44,7 @@ class ActController extends Controller
     public function index ()
     {
         return view('acts.list', [
-            'acts' => Acts::where(['status' => 1])
+            'acts' => Act::where(['status' => 1])
                                 ->with('vehicle')
                                 ->with('company')
                                 ->orderBy('act_start_date', 'DESC')
@@ -69,7 +69,7 @@ class ActController extends Controller
             $file->move('uploads', $filename);
         }
 
-        $newAct = new Acts();
+        $newAct = new Act();
         $newAct->doc_no = $req['doc_no'];
         $newAct->doc_date = $req['doc_date'];
         $newAct->vehicle_id = $req['vehicle_id'];
@@ -87,7 +87,7 @@ class ActController extends Controller
         $newAct->status = '1';
 
         if ($newAct->save()) {
-            $deactivate = Acts::where('vehicle_id', '=', $req['vehicle_id'])
+            $deactivate = Act::where('vehicle_id', '=', $req['vehicle_id'])
                             ->where('id', '<>', $newAct->id)
                             ->update(['status' => '0']);
                             
@@ -95,9 +95,12 @@ class ActController extends Controller
 		}
     }
 
-    public function edit ()
+    public function edit ($id)
     {
-        return view('acts.editform', []);
+        return view('acts.editform', [
+            'act'       => Act::find($id),
+            'companies' => InsuranceCompany::all()
+        ]);
     }
 
     public function update (Request $req)
@@ -110,7 +113,7 @@ class ActController extends Controller
             $file->move('uploads', $filename);
         }
 
-        $act = Acts::find($req['id'])->first();
+        $act = Act::find($req['id'])->first();
         $act->doc_no = $req['doc_no'];
         $act->doc_date = $req['doc_date'];
         $act->act_no = $req['act_no'];

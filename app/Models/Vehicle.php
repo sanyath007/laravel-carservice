@@ -79,7 +79,7 @@ class Vehicle extends Model
 
     public function actsactived()
     {
-        return $this->hasMany('App\Models\Acts', 'vehicle_id', 'vehicle_id')
+        return $this->hasMany('App\Models\Act', 'vehicle_id', 'vehicle_id')
                     ->where('status', '=', '1');
     }
 

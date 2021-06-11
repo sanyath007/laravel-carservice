@@ -230,7 +230,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
+                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event, 'frmNewAct')">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
                     </button>
                 </div>
@@ -246,7 +246,6 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
                         <h4 class="modal-title" id="">กรุณาเลือกรถ</h4>
                     </div>
                     <div class="modal-body">
@@ -317,11 +316,6 @@
                         </ul> 
 
                     </div>
-                    <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -330,6 +324,12 @@
         <script>
             $(document).ready(function($) {
                 var dateNow = new Date();
+
+                $('#doc_date').datetimepicker({
+                    useCurrent: true,
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment(dateNow)
+                });
 
                 $('#act_start_date').datetimepicker({
                     useCurrent: true,
@@ -348,31 +348,22 @@
                     defaultDate: moment(dateNow)
                 });
 
-
-                // $('#act_start_time').datetimepicker({
-                //     useCurrent: true,
-                //     format: 'HH:mm',
-                //     defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
-                // })
+                $('#act_start_time').datetimepicker({
+                    useCurrent: true,
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                });
                 // .on("dp.change", function(e) {
                 //     let new_date = moment(e.date, "DD-MM-YYYY").add(1, 'years');
                 //     console.log(new_date);
                 //     $('#act_renewal_date').data('DateTimePicker').date(new_date);
-                // }); 
-
-                // $('#act_renewal_time').datetimepicker({
-                //     useCurrent: true,
-                //     format: 'HH:mm',
-                //     defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
                 // });
 
-                $('#doc_date').datetimepicker({
+                $('#act_renewal_time').datetimepicker({
                     useCurrent: true,
-                    format: 'YYYY-MM-DD',
-                    defaultDate: moment(dateNow)
-                }); 
-
-                // $("#activity").tagsinput('items')
+                    format: 'HH:mm',
+                    defaultDate: moment(dateNow).hours(8).minutes(0).seconds(0).milliseconds(0) 
+                });
             });
         </script>
 

@@ -51,7 +51,6 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
 
         $http.post(CONFIG.baseUrl + '/act/validate', req_data)
         .then(function (res) {
-            // console.log(res);
             $scope.formError = res.data;
             console.log($scope.formError);
 

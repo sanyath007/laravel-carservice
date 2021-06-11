@@ -44,12 +44,22 @@ class ActController extends Controller
     {
         return view('acts.list', [
             'acts' => Act::where(['status' => 1])
-                                ->with('vehicle')
-                                ->with('company')
-                                ->orderBy('act_start_date', 'DESC')
-                                ->orderBy('id', 'DESC')
-                                ->paginate(10),
+                        ->with('vehicle')
+                        ->with('company')
+                        ->orderBy('act_start_date', 'DESC')
+                        ->orderBy('id', 'DESC')
+                        ->paginate(10),
         ]);
+    }
+
+    private function uploadFile($file, $destPath) {
+        $filename = '';
+        if ($file) {
+            $filename = date('mdYHis') . uniqid(). '.' .$file->getClientOriginalExtension();
+            $file->move($destPath, $filename);
+        }
+
+        return $filename;
     }
 
     public function create ()
@@ -61,13 +71,6 @@ class ActController extends Controller
 
     public function store (Request $req)
     {
-        /** Upload attach file */
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
         $newAct = new Act();
         $newAct->doc_no = $req['doc_no'];
         $newAct->doc_date = $req['doc_date'];
@@ -83,14 +86,21 @@ class ActController extends Controller
         $newAct->act_stamp = $req['act_stamp'];
         $newAct->act_vat = $req['act_vat'];
         $newAct->act_total = $req['act_total'];
+        $newAct->remark = $req['remark'];
         $newAct->status = '1';
+
+        /** Upload attach file */
+        $attachfile = $this->uploadFile($req->file('attachfile'), 'uploads/acts');
+        if($attachfile) {
+            $newAct->attachfile = $attachfile;
+        }
 
         if ($newAct->save()) {
             $deactivate = Act::where('vehicle_id', '=', $req['vehicle_id'])
                             ->where('id', '<>', $newAct->id)
                             ->update(['status' => '0']);
                             
-            return redirect('act/list');
+            return redirect('acts/list');
 		}
     }
 
@@ -102,28 +112,32 @@ class ActController extends Controller
         ]);
     }
 
-    public function update (Request $req)
+    public function update ($id, Request $req)
     {
-        // Upload attach file
-        // var_dump($request->file('attachfile'));
-        $filename = '';
-        if ($file = $request->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
-        $act = Act::find($req['id'])->first();
+        $act = Act::find($id);
         $act->doc_no = $req['doc_no'];
         $act->doc_date = $req['doc_date'];
         $act->act_no = $req['act_no'];
-        $act->act_company_id = $req['company'];
-        $act->act_type = $req['act_type'];
+        $act->insurance_company_id = $req['company'];
         $act->act_detail = $req['act_detail'];
         $act->act_start_date = $req['act_start_date'];
+        $act->act_start_time = $req['act_start_time'];
         $act->act_renewal_date = $req['act_renewal_date'];
+        $act->act_renewal_time = $req['act_renewal_time'];
+        $act->act_net = $req['act_net'];
+        $act->act_stamp = $req['act_stamp'];
+        $act->act_vat = $req['act_vat'];
+        $act->act_total = $req['act_total'];        
+        $act->remark = $req['remark'];
 
-        if ($insurance->save()) {
-            return redirect('act.list');
+        /** Upload attach file */
+        $attachfile = $this->uploadFile($req->file('attachfile'), 'uploads/acts');
+        if($attachfile) {
+            $act->attachfile = $attachfile;
+        }
+
+        if ($act->save()) {
+            return redirect('acts/list');
         }
     }
 

@@ -1,31 +1,31 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="insuranceCtrl" ng-init="popUpAllVehicle()">
-      
+    <div class="container-fluid" ng-controller="actCtrl" ng-init="popUpAllVehicle()">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active">บันทึกการต่อประกันภัย</li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/acts/list') }}">รายการต่อ พรบ.</a></li>
+            <li class="breadcrumb-item active">แก้ไขการต่อ พรบ.</li>
+            <li class="breadcrumb-item active">{{ $act->id }}</li>
         </ol>
 
         <!-- page title -->
-        <div class="page__title">
-            <span>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                บันทึกการต่อประกันภัย
-                @{{ frmVehicleDetail }}
+        <div class="page__title-wrapper">
+            <div class="page__title">
+                <span>
+                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i> 
+                    แก้ไขการต่อ พรบ.
+                    <span class="text-muted">
+                        (รหัสรายการ {{ $act->id }} / ทะเบียน {{ $act->vehicle->reg_no }})
+                    </span>
+                </span>
+            </div>
 
-                <a class="btn btn-warning" ng-show="frmVehicleDetail" ng-click="popUpAllVehicle()">
-                    <i class="fa fa-car" aria-hidden="true"></i>
-                    เปลี่ยนรถ
-                </a>
-            </span>
+            <hr />
         </div>
-
-        <hr />
         <!-- page title -->
         
-        <form id="frmNewInsurance" action="{{ url('/insurance/add') }}" method="post" enctype="multipart/form-data">
+        <form id="frmEditAct" action="{{ url('/acts/update') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -157,7 +157,7 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                   <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
+                    <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('startpoint')}">
                         <label class="control-label" for="remark">หมายเหตุ</label>
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
@@ -186,8 +186,8 @@
                 </div>
             </div>
 
-            <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
             <input type="hidden" id="vehicle_id" name="vehicle_id">
+            <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
             {{ csrf_field() }}
         </form>
 
@@ -238,27 +238,23 @@
                                     <span aria-hidden="true">First</span>
                                 </a>
                             </li>
-
                             <li ng-class="{ 'disabled': (frmAllVehicles.current_page === 1) }">
                                 <a  ng-click="paginate($event, frmAllVehicles.prev_page_url)" 
                                     aria-label="Prev">
                                     <span aria-hidden="true">Prev</span>
                                 </a>
-                            </li>                         
-                           
+                            </li>
                             <li ng-repeat="i in _.range(1, frmAllVehicles.last_page + 1)"
                                 ng-class="{ 'active': (frmAllVehicles.current_page === i) }">
                                 <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + i)">
                                     {{ i }}
                                 </a>
                             </li>
-                            
                             <li ng-class="{ 'disabled': (frmAllVehicles.current_page === frmAllVehicles.last_page) }">
                                 <a ng-click="paginate($event, frmAllVehicles.next_page_url)" aria-label="Next">
                                     <span aria-hidden="true">Next</span>
                                 </a>
                             </li>
-
                             <li>
                                 <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + frmAllVehicles.last_page)" aria-label="Last">
                                     <span aria-hidden="true">Last</span>
@@ -302,9 +298,7 @@
                     useCurrent: true,
                     format: 'YYYY-MM-DD',
                     defaultDate: moment(dateNow)
-                }); 
-
-                // $("#activity").tagsinput('items')
+                });
             });
         </script>
 

@@ -13,15 +13,14 @@
             <span>
                 <i class="fa fa-calendar" aria-hidden="true"></i> รายการต่อ พรบ.
             </span>
-            <a href="{{ url('/act/new') }}" class="btn btn-primary pull-right">
+            <a href="{{ url('/acts/new') }}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 เพิ่มรายการ
             </a>
         </div>
         
         <hr />
-    </div>
-    <!-- page title -->
+    </div><!-- page title -->
 
     <div class="row">
         <div class="col-md-12">
@@ -59,13 +58,13 @@
                             {{ number_format($act->act_total,2) }}
                         </td>
                         <td style="text-align: center;">
-                            <a  href="{{ url('/reserve/edit/' . $act->id) }}" 
+                            <a  href="{{ url('/acts/' .$act->id. '/edit') }}" 
                                 class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
                             @if ($act->status != '3')
-                                <a  href="{{ url('/reserve/cancel/' . $act->id) }}" 
+                                <a  href="{{ url('/acts/' .$act->id. '/cancel') }}" 
                                     ng-click="cancel($event)"
                                     class="btn btn-primary btn-xs">
                                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -73,7 +72,7 @@
 
                                 <form
                                     id="cancel-form"
-                                    action="{{ url('/reserve/cancel/' . $act->id) }}"
+                                    action="{{ url('/acts/' .$act->id. '/cancel') }}"
                                     method="POST" style="display: none;"
                                 >
                                     {{ csrf_field() }}
@@ -82,7 +81,7 @@
 
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($act->status == '3')
-                                    <a  href="{{ url('/reserve/return/' . $act->id) }}" 
+                                    <a  href="{{ url('/acts/' .$act->id. '/return') }}" 
                                         ng-click="return($event)"
                                         class="btn btn-default btn-xs">
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
@@ -90,14 +89,14 @@
 
                                     <form
                                         id="return-form"
-                                        action="{{ url('/reserve/return/' . $act->id) }}"
+                                        action="{{ url('/acts/' .$act->id. '/return') }}"
                                         method="POST" style="display: none;"
                                     >
                                         {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/reserve/delete/' . $act->id) }}" 
+                                <a  href="{{ url('/acts/' .$act->id. '/delete') }}" 
                                     ng-click="delete($event)"
                                     class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -105,7 +104,7 @@
 
                                 <form
                                     id="delete-form"
-                                    action="{{ url('/reserve/delete/' . $act->id) }}"
+                                    action="{{ url('/acts/' .$act->id. '/delete') }}"
                                     method="POST"
                                     style="display: none;"
                                 >
@@ -144,94 +143,8 @@
                 @endif
             </ul>
 
-        </div>
-        <!-- right column -->
+        </div><!-- /.col -->
     </div><!-- /.row -->
-    
-    <!-- Modal -->
-    <div class="modal fade" id="dlgPassengers" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">รายชื่อผู้ร่วมเดินทาง</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="width: 4%; text-align: center;">#</th>
-                                    <th style="width: 8%; text-align: center;">CID</th>
-                                    <th>ชื่อ-สกุล</th>
-                                    <th style="width: 30%; text-align: center;">ตำแหน่ง</th>
-                                    <!-- <th style="width: 30%; text-align: center;">สังกัด</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="(index, passenger) in passengers">
-                                    <td>@{{ index + 1 }}</td>
-                                    <td>@{{ passenger.id }}</td>
-                                    <td>@{{ passenger.name  }}</td>
-                                    <td>@{{ passenger.position  }}</td>
-                                    <!-- <td></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>           
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->   
-
-    <!-- The actual modal template, just a bit o bootstrap -->
-    <script type="text/ng-template" id="modal.html">
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="">เพิ่มบุคลากร</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10%; text-align: center;">CID</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
-                                        <th style="width: 30%; text-align: center;">สังกัด</th>
-                                        <th style="width: 10%; text-align: center;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="passenger in passengers">
-                                        <td>@{{ passenger.person_id }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
 
 </div><!-- /.container -->
 @endsection

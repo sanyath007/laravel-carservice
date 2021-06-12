@@ -96,7 +96,7 @@ class MaintenanceController extends Controller
         $newMaintained->status = 0;
         
         if ($newMaintained->save()) {
-            return redirect('/maintained/list');
+            return redirect('/maintenances/list');
         }
     }
 
@@ -132,7 +132,7 @@ class MaintenanceController extends Controller
     public function vehiclemaintain ($vehicleid)
     {
         return view('maintenances.vehicle', [
-            'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
+            'vehicle'       => Vehicle::where(['vehicle_id' => $vehicleid])
                                 ->with('cate')
                                 ->with('type')
                                 ->with('method')
@@ -141,7 +141,7 @@ class MaintenanceController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->first(),
-            'maintenances' => Maintenance::where(['vehicle_id' => $vehicleid])
+            'maintenances'  => Maintenance::where(['vehicle_id' => $vehicleid])
                                 ->with('vehicle')
                                 ->with('garage')
                                 ->with('user')
@@ -153,7 +153,7 @@ class MaintenanceController extends Controller
     public function vehicleprint ($vehicleid)
     {
         return view('maintenances.vehicleprint', [
-            'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
+            'vehicle'       => Vehicle::where(['vehicle_id' => $vehicleid])
                                 ->with('cate')
                                 ->with('type')
                                 ->with('method')
@@ -162,7 +162,7 @@ class MaintenanceController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->first(),
-            'maintenances' => Maintenance::where(['vehicle_id' => $vehicleid])
+            'maintenances'  => Maintenance::where(['vehicle_id' => $vehicleid])
                                 ->where(['status' => '2'])
                                 ->with('vehicle')
                                 ->with('garage')
@@ -175,17 +175,17 @@ class MaintenanceController extends Controller
     public function checklist () 
     {
         return view('maintenances.checklist', [
-            'vehicles' => Vehicle::where(['status' => '1'])
-                                ->with('cate')
-                                ->with('type')
-                                ->with('method')
-                                ->with('manufacturer')
-                                ->with('changwat')
-                                ->with('vender')
-                                ->with('fuel')
-                                ->orderBy('vehicle_type', 'ASC')
-                                ->orderBy('vehicle_cate', 'ASC')
-                                ->get()
+            'vehicles'  => Vehicle::where(['status' => '1'])
+                            ->with('cate')
+                            ->with('type')
+                            ->with('method')
+                            ->with('manufacturer')
+                            ->with('changwat')
+                            ->with('vender')
+                            ->with('fuel')
+                            ->orderBy('vehicle_type', 'ASC')
+                            ->orderBy('vehicle_cate', 'ASC')
+                            ->get()
         ]);
     }
 
@@ -195,7 +195,7 @@ class MaintenanceController extends Controller
         $edate = $checkdate. '-31';
 
         return [
-            'vehicles' => Vehicle::where(['status' => '1'])
+            'vehicles'      => Vehicle::where(['status' => '1'])
                                 ->with('cate')
                                 ->with('type')
                                 ->with('method')
@@ -204,28 +204,18 @@ class MaintenanceController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->get(),
-            'dailycheck' => VehicleDailyCheck::where(['vehicle_id' => $vehicleid])
-                                                ->whereBetween('check_date', [$sdate, $edate])
-                                                // ->where(['check_date' => $checkdate])
-                                                ->orderBy('check_date', 'ASC')
-                                                ->get()
+            'dailycheck'    => VehicleDailyCheck::where(['vehicle_id' => $vehicleid])
+                                ->whereBetween('check_date', [$sdate, $edate])
+                                // ->where(['check_date' => $checkdate])
+                                ->orderBy('check_date', 'ASC')
+                                ->get()
         ];
     }
 
 
-    public function checkform ($vehicleid) 
+    public function checkform () 
     {
-        return view('maintenances.checkform', [
-            'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
-                                ->with('cate')
-                                ->with('type')
-                                ->with('method')
-                                ->with('manufacturer')
-                                ->with('changwat')
-                                ->with('vender')
-                                ->with('fuel')
-                                ->first(),
-        ]);
+        return view('maintenances.checkform');
     }
 
     public function storecheck (Request $req)
@@ -271,8 +261,7 @@ class MaintenanceController extends Controller
         $dailycheck->remark = $req['remark'];
 
         if ($dailycheck->save()) {
-            // print_r($dailycheck);
-            return redirect('/maintained/checklist');
+            return redirect('/maintenances/checklist');
         }
     }
 }

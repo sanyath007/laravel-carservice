@@ -370,17 +370,13 @@
             </div>
             
             <div class="row">
-                <!-- right column -->
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="ID">หมายเหตุ</label>
                         <textarea id="remark" name="remark" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
-                <!-- right column -->
-            </div><!-- end row -->
-
-            <div class="row">
+                
                 <div class="col-md-12">
                     <br><button class="btn btn-primary pull-right">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
@@ -389,7 +385,7 @@
             </div>
 
             <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="vehicle_id" name="vehicle_id" value="{{ $vehicle->vehicle_id }}">
+            <input type="hidden" id="vehicle_id" name="vehicle_id">
             {{ csrf_field() }}
         </form>
         

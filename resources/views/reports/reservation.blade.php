@@ -44,14 +44,14 @@
                                 'จบงาน',
                                 'ยกเลิก'
                             ];
-                            $vehicle = App\Vehicle::where(['vehicle_id' => $reservation->vehicle_id])->with('changwat')->first();
-                            $driver = App\Driver::where(['driver_id' => $reservation->driver_id])->with('person')->first();
+                            $vehicle = App\Models\Vehicle::where(['vehicle_id' => $reservation->vehicle_id])->with('changwat')->first();
+                            $driver = App\Models\Driver::where(['driver_id' => $reservation->driver_id])->with('person')->first();
                         ?>
 
                         <?php
                             $locationIds = [];
                             $locationIds = explode(",", $reservation->location);
-                            $locations = App\Location::where('id','<>','1')
+                            $locations = App\Models\Location::where('id','<>','1')
                                             ->pluck('name','id')->toArray();
 
                             $locationList = '<ul class="tag__list">';
@@ -165,91 +165,6 @@
         </div>
         <!-- right column -->
     </div><!-- /.row -->
-    
-    <!-- Modal -->
-    <div class="modal fade" id="dlgPassengers" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">รายชื่อผู้ร่วมเดินทาง</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="width: 4%; text-align: center;">#</th>
-                                    <th style="width: 8%; text-align: center;">CID</th>
-                                    <th>ชื่อ-สกุล</th>
-                                    <th style="width: 30%; text-align: center;">ตำแหน่ง</th>
-                                    <!-- <th style="width: 30%; text-align: center;">สังกัด</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="(index, passenger) in passengers">
-                                    <td>@{{ index + 1 }}</td>
-                                    <td>@{{ passenger.id }}</td>
-                                    <td>@{{ passenger.name  }}</td>
-                                    <td>@{{ passenger.position  }}</td>
-                                    <!-- <td></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>           
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->   
-
-    <!-- The actual modal template, just a bit o bootstrap -->
-    <script type="text/ng-template" id="modal.html">
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="">เพิ่มบุคลากร</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10%; text-align: center;">CID</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
-                                        <th style="width: 30%; text-align: center;">สังกัด</th>
-                                        <th style="width: 10%; text-align: center;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="passenger in passengers">
-                                        <td>@{{ passenger.person_id }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script> 
 
 </div><!-- /.container -->
 @endsection

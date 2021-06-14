@@ -31,10 +31,10 @@
                     </tr>
 
                     @foreach($assignments as $assignment)
-                        <?php $vehicle = App\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
+                        <?php $vehicle = App\Models\Vehicle::where(['vehicle_id' => $assignment->vehicle_id])->with('changwat')->first();
                         ?>
 
-                        <?php $driver = App\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
+                        <?php $driver = App\Models\Driver::where(['driver_id' => $assignment->driver_id])->with('person')->first();
                         ?>
                     <tr>
                         <td style="text-align: center;">
@@ -47,14 +47,14 @@
                         </td>
                         <td style="text-align: left;">
                             @foreach($assignment->assignreserve as $reserve)
-                                <?php $reservation = App\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
+                                <?php $reservation = App\Models\Reservation::where(['id' => $reserve->reserve_id])->with('user')->first();
                                 ?>
 
                                 <?php
                                     $locationIds = [];
                                     $locationList = '';
                                     $locationIds = explode(",", $reservation->location);
-                                    $locations = App\Location::where('id','<>','1')
+                                    $locations = App\Models\Location::where('id','<>','1')
                                                     ->pluck('name','id')->toArray();
                                     // print_r($locations);
                                     $locationList = '<ul class="tag__list">';
@@ -158,133 +158,6 @@
         </div>
         <!-- right column -->
     </div><!-- /.row -->
-    
-    <!-- Modal -->
-    <div class="modal fade" id="dlgPassengers" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">รายชื่อผู้ร่วมเดินทาง</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="width: 4%; text-align: center;">#</th>
-                                    <th style="width: 8%; text-align: center;">CID</th>
-                                    <th>ชื่อ-สกุล</th>
-                                    <th style="width: 30%; text-align: center;">ตำแหน่ง</th>
-                                    <!-- <th style="width: 30%; text-align: center;">สังกัด</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="(index, passenger) in passengers">
-                                    <td>@{{ index + 1 }}</td>
-                                    <td>@{{ passenger.id }}</td>
-                                    <td>@{{ passenger.name  }}</td>
-                                    <td>@{{ passenger.position  }}</td>
-                                    <!-- <td></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>           
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->   
-
-    <!-- Modal -->
-    <div class="modal fade" id="dlgMileage" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">บันทึกเลขไมล์</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="mileage-form" action="" method="POST">
-                        {{ csrf_field() }}
-                        <input type="hidden" id="id" name="id">
-                        <input type="hidden" id="url" name="url">
-               
-                        <div class="form-group">
-                            <label class="control-label" for="_date">วันที่</label>
-                            <input type="text" id="_date" name="_date" class="form-control">
-                        </div>                
-                        <div class="form-group">
-                            <label class="control-label" for="_time">เวลา</label>
-                            <input type="text" id="_time" name="_time" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="">เลขไมล์</label>
-                            <input type="text" id="mileage" name="mileage" class="form-control">
-                        </div> 
-                    </form>          
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveMileage()">
-                        Save
-                    </button>
-
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->   
-
-    <!-- The actual modal template, just a bit o bootstrap -->
-    <script type="text/ng-template" id="modal.html">
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="">เพิ่มบุคลากร</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10%; text-align: center;">CID</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
-                                        <th style="width: 30%; text-align: center;">สังกัด</th>
-                                        <th style="width: 10%; text-align: center;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="passenger in passengers">
-                                        <td>@{{ passenger.person_id }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                        <td>@{{ passenger.user }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
     
     <script>
         $(document).ready(function($) {

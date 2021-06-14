@@ -21,7 +21,7 @@ class ReportController extends Controller
 {
 	public function reserve () {
         return view('reports.reservation', [
-            'vehicles' => Vehicle::where(['status' => '1'])
+            'vehicles'      => Vehicle::where(['status' => '1'])
                                 ->with('cate')
                                 ->with('type')
                                 ->with('method')
@@ -30,7 +30,7 @@ class ReportController extends Controller
                                 ->with('vender')
                                 ->with('fuel')
                                 ->paginate(10),
-            'reservations' => Reservation::with('user')
+            'reservations'  => Reservation::with('user')
                                 ->orderBy('id', 'DESC')
                                 // ->orderBy('from_date', 'DESC')
                                 // ->orderBy('reserve_date', 'ASC')
@@ -39,11 +39,11 @@ class ReportController extends Controller
     }
     public function drive () 
     {
-    	$assignments = Assignment::orderBy('id','DESC')->paginate(10);
+        $assignments = Assignment::orderBy('id','DESC')->paginate(10);
 
-    	return view('reports.drive', [
-    		'assignments' => $assignments,
-    	]);
+        return view('reports.drive', [
+            'assignments' => $assignments,
+        ]);
     }
 
     public function service ()
@@ -156,9 +156,9 @@ class ReportController extends Controller
     
     public function fuelDayChart ($month)
     {
-        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
-        $sdate = ($year - 1). '-10-01';
-        $edate = $year. '-09-30';
+        $year   = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+        $sdate  = ($year - 1). '-10-01';
+        $edate  = $year. '-09-30';
 
         $sql = "SELECT CONCAT(YEAR(bill_date), '-', MONTH(bill_date)) AS bill_date, 
                 SUM(volume) as qty, SUM(total) as net 
@@ -194,11 +194,11 @@ class ReportController extends Controller
 
     public function sumMaintained ()
     {
-        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
-        $sdate = ($year - 1). '-10-01';
-        $edate = $year. '-09-30';
+        $year   = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+        $sdate  = ($year - 1). '-10-01';
+        $edate  = $year. '-09-30';
 
-        $sql ="SELECT 
+        $sql = "SELECT 
                 SUM(total) as total,
                 SUM(CASE WHEN maintained_type='1' THEN total END) as type1,
                 SUM(CASE WHEN maintained_type='2' THEN total END) as type2,
@@ -217,11 +217,11 @@ class ReportController extends Controller
 
     public function sumFuel ()
     {
-        $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
-        $sdate = ($year - 1). '-10-01';
-        $edate = $year. '-09-30';
+        $year   = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
+        $sdate  = ($year - 1). '-10-01';
+        $edate  = $year. '-09-30';
 
-        $sql ="SELECT
+        $sql = "SELECT
                 SUM(CASE WHEN v.vehicle_type IN (2,4,5) THEN total END) as 'ambu',
                 SUM(CASE WHEN v.vehicle_type IN (1) THEN total END) as 'gen',
                 SUM(CASE WHEN v.vehicle_type IN (3) THEN total END) as 'inter',
@@ -246,7 +246,7 @@ class ReportController extends Controller
         $sdate = $month . '-01';
         $edate = date("Y-m-t", strtotime($sdate));
 
-        $sql ="SELECT r.vehicle_id, v.reg_no,
+        $sql = "SELECT r.vehicle_id, v.reg_no,
                 COUNT(DISTINCT r.id) AS 'vehicle_count'
                 FROM reservations r LEFT JOIN vehicles v ON (r.vehicle_id=v.vehicle_id)
                 WHERE (from_date BETWEEN '$sdate' AND '$edate')
@@ -258,9 +258,9 @@ class ReportController extends Controller
         }, \DB::select($sql));
 
         return view('reports.service-vehicle', [
-            'vehicles' => Vehicle::where(['status' => 1])->whereIn('vehicle_type', [1,2])->get(),
-            'data' => $result,
-            'month' => $month,
+            'vehicles'  => Vehicle::where(['status' => 1])->whereIn('vehicle_type', [1,2])->get(),
+            'data'      => $result,
+            'month'     => $month,
         ]);
     }
 
@@ -270,7 +270,7 @@ class ReportController extends Controller
         $sdate = $month . '-01';
         $edate = date("Y-m-t", strtotime($sdate));
 
-        $sql ="SELECT * FROM reservations
+        $sql = "SELECT * FROM reservations
                 WHERE (from_date BETWEEN '$sdate' AND '$edate')
                 AND (`status` <> 5) ";
 
@@ -284,11 +284,11 @@ class ReportController extends Controller
         $arrLocations = [];
 
         for ($i = 0; $i < count($result); $i++) {
-            $separator = ($i != count($result) - 1) ? ',' : '';
-            $tmp .= $result[$i] . $separator;
+            $separator  = ($i != count($result) - 1) ? ',' : '';
+            $tmp        .= $result[$i] . $separator;
         }
 
-        $arrLocations = explode(',', $tmp);
+        $arrLocations   = explode(',', $tmp);
         $locationsCount = array_count_values($arrLocations);
 
         $newLocation = new \ArrayObject([]);
@@ -296,13 +296,13 @@ class ReportController extends Controller
             $tmpLocation = [];
             
             if(array_key_exists($location->id, $locationsCount)) {
-                $tmpLocation['id'] = $location->id;
-                $tmpLocation['name'] = $location->name;
-                $tmpLocation['chw_id'] = $location->changwat;
-                $tmpLocation['changwat'] = $location->province->changwat;
-                $tmpLocation['amp_id'] = $location->amphur;
-                $tmpLocation['amphur'] = $location->district->amphur;
-                $tmpLocation['count'] = (int)$locationsCount[$location->id];
+                $tmpLocation['id']          = $location->id;
+                $tmpLocation['name']        = $location->name;
+                $tmpLocation['chw_id']      = $location->changwat;
+                $tmpLocation['changwat']    = $location->province->changwat;
+                $tmpLocation['amp_id']      = $location->amphur;
+                $tmpLocation['amphur']      = $location->district->amphur;
+                $tmpLocation['count']       = (int)$locationsCount[$location->id];
 
                 $newLocation->append($tmpLocation);
                 $newLocation->uasort(function($a, $b) {
@@ -330,11 +330,10 @@ class ReportController extends Controller
                         ->groupBy('r.ward', 'w.ward_name')
                         ->orderBy(\DB::raw('count(r.id)'), 'DESC')
                         ->get();
-                        // ->toSql();
 
         return view('reports.reserve-depart', [
-            'reserves'    => $reserves,
-            'month' => $month,
+            'reserves'  => $reserves,
+            'month'     => $month,
         ]);
     }
 
@@ -343,8 +342,8 @@ class ReportController extends Controller
         $year = (Input::get('selectMonth')) ? Input::get('selectMonth') : date('Y');
 
         return view('reports.maintain-vehicle', [
-            'assignments' => Assignment::orderBy('id','DESC')->paginate(10),
-            'year' => $year
+            'assignments'   => Assignment::orderBy('id','DESC')->paginate(10),
+            'year'          => $year
         ]);
     }
     

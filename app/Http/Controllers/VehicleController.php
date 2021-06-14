@@ -240,6 +240,15 @@ class VehicleController extends Controller
         }
     }
 
+    public function delete($id)
+    {
+        if(Vehicle::where('vehicle_id', $id)->delete()) {
+            return redirect('vehicles/list')->with('status', 'ลบรายการรถเรียบร้อบแล้ว!!');
+        } else {
+            return redirect('vehicles/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
+        }
+    }
+
     public function ajaxvehicles () 
     {
         return [

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid" ng-controller="reserveCtrl">
+<div class="container-fluid" ng-controller="insuranceCtrl">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการต่อประกันภัย</li>

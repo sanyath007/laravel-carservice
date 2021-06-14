@@ -138,5 +138,13 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             remark: act.remark
         };
     }
+
+    $scope.delete = function (event, id) {
+        event.preventDefault();
+
+        if (confirm(`คุณต้องการลบรายการต่อ พรบ. ID: ${id} ใช่หรือไม่?`)) {
+            $('#delete-form').submit();
+        }
+    }
 /** ################################################################################## */
 });

@@ -131,8 +131,12 @@ class ActController extends Controller
         }
     }
 
-    public function delete ()
+    public function delete($id)
     {
-
+        if(Act::where('id', $id)->delete()) {
+            return redirect('acts/list')->with('status', 'ลบรายการต่อ พรบ. เรียบร้อบแล้ว!!');
+        } else {
+            return redirect('acts/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
+        }
     }
 }

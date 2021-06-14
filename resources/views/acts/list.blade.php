@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid" ng-controller="reserveCtrl">
+<div class="container-fluid" ng-controller="actCtrl">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการต่อ พรบ.</li>
@@ -21,6 +21,24 @@
         
         <hr />
     </div><!-- page title -->
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12">
@@ -64,8 +82,8 @@
                             </a>
 
                             @if ($act->status != '3')
-                                <a  href="{{ url('/acts/' .$act->id. '/cancel') }}" 
-                                    ng-click="cancel($event)"
+                                <a  href="#" 
+                                    ng-click="cancel($event, '{{ $act->id }}')"
                                     class="btn btn-primary btn-xs">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
@@ -81,8 +99,8 @@
 
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($act->status == '3')
-                                    <a  href="{{ url('/acts/' .$act->id. '/return') }}" 
-                                        ng-click="return($event)"
+                                    <a  href="#" 
+                                        ng-click="return($event, '{{ $act->id }}')"
                                         class="btn btn-default btn-xs">
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
@@ -90,14 +108,15 @@
                                     <form
                                         id="return-form"
                                         action="{{ url('/acts/' .$act->id. '/return') }}"
-                                        method="POST" style="display: none;"
+                                        method="POST"
+                                        style="display: none;"
                                     >
                                         {{ csrf_field() }}
                                     </form>
                                 @endif
 
-                                <a  href="{{ url('/acts/' .$act->id. '/delete') }}" 
-                                    ng-click="delete($event)"
+                                <a  href="#" 
+                                    ng-click="delete($event, '{{ $act->id }}')"
                                     class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>

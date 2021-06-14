@@ -142,5 +142,13 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
             remark: insurance.remark
         };
     }
+
+    $scope.delete = function (event, id) {
+        event.preventDefault();
+
+        if (confirm(`คุณต้องการลบรายการต่อประกันภัย ID: ${id} ใช่หรือไม่?`)) {
+            $('#delete-form').submit();
+        }
+    }
 /** ################################################################################## */
 });

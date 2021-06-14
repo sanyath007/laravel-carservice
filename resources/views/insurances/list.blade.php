@@ -23,6 +23,24 @@
     </div>
     <!-- page title -->
 
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
@@ -77,8 +95,8 @@
 
                             @if ($insurance->status != '3')
                                 <a
-                                    href="{{ url('/insurances/' .$insurance->id. '/cancel') }}" 
-                                    ng-click="cancel($event)"
+                                    href="#" 
+                                    ng-click="cancel($event, '{{ $insurance->id }}')"
                                     class="btn btn-primary btn-xs"
                                     title="ยกเลิกรายการ"
                                 >
@@ -93,8 +111,8 @@
                             @if (Auth::user()->person_id == '1300200009261')
                                 @if ($insurance->status == '3')
                                     <a
-                                        href="{{ url('/insurances' .$insurance->id. '/return') }}" 
-                                        ng-click="return($event)"
+                                        href="#" 
+                                        ng-click="return($event, '{{ $insurance->id }}')"
                                         class="btn btn-default btn-xs"
                                         title="นำรายการกลับมา"
                                     >
@@ -107,8 +125,8 @@
                                 @endif
 
                                 <a
-                                    href="{{ url('/insurances/' .$insurance->id. '/delete') }}" 
-                                    ng-click="delete($event)"
+                                    href="#" 
+                                    ng-click="delete($event, '{{ $insurance->id }}')"
                                     class="btn btn-danger btn-xs"
                                     title="ลบรายการ"
                                 >

@@ -134,7 +134,6 @@ class InsuranceController extends Controller
             $insurance->attachfile = $attachfile;
         }
 
-        var_dump($insurance);
         if ($insurance->save()) {
             return redirect('insurances/list');
         }
@@ -142,6 +141,10 @@ class InsuranceController extends Controller
 
     public function delete($id)
     {
-
+        if(Insurance::where('id', $id)->delete()) {
+            return redirect('insurances/list')->with('status', 'ลบรายการต่อประกันภัยเรียบร้อบแล้ว!!');
+        } else {
+            return redirect('insurances/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
+        }
     }
 }

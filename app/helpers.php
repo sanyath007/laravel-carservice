@@ -1,5 +1,7 @@
 <?php
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 function uploadFile ($file, $destPath)
 {
     $filename = '';
@@ -10,4 +12,20 @@ function uploadFile ($file, $destPath)
     }
 
     return $filename;
+}
+
+function uploadThumbnail ($img, $destPath)
+{
+    $img_name = '';
+    if ($img) {
+        $img_name = date('mdYHis') . uniqid(). '.' .$img->getClientOriginalExtension();
+
+        $img_resized = Image::make($img->getRealPath());
+        $img_resized->resize(300, null, function($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img_resized->save(public_path($destPath. '/' .$img_name));
+    }
+
+    return $img_name;
 }

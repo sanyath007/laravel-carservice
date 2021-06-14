@@ -167,7 +167,7 @@ class VehicleController extends Controller
         $newVehicle->status = '1';
 
         /** Upload attach file */
-        $thumbnail = uploadFile($req->file('attachfile'), 'uploads/vehicles/thumbnails');
+        $thumbnail = uploadThumbnail($req->file('attachfile'), 'uploads/vehicles/thumbnails');
         if ($thumbnail != '') {
             $newVehicle->thumbnail = $thumbnail;
         }

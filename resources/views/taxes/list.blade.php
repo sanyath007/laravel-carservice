@@ -86,24 +86,24 @@
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
-                            @if ($tax->status != '3')
-                                <a
-                                    href="#" 
-                                    ng-click="cancel($event, '{{ $tax->id }}')"
-                                    class="btn btn-primary btn-xs"
-                                    title="ยกเลิกรายการ"
-                                >
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-
-                                <form id="cancel-form" action="{{ url('/taxes/cancel/' . $tax->id) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                </form>
-                            @endif
-
                             @if (Auth::user()->person_id == '1300200009261')
+                                @if ($tax->status != '3')
+                                    <!-- <a
+                                        href="#" 
+                                        ng-click="cancel($event, '{{ $tax->id }}')"
+                                        class="btn btn-primary btn-xs"
+                                        title="ยกเลิกรายการ"
+                                    >
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+
+                                    <form id="cancel-form" action="{{ url('/taxes/cancel/' . $tax->id) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                    </form> -->
+                                @endif
+
                                 @if ($tax->status == '3')
-                                    <a
+                                    <!-- <a
                                         href="#" 
                                         ng-click="return($event, '{{ $tax->id }}')"
                                         class="btn btn-default btn-xs"
@@ -114,7 +114,7 @@
 
                                     <form id="return-form" action="{{ url('/taxes/return/' . $tax->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                    </form>
+                                    </form> -->
                                 @endif
 
                                 <a

@@ -81,25 +81,25 @@
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
-                            @if ($act->status != '3')
-                                <a  href="#" 
-                                    ng-click="cancel($event, '{{ $act->id }}')"
-                                    class="btn btn-primary btn-xs">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-
-                                <form
-                                    id="cancel-form"
-                                    action="{{ url('/acts/' .$act->id. '/cancel') }}"
-                                    method="POST" style="display: none;"
-                                >
-                                    {{ csrf_field() }}
-                                </form>
-                            @endif
-
                             @if (Auth::user()->person_id == '1300200009261')
+                                @if ($act->status != '3')
+                                    <!-- <a  href="#" 
+                                        ng-click="cancel($event, '{{ $act->id }}')"
+                                        class="btn btn-primary btn-xs">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+
+                                    <form
+                                        id="cancel-form"
+                                        action="{{ url('/acts/' .$act->id. '/cancel') }}"
+                                        method="POST" style="display: none;"
+                                    >
+                                        {{ csrf_field() }}
+                                    </form> -->
+                                @endif
+
                                 @if ($act->status == '3')
-                                    <a  href="#" 
+                                    <!-- <a  href="#" 
                                         ng-click="return($event, '{{ $act->id }}')"
                                         class="btn btn-default btn-xs">
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
@@ -112,7 +112,7 @@
                                         style="display: none;"
                                     >
                                         {{ csrf_field() }}
-                                    </form>
+                                    </form> -->
                                 @endif
 
                                 <a  href="#" 

@@ -93,24 +93,24 @@
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
-                            @if ($insurance->status != '3')
-                                <a
-                                    href="#" 
-                                    ng-click="cancel($event, '{{ $insurance->id }}')"
-                                    class="btn btn-primary btn-xs"
-                                    title="ยกเลิกรายการ"
-                                >
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-
-                                <form id="cancel-form" action="{{ url('/insurances/' .$insurance->id. '/cancel') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                </form>
-                            @endif
-
                             @if (Auth::user()->person_id == '1300200009261')
+                                @if ($insurance->status != '3')
+                                    <!-- <a
+                                        href="#" 
+                                        ng-click="cancel($event, '{{ $insurance->id }}')"
+                                        class="btn btn-primary btn-xs"
+                                        title="ยกเลิกรายการ"
+                                    >
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+
+                                    <form id="cancel-form" action="{{ url('/insurances/' .$insurance->id. '/cancel') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                    </form> -->
+                                @endif
+
                                 @if ($insurance->status == '3')
-                                    <a
+                                    <!-- <a
                                         href="#" 
                                         ng-click="return($event, '{{ $insurance->id }}')"
                                         class="btn btn-default btn-xs"
@@ -121,7 +121,7 @@
 
                                     <form id="return-form" action="{{ url('/insurances' .$insurance->id. '/return') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                    </form>
+                                    </form> -->
                                 @endif
 
                                 <a

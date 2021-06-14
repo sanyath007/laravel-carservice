@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Driver;
-use App\LicenseType;
+use App\Models\LicenseType;
 
 class DriverController extends Controller
 {
@@ -55,13 +55,6 @@ class DriverController extends Controller
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 
-        /** Upload attach file */
-        $filename = '';
-        if ($file = $req->file('attachfile')) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-        }
-
         $newDriver = new Driver();
         $newDriver->person_id = $req['person_id'];   
         $newDriver->description = $req['description'];
@@ -80,6 +73,12 @@ class DriverController extends Controller
         $newDriver->remark = $req['remark'];
         $newDriver->driver_type = $req['driver_type']; // 1=พขร หลัก, 2=พขร สำรอง
         $newDriver->status = '1'; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไปช่วยราชการ, 3=ออก
+
+        /** Upload attach file */
+        $filename = uploadFile($req->file('attachfile'), 'uploads/drivers');
+        if (!empty($filename)) {
+            $newDriver->thumbnail = $thumbnail;
+        }
 
         if ($newDriver->save()) {                            
             return redirect('drivers/list');

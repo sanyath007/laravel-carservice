@@ -103,5 +103,13 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
             remark: tax.remark
         };
     }
+
+    $scope.delete = function (event, id) {
+        event.preventDefault();
+
+        if (confirm(`คุณต้องการลบรายการเสียภาษี ID: ${id} ใช่หรือไม่?`)) {
+            $('#delete-form').submit();
+        }
+    }
 /** ################################################################################## */
 });

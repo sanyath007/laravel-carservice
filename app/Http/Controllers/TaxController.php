@@ -108,8 +108,12 @@ class TaxController extends Controller
         }
     }
 
-    public function delete ()
+    public function delete ($id)
     {
-        
+        if(Tax::where('id', $id)->delete()) {
+            return redirect('taxes/list')->with('status', 'ลบรายการเสียภาษีเรียบร้อบแล้ว!!');
+        } else {
+            return redirect('taxes/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
+        }
     }
 }

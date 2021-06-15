@@ -147,7 +147,7 @@ app.controller('insuranceCtrl', function($scope, $http, toaster, ModalService, C
         event.preventDefault();
 
         if (confirm(`คุณต้องการลบรายการต่อประกันภัย ID: ${id} ใช่หรือไม่?`)) {
-            $('#delete-form').submit();
+            $(`#${id}-delete-form`).submit();
         }
     }
 /** ################################################################################## */

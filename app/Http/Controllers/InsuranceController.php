@@ -142,7 +142,7 @@ class InsuranceController extends Controller
     public function delete($id)
     {
         if(Insurance::where('id', $id)->delete()) {
-            return redirect('insurances/list')->with('status', 'ลบรายการต่อประกันภัยเรียบร้อบแล้ว!!');
+            return redirect('insurances/list')->with('status', 'ลบรายการต่อประกันภัย ID ' .$id. ' เรียบร้อบแล้ว!!');
         } else {
             return redirect('insurances/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
         }

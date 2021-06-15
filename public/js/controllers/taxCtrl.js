@@ -108,7 +108,7 @@ app.controller('taxCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         event.preventDefault();
 
         if (confirm(`คุณต้องการลบรายการเสียภาษี ID: ${id} ใช่หรือไม่?`)) {
-            $('#delete-form').submit();
+            $(`#${id}-delete-form`).submit();
         }
     }
 /** ################################################################################## */

@@ -143,7 +143,7 @@ app.controller('actCtrl', function($scope, $http, toaster, ModalService, CONFIG)
         event.preventDefault();
 
         if (confirm(`คุณต้องการลบรายการต่อ พรบ. ID: ${id} ใช่หรือไม่?`)) {
-            $('#delete-form').submit();
+            $(`#${id}-delete-form`).submit();
         }
     }
 /** ################################################################################## */

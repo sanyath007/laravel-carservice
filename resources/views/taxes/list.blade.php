@@ -70,10 +70,10 @@
                             {{ $tax->vehicle->reg_no }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $tax->tax_start_date }}
+                            {{ convDbDateToThDate($tax->tax_start_date) }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $tax->tax_renewal_date }}
+                            {{ convDbDateToThDate($tax->tax_renewal_date) }}
                         </td>
                         <td style="text-align: center;">{{ $tax->tax_receipt_no }}</td>
                         <td style="text-align: center;">{{ $tax->tax_charge }}</td>

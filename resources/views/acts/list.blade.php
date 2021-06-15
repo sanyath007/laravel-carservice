@@ -70,7 +70,8 @@
                             {{ $act->company->insurance_company_name }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $act->act_start_date }} - {{ $act->act_renewal_date }}
+                            {{ convDbDateToThDate($act->act_start_date) }} - 
+                            {{ convDbDateToThDate($act->act_renewal_date) }}
                         </td>
                         <td style="text-align: right;">
                             {{ number_format($act->act_total,2) }}

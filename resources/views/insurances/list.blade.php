@@ -78,8 +78,8 @@
                             {{ $insurance->insurance_detail }}
                         </td>
                         <td style="text-align: center;">
-                            {{ $insurance->insurance_start_date }} - 
-                            {{ $insurance->insurance_renewal_date }}
+                            {{ convDbDateToThDate($insurance->insurance_start_date) }} - 
+                            {{ convDbDateToThDate($insurance->insurance_renewal_date) }}
                         </td>
                         <td style="text-align: center;">
                             {{ number_format($insurance->insurance_total,2) }}

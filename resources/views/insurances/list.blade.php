@@ -104,8 +104,13 @@
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="cancel-form" action="{{ url('/insurances/' .$insurance->id. '/cancel') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                    <form
+                                        id="{{ $insurance->id. '-cancel-form' }}"
+                                        action="{{ url('/insurances/' .$insurance->id. '/cancel') }}"
+                                        method="POST"
+                                        style="display: none;"
+                                    >
+                                        {{ csrf_field() }}
                                     </form> -->
                                 @endif
 
@@ -119,8 +124,13 @@
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/insurances' .$insurance->id. '/return') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                    <form
+                                        id="{{ $insurance->id. '-return-form' }}"
+                                        action="{{ url('/insurances' .$insurance->id. '/return') }}"
+                                        method="POST"
+                                        style="display: none;"
+                                    >
+                                        {{ csrf_field() }}
                                     </form> -->
                                 @endif
 
@@ -133,7 +143,12 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/insurances/' .$insurance->id. '/delete') }}" method="POST" style="display: none;">
+                                <form
+                                    id="{{ $insurance->id. '-delete-form' }}"
+                                    action="{{ url('/insurances/' .$insurance->id. '/delete') }}"
+                                    method="POST"
+                                    style="display: none;"
+                                >
                                     {{ csrf_field() }}
                                 </form>
                             @endif

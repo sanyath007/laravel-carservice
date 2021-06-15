@@ -97,7 +97,7 @@
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="cancel-form" action="{{ url('/taxes/cancel/' . $tax->id) }}" method="POST" style="display: none;">
+                                    <form id="{{ $tax->id. '-cancel-form' }}" action="{{ url('/taxes/cancel/' . $tax->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form> -->
                                 @endif
@@ -112,7 +112,7 @@
                                         <i class="fa fa-retweet" aria-hidden="true"></i>
                                     </a>
 
-                                    <form id="return-form" action="{{ url('/taxes/return/' . $tax->id) }}" method="POST" style="display: none;">
+                                    <form id="{{ $tax->id. '-return-form' }}" action="{{ url('/taxes/return/' . $tax->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form> -->
                                 @endif
@@ -126,7 +126,7 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
 
-                                <form id="delete-form" action="{{ url('/taxes/' .$tax->id. '/delete') }}" method="POST" style="display: none;">
+                                <form id="{{ $tax->id. '-delete-form' }}" action="{{ url('/taxes/' .$tax->id. '/delete') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             @endif

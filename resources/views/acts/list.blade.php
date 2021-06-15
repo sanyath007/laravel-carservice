@@ -90,7 +90,7 @@
                                     </a>
 
                                     <form
-                                        id="cancel-form"
+                                        id="{{ $act->id. '-cancel-form' }}"
                                         action="{{ url('/acts/' .$act->id. '/cancel') }}"
                                         method="POST" style="display: none;"
                                     >
@@ -106,7 +106,7 @@
                                     </a>
 
                                     <form
-                                        id="return-form"
+                                        id="{{ $act->id. '-return-form' }}"
                                         action="{{ url('/acts/' .$act->id. '/return') }}"
                                         method="POST"
                                         style="display: none;"
@@ -122,7 +122,7 @@
                                 </a>
 
                                 <form
-                                    id="delete-form"
+                                    id="{{ $act->id. '-delete-form' }}"
                                     action="{{ url('/acts/' .$act->id. '/delete') }}"
                                     method="POST"
                                     style="display: none;"

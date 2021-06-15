@@ -98,31 +98,31 @@
 
                             <div class="card-text" style="height: 200px;">
                                 {{ $vehicle->cate->vehicle_cate_name }} <b>ใช้งาน</b> {{ $vehicle->type->vehicle_type_name }} <br>
-                                <b>ยี่ห้อ</b> {{ $vehicle->manufacturer->manufacturer_name }} <b>ปี</b> {{ $vehicle->year }} <br>
-                                <b>รุ่น</b> {{ $vehicle->model }} <br>
+                                <b style="margin-right: 10px;">ยี่ห้อ</b> {{ $vehicle->manufacturer->manufacturer_name }} <b>ปี</b> {{ $vehicle->year }} <br>
+                                <b style="margin-right: 10px;">รุ่น</b> {{ $vehicle->model }} <br>
                                 
-                                <b>เครื่องยนต์</b> {{ $vehicle->fuel->fuel_type_name }} - ซีซี
-                                <b>สี</b> {{ $vehicle->color }} <br>                            
-                                <b>วันที่จดทะเบียน</b> {{ $vehicle->reg_date }} <br>
-                                <b>วันที่หมดภาษี</b> 
+                                <b style="margin-right: 10px;">เครื่องยนต์</b> {{ $vehicle->fuel->fuel_type_name }} - ซีซี
+                                <b style="margin-right: 10px;">สี</b> {{ $vehicle->color }} <br>                            
+                                <b style="margin-right: 10px;">วันที่จดทะเบียน</b> {{ convDbDateToThDate($vehicle->reg_date) }} <br>
+                                <b style="margin-right: 10px;">วันที่หมดภาษี</b> 
                                     <?= ((count($vehicle->taxactived) > 0) ? 
                                         (($vehicle->taxactived[0]->tax_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<span style="color: green;">'.$vehicle->taxactived[0]->tax_renewal_date.'</span>') : 
+                                        '<span style="color: green;">'.convDbDateToThDate($vehicle->taxactived[0]->tax_renewal_date).'</span>') : 
                                         '-'); ?> <br>
-                                <b>วันที่หมด พรบ.</b>
+                                <b style="margin-right: 10px;">วันที่หมด พรบ.</b>
                                     <?= ((count($vehicle->actsactived) > 0) ?                                         
                                         (($vehicle->actsactived[0]->act_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<span style="color: green;">'.$vehicle->actsactived[0]->act_renewal_date.'</span>') : 
+                                        '<span style="color: green;">'.convDbDateToThDate($vehicle->actsactived[0]->act_renewal_date).'</span>') : 
                                         '-'); ?> <br>
-                                <b>วันที่หมดประกัน</b>
+                                <b style="margin-right: 10px;">วันที่หมดประกัน</b>
                                     <?= ((count($vehicle->insactived) > 0) ? 
                                         (($vehicle->insactived[0]->insurance_renewal_date < date('Y-m-d')) ? 
                                         $expired : 
-                                        '<span style="color: green;">'.$vehicle->insactived[0]->insurance_renewal_date.'</span>') : 
+                                        '<span style="color: green;">'.convDbDateToThDate($vehicle->insactived[0]->insurance_renewal_date).'</span>') : 
                                         '-'); ?> <br/>
-                                <b>เลขไมล์ล่าสุด</b>
+                                <b style="margin-right: 10px;">เลขไมล์ล่าสุด</b>
                                 <span style="color: red;">
                                     {{ (count($vehicle->mileage) > 0) 
                                         ? number_format($vehicle->mileage[0]->mileage) 

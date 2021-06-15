@@ -29,3 +29,21 @@ function uploadThumbnail ($img, $destPath)
 
     return $img_name;
 }
+
+function convDbDateToThDate ($dbDate)
+{
+    if(empty($dbDate)) return '';
+
+    $arrDate = explode('-', $dbDate);
+
+    return $arrDate[2]. '/' .$arrDate[1]. '/' .((int)$arrDate[0] + 543);
+}
+
+function convThDateToDbDate ($dbDate)
+{
+    if(empty($dbDate)) return '';
+
+    $arrDate = explode('/', $dbDate);
+
+    return ((int)$arrDate[2] - 543). '-' .$arrDate[1]. '-' .$arrDate[0];
+}

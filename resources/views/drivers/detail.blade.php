@@ -93,7 +93,7 @@
                                 <tbody>
                                     <tr>
                                         <td style="text-align: center;">1</td>
-                                        <td>อบรมพนักงานขับรถพยาบาล</td>
+                                        <td>อบรมพนักงานขับรถฉุกเฉิน</td>
                                         <td style="text-align: center;">
                                             {{ convDbDateToThDate($driver->certificated_date) }}
                                         </td>

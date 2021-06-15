@@ -1,11 +1,12 @@
     @extends('layouts.main')
 
     @section('content')
-    <div class="container-fluid" ng-controller="driverCtrl">
+    <div class="container-fluid" ng-controller="driverCtrl" ng-init="edit({{ $driver }})">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/drivers/list') }}">รายการพนักงานขับรถ</a></li>
-            <li class="breadcrumb-item active">เพิ่มพนักงานขับรถ</li>
+            <li class="breadcrumb-item active">แก้ไขข้อมูลพนักงานขับรถ</li>
+            <li class="breadcrumb-item active">{{ $driver->description }}</li>
         </ol>
 
         <!-- page title -->
@@ -13,7 +14,10 @@
             <div class="page__title">
                 <span>
                     <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                    เพิ่มพนักงานขับรถ
+                    แก้ไขข้อมูลพนักงานขับรถ
+                    <span class="text-muted">
+                        ({{ $driver->description }})
+                    </span>
                 </span>
             </div>
             
@@ -21,7 +25,7 @@
         </div>
         <!-- page title -->
         
-        <form id="frmNewDriver" action="{{ url('/drivers/add') }}" method="post" enctype="multipart/form-data">
+        <form id="frmEditDriver" action="{{ url('/drivers/update') }}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -154,7 +158,13 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('capability_date')}">
                         <label for="capability_date">วันที่ตรวจสมรรถภาพล่าสุด </label>
-                        <input type="text" id="capability_date" name="capability_date" ng-model="newDriver.capability_date" class="form-control">
+                        <input
+                            type="text"
+                            id="capability_date"
+                            name="capability_date"
+                            ng-model="newDriver.capability_date"
+                            class="form-control"
+                        />
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('capability_date')"></span>
                         <span class="help-block" ng-show="checkValidate('capability_date')">กรุณาเลือกวันที่ตรวจสมรรถภาพล่าสุด</span>
                     </div>
@@ -164,7 +174,7 @@
                 <!-- right column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('capability_result')}">
-                        <label for="capability_result">ผลการตรวจสมรรถภาพล่าสุด </label>
+                        <label for="capability_result">ผลการตรวจสมรรถภาพล่าสุด </label><br>
                         <div class="radio__wrapper">
                             <div style="flex: 1;">
                                 <input
@@ -269,7 +279,7 @@
                         </span>
                     </div>
 
-                   <div class="form-group">
+                    <div class="form-group">
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
@@ -292,14 +302,14 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
+                    <button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>
             </div>
 
             <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
-            <input type="hidden" id="driver_id" name="driver_id" ng-model="newDriver.driverId">
+            <input type="hidden" id="driver_id" name="driver_id" value="{{ $driver->driver_id }}">
             {{ csrf_field() }}
         </form>
         

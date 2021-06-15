@@ -13,22 +13,22 @@ class DriverController extends Controller
     public function formValidate (Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'person_id' => 'required',
-            'description' => 'required',
-            'tel' => 'required',
-            'license_no' => 'required',
-            'license_type' => 'required'
+            'person_id'     => 'required',
+            'description'   => 'required',
+            'tel'           => 'required',
+            'license_no'    => 'required',
+            'license_type'  => 'required'
         ]);
 
         if ($validator->fails()) {
             return [
-                'success' => 0,
-                'errors' => $validator->getMessageBag()->toArray(),
+                'success'   => 0,
+                'errors'    => $validator->getMessageBag()->toArray(),
             ];
         } else {
             return [
-                'success' => 1,
-                'errors' => $validator->getMessageBag()->toArray(),
+                'success'   => 1,
+                'errors'    => $validator->getMessageBag()->toArray(),
             ];
         }
     }

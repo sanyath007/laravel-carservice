@@ -53,7 +53,7 @@
                             </a>
                         </td>         
                         <td style="text-align: center;">
-                            {{ ($maintained['maintained_id']) ? $maintained['maintained_date'] : '' }}
+                            {{ ($maintained['maintained_id']) ? convDbDateToThDate($maintained['maintained_date']) : '' }}
                         </td>
                         <td style="text-align: center;">
                             {{ number_format($maintained['maintained_mileage']) }}

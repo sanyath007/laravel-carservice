@@ -64,9 +64,10 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/drivers/list', 'DriverController@index');
     Route::get('/drivers/new', 'DriverController@create');
     Route::post('/drivers/add', 'DriverController@store');
-    Route::get('/drivers/edit/{id}', 'DriverController@edit');
-    Route::post('/drivers/update', 'DriverController@update');
-    Route::post('/drivers/delete', 'DriverController@delete');    
+    Route::get('/drivers/{id}/edit', 'DriverController@edit');
+    Route::post('/drivers/{id}/update', 'DriverController@update');
+    Route::post('/drivers/{id}/delete', 'DriverController@delete');
+    Route::get('/drivers/{id}/detail', 'DriverController@detail');
     Route::post('/drivers/validate', 'DriverController@formValidate');
 
 

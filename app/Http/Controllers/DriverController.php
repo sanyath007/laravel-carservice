@@ -42,6 +42,14 @@ class DriverController extends Controller
         ]);
     }
 
+    public function detail ($id) {
+        return view('drivers.detail', [
+            'driver' => Driver::where('driver_id', $id)
+                            ->with('person')
+                            ->first()
+        ]);
+    }
+
     public function create ()
     {
         return view('drivers.newform', [

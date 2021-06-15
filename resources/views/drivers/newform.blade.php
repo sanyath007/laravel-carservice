@@ -2,21 +2,23 @@
 
     @section('content')
     <div class="container-fluid" ng-controller="driverCtrl">
-      
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active">บันทึกการพนักงานขับรถใหม่</li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/drivers/list') }}">รายการพนักงานขับรถ</a></li>
+            <li class="breadcrumb-item active">เพิ่มพนักงานขับรถ</li>
         </ol>
 
         <!-- page title -->
-        <div class="page__title">
-            <span>
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-                บันทึกการพนักงานขับรถใหม่
-            </span>
+        <div class="page__title-wrapper">
+            <div class="page__title">
+                <span>
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
+                    เพิ่มพนักงานขับรถ
+                </span>
+            </div>
+            
+            <hr />
         </div>
-
-        <hr />
         <!-- page title -->
         
         <form id="frmNewDriver" action="{{ url('/drivers/add') }}" method="post" enctype="multipart/form-data">

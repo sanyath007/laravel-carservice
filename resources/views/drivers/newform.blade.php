@@ -108,7 +108,7 @@
                 </span>
             </div>
 
-            <div class="row">
+            <div class="row" style="margin-top: 10px;">
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('checkup_date')}">
@@ -130,7 +130,7 @@
                                     type="radio"
                                     id="checkup_result"
                                     name="checkup_result"
-                                    ng-model="newDriver.checkup_result"
+                                    ng-checked="newDriver.checkup_result === 0"
                                 /> ปกติ
                             </div>
                             <div style="flex: 1;">
@@ -138,7 +138,7 @@
                                     type="radio"
                                     id="checkup_result"
                                     name="checkup_result"
-                                    ng-model="newDriver.checkup_result"
+                                    ng-checked="newDriver.checkup_result === 1"
                                 /> ผิดปกติ
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                                     type="radio"
                                     id="capability_result"
                                     name="capability_result"
-                                    ng-model="newDriver.capability_result"
+                                    ng-checked="newDriver.capability_result === 0"
                                 /> ปกติ
                             </div>
                             <div style="flex: 1;">
@@ -179,7 +179,7 @@
                                     type="radio"
                                     id="capability_result"
                                     name="capability_result"
-                                    ng-model="newDriver.capability_result"
+                                    ng-checked="newDriver.capability_result === 1"
                                 /> ผิดปกติ
                             </div>
                         </div>

@@ -73,5 +73,29 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
     $scope.setVehicleStatus = function(status) {
         $scope.vehicleStatus = status;
     }
+
+    $scope.edit = function (driver) {
+        console.log(driver);
+
+        $scope.newDriver = {
+            person_id: driver.person_id,
+            description: driver.description,
+            tel: driver.tel,
+            tel2: driver.tel2,
+            license_no: driver.license_no,
+            license_type: driver.license_type ? driver.license_type.toString() : '',
+            checkup_date: driver.checkup_date,
+            checkup_result: driver.checkup_result,
+            capability_date: driver.capability_date,
+            capability_result: driver.capability_result,
+            is_certificated: driver.is_certificated,
+            certificated_date: driver.certificated_date,
+            is_emr: driver.is_emr,
+            emr_sdate: driver.emr_sdate,
+            emr_edate: driver.emr_edate,
+            driver_type: driver.driver_type,
+            remark: driver.remark,
+        };
+    }
 /** ################################################################################## */
 });

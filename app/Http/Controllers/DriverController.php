@@ -38,6 +38,7 @@ class DriverController extends Controller
             'drivers' => Driver::where('status', '1')
                             ->where('driver_type', '1')
                             ->with('person')
+                            ->with('person.position')
                             ->get()
         ]);
     }
@@ -46,6 +47,7 @@ class DriverController extends Controller
         return view('drivers.detail', [
             'driver' => Driver::where('driver_id', $id)
                             ->with('person')
+                            ->with('person.position')
                             ->first()
         ]);
     }

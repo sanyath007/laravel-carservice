@@ -4,7 +4,7 @@
 <div class="container-fluid" ng-controller="driverCtrl">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
-        <li class="breadcrumb-item"><a href="{{ url('/driver/list') }}">รายการรถ</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/drivers/list') }}">รายการรถ</a></li>
         <li class="breadcrumb-item active">{{ $driver->description }}</li>
     </ol>
 
@@ -55,7 +55,7 @@
                     </p>
                     <p>
                         <b style="margin-right: 10px;">ตำแหน่ง :</b>
-                        {{ $driver->person->position_id }}
+                        {{ $driver->person->position->position_name }}
                     </p>
                     <p>
                         <b style="margin-right: 10px;">วันเกิด :</b>

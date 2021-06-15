@@ -41,8 +41,16 @@
                             />
                         </figure>
                         <h3><a href="#">{{ $driver->description }}</a></h3>
-                        <p><h4>พนักงานขับรถยนต์</h4></p>
+                        <p>
+                            <h4>{{ $driver->person->position ? $driver->person->position->position_name : '' }}</h4>
+                        </p>
                         <p><h4>โทร. {{ $driver->person->person_tel }}</h4></p>
+                        <p>
+                            <h4>
+                                <b style="margin-right: 5px;">วันที่บรรจุ</b>
+                                {{ convDbDateToThDate($driver->person->person_singin) }}
+                            </h4>
+                        </p>
                         <!-- <ul class="follow-us clearfix">
                             <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

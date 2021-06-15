@@ -124,4 +124,12 @@ app.controller('vehicleCtrl', function($scope, $http, toaster, ModalService, CON
             status: vehicle.status.toString()
         };
     };
+
+    $scope.delete = function (event, id) {
+        event.preventDefault();
+
+        if (confirm(`คุณต้องการลบรายการรถ ID : ${id} ใช่หรือไม่?`)) {
+            $(`#${id}-delete-form`).submit();
+        }
+    }
 });

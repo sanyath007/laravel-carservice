@@ -44,19 +44,23 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form   id="formVehicleList" 
-                    name="formVehicleList" 
-                    action="{{ url('vehicles/list') }}" 
-                    method="GET"
-                    class="form-inline"
-                    style="margin-left: 20px; margin-bottom: 10px;">
+            <form
+                id="formVehicleList" 
+                name="formVehicleList" 
+                action="{{ url('vehicles/list') }}" 
+                method="GET"
+                class="form-inline"
+                style="margin-left: 20px; margin-bottom: 10px;"
+            >
                 <div class="form-group">
                     <label for="">แสดงรายการตามสถานะ : </label>
-                    <select id="vehicleStatus" 
-                            name="vehicleStatus"
-                            ng-model="vehicleStatus" 
-                            ng-change="showVehicleListWithStatus(vehicleStatus)"
-                            class="form-control">
+                    <select
+                        id="vehicleStatus" 
+                        name="vehicleStatus"
+                        ng-model="vehicleStatus" 
+                        ng-change="showVehicleListWithStatus(vehicleStatus)"
+                        class="form-control"
+                    >
                         <option value="0">-- กรุณาเลือก --</option>
                         <option value="1" {{ ($vehicleStatus==1) ? 'selected' : '' }}>1=ใช้งาน</option>
                         <option value="2" {{ ($vehicleStatus==2) ? 'selected' : '' }}>2=ให้ยืม</option>
@@ -69,7 +73,7 @@
             </form>
 
             @foreach($vehicles as $vehicle)
-                <?php $expired = '<font style="color: red;">หมดอายุ</font>'; ?>
+                <?php $expired = '<span style="color: red;">หมดอายุ</span>'; ?>
 
                 <div class="col-sm-6 col-md-4 col-lg-3">
 
@@ -129,17 +133,35 @@
                         </div>
                         
                         <div class="card-footer">
-                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/detail' }}" class="btn btn-info btn-xs">
+                            <a
+                                href="{{ url('/vehicles/' .$vehicle->vehicle_id. '/detail') }}"
+                                class="btn btn-info btn-xs"
+                            >
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/edit' }}" class="btn btn-warning btn-xs">
+                            <a
+                                href="{{ url('/vehicles/' .$vehicle->vehicle_id. '/edit') }}"
+                                class="btn btn-warning btn-xs"
+                            >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{{ url('/vehicles'). '/' .$vehicle->vehicle_id. '/delete' }}" class="btn btn-danger btn-xs">
+                            <a
+                                href="#"
+                                class="btn btn-danger btn-xs"
+                                ng-click="delete($event, '{{ $vehicle->vehicle_id }}')"
+                            >
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
+                            <form
+                                id="{{ $vehicle->vehicle_id. '-delete-form' }}"
+                                action="{{ url('/vehicles/' .$vehicle->vehicle_id. '/delete') }}"
+                                method="POST"
+                                style="display: none;"
+                            >
+                                {{ csrf_field() }}
+                            </form>
                         </div>
                     </div>
 

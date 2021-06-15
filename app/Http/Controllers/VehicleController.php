@@ -56,37 +56,39 @@ class VehicleController extends Controller
         $status = (Input::get('vehicleStatus')=='') ? 0 : Input::get('vehicleStatus');
 
         if($status != 0) {
-            $vehicles = Vehicle::where(['status' => $status])
-                                ->with('cate')
-                                ->with('type')
-                                ->with('method')
-                                ->with('manufacturer')
-                                ->with('changwat')
-                                ->with('vender')
-                                ->with('fuel')
-                                ->with('taxactived')
-                                ->with('mileage')
-                                ->orderBy('vehicle_type', 'ASC')
-                                ->orderBy('vehicle_cate', 'ASC')
-                                ->orderBy('vehicle_no', 'ASC')
-                                ->paginate(12);
+            $vehicles = Vehicle::where('status', $status)
+                            ->where('vehicle_cate', '<>', '99')
+                            ->with('cate')
+                            ->with('type')
+                            ->with('method')
+                            ->with('manufacturer')
+                            ->with('changwat')
+                            ->with('vender')
+                            ->with('fuel')
+                            ->with('taxactived')
+                            ->with('mileage')
+                            ->orderBy('vehicle_type', 'ASC')
+                            ->orderBy('vehicle_cate', 'ASC')
+                            ->orderBy('vehicle_no', 'ASC')
+                            ->paginate(12);
         } else {
             $vehicles = Vehicle::where(['status' => 1])
-                                ->with('cate')
-                                ->with('type')
-                                ->with('method')
-                                ->with('manufacturer')
-                                ->with('changwat')
-                                ->with('vender')
-                                ->with('fuel')
-                                ->with('taxactived')
-                                ->with('insactived')
-                                ->with('actsactived')                                
-                                ->with('mileage')
-                                ->orderBy('vehicle_type', 'ASC')
-                                ->orderBy('vehicle_cate', 'ASC')
-                                ->orderBy('vehicle_no', 'ASC')
-                                ->paginate(12);
+                            ->where('vehicle_cate', '<>', '99')
+                            ->with('cate')
+                            ->with('type')
+                            ->with('method')
+                            ->with('manufacturer')
+                            ->with('changwat')
+                            ->with('vender')
+                            ->with('fuel')
+                            ->with('taxactived')
+                            ->with('insactived')
+                            ->with('actsactived')                                
+                            ->with('mileage')
+                            ->orderBy('vehicle_type', 'ASC')
+                            ->orderBy('vehicle_cate', 'ASC')
+                            ->orderBy('vehicle_no', 'ASC')
+                            ->paginate(12);
         }
 
         // 1=ใช้งาน,2=ให้ยืม,3=เสีย (อยู่ระหว่างซ่อม),4=จำหน่าย,5=โอน,9=เครื่องมืออื่นๆ (ไม่ใช่รถ)
@@ -243,7 +245,7 @@ class VehicleController extends Controller
     public function delete($id)
     {
         if(Vehicle::where('vehicle_id', $id)->delete()) {
-            return redirect('vehicles/list')->with('status', 'ลบรายการรถเรียบร้อบแล้ว!!');
+            return redirect('vehicles/list')->with('status', 'ลบรายการรถ ID ' .$id. ' เรียบร้อบแล้ว!!');
         } else {
             return redirect('vehicles/list')->with('error', 'พบข้อผิดพลาด ไม่สามารถลบรายการได้!!');
         }
@@ -252,7 +254,7 @@ class VehicleController extends Controller
     public function ajaxvehicles () 
     {
         return [
-            'vehicles' => Vehicle::where(['status' => '1'])
+            'vehicles'  => Vehicle::where(['status' => '1'])
                             ->with('cate')
                             ->with('type')
                             ->with('method')

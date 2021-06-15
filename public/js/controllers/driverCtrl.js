@@ -24,18 +24,23 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
         remark: '',
     };
 
-    $scope.formValidate = function (event) {
+    $scope.formValidate = function (event, frmName) {
         event.preventDefault();
 
         $scope.newDriver.checkup_date = $('#checkup_date').val();
         $scope.newDriver.capability_date = $('#capability_date').val();
         $scope.newDriver.certificated_date = $('#certificated_date').val();
+        
+        $scope.newDriver.checkup_result = $('#checkup_result').is(':checked') ? $('#checkup_result').val() : '';
+        $scope.newDriver.capability_result = $('#capability_result').is(':checked') ? $('#capability_result').val() : '';
+        
         $scope.newDriver.emr_sdate = $('#emr_sdate').val();
         $scope.newDriver.emr_edate = $('#emr_edate').val();
 
         // ใบประกาศนียบัตร
         $scope.newDriver.is_certificated = $('#is_certificated').is(':checked') ? $('#is_certificated').val() : 0;
         $scope.newDriver.is_emr = $('#is_emr').is(':checked') ? $('#is_emr').val() : 0;
+        console.log($scope.newDriver);
 
         $http.post(CONFIG.baseUrl + '/drivers/validate', { ...$scope.newDriver })
         .then(function (res) {
@@ -45,7 +50,7 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
             if ($scope.formError.success === 0) {
                 toaster.pop('error', "", "คุณกรอกข้อมูลไม่ครบ !!!");
             } else {
-                $('#frmNewDriver').submit();
+                $(`#${frmName}`).submit();
             }
         })
         .catch(function (res) {

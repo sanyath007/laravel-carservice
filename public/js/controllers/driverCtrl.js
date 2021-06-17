@@ -50,7 +50,6 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
         $scope.newDriver.driver_type = $('#driver_type:checked').val()
                                         ? parseInt($('#driver_type:checked').val())
                                         : '';
-        console.log($scope.newDriver);
 
         $http.post(CONFIG.baseUrl + '/drivers/validate', { ...$scope.newDriver })
         .then(function (res) {
@@ -93,8 +92,6 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
     }
 
     $scope.edit = function (driver) {
-        console.log(driver);
-
         $scope.newDriver = {
             person_id: driver.person_id,
             description: driver.description,

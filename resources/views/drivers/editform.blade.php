@@ -39,6 +39,7 @@
                         name="person_id"
                         ng-model="newDriver.person_id"
                         class="form-control"
+                        readonly
                     />
                     <span
                         class="glyphicon glyphicon-remove form-control-feedback"
@@ -63,6 +64,7 @@
                         name="description"
                         ng-model="newDriver.description"
                         class="form-control"
+                        readonly
                     />
                     <span
                         class="glyphicon glyphicon-remove form-control-feedback"

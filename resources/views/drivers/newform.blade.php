@@ -27,18 +27,31 @@
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('person_id')}">
                     <label class="control-label" for="person_id">
                         เลขบัตรประชาชน <span style="color: red;">*</span>
+                        (ค้นหาจากฐานข้อมูลบุคลากร)
                     </label>
-                    <input
-                        type="text"
-                        id="person_id"
-                        name="person_id"
-                        ng-model="newDriver.person_id"
-                        class="form-control"
-                    />
-                    <span
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            id="person_id"
+                            name="person_id"
+                            ng-model="newDriver.person_id"
+                            class="form-control"
+                            readonly
+                        />
+                        <div class="input-group-btn">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                ng-click=""
+                            >
+                                ค้นหา
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <span
                         class="glyphicon glyphicon-remove form-control-feedback"
                         ng-show="checkValidate('person_id')"
-                    ></span>
+                    ></span> -->
                     <span class="help-block" ng-show="checkValidate('person_id')">
                         กรุณาระบุเลขบัตรประชาชน
                     </span>
@@ -56,6 +69,7 @@
                         name="description"
                         ng-model="newDriver.description"
                         class="form-control"
+                        readonly
                     >
                     <span
                         class="glyphicon glyphicon-remove form-control-feedback"

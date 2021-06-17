@@ -115,5 +115,19 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
             remark: driver.remark,
         };
     }
+
+    $scope.allPersons = [];
+    $scope.popUpAllPersons = function () {
+        $http.get(CONFIG.baseUrl + '/ajaxpersons')
+        .then(function (res) {
+            console.log(res);
+            $scope.allPersons = res.data.persons;
+
+            $('#dlgAllPerson').modal('show');
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    }
 /** ################################################################################## */
 });

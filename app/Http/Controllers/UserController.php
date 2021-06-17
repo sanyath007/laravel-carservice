@@ -49,6 +49,7 @@ class UserController extends Controller
             'persons' => User::with('position')
                             // ->with('department')
                             ->where('position_id', '104')
+                            ->where('person_state', '1')
                             ->get()
         ];
     }

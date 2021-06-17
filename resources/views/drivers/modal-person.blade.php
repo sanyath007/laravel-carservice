@@ -11,6 +11,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="">กรุณาเลือกบุคลากร</h4>
             </div>
             <div class="modal-body">
@@ -21,24 +22,23 @@
                                 <th style="width: 4%; text-align: center;">#</th>
                                 <th style="width: 15%; text-align: center;">เลขบัตรประชาชน</th>
                                 <th>ชื่อ-สกุล</th>
-                                <th style="width: 30%; text-align: center;">วันเกิด</th>
-                                <th style="width: 30%; text-align: center;">อายุ</th>
-                                <th style="width: 30%; text-align: center;">ตำแหน่ง</th>
+                                <th style="width: 15%; text-align: center;">วันเกิด</th>
+                                <th style="width: 8%; text-align: center;">อายุ (ปี)</th>
+                                <th style="width: 25%; text-align: center;">ตำแหน่ง</th>
                                 <th style="width: 5%; text-align: center;">เลือก</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="(index, person) in allPersons">
-                                <td>@{{ index + 1 }}</td>
-                                <td>@{{ person.reg_no }} @{{ person.changwat.short }}</td>
+                                <td style="text-align: center;">@{{ index + 1 }}</td>
+                                <td style="text-align: center;">@{{ person.person_id }}</td>
                                 <td>
-                                    @{{ person.cate.person_cate_name }}
-                                    @{{ person.manufacturer.manufacturer_name }}
-                                    @{{ person.model }}
-                                    @{{ (person.remark) ? '(' + person.remark + ')' : '' }}
+                                    @{{ person.person_firstname+ ' ' +person.person_lastname }}
                                 </td>
-                                <td>@{{   }}</td>
-                                <td>
+                                <td style="text-align: center;">@{{ person.person_birth }}</td>
+                                <td style="text-align: center;">@{{ calcAgeY(person.person_birth) }}</td>
+                                <td style="text-align: center;">@{{ person.position.position_name }}</td>
+                                <td style="text-align: center;">
                                     <a class="btn btn-primary btn-sm" ng-click="frmSetVehicle(person)">
                                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                                     </a>
@@ -65,7 +65,6 @@
                     <li ng-repeat="i in _.range(1, frmAllVehicles.last_page + 1)"
                         ng-class="{ 'active': (frmAllVehicles.current_page === i) }">
                         <a ng-click="paginate($event, frmAllVehicles.path + '?page=' + i)">
-                            {{ i }}
                         </a>
                     </li>
                     

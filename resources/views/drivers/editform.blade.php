@@ -182,7 +182,7 @@
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('driver_type')}">
                     <label class="control-label" for="driver_type">
-                        ประเภท พขร.
+                        ประเภท พขร. <span style="color: red;">*</span>
                     </label>
                     <div class="radio__wrapper" ng-class="{'has-error': checkValidate('driver_type')}">
                         <div style="flex: 1;">

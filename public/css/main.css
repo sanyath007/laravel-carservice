@@ -50,6 +50,10 @@
   justify-content: flex-start;
   height: 34px;
 }
+
+.radio__wrapper.has-error {
+  color: #a94442;
+}
 /**
  * ######################### Main #########################
  */

@@ -17,7 +17,8 @@ class DriverController extends Controller
             'description'   => 'required',
             'tel'           => 'required',
             'license_no'    => 'required',
-            'license_type'  => 'required'
+            'license_type'  => 'required',
+            'driver_type'   => 'required'
         ]);
 
         if ($validator->fails()) {

@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('person_id')}">
-                    <label for="person_id">
+                    <label class="control-label" for="person_id">
                         เลขบัตรประชาชน <span style="color: red;">*</span>
                     </label>
                     <input
@@ -47,7 +47,7 @@
 
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('description')}">
-                    <label for="description">
+                    <label class="control-label" for="description">
                         ชื่อ-สกุล <span style="color: red;">*</span>
                     </label>
                     <input
@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('tel')}">
-                    <label for="tel">
+                    <label class="control-label" for="tel">
                         โทรศัพท์ติดต่อ 1 <span style="color: red;">*</span>
                     </label>
                     <input
@@ -93,7 +93,7 @@
 
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('tel2')}">
-                    <label for="tel2">
+                    <label class="control-label" for="tel2">
                         โทรศัพท์ติดต่อ 2
                     </label>
                     <input
@@ -117,7 +117,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('license_no')}">
-                    <label for="insurance_date">
+                    <label class="control-label" for="license_no">
                         เลขที่ใบขับขี่ <span style="color: red;">*</span>
                     </label>
                     <input
@@ -163,9 +163,11 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('capability_result')}">
-                    <label for="capability_result">ประเภท พขร.</label><br>
-                    <div class="radio__wrapper">
+                <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('driver_type')}">
+                    <label class="control-label" for="driver_type">
+                        ประเภท พขร. <span style="color: red;">*</span>
+                    </label>
+                    <div class="radio__wrapper" ng-class="{'has-error': checkValidate('driver_type')}">
                         <div style="flex: 1;">
                             <input
                                 type="radio"
@@ -183,6 +185,9 @@
                             /> พขร. สำรอง
                         </div>
                     </div>
+                    <span class="help-block" ng-show="checkValidate('driver_type')">
+                        กรุณาระบุประเภท พขร.
+                    </span>
                 </div>
             </div>
         </div><!-- end row -->

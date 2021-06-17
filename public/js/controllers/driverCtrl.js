@@ -131,9 +131,8 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
     }
 
     $scope.setSelectedPerson = function (person) {
-        console.log(person);
         $scope.newDriver.person_id = person.person_id;
-        $scope.newDriver.description = person.person_firstname+ ' ' +person.person_lastname;
+        $scope.newDriver.description = person.prefix.prefix_name+person.person_firstname+ ' ' +person.person_lastname;
     }
 /** ################################################################################## */
 });

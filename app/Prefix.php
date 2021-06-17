@@ -11,6 +11,6 @@ class Prefix extends Model
 
     public function user()
     {
-        return $this->hasMany('App\User', 'prefix_id', 'person_prefix');
+        return $this->hasMany('App\User', 'person_prefix', 'prefix_id');
     }
 }

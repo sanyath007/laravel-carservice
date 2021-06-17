@@ -46,8 +46,7 @@ class UserController extends Controller
     public function ajaxpersons()
     {
         return [
-            'persons' => User::with('position')
-                            // ->with('department')
+            'persons' => User::with('position', 'prefix')
                             ->where('position_id', '104')
                             ->where('person_state', '1')
                             ->get()

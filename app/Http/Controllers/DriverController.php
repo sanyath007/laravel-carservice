@@ -86,8 +86,8 @@ class DriverController extends Controller
         $newDriver->status = '1'; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไปช่วยราชการ, 3=ออก
 
         /** Upload attach file */
-        $filename = uploadFile($req->file('attachfile'), 'uploads/drivers');
-        if (!empty($filename)) {
+        $thumbnail = uploadFile($req->file('attachfile'), 'uploads/drivers');
+        if (!empty($thumbnail)) {
             $newDriver->thumbnail = $thumbnail;
         }
 
@@ -130,8 +130,8 @@ class DriverController extends Controller
         $newDriver->status = '1'; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไปช่วยราชการ, 3=ออก
 
         /** Upload attach file */
-        $filename = uploadFile($req->file('attachfile'), 'uploads/drivers');
-        if (!empty($filename)) {
+        $thumbnail = uploadFile($req->file('attachfile'), 'uploads/drivers');
+        if (!empty($thumbnail)) {
             $newDriver->thumbnail = $thumbnail;
         }
 

@@ -42,7 +42,7 @@
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                ng-click=""
+                                ng-click="popUpAllPersons()"
                             >
                                 ค้นหา
                             </button>
@@ -509,6 +509,8 @@
             });
         });
     </script>
+
+    @include('drivers.modal-person')
 
 </div><!-- /.container -->
 @endsection

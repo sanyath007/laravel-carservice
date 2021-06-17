@@ -39,7 +39,11 @@
                                 <td style="text-align: center;">@{{ calcAgeY(person.person_birth) }}</td>
                                 <td style="text-align: center;">@{{ person.position.position_name }}</td>
                                 <td style="text-align: center;">
-                                    <a class="btn btn-primary btn-sm" ng-click="frmSetVehicle(person)">
+                                    <a
+                                        class="btn btn-primary btn-sm"
+                                        ng-click="setSelectedPerson(person)"
+                                        data-dismiss="modal"
+                                    >
                                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                                     </a>
                                 </td>

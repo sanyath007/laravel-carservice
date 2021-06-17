@@ -129,5 +129,11 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
             console.log(err);
         });
     }
+
+    $scope.setSelectedPerson = function (person) {
+        console.log(person);
+        $scope.newDriver.person_id = person.person_id;
+        $scope.newDriver.description = person.person_firstname+ ' ' +person.person_lastname;
+    }
 /** ################################################################################## */
 });

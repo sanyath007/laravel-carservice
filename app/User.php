@@ -56,21 +56,21 @@ class User extends Authenticatable
 
     public function maintained()
     {
-        return $this->hasMany('App\Maintenance', 'staff', 'person_id');
+        return $this->hasMany('App\Models\Maintenance', 'staff', 'person_id');
     }
 
     public function reservation()
     {
-        return $this->hasMany('App\Reservation', 'user_id', 'person_id');
+        return $this->hasMany('App\Models\Reservation', 'user_id', 'person_id');
     }
 
     public function passenger()
     {
-        return $this->hasMany('App\ReservePassenger', 'person_id', 'person_id');
+        return $this->hasMany('App\Models\ReservePassenger', 'person_id', 'person_id');
     }
 
     public function survey()
     {
-        return $this->hasMany('App\Survey', 'user_id', 'person_id');
+        return $this->hasMany('App\Models\Survey', 'user_id', 'person_id');
     }
 }

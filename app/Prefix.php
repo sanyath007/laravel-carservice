@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Academic extends Model
+class Prefix extends Model
 {
     protected $connection = 'person';
-    protected $table = 'academic';
+    protected $table = 'prefix';
 
     public function user()
     {
-        return $this->hasMany('App\User', 'ac_id', 'ac_id');
+        return $this->hasMany('App\User', 'prefix_id', 'person_prefix');
     }
 }

@@ -48,6 +48,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Academic', 'ac_id', 'ac_id');
     }
+    
+    public function prefix()
+    {
+        return $this->belongsTo('App\Prefix', 'prefix_id', 'person_prefix');
+    }
 
     public function driver()
     {

@@ -258,6 +258,7 @@
                                 type="radio"
                                 id="checkup_result"
                                 name="checkup_result"
+                                value="0"
                                 ng-checked="newDriver.checkup_result === 0"
                             /> ปกติ
                         </div>
@@ -266,6 +267,7 @@
                                 type="radio"
                                 id="checkup_result"
                                 name="checkup_result"
+                                value="1"
                                 ng-checked="newDriver.checkup_result === 1"
                             /> ผิดปกติ
                         </div>
@@ -311,6 +313,7 @@
                                 type="radio"
                                 id="capability_result"
                                 name="capability_result"
+                                value="0"
                                 ng-checked="newDriver.capability_result === 0"
                             /> ปกติ
                         </div>
@@ -319,6 +322,7 @@
                                 type="radio"
                                 id="capability_result"
                                 name="capability_result"
+                                value="1"
                                 ng-checked="newDriver.capability_result === 1"
                             /> ผิดปกติ
                         </div>
@@ -346,7 +350,11 @@
                     <label for=""></label>
                     <div class="radio__wrapper">
                         <div style="flex: 1;">
-                            <input type="checkbox" id="cam_front" name="cam_front"> ผ่านการอบรมพนักงานขับรถฉุกเฉิน
+                            <input
+                                type="checkbox"
+                                id="is_certificated"
+                                name="is_certificated"
+                            /> ผ่านการอบรมพนักงานขับรถฉุกเฉิน
                         </div>
                     </div>
                 </div>
@@ -383,8 +391,8 @@
                         <div style="flex: 1;">
                             <input
                                 type="checkbox"
-                                id="cam_back"
-                                name="cam_back"
+                                id="is_emr"
+                                name="is_emr"
                             /> ผ่านการอาสาสมัครฉุกเฉินการแพทย์ (อสพ.)
                         </div>
                     </div>

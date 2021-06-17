@@ -104,10 +104,23 @@
             <!-- right column -->
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('tel2')}">
-                    <label for="tel2">โทรศัพท์ติดต่อ 2 </label>
-                    <input type="text" id="tel2" name="tel2" ng-model="newDriver.tel2" class="form-control">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('tel2')"></span>
-                    <span class="help-block" ng-show="checkValidate('tel2')">กรุณาระบุโทรศัพท์ติดต่อ 2</span>
+                    <label for="tel2">
+                        โทรศัพท์ติดต่อ 2
+                    </label>
+                    <input
+                        type="text"
+                        id="tel2"
+                        name="tel2"
+                        ng-model="newDriver.tel2"
+                        class="form-control"
+                    />
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('tel2')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('tel2')">
+                        กรุณาระบุโทรศัพท์ติดต่อ 2
+                    </span>
                 </div>
             </div>
             <!-- right column -->
@@ -117,10 +130,23 @@
             <!-- left column -->
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('license_no')}">
-                    <label for="insurance_date">เลขที่ใบขับขี่ <span style="color: red;">*</span></label>
-                    <input type="text" id="license_no" name="license_no" ng-model="newDriver.license_no" class="form-control">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('license_no')"></span>
-                    <span class="help-block" ng-show="checkValidate('license_no')">กรุณาระบุเลขที่ใบขับขี่</span>
+                    <label for="license_no">
+                        เลขที่ใบขับขี่ <span style="color: red;">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="license_no"
+                        name="license_no"
+                        ng-model="newDriver.license_no"
+                        class="form-control"
+                    />
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('license_no')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('license_no')">
+                        กรุณาระบุเลขที่ใบขับขี่
+                    </span>
                 </div>
             </div>
             <!-- left column -->
@@ -131,7 +157,12 @@
                     <label class="control-label" for="license_type">
                         ประเภทใบขับขี่ <span style="color: red;">*</span>
                     </label>
-                    <select id="license_type" name="license_type" ng-model="newDriver.license_type" class="form-control">
+                    <select
+                        id="license_type"
+                        name="license_type"
+                        ng-model="newDriver.license_type"
+                        class="form-control"
+                    >
                         <option value="">-- กรุณาเลือกประเภทใบขับขี่ --</option>
                         @foreach ($licenseTypes as $ltype)
                             <option value="{{ $ltype->license_type_id }}">
@@ -139,7 +170,9 @@
                             </option>
                         @endforeach
                     </select>
-                    <span class="help-block" ng-show="checkValidate('license_type')">กรุณาเลือกประเภทใบขับขี่</span>                        
+                    <span class="help-block" ng-show="checkValidate('license_type')">
+                        กรุณาเลือกประเภทใบขับขี่
+                    </span>                        
                 </div>
             </div>
             <!-- right column -->
@@ -148,7 +181,9 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('capability_result')}">
-                    <label for="capability_result">ประเภท พขร.</label><br>
+                    <label for="capability_result">
+                        ประเภท พขร.
+                    </label>
                     <div class="radio__wrapper">
                         <div style="flex: 1;">
                             <input
@@ -156,6 +191,7 @@
                                 id="driver_type"
                                 name="driver_type"
                                 value="1"
+                                ng-checked="newDriver.driver_type === 1"
                             /> พขร. หลัก
                         </div>
                         <div style="flex: 1;">
@@ -164,6 +200,7 @@
                                 id="driver_type"
                                 name="driver_type"
                                 value="2"
+                                ng-checked="newDriver.driver_type === 2"
                             /> พขร. สำรอง
                         </div>
                     </div>
@@ -214,10 +251,23 @@
         <div class="row" style="margin-top: 10px;">
             <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('checkup_date')}">
-                    <label for="checkup_date">วันที่ตรวจสุขภาพล่าสุด </label>
-                    <input type="text" id="checkup_date" name="checkup_date" ng-model="newDriver.checkup_date" class="form-control">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('checkup_date')"></span>
-                    <span class="help-block" ng-show="checkValidate('checkup_date')">กรุณาเลือกวันที่ตรวจสุขภาพล่าสุด</span>
+                    <label for="checkup_date">
+                        วันที่ตรวจสุขภาพล่าสุด
+                    </label>
+                    <input
+                        type="text"
+                        id="checkup_date"
+                        name="checkup_date"
+                        ng-model="newDriver.checkup_date"
+                        class="form-control"
+                    />
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('checkup_date')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('checkup_date')">
+                        กรุณาเลือกวันที่ตรวจสุขภาพล่าสุด
+                    </span>
                 </div>
             </div>
 
@@ -242,8 +292,13 @@
                             /> ผิดปกติ
                         </div>
                     </div>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('checkup_result')"></span>
-                    <span class="help-block" ng-show="checkValidate('checkup_result')">กรุณาระบุผลการตรวจสุขภาพล่าสุด</span>
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('checkup_result')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('checkup_result')">
+                        กรุณาระบุผลการตรวจสุขภาพล่าสุด
+                    </span>
                 </div>
             </div>
         </div><!-- end row -->
@@ -259,8 +314,13 @@
                         ng-model="newDriver.capability_date"
                         class="form-control"
                     />
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('capability_date')"></span>
-                    <span class="help-block" ng-show="checkValidate('capability_date')">กรุณาเลือกวันที่ตรวจสมรรถภาพล่าสุด</span>
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('capability_date')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('capability_date')">
+                        กรุณาเลือกวันที่ตรวจสมรรถภาพล่าสุด
+                    </span>
                 </div>
             </div>
 
@@ -285,8 +345,13 @@
                             /> ผิดปกติ
                         </div>
                     </div>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('capability_result')"></span>
-                    <span class="help-block" ng-show="checkValidate('capability_result')">กรุณาระบุผลการตรวจสมรรถภาพล่าสุด</span>
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('capability_result')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('capability_result')">
+                        กรุณาระบุผลการตรวจสมรรถภาพล่าสุด
+                    </span>
                 </div>
             </div>
         </div><!-- end row -->
@@ -303,7 +368,12 @@
                     <label for=""></label>
                     <div class="radio__wrapper">
                         <div style="flex: 1;">
-                            <input type="checkbox" id="cam_front" name="cam_front"> ผ่านการอบรมพนักงานขับรถฉุกเฉิน
+                            <input
+                                type="checkbox"
+                                id="is_certificated"
+                                name="is_certificated"
+                                ng-checked="newDriver.is_certificated === 1"
+                            /> ผ่านการอบรมพนักงานขับรถฉุกเฉิน
                         </div>
                     </div>
                 </div>
@@ -340,8 +410,9 @@
                         <div style="flex: 1;">
                             <input
                                 type="checkbox"
-                                id="cam_back"
-                                name="cam_back"
+                                id="is_emr"
+                                name="is_emr"
+                                ng-checked="newDriver.is_emr === 1"
                             /> ผ่านการอาสาสมัครฉุกเฉินการแพทย์ (อสพ.)
                         </div>
                     </div>
@@ -350,19 +421,45 @@
 
             <div class="col-md-4">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('emr_sdate')}">
-                    <label for="emr_sdate">วันที่ผ่านการอบรม </label>
-                    <input type="text" id="emr_sdate" name="emr_sdate" ng-model="newDriver.emr_sdate" class="form-control">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('emr_sdate')"></span>
-                    <span class="help-block" ng-show="checkValidate('emr_sdate')">กรุณาเลือกวันที่ผ่านการอบรม</span>
+                    <label for="emr_sdate">
+                        วันที่ผ่านการอบรม
+                    </label>
+                    <input
+                        type="text"
+                        id="emr_sdate"
+                        name="emr_sdate"
+                        ng-model="newDriver.emr_sdate"
+                        class="form-control"
+                    />
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('emr_sdate')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('emr_sdate')">
+                        กรุณาเลือกวันที่ผ่านการอบรม
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('emr_edate')}">
-                    <label for="emr_edate">ถึงวันที่ </label>
-                    <input type="text" id="emr_edate" name="emr_edate" ng-model="newDriver.emr_edate" class="form-control">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('emr_edate')"></span>
-                    <span class="help-block" ng-show="checkValidate('emr_edate')">กรุณาเลือกถึงวันที่</span>
+                    <label for="emr_edate">
+                        ถึงวันที่
+                    </label>
+                    <input
+                        type="text"
+                        id="emr_edate"
+                        name="emr_edate"
+                        ng-model="newDriver.emr_edate"
+                        class="form-control"
+                    />
+                    <span
+                        class="glyphicon glyphicon-remove form-control-feedback"
+                        ng-show="checkValidate('emr_edate')"
+                    ></span>
+                    <span class="help-block" ng-show="checkValidate('emr_edate')">
+                        กรุณาเลือกถึงวันที่
+                    </span>
                 </div>
             </div>
         </div><!-- end row -->

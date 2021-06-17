@@ -9,7 +9,8 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function ajaxperson ($name) {
+    public function ajaxperson($name)
+    {
         if(empty($name)){
             $persons = User::with('position')->with('department')->all();
         }else{
@@ -40,5 +41,15 @@ class UserController extends Controller
         }
 
         return $users;
+    }
+
+    public function ajaxpersons()
+    {
+        return [
+            'persons' => User::with('position')
+                            // ->with('department')
+                            ->where('position_id', '104')
+                            ->get()
+        ];
     }
 }

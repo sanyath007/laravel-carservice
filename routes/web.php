@@ -88,6 +88,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/reserve/ajaxdetail/{id}', 'ReservationController@ajaxdetail');
 
 
+    Route::get('/ajaxpersons', 'UserController@ajaxpersons');
     Route::get('/ajaxperson/{name}', 'UserController@ajaxperson');
 
 

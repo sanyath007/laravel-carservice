@@ -269,7 +269,7 @@
                         </span>
                     </div>
 
-                   <div class="form-group">
+                    <div class="form-group">
                         <textarea id="remark" name="remark" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <br><button class="btn btn-primary pull-right" ng-click="formValidate($event)">
+                    <button class="btn btn-primary pull-right" ng-click="formValidate($event, 'frmNewDriver')">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> บันทึก
                     </button>
                 </div>

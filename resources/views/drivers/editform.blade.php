@@ -302,7 +302,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-warning pull-right" ng-click="formValidate($event)">
+                    <button class="btn btn-warning pull-right" ng-click="formValidate($event, 'frmEditDriver')">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </button>
                 </div>

@@ -74,6 +74,13 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
         return (field in $scope.formError.errors);
     }
 
+    $scope.calcAgeY = function (birthdate) {
+        const present = moment();
+        const bdate = moment(birthdate, 'YYYY');
+
+        return present.diff(bdate, 'years');
+    }
+
     $scope.vehicleStatus = 0;
     $scope.showVehicleListWithStatus = function(status) {
         console.log(status);

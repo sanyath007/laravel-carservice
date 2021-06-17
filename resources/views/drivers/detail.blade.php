@@ -4,7 +4,7 @@
 <div class="container-fluid" ng-controller="driverCtrl">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
-        <li class="breadcrumb-item"><a href="{{ url('/drivers/list') }}">รายการรถ</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/drivers/list') }}">รายการพนักงานขับรถ</a></li>
         <li class="breadcrumb-item active">{{ $driver->description }}</li>
     </ol>
 
@@ -63,7 +63,7 @@
                     </p>
                     <p>
                         <b style="margin-right: 10px;">อายุ :</b>
-                        {{ convDbDateToThDate($driver->person->person_birth) }}
+                        {{ calcAgeY('<?=$driver->person->person_birth?>') }} ปี
                     </p>
                     <p>
                         <b style="margin-right: 10px;">เบอร์โทรศัพท์ :</b>
@@ -72,6 +72,10 @@
                     <p>
                         <b style="margin-right: 10px;">วันที่บรรจุ :</b>
                         {{ convDbDateToThDate($driver->person->person_singin) }}
+                    </p>
+                    <p>
+                        <b style="margin-right: 10px;">อายุงาน :</b>
+                        {{ calcAgeY('<?=$driver->person->person_singin?>') }} ปี
                     </p>
                 
                     <div class="page__title" style="margin-top: 2rem">

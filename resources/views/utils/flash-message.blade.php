@@ -15,6 +15,3 @@
         </button>
     </div>
 @endif
-
-
-@include('layouts.flash-message')

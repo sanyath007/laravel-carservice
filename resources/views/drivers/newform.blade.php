@@ -20,7 +20,9 @@
         <hr />
     </div>
     <!-- page title -->
-    
+
+    @include('utils.flash-message')
+
     <form id="frmNewDriver" action="{{ url('/drivers/add') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6">

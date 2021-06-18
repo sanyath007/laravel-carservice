@@ -22,23 +22,7 @@
         <hr />
     </div><!-- page title -->
 
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+    @include('utils.flash-message')
 
     <div class="row">
         <div class="col-md-12">

@@ -62,6 +62,10 @@ class DriverController extends Controller
 
     public function store (Request $req)
     {
+        if(Driver::where('person_id', $req['person_id'])->count() > 0) {
+            return redirect('drivers/new')->with('error', 'พบข้อมูลซ้ำ ไม่สามารถบันทึกข้อมูลได้ !!');
+        }
+
         /** Current date */
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');

@@ -157,32 +157,8 @@
     </div>
     
     <!-- Modal -->
-    <div class="modal fade" id="dlgReceiveBillForm" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="">ฟอร์มส่งเอกสารใบส่งของ</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="_id" name="_id" />
-
-                    <div class="form-group">
-                        <label for="">เลขระยะทางเมื่อเข้าซ่อมจริง</label>
-                        <input type="text" id="maintained_mileage" name="maintained_mileage" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">เลขที่ใบส่งของ</label>
-                        <input type="text" id="delivery_bill" name="delivery_bill" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="updateReceiveBill()" data-dismiss="modal">
-                        <i class="fa fa-paper-plane" aria-hidden="true"></i> บันทึกส่งเอกสาร
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div><!-- Modal -->
+    @include('maintenances.modal-receivebill')
+    <!-- Modal -->
+    
 </div>  
 @endsection

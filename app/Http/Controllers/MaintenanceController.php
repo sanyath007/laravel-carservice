@@ -131,7 +131,7 @@ class MaintenanceController extends Controller
 
     public function update (Request $req, $id)
     {
-        $maintained                     = Maintenance::where('maintained_id', $id);
+        $maintained                     = Maintenance::find($id);
         $maintained->garage_id          = $req['garage'];
         $maintained->vehicle_id         = $req['vehicle'];
         $maintained->mileage            = $req['mileage'];
@@ -150,7 +150,6 @@ class MaintenanceController extends Controller
         $maintained->vatnet             = $req['vatnet'];
         $maintained->total              = $req['total'];
         $maintained->staff              = $req['staff'];
-        $maintained->status             = 0;
         
         if ($maintained->save()) {
             return redirect('/maintenances/list');

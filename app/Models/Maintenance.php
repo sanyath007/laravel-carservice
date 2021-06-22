@@ -10,6 +10,8 @@ class Maintenance extends Model
 
   protected $table = 'vehicle_maintenances';
 
+  protected $primaryKey = 'maintained_id';
+
   public function vehicle()
   {
     return $this->belongsTo('App\Models\Vehicle', 'vehicle_id', 'vehicle_id');

@@ -123,9 +123,34 @@
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('detail')}">
                         <label for="ID">รายการซ่อม</label>
-                        
-                        <input type="text" id="addDetail" name="addDetail" class="form-control" placeholder="รายการซ่อม&hellip;" ng-keypress="fillinMaintenanceList($event)">
-                        <span class="help-block" ng-show="checkValidate('detail')">รายการซ่อม</span>
+                        <div style="display: flex; flex-direction: row;">
+                            <input
+                                type="text"
+                                id="detailText"
+                                name="detailText"
+                                ng-model="detailText"
+                                class="form-control"
+                                placeholder="รายการซ่อม&hellip;"
+                            />                    
+                            <input
+                                type="text"
+                                id="detailPrice"
+                                name="detailPrice"
+                                ng-model="detailPrice"
+                                class="form-control"
+                                placeholder="รวมเป็นเงิน&hellip;"
+                                style="width: 20%; margin-left: 5px;"
+                            >
+                            <button
+                                type="button"
+                                class="btn btn-success"
+                                style="margin-left: 5px;"
+                                ng-click="fillinMaintenanceList($event)"
+                            >
+                                เพิ่ม
+                            </button>
+                        </div>
+                        <span class="help-block" ng-show="checkValidate('detail')">กรุณาเพิ่มรายการซ่อมก่อน</span>
                     </div>
 
                     <div class="table-responsive" style="height: 165px;border: 1px solid #D8D8D8;">
@@ -141,7 +166,7 @@
                             <tbody>
                                 <tr ng-repeat="(index, m) in maintenanceList">
                                     <td style="text-align: center;">@{{ index + 1 }}</td>
-                                    <td>@{{ m }}</td>
+                                    <td>@{{ m.desc+ ' ราคา ' +m.price+ ' บาท' }}</td>
                                     <!-- <td></td> -->
                                     <td style="text-align: center;">
                                         <a ng-click="removeMaintenanceList(m)" style="color: red;cursor: pointer;">
@@ -166,8 +191,7 @@
                                 ng-model="sparePartDesc"
                                 class="form-control"
                                 placeholder="รายการอะไหล่&hellip;"
-                            >
-                            
+                            >                            
                             <input
                                 type="text"
                                 id="sparePartPrice"
@@ -186,7 +210,7 @@
                                 เพิ่ม
                             </button>
                         </div>
-                        <span class="help-block" ng-show="checkValidate('spare_parts')">รายการอะไหล่</span>
+                        <span class="help-block" ng-show="checkValidate('spare_parts')">กรุณาเพิ่มรายการอะไหล่ก่อน</span>
                     </div>
 
                     <div class="table-responsive" style="height: 165px;border: 1px solid #D8D8D8;">

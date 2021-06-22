@@ -200,30 +200,49 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 	};
 
 	/** ################################################################################## */
+	/** สร้างรายการซ่อมและรายการอะไหล่สำหรับ insert ลงฐานข้อมูลแยกด้วย comma (,) */
+	const createStringList = function (lists) {
+		let count = 0;
+		let _str = "";
+		angular.forEach(lists, function(lst) {
+			if(count != lists.length - 1){
+				_str += `${lst.desc} ราคา ${lst.price} บาท,`;
+			} else {
+				_str += `${lst.desc} ราคา ${lst.price} บาท`;
+			}
+
+			count++;
+		});
+
+		return _str;
+	}
+
+	$scope.detailText = "";
+	$scope.detailPrice = '';
     $scope.maintenanceList = [];
     $scope.fillinMaintenanceList = function(event) {
-        if (event.which === 13) {
-            event.preventDefault();
-            $scope.maintenanceList.push($(event.target).val());
+		event.preventDefault();
+		
+		if ($scope.detailText === '') {
+			toaster.pop('error', "", "รายการอะไหล่ต้องไม่เป็นค่าว่าง !!!");
+			return;
+		}
+		
+		let reg = /^\d+$/;
+		if (!reg.test($scope.detailPrice)) {
+			toaster.pop('error', "", "ข้อมูลรวมเป็นเงินต้องเป็นตัวเลข !!!");
+			return;
+		}
 
-            //เคลียร์ค่าใน textfield
-            $(event.target).val('');
+		console.log($scope.detailText, $scope.detailPrice);
+		$scope.maintenanceList.push({ desc: $scope.detailText.replace(',', ''), price: $scope.detailPrice });
 
-			// สร้างข้อความรายการอะไหล่ที่จะบันทึกลงใน db โดยคั่นด้วย comma
-            var maindetained_detail = "";
-            var count = 0;
-            angular.forEach($scope.maintenanceList, function(maintained) {
-                if(count != $scope.maintenanceList.length - 1){
-                    maindetained_detail += maintained + ",";
-                } else {
-                    maindetained_detail += maintained
-                }
+		//เคลียร์ค่าใน textfield
+		$scope.detailText = "";
+		$scope.detailPrice = 0;
 
-                count++;
-            });
-
-            $('#detail').val(maindetained_detail);
-        }
+		$('#detail').val(createStringList($scope.maintenanceList));
+		console.log($('#detail').val());
     };
 
     // ลบรายการ
@@ -245,32 +264,19 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 		}
 		
 		let reg = /^\d+$/;
-		if ($scope.sparePartPrice === 0 || !reg.test($scope.sparePartPrice)) {
-			toaster.pop('error', "", "ข้อมูลรวมเป็นเงินต้องเป็นตัวเลข และต้องมากกว่าศูนย์ !!!");
+		if (!reg.test($scope.sparePartPrice)) {
+			toaster.pop('error', "", "ข้อมูลรวมเป็นเงินต้องเป็นตัวเลข !!!");
 			return;
 		}
 
 		console.log($scope.sparePartDesc, $scope.sparePartPrice);
-		$scope.sparePartList.push({ desc: $scope.sparePartDesc, price: $scope.sparePartPrice });
+		$scope.sparePartList.push({ desc: $scope.sparePartDesc.replace(',', ''), price: $scope.sparePartPrice });
 
 		//เคลียร์ค่าใน textfield
 		$scope.sparePartDesc = '';
 		$scope.sparePartPrice = '';
 
-		// สร้างข้อความรายการอะไหล่ที่จะบันทึกลงใน db โดยคั่นด้วย comma
-		var sparePartList_detail = "";
-		var count = 0;
-		angular.forEach($scope.sparePartList, function(spare) {
-			if(count != $scope.sparePartList.length - 1){
-				sparePartList_detail += `${spare.desc} ราคา ${spare.price} บาท,`;
-			} else {
-				sparePartList_detail += `${spare.desc} ราคา ${spare.price} บาท`
-			}
-
-			count++;
-		});
-
-		$('#spare_parts').val(sparePartList_detail);
+		$('#spare_parts').val(createStringList($scope.sparePartList));
     };
 
     // ลบรายการ

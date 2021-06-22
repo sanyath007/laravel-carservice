@@ -32,7 +32,11 @@
         <hr />
         <!-- page title -->
 
-        <form id="frmNewMaintenance" action="{{ url('/maintenance/update') }}" method="post">
+        <form
+            id="frmNewMaintenance"
+            action="{{ url('/maintenances/' .$maintenance->maintained_id.'/update') }}"
+            method="post"
+        >
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

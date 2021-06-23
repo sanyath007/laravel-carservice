@@ -377,37 +377,65 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 		$('#dlgReceiveBillForm').modal('show');
     };
 	
-	$scope.updateReceiveBill = function (event) {
-		const id = $('#_id').val();
-		const req_data = {
-			maintained_mileage: $('#maintained_mileage').val(),
-			maintained_date: $('#maintained_date').val(),
-			receive_date: $('#receive_date').val(),
-			delivery_bill: $('#delivery_bill').val(),
-			is_equal_quotation: document.getElementById("is_equal_quotation").checked,
-		}
-
-		/** ยอดค่าใช้จ่าย */
-		if (!document.getElementById("is_equal_quotation").checked) {
-			Object.assign(req_data, {
-				amt: $('#amt').val(),
-				vat: $('#vat').val(),
-				vatnet: $('#vatnet').val(),
-				total: $('#total').val(),
-			});
-		}
-
-		$http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
-		.then(function (res) {
-			if (res.data.status === 1) {
-				toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
-
-				window.location.href = CONFIG.baseUrl + 'maintenances/list';
+	const validateReceiveBill = function () {
+		let errors = {};
+		document.querySelectorAll('#frmReceiveBill input[type="text"]').forEach(input => {
+			if (input.value === '') {
+				if (input.name === 'amt' || input.name === 'vat' || input.name === 'total' ) {
+					if (!document.getElementById("is_equal_quotation").checked) {
+						Object.assign(errors, { [input.name]: 'กรุณากรอกข้อมูลก่อน !!' });
+					}
+				} else {
+					Object.assign(errors, { [input.name]: 'กรุณากรอกข้อมูลก่อน !!' });
+				}				
 			}
-		})
-		.catch(function (err) {
-			console.log(err);
 		});
+
+		return errors;
+	};
+	
+	$scope.updateReceiveBill = function (event) {
+		let errors = validateReceiveBill();
+
+		if (Object.keys(errors).length > 0) {
+			console.log(errors);
+			$scope.formError = errors;
+		} else {
+			const id = $('#_id').val();
+			const req_data = {
+				doc_date: $('#doc_date').val(),
+				doc_no: $('#doc_no').val(),
+				maintained_mileage: $('#maintained_mileage').val(),
+				maintained_date: $('#maintained_date').val(),
+				receive_date: $('#receive_date').val(),
+				delivery_bill: $('#delivery_bill').val(),
+				is_equal_quotation: document.getElementById("is_equal_quotation").checked,
+			}
+
+			/** ยอดค่าใช้จ่าย */
+			if (!document.getElementById("is_equal_quotation").checked) {
+				Object.assign(req_data, {
+					amt: $('#amt').val(),
+					vat: $('#vat').val(),
+					vatnet: $('#vatnet').val(),
+					total: $('#total').val(),
+				});
+			}
+
+			$http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
+			.then(function (res) {
+				if (res.data.status === 1) {
+					toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
+
+					window.location.href = CONFIG.baseUrl + 'maintenances/list';
+				}
+			})
+			.catch(function (err) {
+				console.log(err);
+			});
+
+			$('#dlgReceiveBillForm').modal('hide');
+		}
     };
 
 	$scope.disabledCostInput = function (event) {

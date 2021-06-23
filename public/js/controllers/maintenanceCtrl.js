@@ -372,19 +372,44 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 		const id = $('#_id').val();
 		const req_data = {
 			maintained_mileage: $('#maintained_mileage').val(),
-			delivery_bill: $('#delivery_bill').val()
+			maintained_date: $('#maintained_date').val(),
+			receive_date: $('#receive_date').val(),
+			delivery_bill: $('#delivery_bill').val(),
 		}
 
-        $http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
-        .then(function (res) {
-			if (res.data.status === 1) {
-				toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
+		/** ยอดค่าใช้จ่าย */
+		if (!document.getElementById("is_equal_quotation").checked) {
+			Object.assign(req_data, {
+				amt: $('#amt').val(),
+				vat: $('#vat').val(),
+				total: $('#total').val(),
+			});
+		}
 
-				window.location.href = CONFIG.baseUrl + 'maintenances/list';
-			}
-        })
-		.catch(function (err) {
-			console.log(err);
-		});
+		console.log(req_data);
+
+        // $http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
+        // .then(function (res) {
+		// 	if (res.data.status === 1) {
+		// 		toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
+
+		// 		window.location.href = CONFIG.baseUrl + 'maintenances/list';
+		// 	}
+        // })
+		// .catch(function (err) {
+		// 	console.log(err);
+		// });
     };
+
+	$scope.disabledCostInput = function (event) {
+		if ($(event.target).is(':checked')) {
+			$('#amt').prop('disabled', true);
+			$('#vat').prop('disabled', true);
+			$('#total').prop('disabled', true);
+		} else {
+			$('#amt').prop('disabled', false);
+			$('#vat').prop('disabled', false);
+			$('#total').prop('disabled', false);
+		}
+	}
 });

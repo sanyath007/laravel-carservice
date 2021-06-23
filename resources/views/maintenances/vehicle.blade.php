@@ -66,6 +66,7 @@
                     </thead>
                     <tbody>
                     <?php $statuses = ['ขออนุมัติ', 'รอส่งเอกสาร', 'ส่งเอกสารแล้ว', 'ยกเลิก']; ?>
+
                     @foreach($maintenances as $maintenance)
 
                         <tr>

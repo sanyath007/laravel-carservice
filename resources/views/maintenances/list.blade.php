@@ -35,6 +35,7 @@
                         <!-- <th style="width: 10%; text-align: center;">หมายเหตุ</th> -->
                         <!-- <th style="width: 10%; text-align: center;">Actions</th> -->
                     </tr>
+
                     @foreach($vehicles as $vehicle)
                         
                         <?php $maintained = App\Models\Maintenance::where(

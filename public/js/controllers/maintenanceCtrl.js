@@ -361,9 +361,18 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
         return (field in $scope.formError);
     };
 
+	$scope.maintenanceSelected = null;
 	$scope.showReceiveBillForm = function (event, id) {
 		console.log(id);
 		$('#_id').val(id);
+
+		$http.get(`${CONFIG.baseUrl}/maintenances/${id}`)
+		.then(function (res) {
+			$scope.maintenanceSelected = res.data.maintenance;
+		})
+		.catch(function (err) {
+			console.log(err);
+		});
 
 		$('#dlgReceiveBillForm').modal('show');
     };

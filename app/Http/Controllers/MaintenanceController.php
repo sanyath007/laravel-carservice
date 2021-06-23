@@ -58,7 +58,21 @@ class MaintenanceController extends Controller
         ]);
     }
 
-    public function create ($vehicleid) {
+    public function apiGetById ($id)
+    {
+        $maintenance = Maintenance::where(['maintained_id' => $id])
+                            ->with('vehicle')
+                            ->with('garage')
+                            ->with('user')
+                            ->first();
+                            
+        return [
+            'maintenance' => $maintenance,
+        ];
+    }
+
+    public function create ($vehicleid)
+    {
         return view('maintenances.newform', [
             'vehicle' => Vehicle::where(['vehicle_id' => $vehicleid])
                                 ->with('cate')

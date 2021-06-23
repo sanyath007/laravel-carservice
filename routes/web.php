@@ -117,6 +117,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/maintenances/checkform', 'MaintenanceController@checkform');
     Route::post('/maintenances/adddailycheck', 'MaintenanceController@storecheck');
     Route::get('/maintenances/ajaxchecklist/{yymm}/{vehicleid}', 'MaintenanceController@ajaxchecklist');
+    Route::get('/maintenances/{id}', 'MaintenanceController@apiGetById');
     
 
     Route::get('/assign/list', 'AssignmentController@index');

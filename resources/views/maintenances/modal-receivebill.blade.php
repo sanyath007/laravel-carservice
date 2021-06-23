@@ -19,18 +19,17 @@
                         type="text"
                         id="maintained_date"
                         name="maintained_date"
-                        value="{{ $maintenance->maintained_date }}"
+                        ng-model="maintenanceSelected.maintained_date"
                         class="form-control"
                     />
                 </div>
                 <div class="form-group">
-                    @{{ maintenancesIndexSelected }}
                     <label for="receive_date">วันที่ซ่อมเสร็จ</label>
                     <input
                         type="text"
                         id="receive_date"
                         name="receive_date"
-                        value="{{ $maintenance->receive_date }}"
+                        ng-model="maintenanceSelected.receive_date"
                         class="form-control"
                     />
                 </div>
@@ -50,7 +49,7 @@
                         name="is_equal_quotation"
                         style="margin-left: 5px;"
                         ng-click="disabledCostInput($event)"
-                    /> ยอดเท่าใบเสนอราคา ({{ number_format($maintenance->total) }} บาท)
+                    /> ยอดเท่าใบเสนอราคา (@{{ maintenanceSelected.total | currency:"":2 }} บาท)
                 </div>
 
                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('amt')}">

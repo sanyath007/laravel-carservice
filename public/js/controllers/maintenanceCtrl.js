@@ -384,6 +384,7 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 			maintained_date: $('#maintained_date').val(),
 			receive_date: $('#receive_date').val(),
 			delivery_bill: $('#delivery_bill').val(),
+			is_equal_quotation: document.getElementById("is_equal_quotation").checked,
 		}
 
 		/** ยอดค่าใช้จ่าย */
@@ -391,23 +392,22 @@ app.controller('maintenanceCtrl', function($scope, $http, toaster, ModalService,
 			Object.assign(req_data, {
 				amt: $('#amt').val(),
 				vat: $('#vat').val(),
+				vatnet: $('#vatnet').val(),
 				total: $('#total').val(),
 			});
 		}
 
-		console.log(req_data);
+		$http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
+		.then(function (res) {
+			if (res.data.status === 1) {
+				toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
 
-        // $http.put(CONFIG.baseUrl + `/maintenances/${id}/receive-bill`, req_data)
-        // .then(function (res) {
-		// 	if (res.data.status === 1) {
-		// 		toaster.pop('success', "", "บันทึกส่งเอกสารใบส่งของเรียบร้อย !!!");
-
-		// 		window.location.href = CONFIG.baseUrl + 'maintenances/list';
-		// 	}
-        // })
-		// .catch(function (err) {
-		// 	console.log(err);
-		// });
+				window.location.href = CONFIG.baseUrl + 'maintenances/list';
+			}
+		})
+		.catch(function (err) {
+			console.log(err);
+		});
     };
 
 	$scope.disabledCostInput = function (event) {

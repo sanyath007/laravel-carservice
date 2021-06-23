@@ -116,11 +116,27 @@ class MaintenanceController extends Controller
 
     public function receiveBill (Request $req, $id)
     {
-        $maintained = Maintenance::where(['maintained_id' => $id])->update([
-            'maintained_mileage'    => $req['maintained_mileage'],
-            'delivery_bill'         => $req['delivery_bill'],
-            'status'                => 2
-        ]);
+        if ($req['is_equal_quotation']) {
+            $maintained = Maintenance::where(['maintained_id' => $id])->update([
+                'maintained_mileage'    => $req['maintained_mileage'],
+                'maintained_date'       => $req['maintained_date'],
+                'receive_date'          => $req['receive_date'],
+                'delivery_bill'         => $req['delivery_bill'],
+                'status'                => 2
+            ]);
+        } else {
+            $maintained = Maintenance::where(['maintained_id' => $id])->update([
+                'maintained_mileage'    => $req['maintained_mileage'],
+                'maintained_date'       => $req['maintained_date'],
+                'receive_date'          => $req['receive_date'],
+                'delivery_bill'         => $req['delivery_bill'],
+                'amt'                   => $req['amt'],
+                'vat'                   => $req['vat'],
+                'vatnet'                => $req['vatnet'],
+                'total'                 => $req['total'],
+                'status'                => 2
+            ]);
+        }
 
         if ($maintained) {
             return [

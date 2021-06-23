@@ -115,7 +115,7 @@
                                     class="btn btn-primary btn-xs"
                                     ng-click="showReceiveBillForm($event, '{{ $maintenance->maintained_id }}')"
                                     title="ส่งเอกสารใบส่งของ"
-                                    ng-show="'{{ $maintenance->status }}' !== '2'"
+                                    ng-show="'{{ $maintenance->status }}' != 2"
                                 >
                                     <i class="fa fa-calculator" aria-hidden="true"></i>
                                 </a>

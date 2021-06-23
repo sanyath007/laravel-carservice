@@ -63,6 +63,7 @@
                                     type="text"
                                     id="maintained_mileage"
                                     name="maintained_mileage"
+                                    ng-model="maintenanceSelected.maintained_mileage"
                                     class="form-control"
                                 />
                                 <span
@@ -114,6 +115,7 @@
                                     id="delivery_bill"
                                     name="delivery_bill"
                                     class="form-control"
+                                    ng-model="maintenanceSelected.delivery_bill"
                                 />
                                 <span
                                     class="glyphicon glyphicon-remove form-control-feedback"

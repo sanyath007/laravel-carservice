@@ -90,7 +90,7 @@
                             <td>{{ $maintenance->remark }}</td>
                             <td style="text-align: center;">
                                 <a
-                                    href="{{ url('/maintenances' .$maintenance->maintained_id. '/detail') }}"
+                                    href="{{ url('/maintenances/' .$maintenance->maintained_id. '/detail') }}"
                                     class="btn btn-info btn-xs"
                                     title="ดูรายละเอียด"
                                 >

@@ -4,6 +4,7 @@
 /public/uploads/drivers/*
 /public/uploads/vehicles/*
 /public/uploads/*
+/public/uploads/Thumbs.db
 
 /storage/*.key
 /vendor

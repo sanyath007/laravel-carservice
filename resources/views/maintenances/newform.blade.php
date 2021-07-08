@@ -166,7 +166,7 @@
                             <tbody>
                                 <tr ng-repeat="(index, m) in maintenanceList">
                                     <td style="text-align: center;">@{{ index + 1 }}</td>
-                                    <td>@{{ m.desc+ ' ราคา ' +m.price+ ' บาท' }}</td>
+                                    <td>@{{ m.desc  }} ราคา @{{ m.price | currency:'':2 }} บาท</td>
                                     <!-- <td></td> -->
                                     <td style="text-align: center;">
                                         <a ng-click="removeMaintenanceList(m)" style="color: red;cursor: pointer;">
@@ -225,7 +225,7 @@
                             <tbody>
                                 <tr ng-repeat="(index, spare) in sparePartList">
                                     <td style="text-align: center;">@{{ index + 1 }}</td>
-                                    <td>@{{ spare.desc+ ' ราคา ' +spare.price+ ' บาท' }}</td>
+                                    <td>@{{ spare.desc }} ราคา @{{ spare.price | currency:'':2 }} บาท</td>
                                     <td style="text-align: center;">
                                         <a ng-click="removeSparePartList(spare)" style="color: red;cursor: pointer;">
                                             <i class="fa fa-times-circle" aria-hidden="true"></i>

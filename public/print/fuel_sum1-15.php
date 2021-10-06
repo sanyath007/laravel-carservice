@@ -223,7 +223,7 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                    <p style="margin: -3 2 2 55px; padding: 0px;">
                                         นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
@@ -371,7 +371,7 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                    <p style="margin: -3 2 2 55px; padding: 0px;">
                                         นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
@@ -519,7 +519,7 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                    <p style="margin: -3 2 2 55px; padding: 0px;">
                                         นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
@@ -667,7 +667,7 @@
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
                                         (&nbsp;&nbsp;&nbsp;นางสีนวล&nbsp;&nbsp;วงศ์พันธุ์&nbsp;&nbsp;&nbsp;)
                                     </p>
-                                    <p style="margin: -3 2 2 80px; padding: 0px;">
+                                    <p style="margin: -3 2 2 65px; padding: 0px;">
                                         พยาบาลวิชาชีพชำนาญการพิเศษ
                                     </p>
                                     <p style="margin: -3 2 2 70px; padding: 0px;">

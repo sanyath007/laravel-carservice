@@ -40,14 +40,14 @@
         <script language=JavaScript>
             // window.print();
         </script>
-            
+
     </head>
 
     <body>
         <?php
             // Read db config
             require './config.php';
-            
+
             // Set the PDO error mode to exception
             $sql = "select 
                     DATE_FORMAT(vf.bill_date,'%d') AS date,
@@ -66,7 +66,7 @@
             try {
                 $stmt->execute();
             } catch (PDOException $e) {
-               echo $e->getMessage();
+                echo $e->getMessage();
             }
 
             $vehicle_type = [
@@ -74,7 +74,7 @@
                 '2' => 'รถตู้ 12 ที่นั่ง', 
                 '3' => 'รถพยาบาล'
             ];
-            
+
             $_month = explode('-', $_GET['_month']);
             $lastDayInMonth = date("t", strtotime($_GET['_month'].'-1'));
         ?>
@@ -163,7 +163,7 @@
                                     </tr>
 
                                 </table>
-                                         
+
                             </td>
                         </tr>               
                     </table><br>
@@ -224,7 +224,7 @@
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
-                                        นักจัดการงานทั่วไปชำนาญการ
+                                        นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
                             </tr>
@@ -261,7 +261,7 @@
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->
-                
+
                 <div style="padding: 0 5 5 5px;"><!-- DETAIL -->
                     <table width="100%">
                         <tr>
@@ -319,7 +319,7 @@
                                     </tr>
 
                                 </table>
-                                         
+
                             </td>
                         </tr>               
                     </table><br>
@@ -372,7 +372,7 @@
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
-                                        นักจัดการงานทั่วไปชำนาญการ
+                                        นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
                             </tr>
@@ -409,7 +409,7 @@
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->
-                
+
                 <div style="padding: 0 5 5 5px;"><!-- DETAIL -->
                     <table width="100%">
                         <tr>
@@ -467,7 +467,7 @@
                                     </tr>
 
                                 </table>
-                                         
+
                             </td>
                         </tr>               
                     </table><br>
@@ -520,7 +520,7 @@
                                         (&nbsp;&nbsp;&nbsp;นางอุ่นเรือน&nbsp;&nbsp;ศิรินาค&nbsp;&nbsp;&nbsp;)
                                     </p>
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
-                                        นักจัดการงานทั่วไปชำนาญการ
+                                        นักจัดการงานทั่วไปชำนาญการพิเศษ
                                     </p>
                                 </td>
                             </tr>
@@ -558,12 +558,12 @@
                         </tbody>
                     </table>
                 </div><!-- /HEADER -->
-                
+
                 <div style="padding: 0 5 5 5px;"><!-- DETAIL -->
                     <table width="100%">
                         <tr>
                             <td>
-                                
+
                                 <table border="1" width="100%" class="datatable">
                                     <tr>
                                         <th style="width: 4%; text-align: center;">ลำดับ</th>
@@ -618,7 +618,7 @@
                                     </tr>
 
                                 </table>
-                                         
+
                             </td>
                         </tr>               
                     </table><br>
@@ -667,10 +667,10 @@
                                         (&nbsp;&nbsp;&nbsp;นางสีนวล&nbsp;&nbsp;วงศ์พันธุ์&nbsp;&nbsp;&nbsp;)
                                     </p>
                                     <p style="margin: -3 2 2 80px; padding: 0px;">
-                                        พยาบาลวิชาชีพชำนาญการ
+                                        พยาบาลวิชาชีพชำนาญการพิเศษ
                                     </p>
                                     <p style="margin: -3 2 2 70px; padding: 0px;">
-                                        รองผู้อำนยการด้านอำนวยการ
+                                        รองผู้อำนวยการด้านอำนวยการ
                                     </p>
                                 </td>
                             </tr>

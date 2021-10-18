@@ -19,13 +19,15 @@ class UserController extends Controller
             if (count($fullname) > 1) {
                 $persons = User::where('person_firstname', 'like', '%' .$fullname[0]. '%')
                             ->where('person_lastname', 'like', '%' .$fullname[1]. '%')
+                            ->whereNotIn('person_state', [6,7,8,9,99])
                             ->with('position')
-                            ->with('ward')
+                            ->with('memberOf')
                             ->get();
             } else {
                 $persons = User::where('person_firstname', 'like', '%' .$name. '%')
+                            ->whereNotIn('person_state', [6,7,8,9,99])
                             ->with('position')
-                            ->with('ward')
+                            ->with('memberOf')
                             ->get();
             }
         }
@@ -33,10 +35,12 @@ class UserController extends Controller
         $users = [];
         foreach ($persons as $person) {
             array_push($users, [
-                'id' => $person->person_id,
-                'name' => $person->person_firstname. ' ' .$person->person_lastname,
-                'position' => $person->position->position_name,
-                'ward' => $person->ward->ward_name,
+                'id'        => $person->person_id,
+                'name'      => $person->person_firstname. ' ' .$person->person_lastname,
+                'position'  => $person->position->position_name,
+                'ward'      => !empty($person->memberOf->division)
+                                ? $person->memberOf->division->ward_name
+                                : $person->memberOf->depart->depart_name,
             ]);
         }
 
@@ -46,7 +50,7 @@ class UserController extends Controller
     public function ajaxpersons()
     {
         return [
-            'persons' => User::with('position', 'prefix')
+            'persons'   => User::with('position', 'prefix')
                             ->where('position_id', '104')
                             ->where('person_state', '1')
                             ->get()

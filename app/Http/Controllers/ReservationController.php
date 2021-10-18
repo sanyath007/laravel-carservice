@@ -27,11 +27,11 @@ class ReservationController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'activity_type' => 'required',
-            'activity' => 'required',
-            'locationId' => 'required',
-            'department' => 'required',
-            'ward' => 'required',
-            'transport' => 'required',
+            'activity'      => 'required',
+            'locationId'    => 'required',
+            'department'    => 'required',
+            'ward'          => 'required',
+            'transport'     => 'required',
             // 'startpoint' => 'required',
         ]);
 
@@ -202,7 +202,7 @@ class ReservationController extends Controller
                                     ->with('user')
                                     ->paginate(10)
             ]);
-    	}
+        }
     }
 
     public function edit ($id) {
@@ -375,7 +375,7 @@ class ReservationController extends Controller
                 $locations = Location::where(['id' => $l])->first();
                 $locationsText .= $locations->name. ', '; 
             }
-             
+
             $event = [
                 'id'    => $reserve->id,
                 'title' => $reserve->activity. ' ณ ' .$locationsText. 'จำนวน ' .$reserve->passengers. ' ราย',

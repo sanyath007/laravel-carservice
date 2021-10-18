@@ -34,9 +34,15 @@ class User extends Authenticatable
 
     protected $keyType = 'string';
 
-    public function ward()
+    /** จุดปฏิบัติงาน */
+    public function office()
     {
         return $this->belongsTo('App\Ward', 'office_id', 'ward_id');
+    }
+
+    public function memberOf()
+    {
+        return $this->belongsTo(Models\MemberOf::class, 'person_id', 'person_id');
     }
 
     public function position()
@@ -48,7 +54,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Academic', 'ac_id', 'ac_id');
     }
-    
+
     public function prefix()
     {
         return $this->belongsTo('App\Prefix', 'person_prefix', 'prefix_id');

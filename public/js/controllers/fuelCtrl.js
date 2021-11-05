@@ -107,16 +107,19 @@ app.controller('fuelCtrl', function($scope, $http, toaster, ModalService, CONFIG
         } else if ($scope.newFuel.vehicle == '2') {
             $("#job_desc").val($scope.jobDescText.director)
             $scope.newFuel.jobDesc = $scope.jobDescText.director
-        } else if ($scope.newFuel.vehicle == '9' || $scope.newFuel.vehicle == '90') {
+        } else if ($scope.newFuel.vehicle == '26') {
             $("#job_desc").val($scope.jobDescText.gardener)
             $scope.newFuel.jobDesc = $scope.jobDescText.gardener
         } else if ($scope.newFuel.vehicle == '12') {
             $("#job_desc").val($scope.jobDescText.supply)
             $scope.newFuel.jobDesc = $scope.jobDescText.supply
-        } else if ($scope.newFuel.vehicle == '15') {
+        } else if ($scope.newFuel.vehicle == '15' || $scope.newFuel.vehicle == '24') {
             $("#job_desc").val($scope.jobDescText.laundry)
             $scope.newFuel.jobDesc = $scope.jobDescText.laundry
-        } else if ($scope.newFuel.vehicle == '91') {
+        } else if ($scope.newFuel.vehicle == '26') {
+            $("#job_desc").val($scope.jobDescText.electric)
+            $scope.newFuel.jobDesc = $scope.jobDescText.electric
+        } else if ($scope.newFuel.vehicle == '27') {
             $("#job_desc").val($scope.jobDescText.electric)
             $scope.newFuel.jobDesc = $scope.jobDescText.electric
         } else if ($scope.newFuel.vehicle == '22') {

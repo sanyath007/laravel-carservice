@@ -84,7 +84,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('year')}">
-                        <label for="year">ปีรถ <span style="color: red;">*</span></label>
+                        <label for="year">ปีรถ (ค.ศ.)<span style="color: red;">*</span></label>
                         <input type="text" id="year" name="year" ng-model="newVehicle.year" class="form-control">
                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate('year')"></span>
                         <span class="help-block" ng-show="checkValidate('year')">กรุณาระบุปีรถ</span>
@@ -240,7 +240,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate('cost')}">
-                        <label for="cost">ราคา</label>
+                        <label for="cost">ราคา (ไม่ต้องมี comma)</label>
                         <input type="text" id="cost" name="cost" ng-model="newVehicle.cost" class="form-control">
                         <span class="help-block" ng-show="checkValidate('cost')">กรุณาระบุราคา</span>
                     </div>

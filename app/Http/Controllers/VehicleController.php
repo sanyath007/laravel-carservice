@@ -152,8 +152,9 @@ class VehicleController extends Controller
         $newVehicle->reg_chw = $req['reg_chw'];
         $newVehicle->reg_date = $req['reg_date'];
         $newVehicle->vender_id = $req['vender'];
-        $newVehicle->purchased_method = $req['method'];
         $newVehicle->purchased_date = $req['purchased_date'];
+        $newVehicle->purchased_method = $req['method'];
+        $newVehicle->purchased_cost = $req['cost'];
         $newVehicle->date_in = $d->add($diffHours);
 
         /** Accessories */
@@ -215,8 +216,9 @@ class VehicleController extends Controller
         $vehicle->reg_chw = $req['reg_chw'];
         $vehicle->reg_date = $req['reg_date'];
         $vehicle->vender_id = $req['vender'];
-        $vehicle->purchased_method = $req['method'];
         $vehicle->purchased_date = $req['purchased_date'];
+        $vehicle->purchased_method = $req['method'];
+        $vehicle->purchased_cost = $req['cost'];
         $vehicle->date_in = $d->add($diffHours);
 
         /** Accessories */

@@ -60,8 +60,8 @@
                             {{ number_format($maintained['maintained_mileage']) }}
                         </td>
                         <td style="text-align: center;">
-                            {{ (count($vehicle->mileage) > 0) 
-                                ? number_format($vehicle->mileage[0]->mileage) 
+                            {{ (count($vehicle->mileage) > 0 && $vehicle->mileage[0]->mileage) 
+                                ? $vehicle->mileage[0]->mileage 
                                 : '-' }}
                         </td>
                         <td>

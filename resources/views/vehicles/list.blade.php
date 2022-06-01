@@ -62,11 +62,12 @@
                         class="form-control"
                     >
                         <option value="0">-- กรุณาเลือก --</option>
-                        <option value="1" {{ ($vehicleStatus==1) ? 'selected' : '' }}>1=ใช้งาน</option>
-                        <option value="2" {{ ($vehicleStatus==2) ? 'selected' : '' }}>2=ให้ยืม</option>
-                        <option value="3" {{ ($vehicleStatus==3) ? 'selected' : '' }}>3=เสีย (อยู่ระหว่างซ่อม)</option>
-                        <option value="4" {{ ($vehicleStatus==4) ? 'selected' : '' }}>4=จำหน่าย</option>
-                        <option value="5" {{ ($vehicleStatus==5) ? 'selected' : '' }}>5=โอน</option>
+                        <option value="1" {{ ($vehicleStatus == 1) ? 'selected' : '' }}>1=ใช้งาน</option>
+                        <option value="2" {{ ($vehicleStatus == 2) ? 'selected' : '' }}>2=ให้ยืม</option>
+                        <option value="3" {{ ($vehicleStatus == 3) ? 'selected' : '' }}>3=เสีย (อยู่ระหว่างซ่อม)</option>
+                        <option value="4" {{ ($vehicleStatus == 4) ? 'selected' : '' }}>4=จำหน่าย</option>
+                        <option value="5" {{ ($vehicleStatus == 5) ? 'selected' : '' }}>5=โอน</option>
+                        <option value="99" {{ ($vehicleStatus == 99) ? 'selected' : '' }}>99=ยกเลิกการใช้งาน</option>
                         <!-- <option value="9">9=เครื่องมืออื่นๆ (ไม่ใช่รถ)</option> -->
                     </select>
                 </div>

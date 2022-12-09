@@ -6,6 +6,12 @@
 
         <div class="col-md-8 col-md-offset-2" style="padding-top: 80px;">
 
+            @if (session('status'))
+                <div class="alert alert-danger">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">

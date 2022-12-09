@@ -3,6 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Closure;
 
 class VerifyCsrfToken extends BaseVerifier
 {
@@ -14,4 +17,15 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
     ];
+
+    public function handle($request, Closure $next)
+    {
+        if($request->input('_token')) {
+            if($request->input('_token') !== csrf_token()) {
+                return redirect('/login')->with('status', 'Session หมดอายุแล้ว!! กรุณาลองใหม่');
+            }
+        }
+
+        return parent::handle($request, $next);
+    }
 }

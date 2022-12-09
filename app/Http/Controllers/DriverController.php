@@ -34,13 +34,17 @@ class DriverController extends Controller
         }
     }
 
-    public function index () {
+    public function index (Request $request) {
+        $status = $request->get('status');
+
         return view('drivers.list', [
-            'drivers' => Driver::where('status', '1')
-                            ->where('driver_type', '1')
-                            ->with('person')
-                            ->with('person.position')
-                            ->get()
+            'drivers'   => Driver::with('person','person.position')
+                                    ->when(!empty($status), function($query) use ($status) {
+                                        $query->where('status', $status);
+                                    })
+                                    ->where('driver_type', '1')
+                                    ->get(),
+            'status'    => $status
         ]);
     }
 

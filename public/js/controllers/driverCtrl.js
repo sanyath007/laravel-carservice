@@ -2,6 +2,8 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
 /** ################################################################################## */
     $scope._ = _;
 
+    $scope.cboStatus = '';
+
     /** FORM VALIDATION */
     $scope.formError = null;
     $scope.newDriver = {
@@ -132,5 +134,13 @@ app.controller('driverCtrl', function($scope, $http, toaster, ModalService, CONF
         $scope.newDriver.description = person.prefix.prefix_name+person.person_firstname+ ' ' +person.person_lastname;
         $scope.newDriver.tel = person.person_tel;
     }
+
+    $scope.setStatus = function(status) {
+        $scope.cboStatus = status ? status.toString() : '';
+    };
+
+    $scope.onCboStatusChange = function(status) {
+        window.location.href = `${CONFIG.baseUrl}/drivers/list?status=${status}`;
+    };
 /** ################################################################################## */
 });

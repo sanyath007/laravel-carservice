@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="driverCtrl" ng-init="setStatus({{ $status }})">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">รายการพนักงานขับรถ</li>
@@ -24,8 +24,24 @@
     </div>
     <!-- page title -->
 
+    
     <div class="row">
+        <div class="col-md-3">
+            <select
+                id="cboStatus"
+                name="cboStatus"
+                class="form-control"
+                ng-model="cboStatus"
+                ng-change="onCboStatusChange(cboStatus);"
+            >
+                <option value="">แสดงทั้งหมด</option>
+                <option value="1">ปฏิบัติงาน</option>
+                <option value="2">ไม่ได้ปฏิบัติงานแล้ว</option>
+            </select>
+        </div>
+    </div><br>
 
+    <div class="row">
         @foreach($drivers as $driver)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="cnt-block equal-hight">
@@ -42,7 +58,7 @@
                         </figure>
                         <h3><a href="#">{{ $driver->description }}</a></h3>
                         <p>
-                            <h4>{{ $driver->person->position ? $driver->person->position->position_name : '' }}</h4>
+                            <h4>ตำแหน่ง {{ $driver->person->position ? $driver->person->position->position_name : '-' }}</h4>
                         </p>
                         <p><h4>โทร. {{ $driver->person->person_tel }}</h4></p>
                         <p>
@@ -51,11 +67,10 @@
                                 {{ convDbDateToThDate($driver->person->person_singin) }}
                             </h4>
                         </p>
-                        <!-- <ul class="follow-us clearfix">
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        </ul> -->
+                        <p>
+                            <h5 class="label label-success" ng-show="{{ $driver->status }} == '1'">ปฏิบัติงาน</h5>
+                            <h5 class="label label-danger" ng-show="{{ $driver->status }} == '2'">ไม่ได้ปฏิบัติงานแล้ว</h5>
+                        </p>
                     </div>
 
                     <div style="display: flex; justify-content: center; gap: 5px;">
@@ -84,6 +99,7 @@
                             id="{{ $driver->driver_id. '-delete-form' }}"
                             action="{{ url('/drivers/' .$driver->driver_id. '/status') }}"
                             method="POST"
+                            ng-show="{{ $driver->status }} == '1'"
                         >
                             {{ csrf_field() }}
                             <input type="hidden" id="status" name="status" value="2" />

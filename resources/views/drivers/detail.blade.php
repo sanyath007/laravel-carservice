@@ -132,8 +132,7 @@
                     >
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข
                     </a>
-
-                    <a
+                    <!-- <a
                         href="#"
                         ng-click="delete($event, '{{ $driver->driver_id }}')"
                         class="btn btn-danger"
@@ -144,10 +143,9 @@
                         id="{{ $driver->driver_id. '-delete-form' }}"
                         action="{{ url('/drivers/' .$driver->driver_id. '/delete') }}"
                         method="POST"
-                        style="display: none;"
                     >
                         {{ csrf_field() }}
-                    </form>
+                    </form> -->
                 </div>
             </div><!-- /.row -->
 

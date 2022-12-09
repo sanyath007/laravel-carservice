@@ -35,7 +35,7 @@ class DriverController extends Controller
     }
 
     public function index (Request $request) {
-        $status = $request->get('status');
+        $status = array_key_exists('status', $request->all()) ? $request->get('status') : '1';
 
         return view('drivers.list', [
             'drivers'   => Driver::with('person','person.position')

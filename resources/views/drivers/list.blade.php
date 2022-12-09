@@ -43,7 +43,7 @@
 
     <div class="row">
         @foreach($drivers as $driver)
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="cnt-block equal-hight">
                     <div style="margin-bottom: 20px;">
                         <figure>
@@ -120,10 +120,11 @@
     float:left; 
     width:100%; 
     background:#fff; 
-    padding:30px 20px; 
+    padding:30px 10px; 
     text-align:center; 
-    border:2px solid #d5d5d5;
+    border:1px solid #d5d5d5;
     margin: 0 0 28px;
+    /* box-shadow: 0 1px 2px rgb(0 0 0 / 0.2); */
 }
 .cnt-block figure{
     width:148px;

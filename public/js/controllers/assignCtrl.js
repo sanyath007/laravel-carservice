@@ -19,11 +19,8 @@ app.controller('assignCtrl', function($scope, $http, toaster, ModalService, CONF
 
 
 	$scope.loadVehicleIsIdle = function (reserve_date) {
-		console.log($('#reserve_date').val())
-		console.log($scope.shifts)
 		$http.get(CONFIG.baseUrl + '/assign/ajaxassign/' + $('#reserve_date').val() + '/' + $scope.shifts)
 		.then(function (res) {
-			console.log(res.data)
 			$scope.reservations = res.data.reservations
 			$scope.vehicles = res.data.vehicles
 			$scope.drivers = res.data.drivers

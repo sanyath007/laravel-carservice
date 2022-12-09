@@ -322,11 +322,11 @@ class AssignmentController extends Controller
                                 ->join('vehicle_db.manufacturers', 'vehicle_db.vehicles.manufacturer_id', '=', 'vehicle_db.manufacturers.manufacturer_id')
                                 ->where(['status' => '1'])
                                 // ->whereNOTIn('vehicle_id', function ($query) use ($date, $shift) {
-                                //    	$query->select('vehicle_id')
-                                //    			->from('vehicle_db.assignments');
-                                //    			->whereDate('depart_date', '=', $date)
-                                //    			->where('shift', '=', $shift)
-                //                            ->where('status','<>','2');
+                                //     $query->select('vehicle_id')
+                                //             ->from('vehicle_db.assignments');
+                                //             ->whereDate('depart_date', '=', $date)
+                                //             ->where('shift', '=', $shift)
+                                //             ->where('status','<>','2');
                                 // })					            
                                 // ->with('method')
                                 // ->with('manufacturer')
@@ -334,14 +334,16 @@ class AssignmentController extends Controller
                                 // ->with('vender')
                                 // ->with('fuel')
                                 ->get(),
-			'drivers' => DB::table("vehicle_db.drivers")->select('*')
+			'drivers' => DB::table("vehicle_db.drivers")
+                            ->select('*')
                             // ->whereNOTIn('driver_id', function ($query) use ($date, $shift) {
-                            //    	$query->select('driver_id')
-                            //    			->from('vehicle_db.assignments');
-                                        // ->whereDate('depart_date', '=', $date)
-                                        // ->where('shift','=', $shift)
-                    //                      ->where('status','<>','2');
+                            //     $query->select('driver_id')
+                            //             ->from('vehicle_db.assignments');
+                            //             ->whereDate('depart_date', '=', $date)
+                            //             ->where('shift','=', $shift)
+                            //             ->where('status','<>','2');
                             // })
+                            ->where('status', 1)
                             ->get(),
         ];
     }

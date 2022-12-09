@@ -25,7 +25,7 @@
     </div>
     <!-- page title -->
     
-    <form id="frmEditDriver" action="{{ url('/drivers/update') }}" method="post" enctype="multipart/form-data">
+    <form id="frmEditDriver" action="{{ url('/drivers/'.$driver->driver_id.'/update') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <!-- left column -->
             <div class="col-md-6">

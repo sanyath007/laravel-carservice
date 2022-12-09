@@ -10,6 +10,10 @@ class Driver extends Model
 
     protected $table = 'drivers';
 
+    protected $primaryKey = 'driver_id';
+
+    protected $fillable = ['status'];
+
     public function person()
     {
         return $this->belongsTo('App\User', 'person_id', 'person_id');

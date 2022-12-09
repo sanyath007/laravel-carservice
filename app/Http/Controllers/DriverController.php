@@ -114,30 +114,40 @@ class DriverController extends Controller
         $d = new \DateTime(date('Y-m-d H:i:s'));
         $diffHours = new \DateInterval('PT7H');
 
-        $newDriver = Driver::find($id);
-        $newDriver->person_id = $req['person_id'];   
-        $newDriver->description = $req['description'];
-        $newDriver->tel = $req['tel'];
-        $newDriver->license_no = $req['license_no'];
-        $newDriver->license_type = $req['license_type'];
-        $newDriver->checkup_date = $req['checkup_date'];
-        $newDriver->checkup_result = $req['checkup_result'];
-        $newDriver->capability_date = $req['capability_date'];
-        $newDriver->capability_result = $req['capability_result'];
-        $newDriver->is_certificated = $req['is_certificated'] ? $req['is_certificated'] : 0;
-        $newDriver->certificated_date = $req['certificated_date'];
-        $newDriver->is_emr = $req['is_emr'] ? $req['is_emr'] : 0;
-        $newDriver->emr_sdate = $req['emr_sdate'];
-        $newDriver->emr_edate = $req['emr_edate'];
-        $newDriver->remark = $req['remark'];
-        $newDriver->driver_type = $req['driver_type']; // 1=พขร หลัก, 2=พขร สำรอง
-        $newDriver->status = '1'; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไปช่วยราชการ, 3=ออก
+        $driver = Driver::find($id);
+        $driver->person_id = $req['person_id'];   
+        $driver->description = $req['description'];
+        $driver->tel = $req['tel'];
+        $driver->license_no = $req['license_no'];
+        $driver->license_type = $req['license_type'];
+        $driver->checkup_date = $req['checkup_date'];
+        $driver->checkup_result = $req['checkup_result'];
+        $driver->capability_date = $req['capability_date'];
+        $driver->capability_result = $req['capability_result'];
+        $driver->is_certificated = $req['is_certificated'] ? $req['is_certificated'] : 0;
+        $driver->certificated_date = $req['certificated_date'];
+        $driver->is_emr = $req['is_emr'] ? $req['is_emr'] : 0;
+        $driver->emr_sdate = $req['emr_sdate'];
+        $driver->emr_edate = $req['emr_edate'];
+        $driver->remark = $req['remark'];
+        $driver->driver_type = $req['driver_type']; // 1=พขร หลัก, 2=พขร สำรอง
+        $driver->status = '1'; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไปช่วยราชการ, 3=ออก
 
         /** Upload attach file */
         $thumbnail = uploadFile($req->file('attachfile'), 'uploads/drivers');
         if (!empty($thumbnail)) {
-            $newDriver->thumbnail = $thumbnail;
+            $driver->thumbnail = $thumbnail;
         }
+
+        if ($driver->save()) {                            
+            return redirect('drivers/list');
+        }
+    }
+
+    public function setStatus(Request $req, $id)
+    {
+        $driver = Driver::find($id);
+        $driver->status = $req['status']; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไม่ได้ปฏิบัติงานแล้ว
 
         if ($newDriver->save()) {                            
             return redirect('drivers/list');

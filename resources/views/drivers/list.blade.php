@@ -58,7 +58,7 @@
                         </ul> -->
                     </div>
 
-                    <div>
+                    <div style="display: flex; justify-content: center; gap: 5px;">
                         <a
                             href="{{ url('/drivers/' .$driver->driver_id. '/detail') }}"
                             class="btn btn-info btn-xs"
@@ -73,20 +73,23 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
 
-                        <a
+                        <!-- <a
                             href="#"
                             class="btn btn-danger btn-xs"
                             ng-click="delete($event, '{{ $driver->driver_id }}')"
                         >
                             <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                         <form
                             id="{{ $driver->driver_id. '-delete-form' }}"
-                            action="{{ url('/drivers/' .$driver->driver_id. '/delete') }}"
+                            action="{{ url('/drivers/' .$driver->driver_id. '/status') }}"
                             method="POST"
-                            style="display: none;"
                         >
                             {{ csrf_field() }}
+                            <input type="hidden" id="status" name="status" value="2" />
+                            <button type="submit" class="btn btn-danger btn-xs">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
                         </form>
                     </div>
                 </div>

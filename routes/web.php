@@ -68,6 +68,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/drivers/{id}/update', 'DriverController@update');
     Route::post('/drivers/{id}/delete', 'DriverController@delete');
     Route::get('/drivers/{id}/detail', 'DriverController@detail');
+    Route::post('/drivers/{id}/status', 'DriverController@setStatus');
     Route::post('/drivers/validate', 'DriverController@formValidate');
 
 

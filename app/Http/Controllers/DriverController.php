@@ -149,7 +149,7 @@ class DriverController extends Controller
         $driver = Driver::find($id);
         $driver->status = $req['status']; // 0=ไม่ทราบสถานะ, 1=ปฏิบัติงาน, 2=ไม่ได้ปฏิบัติงานแล้ว
 
-        if ($newDriver->save()) {                            
+        if ($driver->save()) {                            
             return redirect('drivers/list');
         }
     }
